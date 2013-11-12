@@ -1,10 +1,14 @@
 {
     "name": "jonnyw/php-phantomjs",
-    "description": "Execute PhantomJS commands through PHP",
+    "description": "A PHP wrapper for loading pages through PhantomJS",
+    "keywords": ["PhantomJS", "Testing", "Headless Browser"],
+	"type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Jonny Wenmoth",
             "email": "contact@jonnyw.me"
+            "homepage": "http://jonnyw.me/"
         }
     ],
     "minimum-stability": "stable",

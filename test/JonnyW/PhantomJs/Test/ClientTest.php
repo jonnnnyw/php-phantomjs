@@ -129,7 +129,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 	public function testRedirectPage()
 	{
 		$client 	= $this->getMock('JonnyW\PhantomJs\Client', array('request'));
-		$response 	= $this->getMock('JonnyW\PhantomJs\Response', null, array(array('content' => 'test', 'status' => 301, 'redirectUrl'	=> 'http://google.com')));
+		$response 	= $this->getMock('JonnyW\PhantomJs\Response', null, array(array('content' => 'test', 'status' => 301, 'redirectUrl' => 'http://google.com')));
 		
         $client->expects($this->once())
             ->method('request')
