@@ -2,7 +2,7 @@
 
 /*
  * This file is part of the php-phantomjs.
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -18,70 +18,64 @@ use JonnyW\PhantomJs\Client;
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
 	/**
+	 * Client instance
+	 *
+	 * @var JonnyW\PhantomJs\Client
+	 */
+	protected $client;
+
+	/**
 	 * Setup tests
 	 *
 	 * @return void
 	 */
 	protected function setUp()
-    {
-        parent::setUp();
-        
-        $this->client = Client::getInstance();
-    }
+	{
+		parent::setUp();
+
+		$this->client = Client::getInstance();
+	}
 
 	/**
-	 * Test invalid URL's throw exception
+	 * Test get factory instance
 	 *
-     * @dataProvider provideInvalidHosts
-     *
-     * @param string $host
 	 * @return void
-     */
-    public function testInvalidUrl($host)
-    {
-        $this->setExpectedException('JonnyW\\PhantomJs\\Exception\\InvalidUrlException');
-
-        $this->client->open($host);
-    }
-	
-	/**
-	 * Invalid host data providers
-	 *
-	 * @return array
 	 */
-    public function provideInvalidHosts()
-    {
-        return array(
-            array('invalid_url'),
-            array('invalid_url.test')
-        );
-    }
-    
-    /**
-     * Test exception is thrown when 
-     * PhantomJS executable cannot be run
-     *
-     * @return void
-     */
-    public function testBinNotExecutable()
-    {
-	    $this->setExpectedException('JonnyW\\PhantomJs\\Exception\\NoPhantomJsException');
+	public function testMessageFactoryInstance()
+	{
+		$factory = $this->client->getMessageFactory();
 
-        $this->client->setPhantomJs('/path/does/not/exist/phantomjs');
-    }
+		$this->assertInstanceOf('JonnyW\PhantomJs\Message\FactoryInterface', $factory);
+	}
 
 	/**
-     * Test exception is thrown when capture
-     * path is not writeable
-     *
-     * @return void
-     */
-    public function testPathNotWriteable()
-    {
-	    $this->setExpectedException('JonnyW\\PhantomJs\\Exception\\NotWriteableException');
+	 * Test exception is thrown when
+	 * PhantomJS executable cannot be run
+	 *
+	 * @return void
+	 */
+	public function testBinNotExecutable()
+	{
+		$this->setExpectedException('JonnyW\PhantomJs\Exception\NoPhantomJsException');
 
-        $this->client->capture('http://google.com', 'path/does/not/exist/phantoms.png');
-    }
+		$this->client->setPhantomJs('/path/does/not/exist/phantomjs');
+	}
+
+	/**
+	 * Test exception is thrown when capture
+	 * path is not writeable
+	 *
+	 * @return void
+	 */
+	public function testPathNotWriteable()
+	{
+		$this->setExpectedException('JonnyW\PhantomJs\Exception\NotWriteableException');
+
+		$request  = $this->getMock('JonnyW\PhantomJs\Message\Request', null, array('method' => 'GET', 'url' => 'http://jonnyw.me'));
+		$response  = $this->getMock('JonnyW\PhantomJs\Message\Response', null);
+
+		$this->client->send($request, $response, 'path/does/not/exist/phantoms.png');
+	}
 
 	/**
 	 * Test open page
@@ -90,18 +84,19 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testOpenPage()
 	{
-		$client 	= $this->getMock('JonnyW\PhantomJs\Client', array('request'));
-		$response 	= $this->getMock('JonnyW\PhantomJs\Response', null, array(array('content' => 'test')));
-		
-        $client->expects($this->once())
-            ->method('request')
-            ->will($this->returnValue($response));
-		
-		$actual = $client->open('http://jonnyw.me');
-		
+		$client  = $this->getMock('JonnyW\PhantomJs\Client', array('request'));
+		$request  = $this->getMock('JonnyW\PhantomJs\Message\Request', null, array('method' => 'GET', 'url' => 'http://jonnyw.me'));
+		$response  = $this->getMock('JonnyW\PhantomJs\Message\Response', null);
+
+		$client->expects($this->once())
+		->method('request')
+		->will($this->returnValue($response));
+
+		$actual = $client->send($request, $response);
+
 		$this->assertSame($response, $actual);
 	}
-	
+
 	/**
 	 * Test screen capture page
 	 *
@@ -109,18 +104,19 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testCapturePage()
 	{
-		$client 	= $this->getMock('JonnyW\PhantomJs\Client', array('request'));
-		$response 	= $this->getMock('JonnyW\PhantomJs\Response', null, array(array('content' => 'test')));
-		
-        $client->expects($this->once())
-            ->method('request')
-            ->will($this->returnValue($response));
-		
-		$actual = $client->capture('http://jonnyw.me', '/tmp/testing.png');
-		
+		$client  = $this->getMock('JonnyW\PhantomJs\Client', array('request'));
+		$request  = $this->getMock('JonnyW\PhantomJs\Message\Request', null, array('method' => 'GET', 'url' => 'http://jonnyw.me'));
+		$response  = $this->getMock('JonnyW\PhantomJs\Message\Response', null);
+
+		$client->expects($this->once())
+		->method('request')
+		->will($this->returnValue($response));
+
+		$actual = $client->send($request, $response, '/tmp/testing.png');
+
 		$this->assertSame($response, $actual);
 	}
-	
+
 	/**
 	 * Test page is redirect
 	 *
@@ -128,15 +124,20 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testRedirectPage()
 	{
-		$client 	= $this->getMock('JonnyW\PhantomJs\Client', array('request'));
-		$response 	= $this->getMock('JonnyW\PhantomJs\Response', null, array(array('content' => 'test', 'status' => 301, 'redirectUrl' => 'http://google.com')));
-		
-        $client->expects($this->once())
-            ->method('request')
-            ->will($this->returnValue($response));
-		
-		$actual = $client->open('http://jonnyw.me');
-		
-		$this->assertTrue($response->isRedirect());
+		$client  = $this->getMock('JonnyW\PhantomJs\Client', array('request'));
+		$request  = $this->getMock('JonnyW\PhantomJs\Message\Request', null, array('method' => 'GET', 'url' => 'http://jonnyw.me'));
+		$response  = $this->getMock('JonnyW\PhantomJs\Message\Response', array('getStatus'));
+
+		$client->expects($this->once())
+		->method('request')
+		->will($this->returnValue($response));
+
+		$response->expects($this->once())
+		->method('getStatus')
+		->will($this->returnValue(301));
+
+		$actual = $client->send($request, $response);
+
+		$this->assertTrue($actual->isRedirect());
 	}
 }

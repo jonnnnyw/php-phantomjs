@@ -13,7 +13,7 @@ namespace JonnyW\PhantomJs\Exception;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class InvalidUrlException extends \Exception
+class InvalidMethodException extends \Exception
 {
 
 }
