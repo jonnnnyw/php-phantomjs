@@ -11,7 +11,6 @@ websites that demand javascript support and also supports screen captures.
 
 * Introduction
 * Examples
-* Changelog
 * Troubleshooting
 
 
