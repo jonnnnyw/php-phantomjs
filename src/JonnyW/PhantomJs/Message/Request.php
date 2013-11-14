@@ -203,7 +203,7 @@ class Request implements RequestInterface
 
 			if(is_array($value)) {
 
-				$flat += $this->flattenArray($value, $ref, '[%s]');
+				$flat += $this->flattenData($value, $ref, '[%s]');
 				continue;
 			}
 
