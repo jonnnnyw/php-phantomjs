@@ -58,7 +58,7 @@ class Client implements ClientInterface
 		}
 
 		$this->factory  = $factory;
-		$this->phantomJS  = app_path() . '\bin\phantomjs.exe';
+		$this->phantomJS  = 'bin/phantomjs';
 		$this->timeout   = 5000;
 	}
 
