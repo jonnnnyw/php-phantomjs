@@ -45,6 +45,8 @@ class Client implements ClientInterface
 	 */
 	protected $phantomJS;
 
+    protected $script;
+
 	/**
 	 * Internal constructor
 	 *
@@ -165,6 +167,11 @@ class Client implements ClientInterface
 		return $this;
 	}
 
+    public function setScript($scriptLocation){
+        //Todo need to write error handling on unfound file
+        $this->script = file_get_contents($scriptLocation);
+    }
+
 	/**
 	 * Make PhantomJS request
 	 *
@@ -182,19 +189,26 @@ class Client implements ClientInterface
 
 		try {
 
-			$script = false;
+            if($this->script == null){
+                $script = false;
 
-			$data = sprintf(
-				$this->wrapper,
-				$request->getHeaders('json'),
-				$this->timeout,
-				$request->getUrl(),
-				$request->getMethod(),
-				$request->getBody(),
-				$cmd
-			);
+                $data = sprintf(
+                    $this->wrapper,
+                    $request->getHeaders('json'),
+                    $this->timeout,
+                    $request->getUrl(),
+                    $request->getMethod(),
+                    $request->getBody(),
+                    $cmd
+                );
 
-			$script = $this->writeScript($data);
+                $script = $this->writeScript($data);
+            }
+
+            else{
+                $script = $this->writeScript($this->script);
+            }
+
 			$cmd  = escapeshellcmd(sprintf("%s %s", $this->phantomJS, $script));
 
 			$result = shell_exec($cmd);
