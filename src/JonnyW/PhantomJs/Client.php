@@ -45,6 +45,8 @@ class Client implements ClientInterface
 	 */
 	protected $phantomJS;
 
+    protected $script;
+
 	/**
 	 * Internal constructor
 	 *
@@ -113,7 +115,13 @@ class Client implements ClientInterface
 	 */
 	public function open(RequestInterface $request, ResponseInterface $response)
 	{
-		return $this->request($request, $response, $this->openCmd);
+
+        $args = func_get_args();
+        array_splice($args, 2, 0, $this->openCmd);
+
+        return call_user_func_array(array($this, "request"), $args);
+
+		//return $this->request($request, $response, $this->openCmd);
 	}
 
 	/**
@@ -165,6 +173,11 @@ class Client implements ClientInterface
 		return $this;
 	}
 
+    public function setScript($scriptLocation){
+        //Todo need to write error handling on unfound file
+        $this->script = file_get_contents($scriptLocation);
+    }
+
 	/**
 	 * Make PhantomJS request
 	 *
@@ -182,22 +195,53 @@ class Client implements ClientInterface
 
 		try {
 
-			$script = false;
+            if($this->script == null){
+                $script = false;
 
-			$data = sprintf(
-				$this->wrapper,
-				$request->getHeaders('json'),
-				$this->timeout,
-				$request->getUrl(),
-				$request->getMethod(),
-				$request->getBody(),
-				$cmd
-			);
+                $data = sprintf(
+                    $this->wrapper,
+                    $request->getHeaders('json'),
+                    $this->timeout,
+                    $request->getUrl(),
+                    $request->getMethod(),
+                    $request->getBody(),
+                    $cmd
+                );
 
-			$script = $this->writeScript($data);
-			$cmd  = escapeshellcmd(sprintf("%s %s", $this->phantomJS, $script));
+                $script = $this->writeScript($data);
+            }
+
+            else{
+                $script = $this->writeScript($this->script);
+            }
+
+            //Get the parameters passed into this function.
+            $args = func_get_args();
+            //We're unsetting the first 3 arguments, because we don't need them, and they'll mess up the rest of what we want to do.
+            //Technically we don't need to as we're overwriting them later, but just to be super safe.
+            unset($args[0], $args[1], $args[2]);
+
+            //Replace some args with PhantomJs and the Script we're firing
+            $args[1] = $this->phantomJS;
+            $args[2] = $script;
+
+            // building the format of the cmd string we'll end up producing
+            $cmdString = "";
+            foreach($args as $v){
+                $cmdString .= "%s ";
+            }
+            //get rid of that trailing space.
+            rtrim($cmdString, " ");
+            $args[0] = $cmdString;
+
+            //Sort the args by key so they aren't all messed up and screw the script up.
+            ksort($args);
+
+            // Just passing in the unknown number of args to the sprintf function
+            $cmd  = escapeshellcmd(call_user_func_array("sprintf", $args));
 
 			$result = shell_exec($cmd);
+
 			$result = $this->parse($result);
 
 			$this->removeScript($script);
@@ -272,6 +316,10 @@ class Client implements ClientInterface
 		if($data === null || !is_string($data)) {
 			return array();
 		}
+
+        if(is_string($data)){
+            return array("stringResponse" => $data);
+        }
 
 		// Not a JSON string
 		if(substr($data, 0, 1) !== '{') {
