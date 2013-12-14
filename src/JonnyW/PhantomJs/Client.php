@@ -45,8 +45,6 @@ class Client implements ClientInterface
 	 */
 	protected $phantomJS;
 
-    protected $script;
-
 	/**
 	 * Internal constructor
 	 *
@@ -60,7 +58,7 @@ class Client implements ClientInterface
 		}
 
 		$this->factory  = $factory;
-		$this->phantomJS  = 'bin/phantomjs';
+		$this->phantomJS  = app_path() . '\bin\phantomjs.exe';
 		$this->timeout   = 5000;
 	}
 
@@ -115,14 +113,23 @@ class Client implements ClientInterface
 	 */
 	public function open(RequestInterface $request, ResponseInterface $response)
 	{
+        return $this->request($request, $response, $this->openCmd);
+	}
 
+    /**
+     * execute
+     *
+     * @param JonnyW\PhantomJs\Message\RequestInterface $request
+     * @param JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @return JonnyW\PhantomJs\Message\ResponseInterface
+     */
+    public function execute(RequestInterface $request, ResponseInterface $response)
+    {
         $args = func_get_args();
         array_splice($args, 2, 0, $this->openCmd);
 
         return call_user_func_array(array($this, "request"), $args);
-
-		//return $this->request($request, $response, $this->openCmd);
-	}
+    }
 
 	/**
 	 * Screen capture
@@ -173,11 +180,6 @@ class Client implements ClientInterface
 		return $this;
 	}
 
-    public function setScript($scriptLocation){
-        //Todo need to write error handling on unfound file
-        $this->script = file_get_contents($scriptLocation);
-    }
-
 	/**
 	 * Make PhantomJS request
 	 *
@@ -195,7 +197,7 @@ class Client implements ClientInterface
 
 		try {
 
-            if($this->script == null){
+            if($request->getScript() == null){
                 $script = false;
 
                 $data = sprintf(
@@ -212,7 +214,7 @@ class Client implements ClientInterface
             }
 
             else{
-                $script = $this->writeScript($this->script);
+                $script = $this->writeScript($request->getScript());
             }
 
             //Get the parameters passed into this function.

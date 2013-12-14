@@ -112,4 +112,7 @@ interface RequestInterface
 	 * @return array
 	 */
 	public function getHeaders($format = 'default');
+
+    public function setScript($scriptLocation);
+    public function getScript();
 }
