@@ -31,7 +31,7 @@ interface FactoryInterface
 	 * @param string $method
 	 * @return JonnyW\PhantomJs\Message\Request
 	 */
-	public function createRequest($url, $method = RequestInterface::METHOD_GET);
+	public function createRequest($method = RequestInterface::METHOD_GET, $url = null);
 
 	/**
 	 * Create response instance

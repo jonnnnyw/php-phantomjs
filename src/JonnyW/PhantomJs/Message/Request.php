@@ -48,6 +48,13 @@ class Request implements RequestInterface
 	 */
 	protected $url;
 
+    /**
+     * Request script
+     *
+     * @var string
+     */
+    protected $script;
+
 	/**
 	 * Internal constructor
 	 *
@@ -183,6 +190,26 @@ class Request implements RequestInterface
 
 		return $this->data;
 	}
+
+    /**
+     * Set request script
+     *
+     * @param string $scriptLocation
+     * @return JonnyW\PhantomJs\Message\Request
+     */
+    public function setScript($scriptLocation){
+        //Todo need to write error handling on unfound file
+        $this->script = file_get_contents($scriptLocation);
+    }
+
+    /**
+     * Get request script
+     *
+     * @return string
+     */
+    public function getScript(){
+        return $this->script;
+    }
 
 	/**
 	 * Flatten data into single

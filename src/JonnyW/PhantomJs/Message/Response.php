@@ -66,6 +66,8 @@ class Response implements ResponseInterface
 	 */
 	protected $time;
 
+    protected $stringResponse;
+
 	/**
 	 * Set response data
 	 *
@@ -109,6 +111,11 @@ class Response implements ResponseInterface
 		if(isset($data['time'])) {
 			$this->time = $data['time'];
 		}
+
+        // Set stringResponse string
+        if(isset($data['stringResponse'])) {
+            $this->stringResponse = $data['stringResponse'];
+        }
 
 		return $this;
 	}
@@ -228,4 +235,9 @@ class Response implements ResponseInterface
 	{
 		return $this->time;
 	}
+
+    public function getCommandLine()
+    {
+        return $this->stringResponse;
+    }
 }
