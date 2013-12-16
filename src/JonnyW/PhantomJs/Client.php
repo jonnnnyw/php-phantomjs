@@ -27,14 +27,14 @@ class Client implements ClientInterface
 	/**
 	 * Client instance
 	 *
-	 * @var JonnyW\PhantomJs\ClientInterface
+	 * @var \JonnyW\PhantomJs\ClientInterface
 	 */
 	private static $instance;
 
 	/**
 	 * Message factory instance
 	 *
-	 * @var JonnyW\PhantomJs\Message\FactoryInterface
+	 * @var \JonnyW\PhantomJs\Message\FactoryInterface
 	 */
 	protected $factory;
 
@@ -48,7 +48,7 @@ class Client implements ClientInterface
 	/**
 	 * Internal constructor
 	 *
-	 * @param JonnyW\PhantomJs\Message\FactoryInterface $factory
+	 * @param $factory \JonnyW\PhantomJs\Message\FactoryInterface
 	 * @return void
 	 */
 	public function __construct(FactoryInterface $factory = null)
@@ -65,8 +65,8 @@ class Client implements ClientInterface
 	/**
 	 * Get singleton instance
 	 *
-	 * @param JonnyW\PhantomJs\Message\FactoryInterface $factory
-	 * @return JonnyW\PhantomJs\ClientInterface
+	 * @param \JonnyW\PhantomJs\Message\FactoryInterface $factory
+	 * @return \JonnyW\PhantomJs\ClientInterface
 	 */
 	public static function getInstance(FactoryInterface $factory = null)
 	{
@@ -80,7 +80,7 @@ class Client implements ClientInterface
 	/**
 	 * Get message factory instance
 	 *
-	 * @return JonnyW\PhantomJs\Message\FactoryInterface
+	 * @return \JonnyW\PhantomJs\Message\FactoryInterface
 	 */
 	public function getMessageFactory()
 	{
@@ -90,10 +90,10 @@ class Client implements ClientInterface
 	/**
 	 * Send request
 	 *
-	 * @param JonnyW\PhantomJs\Message\RequestInterface $request
-	 * @param JonnyW\PhantomJs\Message\ResponseInterface $response
+	 * @param \JonnyW\PhantomJs\Message\RequestInterface $request
+	 * @param \JonnyW\PhantomJs\Message\ResponseInterface $response
 	 * @param string $file
-	 * @return JonnyW\PhantomJs\Message\ResponseInterface
+	 * @return \JonnyW\PhantomJs\Message\ResponseInterface
 	 */
 	public function send(RequestInterface $request, ResponseInterface $response, $file = null)
 	{
@@ -107,9 +107,9 @@ class Client implements ClientInterface
 	/**
 	 * Open page
 	 *
-	 * @param JonnyW\PhantomJs\Message\RequestInterface $request
-	 * @param JonnyW\PhantomJs\Message\ResponseInterface $response
-	 * @return JonnyW\PhantomJs\Message\ResponseInterface
+	 * @param \JonnyW\PhantomJs\Message\RequestInterface $request
+	 * @param \JonnyW\PhantomJs\Message\ResponseInterface $response
+	 * @return \JonnyW\PhantomJs\Message\ResponseInterface
 	 */
 	public function open(RequestInterface $request, ResponseInterface $response)
 	{
@@ -119,9 +119,9 @@ class Client implements ClientInterface
     /**
      * execute
      *
-     * @param JonnyW\PhantomJs\Message\RequestInterface $request
-     * @param JonnyW\PhantomJs\Message\ResponseInterface $response
-     * @return JonnyW\PhantomJs\Message\ResponseInterface
+     * @param \JonnyW\PhantomJs\Message\RequestInterface $request
+     * @param \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function execute(RequestInterface $request, ResponseInterface $response)
     {
@@ -134,10 +134,10 @@ class Client implements ClientInterface
 	/**
 	 * Screen capture
 	 *
-	 * @param JonnyW\PhantomJs\Message\RequestInterface $request
-	 * @param JonnyW\PhantomJs\Message\ResponseInterface $response
+	 * @param \JonnyW\PhantomJs\Message\RequestInterface $request
+	 * @param \JonnyW\PhantomJs\Message\ResponseInterface $response
 	 * @param string $file
-	 * @return JonnyW\PhantomJs\Message\ResponseInterface
+	 * @return \JonnyW\PhantomJs\Message\ResponseInterface
 	 */
 	public function capture(RequestInterface $request, ResponseInterface $response, $file)
 	{
@@ -154,7 +154,7 @@ class Client implements ClientInterface
 	 * Set new PhantomJs path
 	 *
 	 * @param string $path
-	 * @return JonnyW\PhantomJs\ClientInterface
+	 * @return \JonnyW\PhantomJs\ClientInterface
 	 */
 	public function setPhantomJs($path)
 	{
@@ -171,7 +171,7 @@ class Client implements ClientInterface
 	 * Set timeout period (in milliseconds)
 	 *
 	 * @param int $period
-	 * @return JonnyW\PhantomJs\ClientInterface
+	 * @return \JonnyW\PhantomJs\ClientInterface
 	 */
 	public function setTimeout($period)
 	{
@@ -183,10 +183,10 @@ class Client implements ClientInterface
 	/**
 	 * Make PhantomJS request
 	 *
-	 * @param JonnyW\PhantomJs\Message\RequestInterface $request
-	 * @param JonnyW\PhantomJs\Message\ResponseInterface $response
+	 * @param \JonnyW\PhantomJs\Message\RequestInterface $request
+	 * @param \JonnyW\PhantomJs\Message\ResponseInterface $response
 	 * @param string $cmd
-	 * @return JonnyW\PhantomJs\Message\ResponseInterface
+	 * @return \JonnyW\PhantomJs\Message\ResponseInterface
 	 */
 	protected function request(RequestInterface $request, ResponseInterface $response, $cmd)
 	{
@@ -268,7 +268,7 @@ class Client implements ClientInterface
 	 * return path to file
 	 *
 	 * @param string $data
-	 * @return JonnyW\PhantomJs\ClientInterface
+	 * @return \JonnyW\PhantomJs\ClientInterface
 	 */
 	protected function writeScript($data)
 	{
@@ -294,7 +294,7 @@ class Client implements ClientInterface
 	 * Remove temporary script file
 	 *
 	 * @param string $file
-	 * @return JonnyW\PhantomJs\ClientInterface
+	 * @return \JonnyW\PhantomJs\ClientInterface
 	 */
 	protected function removeScript($file)
 	{
@@ -319,13 +319,9 @@ class Client implements ClientInterface
 			return array();
 		}
 
-        if(is_string($data)){
-            return array("stringResponse" => $data);
-        }
-
 		// Not a JSON string
 		if(substr($data, 0, 1) !== '{') {
-			return array();
+            return array("stringResponse" => $data);
 		}
 
 		// Return decoded JSON string
