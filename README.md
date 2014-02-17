@@ -5,6 +5,7 @@ PHP PhantomJS is a simple PHP library to load pages through the PhantomJS
 headless browser and return the page response. It is handy for testing
 websites that demand javascript support and also supports screen captures.
 
+[![Total Downloads](https://poser.pugx.org/jonnyw/php-phantomjs/downloads.png)](https://packagist.org/packages/jonnyw/php-phantomjs) [![Latest Stable Version](https://poser.pugx.org/jonnyw/php-phantomjs/v/stable.png)](https://packagist.org/packages/jonnyw/php-phantomjs) [![Build Status](https://travis-ci.org/jonnnnyw/php-phantomjs.png?branch=master)](https://travis-ci.org/jonnnnyw/php-phantomjs) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/badges/quality-score.png?s=631d32fa1fbb9300eb84b9b52702c7ffeac046a1)](https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/) [![Code Coverage](https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/badges/coverage.png?s=893b5997da45448e32983b8568a39630b0b2d91b)](https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/)
 
 0.0 Table of Contents
 ---------------------
@@ -221,7 +222,7 @@ for older versions.
 
 * Requests now require you to inject a request and response instance when sending.
 * Added message factory that can also be injected into client when instantiated.
-* Customers headers can be set in requests.
+* Custom headers can be set in requests.
 * Request method can be set. Supports: OPTIONS, GET, HEAD, POST, PUT, DELETE, PATCH.
 * Request data can be set. Useful when making post requests.
 
