@@ -24,330 +24,328 @@ use JonnyW\PhantomJs\Message\ResponseInterface;
  */
 class Client implements ClientInterface
 {
-	/**
-	 * Client instance
-	 *
-	 * @var JonnyW\PhantomJs\ClientInterface
-	 */
-	private static $instance;
+    /**
+     * Client instance
+     *
+     * @var JonnyW\PhantomJs\ClientInterface
+     */
+    private static $instance;
 
-	/**
-	 * Message factory instance
-	 *
-	 * @var JonnyW\PhantomJs\Message\FactoryInterface
-	 */
-	protected $factory;
+    /**
+     * Message factory instance
+     *
+     * @var JonnyW\PhantomJs\Message\FactoryInterface
+     */
+    protected $factory;
 
-	/**
-	 * Path to phantomJS executable
-	 *
-	 * @var string
-	 */
-	protected $phantomJS;
-	
-	/**
-	 * Request timeout period
-	 *
-	 * @var int
-	 */
-	protected $timeout;
+    /**
+     * Path to phantomJS executable
+     *
+     * @var string
+     */
+    protected $phantomJS;
 
-	/**
-	 * Internal constructor
-	 *
-	 * @param FactoryInterface $factory
-	 * @return void
-	 */
-	public function __construct(FactoryInterface $factory = null)
-	{
-		if(!$factory instanceof FactoryInterface) {
-			$factory = Factory::getInstance();
-		}
+    /**
+     * Request timeout period
+     *
+     * @var int
+     */
+    protected $timeout;
 
-		$this->factory  = $factory;
-		$this->phantomJS  = 'bin/phantomjs';
-		$this->timeout   = 5000;
-	}
+    /**
+     * Internal constructor
+     *
+     * @param  FactoryInterface $factory
+     * @return void
+     */
+    public function __construct(FactoryInterface $factory = null)
+    {
+        if (!$factory instanceof FactoryInterface) {
+            $factory = Factory::getInstance();
+        }
 
-	/**
-	 * Get singleton instance
-	 *
-	 * @param FactoryInterface $factory
-	 * @return Client
-	 */
-	public static function getInstance(FactoryInterface $factory = null)
-	{
-		if(!self::$instance instanceof ClientInterface) {
-			self::$instance = new Client($factory);
-		}
+        $this->factory  = $factory;
+        $this->phantomJS  = 'bin/phantomjs';
+        $this->timeout   = 5000;
+    }
 
-		return self::$instance;
-	}
+    /**
+     * Get singleton instance
+     *
+     * @param  FactoryInterface $factory
+     * @return Client
+     */
+    public static function getInstance(FactoryInterface $factory = null)
+    {
+        if (!self::$instance instanceof ClientInterface) {
+            self::$instance = new Client($factory);
+        }
 
-	/**
-	 * Get message factory instance
-	 *
-	 * @return JonnyW\PhantomJs\Message\FactoryInterface
-	 */
-	public function getMessageFactory()
-	{
-		return $this->factory;
-	}
+        return self::$instance;
+    }
 
-	/**
-	 * Send request
-	 *
-	 * @param RequestInterface $request
-	 * @param ResponseInterface $response
-	 * @param string $file
-	 * @return ResponseInterface
-	 */
-	public function send(RequestInterface $request, ResponseInterface $response, $file = null)
-	{
-		if(!is_null($file)) {
-			return $this->capture($request, $response, $file);
-		}
+    /**
+     * Get message factory instance
+     *
+     * @return JonnyW\PhantomJs\Message\FactoryInterface
+     */
+    public function getMessageFactory()
+    {
+        return $this->factory;
+    }
 
-		return $this->open($request, $response);
-	}
+    /**
+     * Send request
+     *
+     * @param  RequestInterface  $request
+     * @param  ResponseInterface $response
+     * @param  string            $file
+     * @return ResponseInterface
+     */
+    public function send(RequestInterface $request, ResponseInterface $response, $file = null)
+    {
+        if (!is_null($file)) {
+            return $this->capture($request, $response, $file);
+        }
 
-	/**
-	 * Open page
-	 *
-	 * @param RequestInterface $request
-	 * @param ResponseInterface $response
-	 * @return ResponseInterface
-	 */
-	public function open(RequestInterface $request, ResponseInterface $response)
-	{
-		return $this->request($request, $response, $this->openCmd);
-	}
+        return $this->open($request, $response);
+    }
 
-	/**
-	 * Screen capture
-	 *
-	 * @param RequestInterface $request
-	 * @param ResponseInterface $response
-	 * @param string $file
-	 * @return ResponseInterface
-	 */
-	public function capture(RequestInterface $request, ResponseInterface $response, $file)
-	{
-		if(!is_writable(dirname($file))) {
-			throw new NotWriteableException(sprintf('Path is not writeable by PhantomJs: %s', $file));
-		}
+    /**
+     * Open page
+     *
+     * @param  RequestInterface  $request
+     * @param  ResponseInterface $response
+     * @return ResponseInterface
+     */
+    public function open(RequestInterface $request, ResponseInterface $response)
+    {
+        return $this->request($request, $response, $this->openCmd);
+    }
 
-		$cmd = sprintf($this->captureCmd, $file);
+    /**
+     * Screen capture
+     *
+     * @param  RequestInterface  $request
+     * @param  ResponseInterface $response
+     * @param  string            $file
+     * @return ResponseInterface
+     */
+    public function capture(RequestInterface $request, ResponseInterface $response, $file)
+    {
+        if (!is_writable(dirname($file))) {
+            throw new NotWriteableException(sprintf('Path is not writeable by PhantomJs: %s', $file));
+        }
 
-		return $this->request($request, $response, $cmd);
-	}
+        $cmd = sprintf($this->captureCmd, $file);
 
-	/**
-	 * Set new PhantomJs path
-	 *
-	 * @param string $path
-	 * @return Client
-	 */
-	public function setPhantomJs($path)
-	{
-		if(!file_exists($path) || !is_executable($path)) {
-			throw new NoPhantomJsException(sprintf('PhantomJs file does not exist or is not executable: %s', $path));
-		}
+        return $this->request($request, $response, $cmd);
+    }
 
-		$this->phantomJS = $path;
+    /**
+     * Set new PhantomJs path
+     *
+     * @param  string $path
+     * @return Client
+     */
+    public function setPhantomJs($path)
+    {
+        if (!file_exists($path) || !is_executable($path)) {
+            throw new NoPhantomJsException(sprintf('PhantomJs file does not exist or is not executable: %s', $path));
+        }
 
-		return $this;
-	}
+        $this->phantomJS = $path;
 
-	/**
-	 * Set timeout period (in milliseconds)
-	 *
-	 * @param int $period
-	 * @return Client
-	 */
-	public function setTimeout($period)
-	{
-		$this->timeout = $period;
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * Set timeout period (in milliseconds)
+     *
+     * @param  int    $period
+     * @return Client
+     */
+    public function setTimeout($period)
+    {
+        $this->timeout = $period;
 
-	/**
-	 * Make PhantomJS request
-	 *
-	 * @param RequestInterface $request
-	 * @param ResponseInterface $response
-	 * @param string $cmd
-	 * @return ResponseInterface
-	 */
-	protected function request(RequestInterface $request, ResponseInterface $response, $cmd)
-	{
-		// Validate PhantomJS executable
-		if(!file_exists($this->phantomJS) || !is_executable($this->phantomJS)) {
-			throw new NoPhantomJsException(sprintf('PhantomJs file does not exist or is not executable: %s', $this->phantomJS));
-		}
+        return $this;
+    }
 
-		try {
+    /**
+     * Make PhantomJS request
+     *
+     * @param  RequestInterface  $request
+     * @param  ResponseInterface $response
+     * @param  string            $cmd
+     * @return ResponseInterface
+     */
+    protected function request(RequestInterface $request, ResponseInterface $response, $cmd)
+    {
+        // Validate PhantomJS executable
+        if (!file_exists($this->phantomJS) || !is_executable($this->phantomJS)) {
+            throw new NoPhantomJsException(sprintf('PhantomJs file does not exist or is not executable: %s', $this->phantomJS));
+        }
 
-			$script = false;
+        try {
 
-			$data = sprintf(
-				$this->wrapper,
-				$request->getHeaders('json'),
-				$this->timeout,
-				$request->getUrl(),
-				$request->getMethod(),
-				$request->getBody(),
-				$cmd
-			);
+            $script = false;
 
-			$script = $this->writeScript($data);
-			$cmd  = escapeshellcmd(sprintf("%s %s", $this->phantomJS, $script));
+            $data = sprintf(
+                $this->wrapper,
+                $request->getHeaders('json'),
+                $this->timeout,
+                $request->getUrl(),
+                $request->getMethod(),
+                $request->getBody(),
+                $cmd
+            );
 
-			$result = shell_exec($cmd);
-			$result = $this->parse($result);
+            $script = $this->writeScript($data);
+            $cmd  = escapeshellcmd(sprintf("%s %s", $this->phantomJS, $script));
 
-			$this->removeScript($script);
+            $result = shell_exec($cmd);
+            $result = $this->parse($result);
 
-			$response->setData($result);
-		}
-		catch(NotWriteableException $e) {
-			throw $e;
-		}
-		catch(\Exception $e) {
+            $this->removeScript($script);
 
-			$this->removeScript($script);
+            $response->setData($result);
+        } catch (NotWriteableException $e) {
+            throw $e;
+        } catch (\Exception $e) {
 
-			throw new CommandFailedException(sprintf('Error when executing PhantomJs command: %s - %s', $cmd, $e->getMessage()));
-		}
+            $this->removeScript($script);
 
-		return $response;
-	}
+            throw new CommandFailedException(sprintf('Error when executing PhantomJs command: %s - %s', $cmd, $e->getMessage()));
+        }
 
-	/**
-	 * Write temporary script file and
-	 * return path to file
-	 *
-	 * @param string $data
-	 * @return string
-	 */
-	protected function writeScript($data)
-	{
-		$file = tempnam('/tmp', 'phantomjs');
+        return $response;
+    }
 
-		// Could not create tmp file
-		if(!$file || !is_writable($file)) {
-			throw new NotWriteableException('Could not create tmp file on system. Please check your tmp directory and make sure it is writeable.');
-		}
+    /**
+     * Write temporary script file and
+     * return path to file
+     *
+     * @param  string $data
+     * @return string
+     */
+    protected function writeScript($data)
+    {
+        $file = tempnam('/tmp', 'phantomjs');
 
-		// Could not write script data to tmp file
-		if(file_put_contents($file, $data) === false) {
+        // Could not create tmp file
+        if (!$file || !is_writable($file)) {
+            throw new NotWriteableException('Could not create tmp file on system. Please check your tmp directory and make sure it is writeable.');
+        }
 
-			$this->removeScript($file);
+        // Could not write script data to tmp file
+        if (file_put_contents($file, $data) === false) {
 
-			throw new NotWriteableException(sprintf('Could not write data to tmp file: %s. Please check your tmp directory and make sure it is writeable.', $file));
-		}
+            $this->removeScript($file);
 
-		return $file;
-	}
+            throw new NotWriteableException(sprintf('Could not write data to tmp file: %s. Please check your tmp directory and make sure it is writeable.', $file));
+        }
 
-	/**
-	 * Remove temporary script file
-	 *
-	 * @param string|boolean $file
-	 * @return Client
-	 */
-	protected function removeScript($file)
-	{
-		if(is_string($file) && file_exists($file)) {
-			unlink($file);
-		}
+        return $file;
+    }
 
-		return $this;
-	}
+    /**
+     * Remove temporary script file
+     *
+     * @param  string|boolean $file
+     * @return Client
+     */
+    protected function removeScript($file)
+    {
+        if (is_string($file) && file_exists($file)) {
+            unlink($file);
+        }
 
-	/**
-	 * If data from JSON string format
-	 * and return array
-	 *
-	 * @param string $data
-	 * @return array
-	 */
-	protected function parse($data)
-	{
-		// Data is invalid
-		if($data === null || !is_string($data)) {
-			return array();
-		}
+        return $this;
+    }
 
-		// Not a JSON string
-		if(substr($data, 0, 1) !== '{') {
-			return array();
-		}
+    /**
+     * If data from JSON string format
+     * and return array
+     *
+     * @param  string $data
+     * @return array
+     */
+    protected function parse($data)
+    {
+        // Data is invalid
+        if ($data === null || !is_string($data)) {
+            return array();
+        }
 
-		// Return decoded JSON string
-		return (array) json_decode($data, true);
-	}
+        // Not a JSON string
+        if (substr($data, 0, 1) !== '{') {
+            return array();
+        }
 
-	/**
-	 * PhantomJs base wrapper
-	 *
-	 * @var string
-	 */
-	protected $wrapper = <<<EOF
+        // Return decoded JSON string
+        return (array) json_decode($data, true);
+    }
 
-	var page = require('webpage').create(),
-		response = {},
-		headers = %1\$s;
+    /**
+     * PhantomJs base wrapper
+     *
+     * @var string
+     */
+    protected $wrapper = <<<EOF
 
-	page.settings.resourceTimeout = %2\$s;
-	page.onResourceTimeout = function(e) {
-		response 		= e;
-		response.status = e.errorCode;
-	};
+    var page = require('webpage').create(),
+        response = {},
+        headers = %1\$s;
 
-	page.onResourceReceived = function (r) {
-		if(!response.status) response = r;
-	};
+    page.settings.resourceTimeout = %2\$s;
+    page.onResourceTimeout = function (e) {
+        response 		= e;
+        response.status = e.errorCode;
+    };
 
-	page.customHeaders = headers ? headers : {};
+    page.onResourceReceived = function (r) {
+        if(!response.status) response = r;
+    };
 
-	page.open('%3\$s', '%4\$s', '%5\$s', function(status) {
+    page.customHeaders = headers ? headers : {};
 
-		if(status === 'success') {
-			%6\$s
-		}
+    page.open('%3\$s', '%4\$s', '%5\$s', function (status) {
 
-		console.log(JSON.stringify(response, undefined, 4));
-		phantom.exit();
-	});
+        if (status === 'success') {
+            %6\$s
+        }
+
+        console.log(JSON.stringify(response, undefined, 4));
+        phantom.exit();
+    });
 EOF;
 
-	/**
-	 * PhantomJs screen capture
-	 * command template
-	 *
-	 * @var string
-	 */
-	protected $captureCmd = <<<EOF
+    /**
+     * PhantomJs screen capture
+     * command template
+     *
+     * @var string
+     */
+    protected $captureCmd = <<<EOF
 
-			page.render('%1\$s');
+            page.render('%1\$s');
 
-			response.content = page.evaluate(function () {
-				return document.getElementsByTagName('html')[0].innerHTML
-			});
+            response.content = page.evaluate(function () {
+                return document.getElementsByTagName('html')[0].innerHTML
+            });
 EOF;
 
-	/**
-	 * PhantomJs page open
-	 * command template
-	 *
-	 * @var string
-	 */
-	protected $openCmd = <<<EOF
+    /**
+     * PhantomJs page open
+     * command template
+     *
+     * @var string
+     */
+    protected $openCmd = <<<EOF
 
-			response.content = page.evaluate(function () {
-				return document.getElementsByTagName('html')[0].innerHTML
-			});
+            response.content = page.evaluate(function () {
+                return document.getElementsByTagName('html')[0].innerHTML
+            });
 EOF;
 }

@@ -20,46 +20,46 @@ use JonnyW\PhantomJs\Message\Response;
  */
 class Factory implements FactoryInterface
 {
-	/**
-	 * Client instance
-	 *
-	 * @var JonnyW\PhantomJs\Message\FactoryInterface
-	 */
-	private static $instance;
+    /**
+     * Client instance
+     *
+     * @var JonnyW\PhantomJs\Message\FactoryInterface
+     */
+    private static $instance;
 
-	/**
-	 * Get singleton instance
-	 *
-	 * @return Factory
-	 */
-	public static function getInstance()
-	{
-		if(!self::$instance instanceof FactoryInterface) {
-			self::$instance = new Factory();
-		}
+    /**
+     * Get singleton instance
+     *
+     * @return Factory
+     */
+    public static function getInstance()
+    {
+        if (!self::$instance instanceof FactoryInterface) {
+            self::$instance = new Factory();
+        }
 
-		return self::$instance;
-	}
+        return self::$instance;
+    }
 
-	/**
-	 * Create request instance
-	 *
-	 * @param string $method
-	 * @param string $url
-	 * @return Request
-	 */
-	public function createRequest($method = RequestInterface::METHOD_GET, $url = null)
-	{
-		return new Request($method, $url);
-	}
+    /**
+     * Create request instance
+     *
+     * @param  string  $method
+     * @param  string  $url
+     * @return Request
+     */
+    public function createRequest($method = RequestInterface::METHOD_GET, $url = null)
+    {
+        return new Request($method, $url);
+    }
 
-	/**
-	 * Create response instance
-	 *
-	 * @return Response
-	 */
-	public function createResponse()
-	{
-		return new Response();
-	}
+    /**
+     * Create response instance
+     *
+     * @return Response
+     */
+    public function createResponse()
+    {
+        return new Response();
+    }
 }
