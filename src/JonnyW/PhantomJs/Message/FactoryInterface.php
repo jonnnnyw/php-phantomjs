@@ -17,26 +17,26 @@ use JonnyW\PhantomJs\Message\RequestInterface;
  */
 interface FactoryInterface
 {
-	/**
-	 * Get singleton instance
-	 *
-	 * @return Factory
-	 */
-	public static function getInstance();
+    /**
+     * Get singleton instance
+     *
+     * @return Factory
+     */
+    public static function getInstance();
 
-	/**
-	 * Create request instance
-	 *
-	 * @param string $url
-	 * @param string $method
-	 * @return Request
-	 */
-	public function createRequest($url, $method = RequestInterface::METHOD_GET);
+    /**
+     * Create request instance
+     *
+     * @param  string  $url
+     * @param  string  $method
+     * @return Request
+     */
+    public function createRequest($url, $method = RequestInterface::METHOD_GET);
 
-	/**
-	 * Create response instance
-	 *
-	 * @return Response
-	 */
-	public function createResponse();
+    /**
+     * Create response instance
+     *
+     * @return Response
+     */
+    public function createResponse();
 }

@@ -16,75 +16,75 @@ namespace JonnyW\PhantomJs\Message;
  */
 interface ResponseInterface
 {
-	/**
-	 * Set response data
-	 *
-	 * @return Response
-	 */
-	public function setData(array $data);
+    /**
+     * Set response data
+     *
+     * @return Response
+     */
+    public function setData(array $data);
 
-	/**
-	 * Get HTTP headers array
-	 *
-	 * @return array
-	 */
-	public function getHeaders();
+    /**
+     * Get HTTP headers array
+     *
+     * @return array
+     */
+    public function getHeaders();
 
-	/**
-	 * Get HTTP header value for code
-	 *
-	 * @praam string $$code
-	 * @return mixed
-	 */
-	public function getHeader($code);
+    /**
+     * Get HTTP header value for code
+     *
+     * @praam string $$code
+     * @return mixed
+     */
+    public function getHeader($code);
 
-	/**
-	 * Get response status code
-	 *
-	 * @return int|null
-	 */
-	public function getStatus();
+    /**
+     * Get response status code
+     *
+     * @return int|null
+     */
+    public function getStatus();
 
-	/**
-	 * Get page content from respone
-	 *
-	 * @return string
-	 */
-	public function getContent();
+    /**
+     * Get page content from respone
+     *
+     * @return string
+     */
+    public function getContent();
 
-	/**
-	 * Get content type header
-	 *
-	 * @return string
-	 */
-	public function getContentType();
+    /**
+     * Get content type header
+     *
+     * @return string
+     */
+    public function getContentType();
 
-	/**
-	 * Get request URL
-	 *
-	 * @return string
-	 */
-	public function getUrl();
+    /**
+     * Get request URL
+     *
+     * @return string
+     */
+    public function getUrl();
 
-	/**
-	 * Get redirect URL (if redirected)
-	 *
-	 * @return string
-	 */
-	public function getRedirectUrl();
+    /**
+     * Get redirect URL (if redirected)
+     *
+     * @return string
+     */
+    public function getRedirectUrl();
 
-	/**
-	 * Is response a redirect
-	 *  - Checks status codes
-	 *
-	 * @return boolean
-	 */
-	public function isRedirect();
+    /**
+     * Is response a redirect
+     *  - Checks status codes
+     *
+     * @return boolean
+     */
+    public function isRedirect();
 
-	/**
-	 * Get time string
-	 *
-	 * @return string
-	 */
-	public function getTime();
+    /**
+     * Get time string
+     *
+     * @return string
+     */
+    public function getTime();
 }
