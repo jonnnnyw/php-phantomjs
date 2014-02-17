@@ -44,6 +44,13 @@ class Client implements ClientInterface
 	 * @var string
 	 */
 	protected $phantomJS;
+	
+	/**
+	 * Request timeout period
+	 *
+	 * @var int
+	 */
+	protected $timeout;
 
 	/**
 	 * Internal constructor
@@ -247,12 +254,12 @@ class Client implements ClientInterface
 	/**
 	 * Remove temporary script file
 	 *
-	 * @param string $file
+	 * @param string|boolean $file
 	 * @return JonnyW\PhantomJs\ClientInterface
 	 */
 	protected function removeScript($file)
 	{
-		if($file && file_exists($file)) {
+		if(is_string($file) && file_exists($file)) {
 			unlink($file);
 		}
 
