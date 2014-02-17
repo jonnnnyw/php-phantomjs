@@ -19,7 +19,7 @@ interface ResponseInterface
 	/**
 	 * Set response data
 	 *
-	 * @return JonnyW\PhantomJs\Message\ResponseInterface
+	 * @return Response
 	 */
 	public function setData(array $data);
 

@@ -21,29 +21,29 @@ interface ClientInterface
 	/**
 	 * Send request
 	 *
-	 * @param JonnyW\PhantomJs\Message\RequestInterface $request
-	 * @param JonnyW\PhantomJs\Message\ResponseInterface $response
+	 * @param RequestInterface $request
+	 * @param ResponseInterface $response
 	 * @param string $file
-	 * @return JonnyW\PhantomJs\Message\ResponseInterface
+	 * @return ResponseInterface
 	 */
 	public function send(RequestInterface $request, ResponseInterface $response, $file = null);
 
 	/**
 	 * Open page
 	 *
-	 * @param JonnyW\PhantomJs\Message\RequestInterface $request
-	 * @param JonnyW\PhantomJs\Message\ResponseInterface $response
-	 * @return JonnyW\PhantomJs\Message\ResponseInterface
+	 * @param RequestInterface $request
+	 * @param ResponseInterface $response
+	 * @return ResponseInterface
 	 */
 	public function open(RequestInterface $request, ResponseInterface $response);
 
 	/**
 	 * Screen capture
 	 *
-	 * @param JonnyW\PhantomJs\Message\RequestInterface $request
-	 * @param JonnyW\PhantomJs\Message\ResponseInterface $response
+	 * @param RequestInterface $request
+	 * @param ResponseInterface $response
 	 * @param string $file
-	 * @return JonnyW\PhantomJs\Message\ResponseInterface
+	 * @return ResponseInterface
 	 */
 	public function capture(RequestInterface $request, ResponseInterface $response, $file);
 
@@ -51,7 +51,7 @@ interface ClientInterface
 	 * Set new PhantomJs path
 	 *
 	 * @param string $path
-	 * @return JonnyW\PhantomJs\ClientInterface
+	 * @return Client
 	 */
 	public function setPhantomJs($path);
 }

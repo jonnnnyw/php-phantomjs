@@ -71,7 +71,7 @@ class Request implements RequestInterface
 	 * Set request method
 	 *
 	 * @param string $method
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function setMethod($method)
 	{
@@ -102,7 +102,7 @@ class Request implements RequestInterface
 	 * Set request URL
 	 *
 	 * @param string $url
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function setUrl($url)
 	{
@@ -160,7 +160,7 @@ class Request implements RequestInterface
 	 * Set request data
 	 *
 	 * @param array $data
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function setRequestData(array $data)
 	{
@@ -229,7 +229,7 @@ class Request implements RequestInterface
 	 *
 	 * @param string $header
 	 * @param string $value
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function addHeader($header, $value)
 	{
@@ -242,7 +242,7 @@ class Request implements RequestInterface
 	 * Merge headers with existing
 	 *
 	 * @param array $headers
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function addHeaders(array $headers)
 	{

@@ -28,7 +28,7 @@ interface RequestInterface
 	 * Set request method
 	 *
 	 * @param string $method
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function setMethod($method);
 
@@ -43,7 +43,7 @@ interface RequestInterface
 	 * Set request URL
 	 *
 	 * @param string $url
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function setUrl($url);
 
@@ -68,7 +68,7 @@ interface RequestInterface
 	 * Set request data
 	 *
 	 * @param array $data
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function setRequestData(array $data);
 
@@ -84,7 +84,7 @@ interface RequestInterface
 	 * Set headers
 	 *
 	 * @param array $headers
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return JonnyW\PhantomJs\Message\Request|null
 	 */
 	public function setHeaders(array $headers);
 
@@ -93,7 +93,7 @@ interface RequestInterface
 	 *
 	 * @param string $header
 	 * @param string $value
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function addHeader($header, $value);
 
@@ -101,7 +101,7 @@ interface RequestInterface
 	 * Merge headers with existing
 	 *
 	 * @param array $headers
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function addHeaders(array $headers);
 
