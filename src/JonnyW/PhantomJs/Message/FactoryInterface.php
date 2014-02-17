@@ -8,7 +8,7 @@
  */
 namespace JonnyW\PhantomJs\Message;
 
-use  JonnyW\PhantomJs\Message\RequestInterface;
+use JonnyW\PhantomJs\Message\RequestInterface;
 
 /**
  * PHP PhantomJs
@@ -20,7 +20,7 @@ interface FactoryInterface
 	/**
 	 * Get singleton instance
 	 *
-	 * @return JonnyW\PhantomJs\Message\FactoryInterface
+	 * @return Factory
 	 */
 	public static function getInstance();
 
@@ -29,14 +29,14 @@ interface FactoryInterface
 	 *
 	 * @param string $url
 	 * @param string $method
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function createRequest($url, $method = RequestInterface::METHOD_GET);
 
 	/**
 	 * Create response instance
 	 *
-	 * @return JonnyW\PhantomJs\Message\Response
+	 * @return Response
 	 */
 	public function createResponse();
 }

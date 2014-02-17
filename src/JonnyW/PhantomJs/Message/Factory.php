@@ -8,10 +8,10 @@
  */
 namespace JonnyW\PhantomJs\Message;
 
-use  JonnyW\PhantomJs\Message\FactoryInterface;
-use  JonnyW\PhantomJs\Message\RequestInterface;
-use  JonnyW\PhantomJs\Message\Request;
-use  JonnyW\PhantomJs\Message\Response;
+use JonnyW\PhantomJs\Message\FactoryInterface;
+use JonnyW\PhantomJs\Message\RequestInterface;
+use JonnyW\PhantomJs\Message\Request;
+use JonnyW\PhantomJs\Message\Response;
 
 /**
  * PHP PhantomJs
@@ -30,7 +30,7 @@ class Factory implements FactoryInterface
 	/**
 	 * Get singleton instance
 	 *
-	 * @return JonnyW\PhantomJs\Message\FactoryInterface
+	 * @return Factory
 	 */
 	public static function getInstance()
 	{
@@ -46,7 +46,7 @@ class Factory implements FactoryInterface
 	 *
 	 * @param string $method
 	 * @param string $url
-	 * @return JonnyW\PhantomJs\Message\Request
+	 * @return Request
 	 */
 	public function createRequest($method = RequestInterface::METHOD_GET, $url = null)
 	{
@@ -56,7 +56,7 @@ class Factory implements FactoryInterface
 	/**
 	 * Create response instance
 	 *
-	 * @return JonnyW\PhantomJs\Message\Response
+	 * @return Response
 	 */
 	public function createResponse()
 	{
