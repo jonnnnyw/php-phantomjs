@@ -125,7 +125,8 @@ class Client implements ClientInterface
         } else {
             $cmd = $this->openCmd;
         }
-        return $this->request($request, $response, $this->openCmd, $delay);
+
+        return $this->request($request, $response, $cmd);
     }
 
     /**
@@ -187,6 +188,7 @@ class Client implements ClientInterface
      */
     protected function request(RequestInterface $request, ResponseInterface $response, $cmd)
     {
+
         // Validate PhantomJS executable
         if (!file_exists($this->phantomJS) || !is_executable($this->phantomJS)) {
             throw new NoPhantomJsException(sprintf('PhantomJs file does not exist or is not executable: %s', $this->phantomJS));
@@ -205,6 +207,8 @@ class Client implements ClientInterface
                 $request->getBody(),
                 $cmd
             );
+            
+
 
             $script = $this->writeScript($data);
             $cmd  = escapeshellcmd(sprintf("%s %s", $this->phantomJS, $script));
@@ -319,10 +323,10 @@ class Client implements ClientInterface
 
         if (status === 'success') {
             %6\$s
-        }
-
-        console.log(JSON.stringify(response, undefined, 4));
-        phantom.exit();
+        } else {
+            console.log(JSON.stringify(response, undefined, 4));
+            phantom.exit();
+        }        
     });
 EOF;
 
@@ -339,6 +343,9 @@ EOF;
             response.content = page.evaluate(function () {
                 return document.getElementsByTagName('html')[0].innerHTML
             });
+
+            console.log(JSON.stringify(response, undefined, 4));
+            phantom.exit();
 EOF;
 
     /**
@@ -352,6 +359,9 @@ EOF;
             response.content = page.evaluate(function () {
                 return document.getElementsByTagName('html')[0].innerHTML
             });
+
+            console.log(JSON.stringify(response, undefined, 4));
+            phantom.exit();
 EOF;
 
  /**
@@ -369,10 +379,9 @@ EOF;
                 return document.getElementsByTagName('html')[0].innerHTML
             });
 
-            window.setTimeout(function(){
-                console.log(JSON.stringify(response, undefined, 4));
-                phantom.exit();
-            }, 100);
+            
+            console.log(JSON.stringify(response, undefined, 4));
+            phantom.exit();            
 
         }, %s);
 
