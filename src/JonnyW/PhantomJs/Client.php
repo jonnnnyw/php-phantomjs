@@ -118,9 +118,14 @@ class Client implements ClientInterface
      * @param  ResponseInterface $response
      * @return ResponseInterface
      */
-    public function open(RequestInterface $request, ResponseInterface $response)
+    public function open(RequestInterface $request, ResponseInterface $response, $delay = 0)
     {
-        return $this->request($request, $response, $this->openCmd);
+        if ($delay) {
+            $cmd = sprintf($this->openCmdWithDelay, $delay);   
+        } else {
+            $cmd = $this->openCmd;
+        }
+        return $this->request($request, $response, $this->openCmd, $delay);
     }
 
     /**
@@ -347,5 +352,29 @@ EOF;
             response.content = page.evaluate(function () {
                 return document.getElementsByTagName('html')[0].innerHTML
             });
+EOF;
+
+ /**
+     * PhantomJs page open
+     * command template
+     *
+     * @var string
+     */
+    protected $openCmdWithDelay = <<<EOF
+
+        window.setTimeout(function(){
+
+
+            response.content = page.evaluate(function () {
+                return document.getElementsByTagName('html')[0].innerHTML
+            });
+
+            window.setTimeout(function(){
+                console.log(JSON.stringify(response, undefined, 4));
+                phantom.exit();
+            }, 100);
+
+        }, %s);
+
 EOF;
 }
