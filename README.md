@@ -85,7 +85,7 @@ $request = $client->getMessageFactory()->createRequest('GET', 'http://google.com
 $response = $client->getMessageFactory()->createResponse();
 
 // Send the request with delay in miliseconds
-$client->send($request, $response, $delay = 5000);
+$client->open($request, $response, $delay = 5000);
 
 if($response->getStatus() === 200) {
 	
