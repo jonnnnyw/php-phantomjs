@@ -64,6 +64,37 @@ if($response->getStatus() === 200) {
 }
 ```
 
+
+Request a URL with delay and output the reponse:
+
+```php
+<?php
+
+use JonnyW\PhantomJs\Client;
+
+$client = Client::getInstance();
+
+/** 
+ * @see JonnyW\PhantomJs\Message\Request 
+ **/
+$request = $client->getMessageFactory()->createRequest('GET', 'http://google.com');
+
+/** 
+ * @see JonnyW\PhantomJs\Message\Response 
+ **/
+$response = $client->getMessageFactory()->createResponse();
+
+// Send the request with delay in miliseconds
+$client->send($request, $response, $delay = 5000);
+
+if($response->getStatus() === 200) {
+	
+	// Dump the requested page content
+	echo $response->getContent();
+}
+```
+
+
 Request a URL, save a screen capture to provided location and return the response:
 
 ```php
