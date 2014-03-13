@@ -17,46 +17,46 @@ use JonnyW\PhantomJs\Message\Factory;
  */
 class FactoryTest extends \PHPUnit_Framework_TestCase
 {
-	/**
-	 * Factory instance
-	 *
-	 * @var JonnyW\PhantomJs\Message\Factory
-	 */
-	protected $factory;
+    /**
+     * Factory instance
+     *
+     * @var \JonnyW\PhantomJs\Message\Factory
+     */
+    protected $factory;
 
-	/**
-	 * Setup tests
-	 *
-	 * @return void
-	 */
-	protected function setUp()
-	{
-		parent::setUp();
+    /**
+     * Setup tests
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        parent::setUp();
 
-		$this->factory = Factory::getInstance();
-	}
+        $this->factory = Factory::getInstance();
+    }
 
-	/**
-	 * Test create request instance
-	 *
-	 * @return void
-	 */
-	public function testRequestInstance()
-	{
-		$request = $this->factory->createRequest();
+    /**
+     * Test create request instance
+     *
+     * @return void
+     */
+    public function testRequestInstance()
+    {
+        $request = $this->factory->createRequest();
 
-		$this->assertInstanceOf('JonnyW\PhantomJs\Message\RequestInterface', $request);
-	}
+        $this->assertInstanceOf('JonnyW\PhantomJs\Message\RequestInterface', $request);
+    }
 
-	/**
-	 * Test create response instance
-	 *
-	 * @return void
-	 */
-	public function testResponseInstance()
-	{
-		$response = $this->factory->createResponse();
+    /**
+     * Test create response instance
+     *
+     * @return void
+     */
+    public function testResponseInstance()
+    {
+        $response = $this->factory->createResponse();
 
-		$this->assertInstanceOf('JonnyW\PhantomJs\Message\ResponseInterface', $response);
-	}
+        $this->assertInstanceOf('JonnyW\PhantomJs\Message\ResponseInterface', $response);
+    }
 }

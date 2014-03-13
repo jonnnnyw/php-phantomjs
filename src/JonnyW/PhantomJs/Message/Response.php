@@ -8,8 +8,6 @@
  */
 namespace JonnyW\PhantomJs\Message;
 
-use JonnyW\PhantomJs\Message\ResponseInterface;
-
 /**
  * PHP PhantomJs
  *
@@ -69,7 +67,7 @@ class Response implements ResponseInterface
     /**
      * Set response data
      *
-     * @return Response
+     * @return \JonnyW\PhantomJs\Message\Response
      */
     public function setData(array $data)
     {
@@ -116,8 +114,8 @@ class Response implements ResponseInterface
     /**
      * Set headers array
      *
-     * @param array $headers
-     *                       @return
+     * @param  array                              $headers
+     * @return \JonnyW\PhantomJs\Message\Response
      */
     protected function setHeaders(array $headers)
     {

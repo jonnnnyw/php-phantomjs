@@ -8,7 +8,6 @@
  */
 namespace JonnyW\PhantomJs;
 
-use JonnyW\PhantomJs\ClientInterface;
 use JonnyW\PhantomJs\Exception\NoPhantomJsException;
 use JonnyW\PhantomJs\Exception\CommandFailedException;
 use JonnyW\PhantomJs\Exception\NotWriteableException;
@@ -27,14 +26,14 @@ class Client implements ClientInterface
     /**
      * Client instance
      *
-     * @var JonnyW\PhantomJs\ClientInterface
+     * @var \JonnyW\PhantomJs\ClientInterface
      */
     private static $instance;
 
     /**
      * Message factory instance
      *
-     * @var JonnyW\PhantomJs\Message\FactoryInterface
+     * @var \JonnyW\PhantomJs\Message\FactoryInterface
      */
     protected $factory;
 
@@ -55,7 +54,7 @@ class Client implements ClientInterface
     /**
      * Internal constructor
      *
-     * @param  FactoryInterface $factory
+     * @param  \JonnyW\PhantomJs\Message\FactoryInterface $factory
      * @return void
      */
     public function __construct(FactoryInterface $factory = null)
@@ -64,16 +63,16 @@ class Client implements ClientInterface
             $factory = Factory::getInstance();
         }
 
-        $this->factory  = $factory;
-        $this->phantomJS  = 'bin/phantomjs';
+        $this->factory   = $factory;
+        $this->phantomJS = 'bin/phantomjs';
         $this->timeout   = 5000;
     }
 
     /**
      * Get singleton instance
      *
-     * @param  FactoryInterface $factory
-     * @return Client
+     * @param  \JonnyW\PhantomJs\Message\FactoryInterface $factory
+     * @return \JonnyW\PhantomJs\Client
      */
     public static function getInstance(FactoryInterface $factory = null)
     {
@@ -87,7 +86,7 @@ class Client implements ClientInterface
     /**
      * Get message factory instance
      *
-     * @return JonnyW\PhantomJs\Message\FactoryInterface
+     * @return \JonnyW\PhantomJs\Message\FactoryInterface
      */
     public function getMessageFactory()
     {
@@ -97,10 +96,10 @@ class Client implements ClientInterface
     /**
      * Send request
      *
-     * @param  RequestInterface  $request
-     * @param  ResponseInterface $response
-     * @param  string            $file
-     * @return ResponseInterface
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @param  string                                      $file
+     * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function send(RequestInterface $request, ResponseInterface $response, $file = null)
     {
@@ -114,14 +113,14 @@ class Client implements ClientInterface
     /**
      * Open page
      *
-     * @param  RequestInterface  $request
-     * @param  ResponseInterface $response
-     * @return ResponseInterface
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function open(RequestInterface $request, ResponseInterface $response, $delay = 0)
     {
         if ($delay) {
-            $cmd = sprintf($this->openCmdWithDelay, $delay);   
+            $cmd = sprintf($this->openCmdWithDelay, $delay);
         } else {
             $cmd = $this->openCmd;
         }
@@ -132,10 +131,10 @@ class Client implements ClientInterface
     /**
      * Screen capture
      *
-     * @param  RequestInterface  $request
-     * @param  ResponseInterface $response
-     * @param  string            $file
-     * @return ResponseInterface
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @param  string                                      $file
+     * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function capture(RequestInterface $request, ResponseInterface $response, $file)
     {
@@ -151,8 +150,8 @@ class Client implements ClientInterface
     /**
      * Set new PhantomJs path
      *
-     * @param  string $path
-     * @return Client
+     * @param  string                   $path
+     * @return \JonnyW\PhantomJs\Client
      */
     public function setPhantomJs($path)
     {
@@ -168,8 +167,8 @@ class Client implements ClientInterface
     /**
      * Set timeout period (in milliseconds)
      *
-     * @param  int    $period
-     * @return Client
+     * @param  int                      $period
+     * @return \JonnyW\PhantomJs\Client
      */
     public function setTimeout($period)
     {
@@ -181,10 +180,10 @@ class Client implements ClientInterface
     /**
      * Make PhantomJS request
      *
-     * @param  RequestInterface  $request
-     * @param  ResponseInterface $response
-     * @param  string            $cmd
-     * @return ResponseInterface
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @param  string                                      $cmd
+     * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     protected function request(RequestInterface $request, ResponseInterface $response, $cmd)
     {
@@ -207,8 +206,6 @@ class Client implements ClientInterface
                 $request->getBody(),
                 $cmd
             );
-            
-
 
             $script = $this->writeScript($data);
             $cmd  = escapeshellcmd(sprintf("%s %s", $this->phantomJS, $script));
@@ -261,8 +258,8 @@ class Client implements ClientInterface
     /**
      * Remove temporary script file
      *
-     * @param  string|boolean $file
-     * @return Client
+     * @param  string|boolean           $file
+     * @return \JonnyW\PhantomJs\Client
      */
     protected function removeScript($file)
     {
@@ -326,7 +323,7 @@ class Client implements ClientInterface
         } else {
             console.log(JSON.stringify(response, undefined, 4));
             phantom.exit();
-        }        
+        }
     });
 EOF;
 
@@ -364,26 +361,24 @@ EOF;
             phantom.exit();
 EOF;
 
- /**
+    /**
      * PhantomJs page open
-     * command template
+     * command template with
+     * delay
      *
      * @var string
      */
     protected $openCmdWithDelay = <<<EOF
 
-        window.setTimeout(function(){
-
+        window.setTimeout(function () {
 
             response.content = page.evaluate(function () {
                 return document.getElementsByTagName('html')[0].innerHTML
             });
 
-            
             console.log(JSON.stringify(response, undefined, 4));
-            phantom.exit();            
+            phantom.exit();
 
         }, %s);
-
 EOF;
 }

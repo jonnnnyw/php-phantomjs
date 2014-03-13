@@ -21,37 +21,37 @@ interface ClientInterface
     /**
      * Send request
      *
-     * @param  RequestInterface  $request
-     * @param  ResponseInterface $response
-     * @param  string            $file
-     * @return ResponseInterface
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @param  string                                      $file
+     * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function send(RequestInterface $request, ResponseInterface $response, $file = null);
 
     /**
      * Open page
      *
-     * @param  RequestInterface  $request
-     * @param  ResponseInterface $response
-     * @return ResponseInterface
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function open(RequestInterface $request, ResponseInterface $response);
 
     /**
      * Screen capture
      *
-     * @param  RequestInterface  $request
-     * @param  ResponseInterface $response
-     * @param  string            $file
-     * @return ResponseInterface
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @param  string                                      $file
+     * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function capture(RequestInterface $request, ResponseInterface $response, $file);
 
     /**
      * Set new PhantomJs path
      *
-     * @param  string $path
-     * @return Client
+     * @param  string                   $path
+     * @return \JonnyW\PhantomJs\Client
      */
     public function setPhantomJs($path);
 }

@@ -1,7 +1,7 @@
 <?php
 
-if(!$loader = @include __DIR__.'/../vendor/autoload.php') {
-	echo <<<EOM
+if (!$loader = @include __DIR__.'/../vendor/autoload.php') {
+    echo <<<EOM
 You must set up the project dependencies by running the following commands:
 
     curl -s http://getcomposer.org/installer | php
@@ -9,7 +9,7 @@ You must set up the project dependencies by running the following commands:
 
 EOM;
 
-	exit(1);
+    exit(1);
 }
 
 $loader->add('JonnyW\PhantomJs\Test', __DIR__);

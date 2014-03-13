@@ -8,8 +8,6 @@
  */
 namespace JonnyW\PhantomJs\Message;
 
-use JonnyW\PhantomJs\Message\RequestInterface;
-
 /**
  * PHP PhantomJs
  *
@@ -27,16 +25,16 @@ interface FactoryInterface
     /**
      * Create request instance
      *
-     * @param  string  $url
-     * @param  string  $method
-     * @return Request
+     * @param  string                                     $url
+     * @param  string                                     $method
+     * @return \JonnyW\PhantomJs\Message\RequestInterface
      */
     public function createRequest($url, $method = RequestInterface::METHOD_GET);
 
     /**
      * Create response instance
      *
-     * @return Response
+     * @return \JonnyW\PhantomJs\Message\ResoibseInterface
      */
     public function createResponse();
 }
