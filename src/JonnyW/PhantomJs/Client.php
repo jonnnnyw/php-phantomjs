@@ -55,7 +55,7 @@ class Client implements ClientInterface
      * Internal constructor
      *
      * @param  \JonnyW\PhantomJs\Message\FactoryInterface $factory
-     * @return void
+     * @return \JonnyW\PhantomJs\Client
      */
     public function __construct(FactoryInterface $factory = null)
     {
@@ -113,8 +113,9 @@ class Client implements ClientInterface
     /**
      * Open page
      *
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface $request
      * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @param int $delay
      * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function open(RequestInterface $request, ResponseInterface $response, $delay = 0)
@@ -131,9 +132,10 @@ class Client implements ClientInterface
     /**
      * Screen capture
      *
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface $request
      * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
-     * @param  string                                      $file
+     * @param  string $file
+     * @throws Exception\NotWriteableException
      * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function capture(RequestInterface $request, ResponseInterface $response, $file)
@@ -150,7 +152,8 @@ class Client implements ClientInterface
     /**
      * Set new PhantomJs path
      *
-     * @param  string                   $path
+     * @param  string $path
+     * @throws Exception\NoPhantomJsException
      * @return \JonnyW\PhantomJs\Client
      */
     public function setPhantomJs($path)
@@ -180,9 +183,13 @@ class Client implements ClientInterface
     /**
      * Make PhantomJS request
      *
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface $request
      * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
-     * @param  string                                      $cmd
+     * @param  string $cmd
+     * @throws Exception\NoPhantomJsException
+     * @throws \Exception
+     * @throws Exception\NotWriteableException
+     * @throws Exception\CommandFailedException
      * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     protected function request(RequestInterface $request, ResponseInterface $response, $cmd)
@@ -233,6 +240,7 @@ class Client implements ClientInterface
      * return path to file
      *
      * @param  string $data
+     * @throws Exception\NotWriteableException
      * @return string
      */
     protected function writeScript($data)
