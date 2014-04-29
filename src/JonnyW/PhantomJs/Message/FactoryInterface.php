@@ -34,7 +34,7 @@ interface FactoryInterface
     /**
      * Create response instance
      *
-     * @return \JonnyW\PhantomJs\Message\ResoibseInterface
+     * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function createResponse();
 }
