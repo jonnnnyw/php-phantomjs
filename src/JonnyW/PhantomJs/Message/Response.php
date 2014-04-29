@@ -67,6 +67,7 @@ class Response implements ResponseInterface
     /**
      * Set response data
      *
+     * @param array $data
      * @return \JonnyW\PhantomJs\Message\Response
      */
     public function setData(array $data)
@@ -142,7 +143,7 @@ class Response implements ResponseInterface
     /**
      * Get HTTP header value for code
      *
-     * @praam string $$code
+     * @param $code
      * @return mixed
      */
     public function getHeader($code)
