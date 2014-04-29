@@ -19,6 +19,7 @@ interface ResponseInterface
     /**
      * Set response data
      *
+     * @param array $data
      * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
     public function setData(array $data);
@@ -33,7 +34,7 @@ interface ResponseInterface
     /**
      * Get HTTP header value for code
      *
-     * @praam string $$code
+     * @param $code
      * @return mixed
      */
     public function getHeader($code);
