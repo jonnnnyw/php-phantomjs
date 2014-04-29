@@ -185,7 +185,7 @@ class Client implements ClientInterface
      * @param  string                                      $cmd
      * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
-    protected function request(RequestInterface $request, ResponseInterface $response, $cmd)
+    public function request(RequestInterface $request, ResponseInterface $response, $cmd)
     {
 
         // Validate PhantomJS executable
