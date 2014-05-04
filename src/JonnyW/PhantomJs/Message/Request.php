@@ -46,6 +46,20 @@ class Request implements RequestInterface
      * @var string
      */
     protected $url;
+    
+    /**
+     * Viewport width
+     *
+     * @var int
+     */
+    protected $viewportWidth;
+
+    /**
+     * Viewport height
+     *
+     * @var int
+     */
+    protected $viewportHeight;
 
     /**
      * Internal constructor
@@ -138,6 +152,62 @@ class Request implements RequestInterface
         }
 
         return $url;
+    }
+    
+    /**
+     * Set viewport width
+     *
+     * @param  string $viewport_width
+     * @return \JonnyW\PhantomJs\Message\Request
+     */
+    public function setViewportWidth($viewport_width)
+    {
+        // Validate width
+        if (!is_numeric($viewport_width)) {
+            throw new Exception('Invalid viewport width provided');
+        }
+    
+        $this->viewportWidth = $viewport_width;
+    
+        return $this;
+    }
+    
+    /**
+     * Get viewport width
+     *
+     * @return int
+     */
+    public function getViewportWidth()
+    {
+        return $this->viewportWidth ? $this->viewportWidth : 1024;
+    }
+    
+    /**
+     * Set viewport height
+     *
+     * @param  string $viewport_height
+     * @return \JonnyW\PhantomJs\Message\Request
+     */
+    public function setViewportHeight($viewport_height)
+    {
+        // Validate height
+        if (!is_numeric($viewport_height)) {
+            throw new Exception('Invalid viewport height provided');
+        }
+    
+        $this->viewportHeight = $viewport_height;
+    
+        return $this;
+    }
+    
+    /**
+     * Get viewport height
+     *
+     * @return int
+     */
+    public function getViewportHeight()
+    {
+        return $this->viewportHeight ? $this->viewportHeight : 768;
     }
 
     /**
