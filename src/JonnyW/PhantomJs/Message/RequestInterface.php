@@ -55,6 +55,36 @@ interface RequestInterface
      * @return string
      */
     public function getUrl();
+    
+    /**
+     * Set viewport width
+     *
+     * @param  int $viewport_width
+     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     */
+    public function setViewportWidth($viewport_width);
+    
+    /**
+     * Get viewport width
+     *
+     * @return int
+    */
+    public function getViewportWidth();
+    
+    /**
+     * Set viewport height
+     *
+     * @param  int $viewport_height
+     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     */
+    public function setViewportHeight($viewport_height);
+    
+    /**
+     * Get viewport height
+     *
+     * @return int
+    */
+    public function getViewportHeight();
 
     /**
      * Get content body

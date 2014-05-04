@@ -204,7 +204,9 @@ class Client implements ClientInterface
                 $request->getUrl(),
                 $request->getMethod(),
                 $request->getBody(),
-                $cmd
+                $cmd,
+                $request->getViewportWidth(),
+                $request->getViewportHeight()
             );
 
             $script = $this->writeScript($data);
@@ -306,7 +308,7 @@ class Client implements ClientInterface
 
     page.settings.resourceTimeout = %2\$s;
     page.onResourceTimeout = function (e) {
-        response 		= e;
+        response         = e;
         response.status = e.errorCode;
     };
 
@@ -315,6 +317,11 @@ class Client implements ClientInterface
     };
 
     page.customHeaders = headers ? headers : {};
+            
+    page.viewportSize = {
+        width: %7\$s,
+        height: %8\$s
+    };
 
     page.open('%3\$s', '%4\$s', '%5\$s', function (status) {
 
