@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>php-phantomjs by jonnnnyw</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>php-phantomjs</h1>
+        <h2>Execute PhantomJS commands through PHP</h2>
+        <a href="https://github.com/jonnnnyw/php-phantomjs" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="php-phantomjs" class="anchor" href="#php-phantomjs"><span class="octicon octicon-link"></span></a>PHP PhantomJS</h1>
+
+<p>PHP PhantomJS is a simple PHP library to load pages through the PhantomJS 
+headless browser and return the page response. It is handy for testing
+websites that demand javascript support and also supports screen captures.</p>
+
+<p><a href="https://packagist.org/packages/jonnyw/php-phantomjs"><img src="https://poser.pugx.org/jonnyw/php-phantomjs/downloads.png" alt="Total Downloads"></a> <a href="https://packagist.org/packages/jonnyw/php-phantomjs"><img src="https://poser.pugx.org/jonnyw/php-phantomjs/v/stable.png" alt="Latest Stable Version"></a> <a href="https://travis-ci.org/jonnnnyw/php-phantomjs"><img src="https://travis-ci.org/jonnnnyw/php-phantomjs.png?branch=master" alt="Build Status"></a> <a href="https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/"><img src="https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/badges/quality-score.png?s=631d32fa1fbb9300eb84b9b52702c7ffeac046a1" alt="Scrutinizer Quality Score"></a> <a href="https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/"><img src="https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/badges/coverage.png?s=893b5997da45448e32983b8568a39630b0b2d91b" alt="Code Coverage"></a></p>
+
+<h2>
+<a name="00-table-of-contents" class="anchor" href="#00-table-of-contents"><span class="octicon octicon-link"></span></a>0.0 Table of Contents</h2>
+
+<ul>
+<li>Introduction</li>
+<li>Examples</li>
+<li>Changelog</li>
+<li>Troubleshooting</li>
+</ul><h2>
+<a name="10-introduction" class="anchor" href="#10-introduction"><span class="octicon octicon-link"></span></a>1.0 Introduction</h2>
+
+<p>This library provides the ability to load pages through the PhantomJS 
+headless browser and return the page response. It also lets you screen
+capture pages and save the captures to disk. It is designed to meet a 
+simple objective and does not offer a PHP API to the full suite of 
+PhantomJS functionality.</p>
+
+<p>The PhantomJS executable comes bundled with the library. If installed
+via composer, the file will be symlinked in your bin folder.</p>
+
+<p>If you are looking for a PHP library to run external javascript files 
+through PhantomJS then this is not for you. Check out <a href="https://github.com/Dachande663/PHP-PhantomJS">PhantomJS runner</a>.</p>
+
+<h2>
+<a name="20-examples" class="anchor" href="#20-examples"><span class="octicon octicon-link"></span></a>2.0 Examples</h2>
+
+<p>Request a URL and output the reponse:</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Request </span>
+<span class="sd"> **/</span>
+<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'http://google.com'</span><span class="p">);</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Response </span>
+<span class="sd"> **/</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+
+<span class="c1">// Send the request</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getStatus</span><span class="p">()</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// Dump the requested page content</span>
+    <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getContent</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Request a URL with delay and output the reponse:</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Request </span>
+<span class="sd"> **/</span>
+<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'http://google.com'</span><span class="p">);</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Response </span>
+<span class="sd"> **/</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+
+<span class="c1">// Send the request with delay in miliseconds</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">open</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">,</span> <span class="nv">$delay</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getStatus</span><span class="p">()</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// Dump the requested page content</span>
+    <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getContent</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Request a URL, save a screen capture to provided location and return the response:</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Request </span>
+<span class="sd"> **/</span>
+<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'http://google.com'</span><span class="p">);</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Response </span>
+<span class="sd"> **/</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+
+<span class="c1">// Send the request</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">,</span> <span class="s1">'/path/to/save/screen/capture.png'</span><span class="p">);</span>
+</pre></div>
+
+<p>Send post request with data:</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Request </span>
+<span class="sd"> **/</span>
+<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">();</span>
+
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setMethod</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">);</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setUrl</span><span class="p">(</span><span class="s1">'http://google.com'</span><span class="p">);</span>
+
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setRequestData</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'Test'</span><span class="p">,</span>
+    <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'test@jonnyw.me'</span>
+<span class="p">));</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Response </span>
+<span class="sd"> **/</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+
+<span class="c1">// Send the request</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+</pre></div>
+
+<p>Set a request header:</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Request </span>
+<span class="sd"> **/</span>
+<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">();</span>
+
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">addHeader</span><span class="p">(</span><span class="s1">'User-Agent'</span><span class="p">,</span> <span class="s1">'Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.2 Safari/534.34'</span><span class="p">);</span>
+</pre></div>
+
+<p>Get a response header:</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Request </span>
+<span class="sd"> **/</span>
+<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'http://google.com'</span><span class="p">);</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Response </span>
+<span class="sd"> **/</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+
+<span class="c1">// Send the request</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">,</span> <span class="s1">'/path/to/save/screen/capture.png'</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getHeader</span><span class="p">(</span><span class="s1">'Cache-Control'</span><span class="p">);</span>
+</pre></div>
+
+<p>Handle response redirect:</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Request </span>
+<span class="sd"> **/</span>
+<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'http://google.com'</span><span class="p">);</span>
+
+<span class="sd">/** </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\Response </span>
+<span class="sd"> **/</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+
+<span class="c1">// Send the request</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">isRedirect</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getRedirectUrl</span><span class="p">();</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<p>Define a new path to the PhantomJS executable:</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setPhantomJs</span><span class="p">(</span><span class="s1">'/path/to/phantomjs'</span><span class="p">);</span>
+</pre></div>
+
+<p>Set timeout for the request (defaults to 5 seconds):</p>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setTimeout</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span> <span class="c1">// In milleseconds</span>
+</pre></div>
+
+<h2>
+<a name="30-changelog" class="anchor" href="#30-changelog"><span class="octicon octicon-link"></span></a>3.0 Changelog</h2>
+
+<h3>
+<a name="v200" class="anchor" href="#v200"><span class="octicon octicon-link"></span></a>V2.0.0</h3>
+
+<p>Version 2.0.0 changes the way requests are made. Requests now require you 
+to inject a request and response instance into the send method. The examples 
+above illustrate how to make requests in version 2.0.0 and will not work 
+for older versions.</p>
+
+<ul>
+<li>Requests now require you to inject a request and response instance when sending.</li>
+<li>Added message factory that can also be injected into client when instantiated.</li>
+<li>Custom headers can be set in requests.</li>
+<li>Request method can be set. Supports: OPTIONS, GET, HEAD, POST, PUT, DELETE, PATCH.</li>
+<li>Request data can be set. Useful when making post requests.</li>
+</ul><h2>
+<a name="40-troubleshooting" class="anchor" href="#40-troubleshooting"><span class="octicon octicon-link"></span></a>4.0 Troubleshooting</h2>
+
+<p>If you are using V1.0.0 then the examples above won't work for you. It is reccommend that you upgrade to the latest version.</p>
+
+<p>Look at the response class (JonnyW\PhantomJs\Response) to see what data you have access to.</p>
+
+<p>An explanation of the errors that are thrown by the client:</p>
+
+<h3>
+<a name="commandfailedexception" class="anchor" href="#commandfailedexception"><span class="octicon octicon-link"></span></a>CommandFailedException</h3>
+
+<p>The command sent to the PhantomJS executable failed. This should be very rare and is probably my fault if this happens (sorry).</p>
+
+<h3>
+<a name="invalidurlexception" class="anchor" href="#invalidurlexception"><span class="octicon octicon-link"></span></a>InvalidUrlException</h3>
+
+<p>The URL you are providing is an invalid format. It is very loose verification.</p>
+
+<h3>
+<a name="invalidmethodexception" class="anchor" href="#invalidmethodexception"><span class="octicon octicon-link"></span></a>InvalidMethodException</h3>
+
+<p>The request method you are providing is invalid.</p>
+
+<h3>
+<a name="nophantomjsexception" class="anchor" href="#nophantomjsexception"><span class="octicon octicon-link"></span></a>NoPhantomJsException</h3>
+
+<p>The PhantomJS executable cannot be found or it is not executable. Check the path and permissions.</p>
+
+<h3>
+<a name="notwriteableexception" class="anchor" href="#notwriteableexception"><span class="octicon octicon-link"></span></a>NotWriteableException</h3>
+
+<p>The screen capture location you provided or your /tmp folder are not writeable. The /tmp folder is used to temporarily write the scripts that PhantomJS executes. They are deleted after execution or on failure.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/jonnnnyw/php-phantomjs/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/jonnnnyw/php-phantomjs/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/jonnnnyw/php-phantomjs"></a> is maintained by <a href="https://github.com/jonnnnyw">jonnnnyw</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
