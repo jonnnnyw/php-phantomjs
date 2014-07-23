@@ -27,13 +27,34 @@ PHP PhantomJS requires PHP **5.3.0** or greater to run.
 Installation
 ---------------------
 
-It is recommended that you use Composer to install PHP PhantomJS:
+It is recommended that you use Composer to install PHP PhantomJS. First add the following to your composer.json file:
+
+```xml
+"scripts": {
+    "post-install-cmd": [
+        "PhantomInstaller\\Installer::installPhantomJS"
+    ],
+    "post-update-cmd": [
+        "PhantomInstaller\\Installer::installPhantomJS"
+    ]
+}
+```
+
+This will ensure the latest version of PhantomJS is install for your system, in your bin folder. If you haven't defined your bin folder in your composer.json, add the path:
+
+```xml
+"config": {
+    "bin-dir": "path/to/bin/dir"
+}
+```
+
+Finally, install PHP PhantomJS from the root of your project:
 
 ```xml
 composer require "jonnyw/php-phantomjs:3.*"
 ```
 
-If you would like to use another installation method or would like to see more detailed installation instruction, see the [installation](http://jonnnnyw.github.io/php-phantomjs/installation.html) documentation.
+If you would like to use another installation method or would like to see more detailed installation instructions, see the [installation](http://jonnnnyw.github.io/php-phantomjs/installation.html) documentation.
 
 
 Basic Usage
