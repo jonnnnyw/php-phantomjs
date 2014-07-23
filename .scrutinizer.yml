@@ -1,5 +1,5 @@
 filter:
-    paths: [src/*]
+    paths: ["src/*"]
     excluded_paths: ["vendor/*", "examples/*"]
 
 before_commands:
