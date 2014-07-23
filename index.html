@@ -65,7 +65,7 @@ websites that demand javascript support and also supports screen captures.</p>
 <div class="highlight highlight-xml"><pre>composer require "jonnyw/php-phantomjs:3.*"
 </pre></div>
 
-<p>If you would like to use another installation method or would like to see more detailed installation instruction, see the <a href="http://jonnnnyw.github.io/php-phantomjs/">installation</a> documentation.</p>
+<p>If you would like to use another installation method or would like to see more detailed installation instruction, see the <a href="http://jonnnnyw.github.io/php-phantomjs/installation.html">installation</a> documentation.</p>
 
 <h2>
 <a name="basic-usage" class="anchor" href="#basic-usage"><span class="octicon octicon-link"></span></a>Basic Usage</h2>
@@ -81,7 +81,8 @@ websites that demand javascript support and also supports screen captures.</p>
 <span class="sd">/** </span>
 <span class="sd"> * @see JonnyW\PhantomJs\Message\Request </span>
 <span class="sd"> **/</span>
-<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">'http://google.com'</span><span class="p">,</span> <span class="s1">'GET'</span><span class="p">);</span>
+<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">'http://google.com'</span><span class="p">,</span> <span class="s1">'GET'</span><span class="p">);</span>
 
 <span class="sd">/** </span>
 <span class="sd"> * @see JonnyW\PhantomJs\Message\Response </span>
@@ -122,6 +123,8 @@ websites that demand javascript support and also supports screen captures.</p>
 
 
 </pre></div>
+
+<p>For more detailed examples see the <a href="http://jonnnnyw.github.io/php-phantomjs/examples.html">examples</a> section, otherwise to create your own custom scripts check out the <a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html">advanced</a> documentation.</p>
       </section>
     </div>
 
