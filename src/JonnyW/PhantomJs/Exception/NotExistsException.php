@@ -13,7 +13,7 @@ namespace JonnyW\PhantomJs\Exception;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class InvalidMethodException extends PhantomJsException
+class NotExistsException extends PhantomJsException
 {
 
 }

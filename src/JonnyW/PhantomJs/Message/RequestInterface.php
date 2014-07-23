@@ -24,42 +24,85 @@ interface RequestInterface
     const METHOD_DELETE  = 'DELETE';
     const METHOD_PATCH   = 'PATCH';
 
+    const REQUEST_TYPE_DEFAULT = 'default';
+    const REQUEST_TYPE_CAPTURE = 'capture';
+
+    /**
+     * Get request type
+     *
+     * @access public
+     * @return string
+     */
+    public function getType();
+
     /**
      * Set request method
      *
-     * @param  string                                     $method
-     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     * @access public
+     * @param string $method
      */
     public function setMethod($method);
 
     /**
      * Get request method
      *
+     * @access public
      * @return string
      */
     public function getMethod();
 
     /**
+     * Set timeout period
+     *
+     * @access public
+     * @param int $timeout
+     */
+    public function setTimeout($timeout);
+
+    /**
+     * Get timeout period
+     *
+     * @access public
+     * @return int
+     */
+    public function getTimeout();
+
+    /**
+     * Set page load delay time.
+     *
+     * @access public
+     * @param int $delay
+     */
+    public function setDelay($delay);
+
+    /**
+     * Get page load delay time.
+     *
+     * @access public
+     * @return int
+     */
+    public function getDelay();
+
+    /**
      * Set request URL
      *
-     * @param  string                                     $url
-     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     * @access public
+     * @param string $url
      */
     public function setUrl($url);
 
     /**
      * Get request URL
-     *  - Assembles query string for GET
-     *  and HEAD requests
      *
+     * @access public
      * @return string
      */
     public function getUrl();
 
     /**
      * Get content body
-     *  - Returns query string if not GET or HEAD
      *
+     * @access public
      * @return string
      */
     public function getBody();
@@ -67,14 +110,15 @@ interface RequestInterface
     /**
      * Set request data
      *
-     * @param  array                                      $data
-     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     * @access public
+     * @param array $data
      */
     public function setRequestData(array $data);
 
     /**
      * Get request data
      *
+     * @access public
      * @param  boolean $flat
      * @return array
      */
@@ -83,31 +127,32 @@ interface RequestInterface
     /**
      * Set headers
      *
-     * @param  array                                      $headers
-     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     * @access public
+     * @param array $headers
      */
     public function setHeaders(array $headers);
 
     /**
      * Add single header
      *
-     * @param  string                                     $header
-     * @param  string                                     $value
-     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     * @access public
+     * @param string $header
+     * @param string $value
      */
     public function addHeader($header, $value);
 
     /**
      * Merge headers with existing
      *
-     * @param  array                                      $headers
-     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     * @access public
+     * @param array $headers
      */
     public function addHeaders(array $headers);
 
     /**
      * Get request headers
      *
+     * @access public
      * @param  string $format
      * @return array
      */

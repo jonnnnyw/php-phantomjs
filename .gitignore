@@ -1,5 +1,4 @@
 .DS_Store
 composer.phar
-test.sh
-docs.sh
+composer.lock
 vendor/

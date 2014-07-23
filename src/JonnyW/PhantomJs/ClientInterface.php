@@ -19,39 +19,114 @@ use JonnyW\PhantomJs\Message\ResponseInterface;
 interface ClientInterface
 {
     /**
+     * Get singleton instance
+     *
+     * @access public
+     * @return \JonnyW\PhantomJs\ClientInterface
+     */
+    public static function getInstance();
+
+    /**
+     * Get message factory instance
+     *
+     * @access public
+     * @return \JonnyW\PhantomJs\Message\FactoryInterface
+     */
+    public function getMessageFactory();
+
+    /**
      * Send request
      *
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
-     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
-     * @param  string                                      $file
-     * @return \JonnyW\PhantomJs\Message\ResponseInterface
+     * @access public
+     * @param \JonnyW\PhantomJs\Message\RequestInterface  $request
+     * @param \JonnyW\PhantomJs\Message\ResponseInterface $response
      */
-    public function send(RequestInterface $request, ResponseInterface $response, $file = null);
+    public function send(RequestInterface $request, ResponseInterface $response);
 
     /**
-     * Open page
+     * Set new PhantomJs executable path.
      *
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
-     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
-     * @return \JonnyW\PhantomJs\Message\ResponseInterface
-     */
-    public function open(RequestInterface $request, ResponseInterface $response);
-
-    /**
-     * Screen capture
-     *
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
-     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
-     * @param  string                                      $file
-     * @return \JonnyW\PhantomJs\Message\ResponseInterface
-     */
-    public function capture(RequestInterface $request, ResponseInterface $response, $file);
-
-    /**
-     * Set new PhantomJs path
-     *
-     * @param  string                   $path
-     * @return \JonnyW\PhantomJs\Client
+     * @access public
+     * @param string $path
      */
     public function setPhantomJs($path);
+
+    /**
+     * Get PhantomJs executable path.
+     *
+     * @access public
+     * @return string
+     */
+    public function getPhantomJs();
+
+        /**
+     * Set PhantomJs loader executable path.
+     *
+     * @access public
+     * @param string $path
+     */
+    public function setPhantomLoader($path);
+
+    /**
+     * Get PhantomJs loader executable path.
+     *
+     * @access public
+     * @return string
+     */
+    public function getPhantomLoader();
+
+    /**
+     * Set PhantomJs run options.
+     *
+     * @access public
+     * @param array $options
+     */
+    public function setOptions(array $options);
+
+    /**
+     * Get PhantomJs run options.
+     *
+     * @access public
+     * @return array
+     */
+    public function getOptions();
+
+    /**
+     * Add single PhantomJs run option.
+     *
+     * @access public
+     * @param string $option
+     */
+    public function addOption($option);
+
+    /**
+     * Debug.
+     *
+     * @access public
+     * @param boolean $doDebug
+     */
+    public function debug($doDebug);
+
+    /**
+     * Set log info.
+     *
+     * @access public
+     * @param string $info
+     */
+    public function setLog($info);
+
+    /**
+     * Get log info.
+     *
+     * @access public
+     * @return string
+     */
+    public function getLog();
+
+    /**
+     * Clear log info.
+     *
+     * @access public
+     */
+    public function clearLog();
 }

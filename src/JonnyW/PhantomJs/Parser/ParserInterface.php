@@ -6,14 +6,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace JonnyW\PhantomJs\Exception;
+namespace JonnyW\PhantomJs\Parser;
 
 /**
  * PHP PhantomJs
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class InvalidMethodException extends PhantomJsException
+interface ParserInterface
 {
-
+    /**
+     * Parse data.
+     *
+     * @access public
+     * @param mixed $data
+     */
+    public function parse($data);
 }

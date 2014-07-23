@@ -1,0 +1,82 @@
+services:
+
+##################
+### PROCEDURES ###
+##################
+
+    procedure_loader:
+        alias: phantomjs.procedure.chain_loader
+
+    procedure_loader_factory:
+        alias: phantomjs.procedure.procedure_loader_factory
+
+    phantomjs.procedure.file_locator:
+        class: %phantomjs.loader.file_locator.class%
+        arguments: [ %phantomjs.procedure_dir% ]
+        public: false
+
+    phantomjs.procedure.procedure_loader:
+        class: %phantomjs.procedure.procedure_loader.class%
+        arguments: [ @phantomjs.procedure.procedure_factory, @phantomjs.procedure.file_locator ]
+        public: false
+
+    phantomjs.procedure.chain_loader:
+        class: %phantomjs.procedure.chain_loader.class%
+        arguments: [ [ @phantomjs.procedure.procedure_loader ] ]
+        public: false
+
+    phantomjs.procedure.procedure_factory:
+        class: %phantomjs.procedure.procedure_factory.class%
+        arguments: [ @phantomjs.parser.json_parser, @phantomjs.cache.file_cache, @phantomjs.template.template_renderer ]
+        public: false
+
+    phantomjs.procedure.procedure_loader_factory:
+        class: %phantomjs.procedure.procedure_loader_factory.class%
+        arguments: [ @phantomjs.procedure.procedure_factory ]
+        public: false
+
+################
+### MESSAGES ###
+################
+
+    message_factory:
+        alias: phantomjs.message.message_factory
+
+    phantomjs.message.message_factory:
+        class: %phantomjs.message.message_factory.class%
+        public: false
+
+################
+### PARSING ####
+################
+
+    phantomjs.parser.json_parser:
+        class: %phantomjs.parser.json_parser.class%
+        public: false
+
+##################
+### TEMPLATES ####
+##################
+
+    phantomjs.template.template_renderer:
+        class: %phantomjs.template.template_renderer.class%
+        arguments: [ @phantomjs.twig.environment ]
+        public: false
+
+    phantomjs.twig.environment:
+        class: %phantomjs.twig.environment.class%
+        arguments: [ @phantomjs.twig.string_loader ]
+        public: false
+
+    phantomjs.twig.string_loader:
+        class: %phantomjs.twig.string_loader.class%
+        public: false
+
+##################
+### RESOURCES ####
+##################
+
+    phantomjs.cache.file_cache:
+        class: %phantomjs.cache.file_cache.class%
+        arguments: [ %phantomjs.cache_dir%, %phantomjs.procedure_extension% ]
+        public: false

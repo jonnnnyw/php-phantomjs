@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./test/bootstrap.php" colors="true">
+<phpunit bootstrap="./src/JonnyW/PhantomJs/Tests/bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="PhantomJS Test Suite">
-            <directory suffix="Test.php">./test/</directory>
+            <directory suffix="Test.php">./src/JonnyW/PhantomJs/Tests/*</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
             <directory suffix=".php">./src/</directory>
+            <exclude>
+                <directory>./src/JonnyW/PhantomJs/Tests</directory>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>

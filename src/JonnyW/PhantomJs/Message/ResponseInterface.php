@@ -17,15 +17,16 @@ namespace JonnyW\PhantomJs\Message;
 interface ResponseInterface
 {
     /**
-     * Set response data
+     * Import response data
      *
-     * @return \JonnyW\PhantomJs\Message\ResponseInterface
+     * @access public
      */
-    public function setData(array $data);
+    public function import(array $data);
 
     /**
      * Get HTTP headers array
      *
+     * @access public
      * @return array
      */
     public function getHeaders();
@@ -33,7 +34,8 @@ interface ResponseInterface
     /**
      * Get HTTP header value for code
      *
-     * @praam string $$code
+     * @access public
+     * @param  string $code
      * @return mixed
      */
     public function getHeader($code);
@@ -41,13 +43,15 @@ interface ResponseInterface
     /**
      * Get response status code
      *
-     * @return int|null
+     * @access public
+     * @return integer
      */
     public function getStatus();
 
     /**
      * Get page content from respone
      *
+     * @access public
      * @return string
      */
     public function getContent();
@@ -55,6 +59,7 @@ interface ResponseInterface
     /**
      * Get content type header
      *
+     * @access public
      * @return string
      */
     public function getContentType();
@@ -62,6 +67,7 @@ interface ResponseInterface
     /**
      * Get request URL
      *
+     * @access public
      * @return string
      */
     public function getUrl();
@@ -69,6 +75,7 @@ interface ResponseInterface
     /**
      * Get redirect URL (if redirected)
      *
+     * @access public
      * @return string
      */
     public function getRedirectUrl();
@@ -77,6 +84,7 @@ interface ResponseInterface
      * Is response a redirect
      *  - Checks status codes
      *
+     * @access public
      * @return boolean
      */
     public function isRedirect();
@@ -84,6 +92,7 @@ interface ResponseInterface
     /**
      * Get time string
      *
+     * @access public
      * @return string
      */
     public function getTime();

@@ -1,0 +1,125 @@
+
+/**
+ * Set up page and script parameters.
+ */
+var page       = require('webpage').create(),
+    system     = require('system'),
+    headers    = {{ request.getHeaders('json') }},
+    delay      = {{ request.getDelay() }},
+    response   = {},
+    debug      = [],
+    logs       = [],
+    procedure  = {};
+
+/**
+ * Define custom headers.
+ */
+page.customHeaders = headers ? headers : {};
+
+/**
+ * Set timeout.
+ */
+page.settings.resourceTimeout = {{ request.getTimeout() }};
+
+/**
+ * Set error in response on timeout.
+ */
+page.onResourceTimeout = function (e) {
+    response        = e;
+    response.status = e.errorCode;
+};
+
+/**
+ * Set response from resource.
+ */
+page.onResourceReceived = function (r) {
+    if(!response.status) response = r;
+};
+
+/**
+ * Add page errors to logs.
+ */
+page.onError = function (msg, trace) {
+ 
+    var error = {
+        message: msg,
+        trace: []
+    };
+    
+    trace.forEach(function(t) {
+        error.trace.push((t.file || t.sourceURL) + ': ' + t.line + (t.function ? ' (in function ' + t.function + ')' : ''));
+    });
+    
+    logs.push(error);
+};
+
+/**
+ * Global error handling.
+ */
+phantom.onError = function(msg, trace) {
+  
+    var stack = [];
+    
+    trace.forEach(function(t) {
+        stack.push((t.file || t.sourceURL) + ': ' + t.line + (t.function ? ' (in function ' + t.function + ')' : ''));
+    });
+
+    response.status  = 500;
+    response.content = msg;
+    response.console = stack;
+
+    console.log(JSON.stringify(response, undefined, 4));
+    phantom.exit(1);
+};
+
+/**
+ * Open page.
+ *
+ * @param string $url
+ * @param string $method
+ * @param string $parameters
+ * @param callable $callback
+ */
+page.open ('{{ request.getUrl() }}', '{{ request.getMethod() }}', '{{ request.getBody() }}', function (status) {
+    
+    if(!delay) {
+        return procedure.execute(status);
+    }
+    
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Delaying page render for ' + delay + ' second(s)');
+    
+    window.setTimeout(function () { 
+    
+        debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Rendering page after delaying for ' + delay + ' second(s)');
+        procedure.execute(status); 
+        
+    }, (delay * 1000));
+});
+
+/**
+ * Command to execute on page load.
+ */
+procedure.execute = function (status) {
+
+    if (status === 'success') {
+        
+        try {
+        
+            response.content = page.evaluate(function () {
+                return document.getElementsByTagName('html')[0].innerHTML
+            });
+        
+        } catch(e) {
+    
+            response.status  = 500;
+            response.content = e.message;
+        }
+    }
+    
+    response.console = logs;
+    
+    system.stderr.write(debug.join('\n') + '\n');
+    console.log(JSON.stringify(response, undefined, 4));
+    
+    phantom.exit();
+};

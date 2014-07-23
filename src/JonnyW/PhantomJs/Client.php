@@ -8,13 +8,12 @@
  */
 namespace JonnyW\PhantomJs;
 
-use JonnyW\PhantomJs\Exception\NoPhantomJsException;
-use JonnyW\PhantomJs\Exception\CommandFailedException;
-use JonnyW\PhantomJs\Exception\NotWriteableException;
-use JonnyW\PhantomJs\Message\FactoryInterface;
-use JonnyW\PhantomJs\Message\Factory;
+use JonnyW\PhantomJs\Exception\InvalidExecutableException;
+use JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface;
+use JonnyW\PhantomJs\Message\MessageFactoryInterface;
 use JonnyW\PhantomJs\Message\RequestInterface;
 use JonnyW\PhantomJs\Message\ResponseInterface;
+use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
 
 /**
  * PHP PhantomJs
@@ -27,57 +26,99 @@ class Client implements ClientInterface
      * Client instance
      *
      * @var \JonnyW\PhantomJs\ClientInterface
+     * @access private
      */
     private static $instance;
 
     /**
+     * Procedure loader instance
+     *
+     * @var \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface
+     * @access protected
+     */
+    protected $procedureLoader;
+
+    /**
      * Message factory instance
      *
-     * @var \JonnyW\PhantomJs\Message\FactoryInterface
+     * @var \JonnyW\PhantomJs\Message\MessageFactoryInterface
+     * @access protected
      */
-    protected $factory;
+    protected $messageFactory;
 
     /**
-     * Path to phantomJS executable
+     * Path to PhantomJs executable
      *
      * @var string
+     * @access protected
      */
-    protected $phantomJS;
+    protected $phantomJs;
 
     /**
-     * Request timeout period
+     * Path to PhantomJs loader executable
      *
-     * @var int
+     * @var string
+     * @access protected
      */
-    protected $timeout;
+    protected $phantomLoader;
+
+    /**
+     * Debug.
+     *
+     * @var boolean
+     * @access protected
+     */
+    protected $debug;
+
+    /**
+     * Log info
+     *
+     * @var array
+     * @access protected
+     */
+    protected $log;
+
+    /**
+     * PhantomJs run options
+     *
+     * @var mixed
+     * @access protected
+     */
+    protected $options;
 
     /**
      * Internal constructor
      *
-     * @param  \JonnyW\PhantomJs\Message\FactoryInterface $factory
+     * @access public
+     * @param  \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface $procedureLoader
+     * @param  \JonnyW\PhantomJs\Message\MessageFactoryInterface    $messageFactory
      * @return void
      */
-    public function __construct(FactoryInterface $factory = null)
+    public function __construct(ProcedureLoaderInterface $procedureLoader, MessageFactoryInterface $messageFactory)
     {
-        if (!$factory instanceof FactoryInterface) {
-            $factory = Factory::getInstance();
-        }
-
-        $this->factory   = $factory;
-        $this->phantomJS = 'bin/phantomjs';
-        $this->timeout   = 5000;
+        $this->procedureLoader = $procedureLoader;
+        $this->messageFactory  = $messageFactory;
+        $this->phantomJs       = 'bin/phantomjs';
+        $this->phantomLoader   = 'bin/phantomloader';
+        $this->options         = array();
     }
 
     /**
      * Get singleton instance
      *
-     * @param  \JonnyW\PhantomJs\Message\FactoryInterface $factory
+     * @access public
      * @return \JonnyW\PhantomJs\Client
      */
-    public static function getInstance(FactoryInterface $factory = null)
+    public static function getInstance()
     {
         if (!self::$instance instanceof ClientInterface) {
-            self::$instance = new Client($factory);
+
+            $serviceContainer = ServiceContainer::getInstance();
+
+            self::$instance = new Client(
+                $serviceContainer->get('procedure_loader'),
+                $serviceContainer->get('message_factory')
+            );
         }
 
         return self::$instance;
@@ -86,299 +127,228 @@ class Client implements ClientInterface
     /**
      * Get message factory instance
      *
+     * @access public
      * @return \JonnyW\PhantomJs\Message\FactoryInterface
      */
     public function getMessageFactory()
     {
-        return $this->factory;
+        return $this->messageFactory;
+    }
+
+    /**
+     * Get procedure loader instance
+     *
+     * @access public
+     * @return \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface
+     */
+    public function getProcedureLoader()
+    {
+        return $this->procedureLoader;
     }
 
     /**
      * Send request
      *
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
-     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
-     * @param  string                                      $file
-     * @return \JonnyW\PhantomJs\Message\ResponseInterface
-     */
-    public function send(RequestInterface $request, ResponseInterface $response, $file = null)
-    {
-        if (!is_null($file)) {
-            return $this->capture($request, $response, $file);
-        }
-
-        return $this->open($request, $response);
-    }
-
-    /**
-     * Open page
-     *
+     * @access public
      * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
      * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
      * @return \JonnyW\PhantomJs\Message\ResponseInterface
      */
-    public function open(RequestInterface $request, ResponseInterface $response, $delay = 0)
+    public function send(RequestInterface $request, ResponseInterface $response)
     {
-        if ($delay) {
-            $cmd = sprintf($this->openCmdWithDelay, $delay);
-        } else {
-            $cmd = $this->openCmd;
-        }
+        $this->clearLog();
 
-        return $this->request($request, $response, $cmd);
-    }
-
-    /**
-     * Screen capture
-     *
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
-     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
-     * @param  string                                      $file
-     * @return \JonnyW\PhantomJs\Message\ResponseInterface
-     */
-    public function capture(RequestInterface $request, ResponseInterface $response, $file)
-    {
-        if (!is_writable(dirname($file))) {
-            throw new NotWriteableException(sprintf('Path is not writeable by PhantomJs: %s', $file));
-        }
-
-        $cmd = sprintf($this->captureCmd, $file);
-
-        return $this->request($request, $response, $cmd);
-    }
-
-    /**
-     * Set new PhantomJs path
-     *
-     * @param  string                   $path
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function setPhantomJs($path)
-    {
-        if (!file_exists($path) || !is_executable($path)) {
-            throw new NoPhantomJsException(sprintf('PhantomJs file does not exist or is not executable: %s', $path));
-        }
-
-        $this->phantomJS = $path;
-
-        return $this;
-    }
-
-    /**
-     * Set timeout period (in milliseconds)
-     *
-     * @param  int                      $period
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function setTimeout($period)
-    {
-        $this->timeout = $period;
-
-        return $this;
-    }
-
-    /**
-     * Make PhantomJS request
-     *
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
-     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
-     * @param  string                                      $cmd
-     * @return \JonnyW\PhantomJs\Message\ResponseInterface
-     */
-    protected function request(RequestInterface $request, ResponseInterface $response, $cmd)
-    {
-
-        // Validate PhantomJS executable
-        if (!file_exists($this->phantomJS) || !is_executable($this->phantomJS)) {
-            throw new NoPhantomJsException(sprintf('PhantomJs file does not exist or is not executable: %s', $this->phantomJS));
-        }
-
-        try {
-
-            $script = false;
-
-            $data = sprintf(
-                $this->wrapper,
-                $request->getHeaders('json'),
-                $this->timeout,
-                $request->getUrl(),
-                $request->getMethod(),
-                $request->getBody(),
-                $cmd
-            );
-
-            $script = $this->writeScript($data);
-            $cmd  = escapeshellcmd(sprintf("%s %s", $this->phantomJS, $script));
-
-            $result = shell_exec($cmd);
-            $result = $this->parse($result);
-
-            $this->removeScript($script);
-
-            $response->setData($result);
-        } catch (NotWriteableException $e) {
-            throw $e;
-        } catch (\Exception $e) {
-
-            $this->removeScript($script);
-
-            throw new CommandFailedException(sprintf('Error when executing PhantomJs command: %s - %s', $cmd, $e->getMessage()));
-        }
+        $procedure = $this->procedureLoader->load($request->getType());
+        $procedure->run($this, $request, $response);
 
         return $response;
     }
 
     /**
-     * Write temporary script file and
-     * return path to file
+     * Get PhantomJs run command with
+     * loader and run options.
      *
-     * @param  string $data
+     * @access public
      * @return string
      */
-    protected function writeScript($data)
+    public function getCommand()
     {
-        $file = tempnam('/tmp', 'phantomjs');
+        $phantomJs     = $this->getPhantomJs();
+        $phantomLoader = $this->getPhantomLoader();
 
-        // Could not create tmp file
-        if (!$file || !is_writable($file)) {
-            throw new NotWriteableException('Could not create tmp file on system. Please check your tmp directory and make sure it is writeable.');
+        $this->validateExecutable($phantomJs);
+        $this->validateExecutable($phantomLoader);
+
+        $options = $this->getOptions();
+
+        if ($this->debug) {
+            array_push($options, '--debug=true');
         }
 
-        // Could not write script data to tmp file
-        if (file_put_contents($file, $data) === false) {
-
-            $this->removeScript($file);
-
-            throw new NotWriteableException(sprintf('Could not write data to tmp file: %s. Please check your tmp directory and make sure it is writeable.', $file));
-        }
-
-        return $file;
+        return sprintf('%s %s %s', $phantomJs, implode(' ', $options), $phantomLoader);
     }
 
     /**
-     * Remove temporary script file
+     * Set new PhantomJs executable path.
      *
-     * @param  string|boolean           $file
+     * @access public
+     * @param  string                   $path
      * @return \JonnyW\PhantomJs\Client
      */
-    protected function removeScript($file)
+    public function setPhantomJs($path)
     {
-        if (is_string($file) && file_exists($file)) {
-            unlink($file);
+        $this->validateExecutable($path);
+
+        $this->phantomJs = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get PhantomJs executable path.
+     *
+     * @access public
+     * @return string
+     */
+    public function getPhantomJs()
+    {
+        return $this->phantomJs;
+    }
+
+    /**
+     * Set PhantomJs loader executable path.
+     *
+     * @access public
+     * @param  string                   $path
+     * @return \JonnyW\PhantomJs\Client
+     */
+    public function setPhantomLoader($path)
+    {
+        $this->validateExecutable($path);
+
+        $this->phantomLoader = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get PhantomJs loader executable path.
+     *
+     * @access public
+     * @return string
+     */
+    public function getPhantomLoader()
+    {
+        return $this->phantomLoader;
+    }
+
+    /**
+     * Set PhantomJs run options.
+     *
+     * @access public
+     * @param  array                    $options
+     * @return \JonnyW\PhantomJs\Client
+     */
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * Get PhantomJs run options.
+     *
+     * @access public
+     * @return array
+     */
+    public function getOptions()
+    {
+        return (array) $this->options;
+    }
+
+    /**
+     * Add single PhantomJs run option.
+     *
+     * @access public
+     * @param  string                   $option
+     * @return \JonnyW\PhantomJs\Client
+     */
+    public function addOption($option)
+    {
+        if (!in_array($option, $this->options)) {
+            $this->options[] = $option;
         }
 
         return $this;
     }
 
     /**
-     * If data from JSON string format
-     * and return array
+     * Debug.
      *
-     * @param  string $data
-     * @return array
+     * @access public
+     * @param  boolean                  $doDebug
+     * @return \JonnyW\PhantomJs\Client
      */
-    protected function parse($data)
+    public function debug($doDebug)
     {
-        // Data is invalid
-        if ($data === null || !is_string($data)) {
-            return array();
-        }
+        $this->debug = $doDebug;
 
-        // Not a JSON string
-        if (substr($data, 0, 1) !== '{') {
-            return array();
-        }
-
-        // Return decoded JSON string
-        return (array) json_decode($data, true);
+        return $this;
     }
 
     /**
-     * PhantomJs base wrapper
+     * Set log info.
      *
-     * @var string
+     * @access public
+     * @param  string                   $info
+     * @return \JonnyW\PhantomJs\Client
      */
-    protected $wrapper = <<<EOF
+    public function setLog($info)
+    {
+        $this->log = $info;
 
-    var page = require('webpage').create(),
-        response = {},
-        headers = %1\$s;
+        return $this;
+    }
 
-    page.settings.resourceTimeout = %2\$s;
-    page.onResourceTimeout = function (e) {
-        response 		= e;
-        response.status = e.errorCode;
-    };
+    /**
+     * Get log info.
+     *
+     * @access public
+     * @return string
+     */
+    public function getLog()
+    {
+        return $this->log;
+    }
 
-    page.onResourceReceived = function (r) {
-        if(!response.status) response = r;
-    };
+    /**
+     * Clear log info.
+     *
+     * @access public
+     * @return \JonnyW\PhantomJs\Client
+     */
+    public function clearLog()
+    {
+        $this->log = '';
 
-    page.customHeaders = headers ? headers : {};
+        return $this;
+    }
 
-    page.open('%3\$s', '%4\$s', '%5\$s', function (status) {
-
-        if (status === 'success') {
-            %6\$s
-        } else {
-            console.log(JSON.stringify(response, undefined, 4));
-            phantom.exit();
+    /**
+     * Validate execuable file.
+     *
+     * @access private
+     * @param  string                                                 $file
+     * @return boolean
+     * @throws \JonnyW\PhantomJs\Exception\InvalidExecutableException
+     */
+    private function validateExecutable($file)
+    {
+        if (!file_exists($file) || !is_executable($file)) {
+            throw new InvalidExecutableException(sprintf('File does not exist or is not executable: %s', $file));
         }
-    });
-EOF;
 
-    /**
-     * PhantomJs screen capture
-     * command template
-     *
-     * @var string
-     */
-    protected $captureCmd = <<<EOF
-
-            page.render('%1\$s');
-
-            response.content = page.evaluate(function () {
-                return document.getElementsByTagName('html')[0].innerHTML
-            });
-
-            console.log(JSON.stringify(response, undefined, 4));
-            phantom.exit();
-EOF;
-
-    /**
-     * PhantomJs page open
-     * command template
-     *
-     * @var string
-     */
-    protected $openCmd = <<<EOF
-
-            response.content = page.evaluate(function () {
-                return document.getElementsByTagName('html')[0].innerHTML
-            });
-
-            console.log(JSON.stringify(response, undefined, 4));
-            phantom.exit();
-EOF;
-
-    /**
-     * PhantomJs page open
-     * command template with
-     * delay
-     *
-     * @var string
-     */
-    protected $openCmdWithDelay = <<<EOF
-
-        window.setTimeout(function () {
-
-            response.content = page.evaluate(function () {
-                return document.getElementsByTagName('html')[0].innerHTML
-            });
-
-            console.log(JSON.stringify(response, undefined, 4));
-            phantom.exit();
-
-        }, %s);
-EOF;
+        return true;
+    }
 }

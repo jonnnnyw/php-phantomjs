@@ -1,0 +1,97 @@
+
+phantom.onError = function(msg, trace) {
+        
+    var system   = require('system'),
+        date     = new Date().toISOString().slice(0, -5),
+        response = { 'content':  date + ' [ERROR] PhantomJS - ' + msg },
+        stack    = [ date + ' [ERROR] PhantomJS - ' + msg ];
+    
+    if (trace && trace.length) {
+            
+        trace.forEach(function(t) {
+            stack.push(date + ' [STACK] PhantomJS    ->' + (t.file || t.sourceURL) + ': ' + t.line + (t.function ? ' (in function ' + t.function + ')' : ''));
+        });
+    }
+    
+    console.log(JSON.stringify(response, undefined, 4));
+    system.stderr.write(stack.join('\n') + '\n');
+    phantom.exit(1);
+};
+
+var wrappedWindow = (function() {
+
+    var system = require('system'),
+        fs     = require('fs'),
+        script;
+
+    if (system.args.length < 2) {
+        throw new Error('No script file was provided to PhantomJS executable.');
+    }
+
+    script = fs.absolute(system.args[1]);
+
+    if (!fs.exists(script)) {
+        throw new Error('Script file does not exist: ' + script);
+    }
+    
+    if (!fs.isFile(script)) {
+        throw new Error('Script file is not of type \'file\': ' + script);
+    }
+    
+    if (!fs.isReadable(script)) {
+        throw new Error('Script file is not readable: ' + script);
+    }
+
+    var p = Object.create(phantom),
+        s = Object.create(system),
+        w = Object.create(window);
+    
+    Object.defineProperty(p, 'scriptName', {
+        value: system.args[1].replace(/\\/g, '/').split('/').slice(-1)[0],
+        enumerable: true
+    });
+    
+    Object.defineProperty(p, 'libraryPath', {
+        value: require('fs').absolute(system.args[1].replace(/\\/g, '/').split('/').slice(0, -1).join('/')),
+        enumerable: true
+    });
+    
+    Object.defineProperty(p, 'args', {
+        value: system.args.slice(2),
+        enumerable: true
+    });
+    
+    Object.defineProperty(s, 'args', {
+        value: system.args.slice(1),
+        enumerable: true
+    });
+    
+    Object.defineProperty(w, 'phantom', {
+        value: p,
+        enumerable: true
+    });
+
+    var r = (function(require) {
+        return function(moduleId) {
+            if (moduleId === 'system') {
+                return s;
+            }
+            return require(moduleId);
+        };
+    })(require);
+
+    w.require = r;
+    
+    return w;
+})();
+
+(function(window, require, phantom) {
+
+    phantom.injectJs(require('system').args[0]);
+    
+}).call(
+    wrappedWindow, 
+    wrappedWindow, 
+    wrappedWindow.require, 
+    wrappedWindow.phantom
+);

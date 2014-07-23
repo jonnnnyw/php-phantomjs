@@ -19,93 +19,89 @@ class Response implements ResponseInterface
      * Http headers array
      *
      * @var array
+     * @access public
      */
-    protected $headers;
+    public $headers;
 
     /**
      * Response int
      *
      * @var string
+     * @access public
      */
-    protected $status;
+    public $status;
 
     /**
      * Response body
      *
      * @var string
+     * @access public
      */
-    protected $content;
+    public $content;
 
     /**
      * Response content type header
      *
      * @var string
+     * @access public
      */
-    protected $contentType;
+    public $contentType;
 
     /**
      * Requested URL
      *
      * @var string
+     * @access public
      */
-    protected $url;
+    public $url;
 
     /**
      * Redirected URL
      *
      * @var string
+     * @access public
      */
-    protected $redirectUrl;
+    public $redirectUrl;
 
     /**
      * Request time string
      *
      * @var string
+     * @access public
      */
-    protected $time;
+    public $time;
 
     /**
-     * Set response data
+     * Console messages
      *
+     * @var array
+     * @access public
+     */
+    public $console;
+
+    /**
+     * Import response data
+     *
+     * @access public
      * @return \JonnyW\PhantomJs\Message\Response
      */
-    public function setData(array $data)
+    public function import(array $data)
     {
+        foreach ($data as $param => $value) {
+
+            if ($param === 'headers') {
+                continue;
+            }
+
+            if (property_exists($this, $param)) {
+                $this->$param = $value;
+            }
+        }
+
         $this->headers = array();
 
-        // Set headers array
         if (isset($data['headers'])) {
             $this->setHeaders((array) $data['headers']);
-        }
-
-        // Set status
-        if (isset($data['status'])) {
-            $this->status = $data['status'];
-        }
-
-        // Set content
-        if (isset($data['content'])) {
-            $this->content = $data['content'];
-        }
-
-        // Set content type string
-        if (isset($data['contentType'])) {
-            $this->contentType = $data['contentType'];
-        }
-
-        // Set request URL
-        if (isset($data['url'])) {
-            $this->url = $data['url'];
-        }
-
-        // Set redirect URL
-        if (isset($data['redirectURL'])) {
-            $this->redirectUrl = $data['redirectURL'];
-        }
-
-        // Set time string
-        if (isset($data['time'])) {
-            $this->time = $data['time'];
         }
 
         return $this;
@@ -114,6 +110,7 @@ class Response implements ResponseInterface
     /**
      * Set headers array
      *
+     * @access protected
      * @param  array                              $headers
      * @return \JonnyW\PhantomJs\Message\Response
      */
@@ -132,6 +129,7 @@ class Response implements ResponseInterface
     /**
      * Get HTTP headers array
      *
+     * @access public
      * @return array
      */
     public function getHeaders()
@@ -142,7 +140,8 @@ class Response implements ResponseInterface
     /**
      * Get HTTP header value for code
      *
-     * @praam string $$code
+     * @access public
+     * @param  string $code
      * @return mixed
      */
     public function getHeader($code)
@@ -157,6 +156,7 @@ class Response implements ResponseInterface
     /**
      * Get response status code
      *
+     * @access public
      * @return integer
      */
     public function getStatus()
@@ -167,6 +167,7 @@ class Response implements ResponseInterface
     /**
      * Get page content from respone
      *
+     * @access public
      * @return string
      */
     public function getContent()
@@ -177,6 +178,7 @@ class Response implements ResponseInterface
     /**
      * Get content type header
      *
+     * @access public
      * @return string
      */
     public function getContentType()
@@ -187,6 +189,7 @@ class Response implements ResponseInterface
     /**
      * Get request URL
      *
+     * @access public
      * @return string
      */
     public function getUrl()
@@ -197,6 +200,7 @@ class Response implements ResponseInterface
     /**
      * Get redirect URL (if redirected)
      *
+     * @access public
      * @return string
      */
     public function getRedirectUrl()
@@ -208,22 +212,35 @@ class Response implements ResponseInterface
      * Is response a redirect
      *  - Checks status codes
      *
+     * @access public
      * @return boolean
      */
     public function isRedirect()
     {
         $status = $this->getStatus();
 
-        return (bool) ($status >= 300 && $status < 307);
+        return (bool) ($status >= 300 && $status <= 307);
     }
 
     /**
      * Get time string
      *
+     * @access public
      * @return string
      */
     public function getTime()
     {
         return $this->time;
+    }
+
+    /**
+     * Get console messages
+     *
+     * @access public
+     * @return array
+     */
+    public function getConsole()
+    {
+        return $this->console;
     }
 }
