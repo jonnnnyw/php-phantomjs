@@ -15,7 +15,7 @@ tools:
         config:
             level: all
         filter:
-            paths: ["src/*""]
+            paths: ["src/*"]
     php_loc:
         enabled: true
     php_mess_detector:
