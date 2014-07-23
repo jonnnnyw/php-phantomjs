@@ -2,11 +2,7 @@ before_commands:
     - "composer install --dev --prefer-source"
 
 tools:
-    php_code_coverage:
-        enabled: true
-        test_command: phpunit -c phpunit.xml.dist
-        filter:
-            paths: ["src/*"]
+    external_code_coverage: true
     php_cpd:
         enabled: true
         excluded_dirs: ["examples", "tests", "vendor"]
