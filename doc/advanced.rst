@@ -1,4 +1,4 @@
 Advanced
 =============
 
-Check back tomororw :)
+This documentation will be up in a couple of days.

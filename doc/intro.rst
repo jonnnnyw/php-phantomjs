@@ -1,119 +1,129 @@
 Introduction
-=============
+============
 
-PHP PhantomJS is a flexible PHP library to load pages through the PhantomJS 
-headless browser and return the page response. It is handy for testing
-websites that demand javascript support and also supports screen captures.
+| PHP PhantomJS is a flexible PHP library to load pages through the
+PhantomJS
+| headless browser and return the page response. It is handy for testing
+| websites that demand javascript support and also supports screen
+captures.
 
 Feature List
----------------------
+------------
 
-* Load webpages through the PhantomJS headless browser
-* View detailed response data including page content, headers, status code etc.
-* Handle redirects
-* View javascript console errors
-* View detailed PhantomJS debuged information
-* Save screen captures to local disk 
-* Define screen capture x, y, width and height parameters
-* Delay page rendering for a specified time
-* Execute PhantomJS with command line options
-* Easily build and run custom PhantomJS scripts
+-  Load webpages through the PhantomJS headless browser
+-  View detailed response data including page content, headers, status
+   code etc.
+-  Handle redirects
+-  View javascript console errors
+-  View detailed PhantomJS debuged information
+-  Save screen captures to local disk
+-  Define screen capture x, y, width and height parameters
+-  Delay page rendering for a specified time
+-  Execute PhantomJS with command line options
+-  Easily build and run custom PhantomJS scripts
 
 Prerequisites
----------------------
+-------------
 
 PHP PhantomJS requires PHP **5.3.0** or greater to run.
 
 Installation
----------------------
+------------
 
-It is recommended that you use Composer to install PHP PhantomJS. First add the following to your composer.json file:
+It is recommended that you use Composer to install PHP PhantomJS. First,
+add the following to your project’s composer.json file:
 
-```xml
-"scripts": {
-    "post-install-cmd": [
-        "PhantomInstaller\\Installer::installPhantomJS"
-    ],
-    "post-update-cmd": [
-        "PhantomInstaller\\Installer::installPhantomJS"
-    ]
-}
-```
+.. code:: xml
 
-This will ensure the latest version of PhantomJS is install for your system, in your bin folder. If you haven't defined your bin folder in your composer.json, add the path:
+    "scripts": {
+        "post-install-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ],
+        "post-update-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ]
+    }
 
-```xml
-"config": {
-    "bin-dir": "path/to/bin/dir"
-}
-```
+This will ensure the latest version of PhantomJS is installed for your
+system, in your bin folder. If you haven’t defined your bin folder in
+your composer.json, add the path:
+
+.. code:: xml
+
+    "config": {
+        "bin-dir": "bin"
+    }
 
 Finally, install PHP PhantomJS from the root of your project:
 
-```xml
-composer require "jonnyw/php-phantomjs:3.*"
-```
+.. code:: xml
 
-If you would like to use another installation method or would like to see more detailed installation instructions, see the [installation](http://jonnnnyw.github.io/php-phantomjs/installation.html) documentation.
+    composer require "jonnyw/php-phantomjs:3.*"
 
+If you would like to use another installation method or would like to
+see more detailed installation instructions, see the `installation`_
+documentation.
 
 Basic Usage
----------------------
+-----------
 
-The following illustrates how to make a basic GET request and output the page content:
+The following illustrates how to make a basic GET request and output the
+page content:
 
-```php
-<?php
+.. code:: php
 
-use JonnyW\PhantomJs\Client;
+    <?php
 
-$client = Client::getInstance();
+    use JonnyW\PhantomJs\Client;
 
-/** 
- * @see JonnyW\PhantomJs\Message\Request 
- **/
-$request = $client->getMessageFactory()
-    ->createRequest('http://google.com', 'GET');
+    $client = Client::getInstance();
 
-/** 
- * @see JonnyW\PhantomJs\Message\Response 
- **/
-$response = $client->getMessageFactory()->createResponse();
+    /** 
+     * @see JonnyW\PhantomJs\Message\Request 
+     **/
+    $request = $client->getMessageFactory()
+        ->createRequest('http://google.com', 'GET');
 
-// Send the request
-$client->send($request, $response);
+    /** 
+     * @see JonnyW\PhantomJs\Message\Response 
+     **/
+    $response = $client->getMessageFactory()->createResponse();
 
-if($response->getStatus() === 200) {
+    // Send the request
+    $client->send($request, $response);
 
-    // Dump the requested page content
-    echo $response->getContent();
-}
-```
+    if($response->getStatus() === 200) {
+
+        // Dump the requested page content
+        echo $response->getContent();
+    }
 
 And if you would like to save a screen capture to local disk:
 
-```php
-<?php
+.. code:: php
 
-use JonnyW\PhantomJs\Client;
+    <?php
 
-$client = Client::getInstance();
+    use JonnyW\PhantomJs\Client;
 
-/** 
- * @see JonnyW\PhantomJs\Message\Request 
- **/
-$request = $client->getMessageFactory()->createCaptureRequest('http://google.com', 'GET');
-$request->setCaptureFile('/path/to/save/capture/file.jpg');
+    $client = Client::getInstance();
 
-/** 
- * @see JonnyW\PhantomJs\Message\Response 
- **/
-$response = $client->getMessageFactory()->createResponse();
+    /** 
+     * @see JonnyW\PhantomJs\Message\Request 
+     **/
+    $request = $client->getMessageFactory()->createCaptureRequest('http://google.com', 'GET');
+    $request->setCaptureFile('/path/to/save/capture/file.jpg');
 
-// Send the request
-$client->send($request, $response);
+    /** 
+     * @see JonnyW\PhantomJs\Message\Response 
+     **/
+    $response = $client->getMessageFactory()->createResponse();
 
+    // Send the request
+    $client->send($request, $response);
 
-```
+For more detailed examples see the `examples`_ section, or to create
+your own custom scripts check out the `advanced`_ documentation.
 
-For more detailed examples see the [examples](http://jonnnnyw.github.io/php-phantomjs/examples.html) section, or to create your own custom scripts check out the [advanced](http://jonnnnyw.github.io/php-phantomjs/advanced.html) documentation.
+.. _examples: http://jonnnnyw.github.io/php-phantomjs/examples.html
+.. _advanced: http://jonnnnyw.github.io/php-phantomjs/advanced.html
