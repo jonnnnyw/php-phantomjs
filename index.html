@@ -60,12 +60,31 @@ websites that demand javascript support and also supports screen captures.</p>
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<p>It is recommended that you use Composer to install PHP PhantomJS:</p>
+<p>It is recommended that you use Composer to install PHP PhantomJS. First, add the following to your project's composer.json file:</p>
+
+<div class="highlight highlight-xml"><pre>"scripts": {
+    "post-install-cmd": [
+        "PhantomInstaller\\Installer::installPhantomJS"
+    ],
+    "post-update-cmd": [
+        "PhantomInstaller\\Installer::installPhantomJS"
+    ]
+}
+</pre></div>
+
+<p>This will ensure the latest version of PhantomJS is installed for your system, in your bin folder. If you haven't defined your bin folder in your composer.json, add the path:</p>
+
+<div class="highlight highlight-xml"><pre>"config": {
+    "bin-dir": "bin"
+}
+</pre></div>
+
+<p>Finally, install PHP PhantomJS from the root of your project:</p>
 
 <div class="highlight highlight-xml"><pre>composer require "jonnyw/php-phantomjs:3.*"
 </pre></div>
 
-<p>If you would like to use another installation method or would like to see more detailed installation instruction, see the <a href="http://jonnnnyw.github.io/php-phantomjs/installation.html">installation</a> documentation.</p>
+<p>If you would like to use another installation method or would like to see more detailed installation instructions, see the <a href="http://jonnnnyw.github.io/php-phantomjs/installation.html">installation</a> documentation.</p>
 
 <h2>
 <a name="basic-usage" class="anchor" href="#basic-usage"><span class="octicon octicon-link"></span></a>Basic Usage</h2>
@@ -124,7 +143,7 @@ websites that demand javascript support and also supports screen captures.</p>
 
 </pre></div>
 
-<p>For more detailed examples see the <a href="http://jonnnnyw.github.io/php-phantomjs/examples.html">examples</a> section, otherwise to create your own custom scripts check out the <a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html">advanced</a> documentation.</p>
+<p>For more detailed examples see the <a href="http://jonnnnyw.github.io/php-phantomjs/examples.html">examples</a> section, or to create your own custom scripts check out the <a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html">advanced</a> documentation.</p>
       </section>
     </div>
 
