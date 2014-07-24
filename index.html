@@ -127,7 +127,7 @@ websites that demand javascript support and also supports screen captures.</p>
 <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
 
 <span class="sd">/** </span>
-<span class="sd"> * @see JonnyW\PhantomJs\Message\Request </span>
+<span class="sd"> * @see JonnyW\PhantomJs\Message\CaptureRequest </span>
 <span class="sd"> **/</span>
 <span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createCaptureRequest</span><span class="p">(</span><span class="s1">'http://google.com'</span><span class="p">,</span> <span class="s1">'GET'</span><span class="p">);</span>
 <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureFile</span><span class="p">(</span><span class="s1">'/path/to/save/capture/file.jpg'</span><span class="p">);</span>
