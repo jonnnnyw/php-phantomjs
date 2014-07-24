@@ -81,8 +81,7 @@ page content:
     /** 
      * @see JonnyW\PhantomJs\Message\Request 
      **/
-    $request = $client->getMessageFactory()
-        ->createRequest('http://google.com', 'GET');
+    $request = $client->getMessageFactory()->createRequest('http://google.com', 'GET');
 
     /** 
      * @see JonnyW\PhantomJs\Message\Response 
@@ -109,7 +108,7 @@ And if you would like to save a screen capture to local disk:
     $client = Client::getInstance();
 
     /** 
-     * @see JonnyW\PhantomJs\Message\Request 
+     * @see JonnyW\PhantomJs\Message\CaptureRequest
      **/
     $request = $client->getMessageFactory()->createCaptureRequest('http://google.com', 'GET');
     $request->setCaptureFile('/path/to/save/capture/file.jpg');
