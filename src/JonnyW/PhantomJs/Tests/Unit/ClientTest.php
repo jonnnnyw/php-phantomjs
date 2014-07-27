@@ -46,7 +46,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('\JonnyW\PhantomJs\Message\MessageFactoryInterface', $client->getMessageFactory());
     }
-    
+
     /**
      * Test get procedure loader returns
      * instance of proecure loader.
@@ -62,7 +62,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface', $client->getProcedureLoader());
     }
-    
+
     /**
      * Test set phantom JS throws invalid
      * executable exception if phantom

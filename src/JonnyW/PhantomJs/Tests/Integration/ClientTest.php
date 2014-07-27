@@ -61,7 +61,7 @@ EOF;
 
         $client = $this->getClient();
         $client->getProcedureLoader()->addLoader($procedureLoader);
-        
+
         $request  = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
@@ -313,12 +313,12 @@ EOF;
 
     /**
      * Test delay logs start time
-     * in client.
+     * in client for default request.
      *
      * @access public
      * @return void
      */
-    public function testDelayLogsStartTimeInClient()
+    public function testDelayLogsStartTimeInClientForDefaultRequest()
     {
         $delay = 2;
 
@@ -342,12 +342,12 @@ EOF;
 
     /**
      * Test delay logs end time
-     * in client.
+     * in client for default request.
      *
      * @access public
      * @return void
      */
-    public function testDelayLogsEndTimeInClient()
+    public function testDelayLogsEndTimeInClientForDefaultRequest()
     {
         $delay = 2;
 
@@ -371,12 +371,12 @@ EOF;
 
     /**
      * Test delay delays page render for
-     * specified time.
+     * specified time for default request.
      *
      * @access public
      * @return void
      */
-    public function testDelayDelaysPageRenderForSpecifiedTime()
+    public function testDelayDelaysPageRenderForSpecifiedTimeForDefaultRequest()
     {
         $delay = 2;
 
@@ -387,6 +387,97 @@ EOF;
 
         $request->setMethod('GET');
         $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setDelay($delay);
+
+        $client->send($request, $response);
+
+        $logs = explode("\n", $client->getLog());
+
+        $startIndex = $this->getLogEntryIndex($logs, 'Delaying page render for');
+        $endIndex   = $this->getLogEntryIndex($logs, 'Rendering page after');
+
+        $startTime = strtotime(substr($logs[$startIndex], 0 , 19));
+        $endTime   = strtotime(substr($logs[$endIndex], 0 , 19));
+
+        $this->assertSame(($startTime+$delay), $endTime);
+    }
+
+    /**
+     * Test delay logs start time
+     * in client for capture request.
+     *
+     * @access public
+     * @return void
+     */
+    public function testDelayLogsStartTimeInClientForCaptureRequest()
+    {
+        $delay = 2;
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-capture.html');
+        $request->setDelay($delay);
+
+        $client->send($request, $response);
+
+        $logs = explode("\n", $client->getLog());
+
+        $startIndex = $this->getLogEntryIndex($logs, 'Delaying page render for');
+
+        $this->assertTrue(($startIndex !== false));
+    }
+
+    /**
+     * Test delay logs end time
+     * in client for capture request.
+     *
+     * @access public
+     * @return void
+     */
+    public function testDelayLogsEndTimeInClientForCaptureRequest()
+    {
+        $delay = 2;
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-capture.html');
+        $request->setDelay($delay);
+
+        $client->send($request, $response);
+
+        $logs = explode("\n", $client->getLog());
+
+        $endIndex = $this->getLogEntryIndex($logs, 'Rendering page after');
+
+        $this->assertTrue(($endIndex !== false));
+    }
+
+    /**
+     * Test delay delays page render for
+     * specified time for capture request.
+     *
+     * @access public
+     * @return void
+     */
+    public function testDelayDelaysPageRenderForSpecifiedTimeForCaptureRequest()
+    {
+        $delay = 2;
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-capture.html');
         $request->setDelay($delay);
 
         $client->send($request, $response);

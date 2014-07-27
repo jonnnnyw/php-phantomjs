@@ -101,9 +101,7 @@ phantom.onError = function(msg, trace) {
  * @param callable $callback
  */
 page.open ('{{ request.getUrl() }}', '{{ request.getMethod() }}', '{{ request.getBody() }}', function (status) {
-    
-    var delay = Number(delay);
-    
+
     if(!delay) {
         return procedure.execute(status);
     }
