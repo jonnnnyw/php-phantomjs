@@ -61,7 +61,7 @@ Finally, install PHP PhantomJS from the root of your project:
     composer require "jonnyw/php-phantomjs:3.*"
 
 If you would like to use another installation method or would like to
-see more detailed installation instructions, see the `installation`_
+see more detailed installation instructions, see the `installation <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/installation.rst>`__
 documentation.
 
 Basic Usage
