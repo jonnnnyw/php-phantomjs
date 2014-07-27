@@ -1,171 +1,145 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="php-phantomjs : Execute PhantomJS commands through PHP">
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="php-phantomjs : Execute PhantomJS commands through PHP" />
+
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
     <title>php-phantomjs</title>
-</head>
+  </head>
 
-<body>
+  <body>
+
     <!-- HEADER -->
-
     <div id="header_wrap" class="outer">
         <header class="inner">
-            <a id="forkme_banner" href="https://github.com/jonnnnyw/php-phantomjs">View on GitHub</a>
+          <a id="forkme_banner" href="https://github.com/jonnnnyw/php-phantomjs">View on GitHub</a>
 
-            <h1 id="project_title">php-phantomjs</h1>
+          <h1 id="project_title">php-phantomjs</h1>
+          <h2 id="project_tagline">Execute PhantomJS commands through PHP</h2>
 
-            <h2 id="project_tagline">Execute PhantomJS commands through PHP</h2>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/jonnnnyw/php-phantomjs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/jonnnnyw/php-phantomjs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
         </header>
-    </div><!-- MAIN CONTENT -->
-
-    <div id="main_content_wrap" class="outer">
-        <section id="main_content" class="inner">
-            <h1><a name="introduction" class="anchor" href="#introduction"></a>Introduction</h1>
-
-            <p>PHP PhantomJS is a flexible PHP library to load pages through the PhantomJS headless browser and return the page response. It is handy for testing websites that demand javascript support and also supports screen captures.</p>
-
-            <h2><a name="feature-list" class="anchor" href="#feature-list"></a>Feature List</h2>
-
-            <ul>
-                <li>Load webpages through the PhantomJS headless browser</li>
-
-                <li>View detailed response data including page content, headers, status code etc.</li>
-
-                <li>Handle redirects</li>
-
-                <li>View javascript console errors</li>
-
-                <li>View detailed PhantomJS debuged information</li>
-
-                <li>Save screen captures to local disk</li>
-
-                <li>Define screen capture x, y, width and height parameters</li>
-
-                <li>Delay page rendering for a specified time</li>
-
-                <li>Execute PhantomJS with command line options</li>
-
-                <li>Easily build and run custom PhantomJS scripts</li>
-            </ul>
-
-            <h2><a name="prerequisites" class="anchor" href="#prerequisites"></a>Prerequisites</h2>
-
-            <p>PHP PhantomJS requires PHP <strong>5.3.0</strong> or greater to run.</p>
-
-            <h2><a name="installation" class="anchor" href="#installation"></a>Installation</h2>
-
-            <p>It is recommended that you use Composer to install PHP PhantomJS. First, add the following to your project's composer.json file:</p>
-
-            <div class="highlight highlight-xml">
-                <pre>
-"scripts": {
-    "post-install-cmd": [
-        "PhantomInstaller\\Installer::installPhantomJS"
-    ],
-    "post-update-cmd": [
-        "PhantomInstaller\\Installer::installPhantomJS"
-    ]
-}
-</pre>
-            </div>
-
-            <p>This will ensure the latest version of PhantomJS is installed for your system, in your bin folder. If you haven't defined your bin folder in your composer.json, add the path:</p>
-
-            <div class="highlight highlight-xml">
-                <pre>
-"config": {
-    "bin-dir": "bin"
-}
-</pre>
-            </div>
-
-            <p>Finally, install PHP PhantomJS from the root of your project:</p>
-
-            <div class="highlight highlight-xml">
-                <pre>
-composer require "jonnyw/php-phantomjs:3.*"
-</pre>
-            </div>
-
-            <p>If you would like to use another installation method or would like to see more detailed installation instructions, see the <a href="http://jonnnnyw.github.io/php-phantomjs/installation.html">installation</a> documentation.</p>
-
-            <h2><a name="basic-usage" class="anchor" href="#basic-usage"></a>Basic Usage</h2>
-
-            <p>The following illustrates how to make a basic GET request and output the page content:</p>
-
-            <div class="highlight highlight-php">
-                <pre>
-<span class="o">&lt;?</span><span class="nx">php</span>
-
-<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
-
-<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
-
-<span class="sd">/** </span>
-<span class="sd"> * @see JonnyW\PhantomJs\Message\Request </span>
-<span class="sd"> **/</span>
-<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span>
-    <span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">'http://google.com'</span><span class="p">,</span> <span class="s1">'GET'</span><span class="p">);</span>
-
-<span class="sd">/** </span>
-<span class="sd"> * @see JonnyW\PhantomJs\Message\Response </span>
-<span class="sd"> **/</span>
-<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
-
-<span class="c1">// Send the request</span>
-<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
-
-<span class="k">if</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getStatus</span><span class="p">()</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="c1">// Dump the requested page content</span>
-    <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getContent</span><span class="p">();</span>
-<span class="p">}</span>
-</pre>
-            </div>
-
-            <p>And if you would like to save a screen capture to local disk:</p>
-
-            <div class="highlight highlight-php">
-                <pre>
-<span class="o">&lt;?</span><span class="nx">php</span>
-
-<span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
-
-<span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
-
-<span class="sd">/** </span>
-<span class="sd"> * @see JonnyW\PhantomJs\Message\CaptureRequest </span>
-<span class="sd"> **/</span>
-<span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createCaptureRequest</span><span class="p">(</span><span class="s1">'http://google.com'</span><span class="p">,</span> <span class="s1">'GET'</span><span class="p">);</span>
-<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureFile</span><span class="p">(</span><span class="s1">'/path/to/save/capture/file.jpg'</span><span class="p">);</span>
-
-<span class="sd">/** </span>
-<span class="sd"> * @see JonnyW\PhantomJs\Message\Response </span>
-<span class="sd"> **/</span>
-<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
-
-<span class="c1">// Send the request</span>
-<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
-
-
-</pre>
-            </div>
-
-            <p>For more detailed examples see the <a href="http://jonnnnyw.github.io/php-phantomjs/examples.html">examples</a> section, or to create your own custom scripts check out the <a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html">advanced</a> documentation.</p>
-        </section>
-    </div><!-- FOOTER  -->
-
-    <div id="footer_wrap" class="outer">
-        <footer class="inner">
-            <p class="copyright">php-phantomjs maintained by <a href="https://github.com/jonnnnyw">jonnnnyw</a></p>
-
-            <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-        </footer>
     </div>
-</body>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<h2>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
+
+<p>PHP PhantomJS requires PHP <strong>5.3.0</strong> or greater to run.</p>
+
+<h2>
+<a name="installing-via-composer" class="anchor" href="#installing-via-composer"><span class="octicon octicon-link"></span></a>Installing via Composer</h2>
+
+<p>Install <a href="https://getcomposer.org/">Composer</a> for your project:</p>
+
+<pre lang="Shell"><code>    curl -s http://getcomposer.org/installer | php
+</code></pre>
+
+<p>Create a <code>composer.json</code> file in the root of your project:</p>
+
+<div class="highlight highlight-YAML"><pre>    <span class="p-Indicator">{</span>
+        <span class="s">"require"</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
+            <span class="s">"jonnyw/php-phantomjs"</span><span class="p-Indicator">:</span> <span class="s">"3.*"</span>
+        <span class="p-Indicator">},</span>
+        <span class="s">"config"</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
+            <span class="s">"bin-dir"</span><span class="p-Indicator">:</span> <span class="s">"bin"</span>
+        <span class="p-Indicator">},</span>
+        <span class="s">"scripts"</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
+            <span class="s">"post-install-cmd"</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span>
+                <span class="s">"PhantomInstaller\\Installer::installPhantomJS"</span>
+            <span class="p-Indicator">],</span>
+            <span class="s">"post-update-cmd"</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span>
+                <span class="s">"PhantomInstaller\\Installer::installPhantomJS"</span>
+            <span class="p-Indicator">]</span>
+        <span class="p-Indicator">}</span>
+    <span class="p-Indicator">}</span>
+</pre></div>
+
+<p>It is important that you have the 'scripts' section shown above in your <code>composer.json</code> file as it will install the latest version of PhantomJS for your system to your project's bin folder. It is recommended that you create a bin folder in the root of your project as this is where the PHP PhantomJS library will look for your PhantomJS executable. If you would prefer to use a PhantomJS executable in a custom location, see the <a href="#custom-installation">Custom Installation</a> section.</p>
+
+<p>Finally, install the composer depedencies for your project:</p>
+
+<pre lang="Shell"><code>    php composer.phar install
+</code></pre>
+
+<h2>
+<a name="custom-installation" class="anchor" href="#custom-installation"><span class="octicon octicon-link"></span></a>Custom Installation</h2>
+
+<p>If you would prefer to use a custom install location for the PhantomJS executable, you simply need to tell the client where to find the executable file:</p>
+
+<div class="highlight highlight-php"><pre>    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setPhantomJs</span><span class="p">(</span><span class="s1">'/path/to/phantomjs'</span><span class="p">);</span>
+</pre></div>
+
+<p>If you would like composer to install the PhantomJS executable to a custom location when installing dependencies, set the bin dir location in your project's <code>composer.json</code> file:</p>
+
+<div class="highlight highlight-YAML"><pre>    <span class="p-Indicator">{</span>
+        <span class="s">"config"</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
+            <span class="s">"bin-dir"</span><span class="p-Indicator">:</span> <span class="s">"/path/to/your/projects/bin/dir"</span>
+        <span class="p-Indicator">}</span>
+    <span class="p-Indicator">}</span>
+</pre></div>
+
+<p>You will need to make sure that this directory exists and is writable by Composer before running the composer install.</p>
+
+<p>Once you have updated your bin location run composer install to install PhantomJS:</p>
+
+<pre lang="Shell"><code>    php composer.phar install
+</code></pre>
+
+<p>This should install the correct PhantomJS executable for your system to the bin locaiton you defined in your <code>composer.json</code> file. As mentioned above, you will need to tell the client where to find your PhantomJS executable as it is not installed in the default location:</p>
+
+<div class="highlight highlight-php"><pre>    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setPhantomJs</span><span class="p">(</span><span class="s1">'/path/to/phantomjs'</span><span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="installing-from-tarball-" class="anchor" href="#installing-from-tarball-"><span class="octicon octicon-link"></span></a>Installing from tarball </h2>
+
+<p>The PHP PhantomJS library contains several depedencies in order to function so it is recommended that you install it via composer as this will handle your dependencies for you. If you do wish to install it from a <a href="https://github.com/jonnnnyw/php-phantomjs/tags">tarball release</a> then you will need to install the dependencies manually.</p>
+
+<p>The PHP PhantomJS library currently requires the following depdencies:</p>
+
+<ul>
+<li>
+<a href="https://github.com/symfony/Config">Symfony Config Component</a> ~2.5</li>
+<li>
+<a href="https://github.com/symfony/DependencyInjection">Symfony Dependency Injection Component</a> ~2.5</li>
+<li>
+<a href="https://github.com/symfony/filesystem">Symfony Filesystem Component</a> ~2.5</li>
+<li>
+<a href="https://github.com/fabpot/Twig">Twig templating Component</a> ~1.16</li>
+<li>
+<a href="http://phantomjs.org/">PhantomJS</a> ~1.9</li>
+</ul><p>Make sure the components are in your include path and that the PhantomJS executable is installed to your projects bin folder as mentioned in the <a href="#custom-installation">Custom Installation</a> section.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">php-phantomjs maintained by <a href="https://github.com/jonnnnyw">jonnnnyw</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
 </html>
