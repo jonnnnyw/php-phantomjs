@@ -1,5 +1,7 @@
 <?php
 
+require '../vendor/autoload.php';
+
 use JonnyW\PhantomJs\Client;
 use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
 
