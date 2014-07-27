@@ -31,7 +31,7 @@ Installation
 ------------
 
 It is recommended that you use Composer to install PHP PhantomJS. First,
-add the following to your project’s composer.json file:
+add the following to your project’s ``composer.json`` file:
 
 .. code:: xml
 
