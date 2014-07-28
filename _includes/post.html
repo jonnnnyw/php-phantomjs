@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
+</div>
+	
+<article>
+
+	<div class="col-sm-10">
+	
+	  <div class="article_body">
+	  {{ content }}
+	  </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  {% if page.previous %}
+		  <li class="previous"><a href="{{ site.BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; {{ page.previous.title }}</a></li>
+		  {% endif %}
+		  {% if page.next %}
+		  <li class="next"><a href="{{ site.BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{ page.next.title }} &rarr;</a></li>
+		  {% endif %}
+		</ul>
+
+		<hr>
+	</div>
+	
+	<div class="col-sm-2 sidebar-2">
+	
+	</div>
+</article>
+<div class="clearfix"></div>

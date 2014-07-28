@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>PHP PhantomJS</title>
+	
+	<meta name="author" content="Jonny W">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<!-- Update these with your own images
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	-->
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<!--
+			
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="mailto:contact@jonnyw.me">
+				<i class="fa fa-envelope"></i>
+			</a>
+			
+			
+			-->
+			
+			<a class="navbar-brand" href="/">
+				<img src="/assets/media/phantomjs-small.png" class="img-circle" />
+				PHP PhantomJs
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/installation.html">Installation</a></li>
+				<li><a href="/usage.html">Usage</a></li>
+				<li><a href="/advanced.html">Advanced</a></li>
+				<li><a href="/debugging.html">Debugging</a></li>
+				<li><a href="/troubleshooting.html">Troubleshooting</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+		    <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/installation.html"><i class="fa fa-folder"></i>Installation</a></li>
+			<li><a href="/usage.html"><i class="fa fa-folder"></i>Usage</a></li>
+			<li><a href="/advanced.html"><i class="fa fa-folder"></i>Advanced</a></li>
+			<li><a href="/debugging.html"><i class="fa fa-folder"></i>Debugging</a></li>
+			<li><a href="/troubleshooting.html"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div>
+
+	<div class="col-sm-3 sidebar hidden-xs">
+		<! -- sidebar.html -->
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="/assets/media/phantomjs.png" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/">PHP PhantomJs</a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	Run PhantomJS scripts through PHP
+</div>
+
+
+<div id="contact-list" class="text-center">
+<!--
+	<ul class="list-unstyled list-inline">
+		
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="mailto:contact@jonnyw.me">
+				<i class="fa fa-envelope fa-lg"></i>
+			</a>
+		</li>
+		
+	</ul>
+	<ul id="contact-list-secondary" class="list-unstyled list-inline">
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+-->
+</div>
+<! -- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		
+
+
+<div class="page-header">
+  <h1>Installation </h1>
+</div>
+
+<article class="home">
+
+  <div>
+    
+    <h2 id="prerequisites">Prerequisites</h2>
+
+<p>PHP PhantomJS requires PHP <strong>5.3.0</strong> or greater to run.</p>
+
+<h2 id="installing-via-composer">Installing via Composer</h2>
+
+<p>Install <a href="https://getcomposer.org/">Composer</a> for your project:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">curl -s http://getcomposer.org/installer <span class="p">|</span> php</code></pre></div>
+
+<p>Create a <code>composer.json</code> file in the root of your project:</p>
+
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="p-Indicator">{</span>
+            <span class="s">&quot;require&quot;</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
+                <span class="s">&quot;jonnyw/php-phantomjs&quot;</span><span class="p-Indicator">:</span> <span class="s">&quot;3.*&quot;</span>
+            <span class="p-Indicator">},</span>
+            <span class="s">&quot;config&quot;</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
+                <span class="s">&quot;bin-dir&quot;</span><span class="p-Indicator">:</span> <span class="s">&quot;bin&quot;</span>
+            <span class="p-Indicator">},</span>
+            <span class="s">&quot;scripts&quot;</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
+                <span class="s">&quot;post-install-cmd&quot;</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span>
+                    <span class="s">&quot;PhantomInstaller\\Installer::installPhantomJS&quot;</span>
+                <span class="p-Indicator">],</span>
+                <span class="s">&quot;post-update-cmd&quot;</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span>
+                    <span class="s">&quot;PhantomInstaller\\Installer::installPhantomJS&quot;</span>
+                <span class="p-Indicator">]</span>
+            <span class="p-Indicator">}</span>
+        <span class="p-Indicator">}</span></code></pre></div>
+
+<p>It is important that you have the ‘scripts’ section shown above in your <code>composer.json</code> file as it will install the latest version of PhantomJS for your system to your project’s bin folder. It is recommended that you create a bin folder in the root of your project as this is where the PHP PhantomJS library will look for your PhantomJS executable. If you would prefer to use a PhantomJS executable in a custom location, see the <a href="#custom-installation">Custom Installation</a> section.</p>
+
+<p>Finally, install the composer depedencies for your project:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">php composer.phar install</code></pre></div>
+
+<h2 id="custom-installation">Custom Installation</h2>
+
+<p>If you would prefer to use a custom install location for the PhantomJS executable, you simply need to tell the client where to find the executable file:</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">use JonnyW\PhantomJs\Client;</span>
+
+<span class="x">        $client = Client::getInstance();</span>
+<span class="x">        $client-&gt;setPhantomJs(&#39;/path/to/phantomjs&#39;);</span></code></pre></div>
+
+<p>If you would like composer to install the PhantomJS executable to a custom location when installing dependencies, set the bin dir location in your project’s <code>composer.json</code> file:</p>
+
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="p-Indicator">{</span>
+            <span class="s">&quot;config&quot;</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
+                <span class="s">&quot;bin-dir&quot;</span><span class="p-Indicator">:</span> <span class="s">&quot;/path/to/your/projects/bin/dir&quot;</span>
+            <span class="p-Indicator">}</span>
+        <span class="p-Indicator">}</span></code></pre></div>
+
+<p>You will need to make sure that this directory exists and is writable by Composer before running the composer install.</p>
+
+<p>Once you have updated your bin location run composer install to install PhantomJS:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">php composer.phar install</code></pre></div>
+
+<p>This should install the correct PhantomJS executable for your system to the bin locaiton you defined in your <code>composer.json</code> file. As mentioned above, you will need to tell the client where to find your PhantomJS executable as it is not installed in the default location:</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">use JonnyW\PhantomJs\Client;</span>
+
+<span class="x">        $client = Client::getInstance();</span>
+<span class="x">        $client-&gt;setPhantomJs(&#39;/path/to/phantomjs&#39;);</span></code></pre></div>
+
+<h2 id="installing-from-tarball">Installing from tarball</h2>
+
+<p>The PHP PhantomJS library contains several depedencies in order to function so it is recommended that you install it via composer as this will handle your dependencies for you. If you do wish to install it from a <a href="https://github.com/jonnnnyw/php-phantomjs/tags">tarball release</a> then you will need to install the dependencies manually.</p>
+
+<p>The PHP PhantomJS library currently requires the following depdencies:</p>
+
+<ul>
+  <li><a href="https://github.com/symfony/Config">Symfony Config Component</a> ~2.5</li>
+  <li><a href="https://github.com/symfony/Yaml">Symfony YAML Component</a> ~2.5</li>
+  <li><a href="https://github.com/symfony/DependencyInjection">Symfony Dependency Injection Component</a> ~2.5</li>
+  <li><a href="https://github.com/symfony/filesystem">Symfony Filesystem Component</a> ~2.5</li>
+  <li><a href="https://github.com/fabpot/Twig">Twig templating Component</a> ~1.16</li>
+  <li><a href="http://phantomjs.org/">PhantomJS</a> ~1.9</li>
+</ul>
+
+<p>Make sure the components are in your include path and that the PhantomJS executable is installed to your projects bin folder as mentioned in the <a href="#custom-installation">Custom Installation</a> section.</p>
+
+    
+  </div>
+
+</article>
+
+<hr/>
+
+<ul class="pager"> 
+
+  
+  <li class="previous">
+    
+    <a href="/">&larr; Previous</a>
+    
+  </li>
+  
+
+  
+  <li class="next">
+    <a href="/page3">Next &rarr;</a>
+  </li>
+  
+
+</ul>
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				&copy; 2014 PHP PhantomJs. Theme: Modified <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek.
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,35 @@
+# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
+
+paginate: 1 # pagination based on number of posts
+permalink: none
+paginate_path: "page:num"
+exclude: ["README.md"] # files to exclude
+highlighter: pygments
+markdown: kramdown
+kramdown:
+    input: GFM
+
+defaults:
+  -
+    scope:
+      path: "" # empty string for all files
+    values:
+      title: PHP PhantomJS
+
+title: PHP PhantomJs
+description: Run PhantomJS scripts through PHP
+
+author:
+  name: Jonny W
+  email: contact@jonnyw.me
+  github: 
+  twitter: 
+  pinterest: 
+  linkedin: 
+  email_md5: 
+
+rss_path: feed.xml
+categories_path: categories.html
+tags_path: tags.html
+
+BASE_PATH:
