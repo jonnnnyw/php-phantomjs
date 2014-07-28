@@ -1,9 +1,8 @@
-# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
 
-paginate: 1 # pagination based on number of posts
+paginate: 1 
 permalink: none
 paginate_path: "page:num"
-exclude: ["README.md"] # files to exclude
+exclude: ["README.md"] 
 highlighter: pygments
 markdown: kramdown
 kramdown:
@@ -12,7 +11,7 @@ kramdown:
 defaults:
   -
     scope:
-      path: "" # empty string for all files
+      path: "" 
     values:
       title: PHP PhantomJS
 
@@ -21,7 +20,7 @@ description: Run PhantomJS scripts through PHP
 
 author:
   name: Jonny W
-  email: contact@jonnyw.me
+  email:
   github: 
   twitter: 
   pinterest: 
@@ -29,7 +28,5 @@ author:
   email_md5: 
 
 rss_path: feed.xml
-categories_path: categories.html
-tags_path: tags.html
 
-BASE_PATH: http://jonnnnyw.github.io/php-phantomjs/
+BASE_PATH: http://jonnnnyw.github.io/php-phantomjs
