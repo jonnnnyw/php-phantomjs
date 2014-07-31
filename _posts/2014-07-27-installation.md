@@ -6,6 +6,11 @@ tags: []
 fullview: true
 ---
 
+* [Prerequisites](#prerequisites)
+* [Installing via Composer](#installing-via-composer)
+* [Custom Installation](#custom-installation)
+* [Installing from tarball](#installing-from-tarball)
+
 Prerequisites
 -------------
 
@@ -18,7 +23,9 @@ Install [Composer](https://getcomposer.org/) for your project:
 
 {% highlight bash %}
 
-    curl -s http://getcomposer.org/installer | php
+    #bash
+
+    $ curl -s http://getcomposer.org/installer | php
 {% endhighlight %}
 
 Create a `composer.json` file in the root of your project:
@@ -48,8 +55,10 @@ It is important that you have the 'scripts' section shown above in your `compose
 Finally, install the composer depedencies for your project:
 
 {% highlight bash %}
-
-    php composer.phar install
+    
+    #bash
+    
+    $ php composer.phar install
 {% endhighlight %}
 
 Custom Installation
@@ -83,8 +92,10 @@ You will need to make sure that this directory exists and is writable by Compose
 Once you have updated your bin location run composer install to install PhantomJS:
 
 {% highlight bash %}
-
-    php composer.phar install
+    
+    #bash
+    
+    $ php composer.phar install
 {% endhighlight %}
 
 This should install the correct PhantomJS executable for your system to the bin locaiton you defined in your `composer.json` file. As mentioned above, you will need to tell the client where to find your PhantomJS executable as it is not installed in the default location:

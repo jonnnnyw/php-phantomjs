@@ -3,8 +3,8 @@
 	<channel>
 		<title>PHP PhantomJs</title>
 		<description>Run PhantomJS scripts through PHP</description>
-		<link>http://jonnnnyw.github.io/php-phantomjs/</link>
-		<atom:link href="http://jonnnnyw.github.io/php-phantomjs/feed.xml" rel="self" type="application/rss+xml" />
+		<link>/</link>
+		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
 				<title>Introduction</title>
@@ -51,9 +51,11 @@ code etc.&lt;/li&gt;
 
 &lt;p&gt;Finally, install PHP PhantomJS from the root of your project:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;composer require &lt;span class=&quot;s2&quot;&gt;&amp;quot;jonnyw/php-phantomjs:3.*&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#bash&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;composer require &lt;span class=&quot;s2&quot;&gt;&amp;quot;jonnyw/php-phantomjs:3.*&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;If you would like to use another installation method or would like to see more detailed installation instructions, see the &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/installation.html&quot;&gt;installation&lt;/a&gt; documentation.&lt;/p&gt;
+&lt;p&gt;If you would like to use another installation method or would like to see more detailed installation instructions, see the &lt;a href=&quot;/installation.html&quot;&gt;installation&lt;/a&gt; documentation.&lt;/p&gt;
 
 &lt;h2 id=&quot;basic-usage&quot;&gt;Basic Usage&lt;/h2&gt;
 
@@ -106,17 +108,24 @@ code etc.&lt;/li&gt;
     &lt;span class=&quot;c1&quot;&gt;// Send the request&lt;/span&gt;
     &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;For more detailed examples see the &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/usage.html&quot;&gt;usage&lt;/a&gt; section, or to create your own custom scripts check out the &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/advanced.html&quot;&gt;advanced&lt;/a&gt; documentation.&lt;/p&gt;
+&lt;p&gt;For more detailed examples see the &lt;a href=&quot;/usage.html&quot;&gt;usage&lt;/a&gt; section, or to create your own custom scripts check out the &lt;a href=&quot;/advanced.html&quot;&gt;advanced&lt;/a&gt; documentation.&lt;/p&gt;
 
 </description>
 				<pubDate>Mon, 28 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/introduction.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/introduction.html</guid>
+				<link>/introduction.html</link>
+				<guid isPermaLink="true">/introduction.html</guid>
 			</item>
 		
 			<item>
 				<title>Installation</title>
-				<description>&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+				<description>&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#prerequisites&quot;&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#installing-via-composer&quot;&gt;Installing via Composer&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#custom-installation&quot;&gt;Custom Installation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#installing-from-tarball&quot;&gt;Installing from tarball&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
 
 &lt;p&gt;PHP PhantomJS requires PHP &lt;strong&gt;5.3.0&lt;/strong&gt; or greater to run.&lt;/p&gt;
 
@@ -124,7 +133,9 @@ code etc.&lt;/li&gt;
 
 &lt;p&gt;Install &lt;a href=&quot;https://getcomposer.org/&quot;&gt;Composer&lt;/a&gt; for your project:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;curl -s http://getcomposer.org/installer &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; php&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#bash&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl -s http://getcomposer.org/installer &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; php&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Create a &lt;code&gt;composer.json&lt;/code&gt; file in the root of your project:&lt;/p&gt;
 
@@ -149,7 +160,9 @@ code etc.&lt;/li&gt;
 
 &lt;p&gt;Finally, install the composer depedencies for your project:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;php composer.phar install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#bash&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php composer.phar install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;custom-installation&quot;&gt;Custom Installation&lt;/h2&gt;
 
@@ -174,7 +187,9 @@ code etc.&lt;/li&gt;
 
 &lt;p&gt;Once you have updated your bin location run composer install to install PhantomJS:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;php composer.phar install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#bash&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;php composer.phar install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This should install the correct PhantomJS executable for your system to the bin locaiton you defined in your &lt;code&gt;composer.json&lt;/code&gt; file. As mentioned above, you will need to tell the client where to find your PhantomJS executable as it is not installed in the default location:&lt;/p&gt;
 
@@ -203,8 +218,8 @@ code etc.&lt;/li&gt;
 &lt;p&gt;Make sure the components are in your include path and that the PhantomJS executable is installed to your projects bin folder as mentioned in the &lt;a href=&quot;#custom-installation&quot;&gt;Custom Installation&lt;/a&gt; section.&lt;/p&gt;
 </description>
 				<pubDate>Sun, 27 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/installation.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/installation.html</guid>
+				<link>/installation.html</link>
+				<guid isPermaLink="true">/installation.html</guid>
 			</item>
 		
 			<item>
@@ -222,7 +237,7 @@ code etc.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#custom-run-options&quot;&gt;Custom Run Options&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;For more advanced customization or to load your own PhantomJS scripts, see the &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/advanced.html&quot;&gt;advanced&lt;/a&gt; documentation.&lt;/p&gt;
+&lt;p&gt;For more advanced customization or to load your own PhantomJS scripts, see the &lt;a href=&quot;/advanced.html&quot;&gt;advanced&lt;/a&gt; documentation.&lt;/p&gt;
 
 &lt;h2 id=&quot;basic-request&quot;&gt;Basic Request&lt;/h2&gt;
 
@@ -383,7 +398,7 @@ code etc.&lt;/li&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;If the response contains a status code of 0, chances are the request failed. Check the request &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/debugging.html&quot;&gt;debug log&lt;/a&gt; for more detailed information about what may have gone wrong.&lt;/p&gt;
+&lt;p&gt;If the response contains a status code of 0, chances are the request failed. Check the request &lt;a href=&quot;/debugging.html&quot;&gt;debug log&lt;/a&gt; for more detailed information about what may have gone wrong.&lt;/p&gt;
 
 &lt;h2 id=&quot;screen-captures&quot;&gt;Screen Captures&lt;/h2&gt;
 
@@ -503,19 +518,333 @@ code etc.&lt;/li&gt;
 &lt;p&gt;See the &lt;a href=&quot;http://phantomjs.org/api/command-line.html&quot;&gt;PhantomJS Documentation&lt;/a&gt; for a full list of command line options.&lt;/p&gt;
 </description>
 				<pubDate>Sat, 26 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/usage.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/usage.html</guid>
+				<link>/usage.html</link>
+				<guid isPermaLink="true">/usage.html</guid>
 			</item>
 		
 			<item>
 				<title>Advanced Usage</title>
-				<description>&lt;p&gt;This documentation page will be up in the next couple of days.&lt;/p&gt;
+				<description>&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#phantomjs-command-line-options&quot;&gt;PhantomJS command line options&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#custom-phantom-js-scripts&quot;&gt;Custom PhantomJS scripts&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#writing-a-custom-script&quot;&gt;Writing a custom script&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#using-custom-request-parameters-in-your-script&quot;&gt;Using custom request parameters in your script&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#loading-your-script&quot;&gt;Loading your script&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;In the meantime, check out the &lt;a href=&quot;https://github.com/jonnnnyw/php-phantomjs/tree/master/examples&quot;&gt;examples&lt;/a&gt; in the Github repo.&lt;/p&gt;
+&lt;h2 id=&quot;phantomjs-command-line-options&quot;&gt;PhantomJS command line options&lt;/h2&gt;
+
+&lt;p&gt;The PhantomJS API contains a range of command line options that can be passed when executing the PhantomJS executable. These can also be passed in via the client before a request:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JonnyW\PhantomJs\Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;--load-images=true&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;--ignore-ssl-errors=true&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessageFactory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;http://google.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessageFactory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also set a path to a JSON configuration file that contains multiple PhantomJS options:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JonnyW\PhantomJs\Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;--config=/path/to/config.json&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessageFactory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;http://google.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessageFactory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;http://phantomjs.org/api/command-line.html&quot;&gt;PhantomJS Documentation&lt;/a&gt; for a full list of command line options.&lt;/p&gt;
+
+&lt;h2 id=&quot;custom-phantomjs-scripts&quot;&gt;Custom PhantomJS scripts&lt;/h2&gt;
+
+&lt;p&gt;In most instances you shouldn’t need to worry about the javascript files that run the PHP PhantomJS library but there may be times when you want to execute your own custom PhantomJS scripts through the client. This can be easily achieved by using the built in script loader.&lt;/p&gt;
+
+&lt;p&gt;Script files or ‘procedures’ as they are referred to in the application are closely mapped to requests. When you create a default request instance, you are essentially running the default javascript procedure that comes bundled with the application. When you create a capture request you are running the capture procedure.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JonnyW\PhantomJs\Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessageFactory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ~/Resources/procedures/default.proc&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessageFactory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createCaptureRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ~/Resources/procedures/capture.proc&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;writing-a-custom-script&quot;&gt;Writing a custom script&lt;/h3&gt;
+
+&lt;p&gt;The first step in creating your script is to create a procedure file somewhere. For the purpose of this guide we will refer to it as &lt;code&gt;my_procedure.proc&lt;/code&gt; but in reality it can be called anything you like. The only requirement is that the file extension must be &lt;code&gt;.proc&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Create the file somewhere and make sure it can be read by your application. Make a note of the path to the directory where your file is created as you will need this when loading your script which is explained later in this guide.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#bash&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;touch my_procedure.proc
+    &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;chmod &lt;span class=&quot;m&quot;&gt;755&lt;/span&gt; my_procedure.proc&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Next open your procedure file in your text editor and write your PhantomJS script. The &lt;a href=&quot;http://phantomjs.org/quick-start.html&quot;&gt;PhantomJS documentation&lt;/a&gt; has more detailed information on writing custom scripts.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// my_procedure.proc&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;page&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;webpage&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;open&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;{{ request.getUrl() }}&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;{{ request.getMethod() }}&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;{{ request.getBody() }}&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+         
+        &lt;span class=&quot;c1&quot;&gt;// It is important that you exit PhantomJS&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// when your script has run or when you&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// encounter an error&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;phantom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;important&quot;&gt;Important&lt;/h4&gt;
+  &lt;p&gt;Make sure that &lt;code&gt;phantom.exit(1);&lt;/code&gt; is always called after your script has run or if you encounter an error. This requires you to take care when handling PhantomJS errors to ensure that you exit the PhantomJS script, whether the script was successfully executed or not. If you do not call &lt;code&gt;phantom.exit(1);&lt;/code&gt; then PhantomJS will continue to run until your PHP script times out. If you find that your custom script is hanging then this is most likely the cause.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It is a good practice to create a global error handler in your script that exits PhantomJS:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// my_procedure.proc&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;phantom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onError&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;trace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  
+        &lt;span class=&quot;nx&quot;&gt;phantom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;using-custom-request-parameters-in-your-script&quot;&gt;Using custom request parameters in your script&lt;/h3&gt;
+
+&lt;p&gt;Before a procedure is executed by the application it is parsed through a template parser. The PHP PhantomJS library uses the popular &lt;a href=&quot;https://github.com/fabpot/Twig&quot;&gt;Twig templating engine&lt;/a&gt;. This gives you access to all the &lt;a href=&quot;http://twig.sensiolabs.org/doc/templates.html&quot;&gt;Twig niceness&lt;/a&gt; which you can use in your custom scripts.&lt;/p&gt;
+
+&lt;p&gt;You may have noticed in the example above that we have used some Twig template tags referencing a request object e.g. &lt;code&gt;{{ request.getUrl() }}&lt;/code&gt;. This is in fact the PHP request instance that you created and passed to the client when sending your request, which is injected into the Twig template parser. As a result you gain full access to all the data contained within the request instance, via the data accessor methods.&lt;/p&gt;
+
+&lt;p&gt;A default request instance contains the following accessors:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Accessor&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Twig example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getMethod()&lt;/td&gt;
+      &lt;td&gt;The request method e.g. GET.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getMethod() }}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getTimeout()&lt;/td&gt;
+      &lt;td&gt;The request timeout period in milliseconds.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getTimeout() }}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getDelay()&lt;/td&gt;
+      &lt;td&gt;The page render delay in seconds.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getDelay() }}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getUrl()&lt;/td&gt;
+      &lt;td&gt;The request URL.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getUrl() }}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getBody()&lt;/td&gt;
+      &lt;td&gt;The request body (POST, PUT).&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getBody() }}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getHeaders(&lt;em&gt;format&lt;/em&gt;)&lt;/td&gt;
+      &lt;td&gt;The request headers.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getHeaders(‘json’) }}&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A capture request contains a few additional ones:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Accessor&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Twig example&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getRectTop()&lt;/td&gt;
+      &lt;td&gt;The x coordinate of the capture region.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getRectTop() }}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getRectLeft()&lt;/td&gt;
+      &lt;td&gt;The y coordinate of the capture region.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getRectLeft() }}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getRectWidth()&lt;/td&gt;
+      &lt;td&gt;The width of the capture region.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getRectWidth() }}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getRectHeight()&lt;/td&gt;
+      &lt;td&gt;The height of the capture region.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getRectHeight() }}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;getCaptureFile()&lt;/td&gt;
+      &lt;td&gt;The file to save the capture to.&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;{{ request.getCaptureFile() }}&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;If you would like to inject additional data into your script through custom accessors, simply extend the request class with your own:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JonnyW\PhantomJs\Message\Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CustomRequest&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Request&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    
+        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getSomething&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Something!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you will be able to access the data in your custom script when using your custom request:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// my_procedure.proc&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;something&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;{{ request.getSomething() }}&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Get something&lt;/span&gt;
+    
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And to use your custom request simply create a new instance of it and pass it to the client:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JonnyW\PhantomJs\Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessageFactory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;http://www.google.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;loading-your-script&quot;&gt;Loading your script&lt;/h3&gt;
+
+&lt;p&gt;Now that you have your custom script and you’ve added your custom request parameters, you may be wondering how to tell the client to actually load your script. This is done by creating a procedure loader and telling it where to find your script files.&lt;/p&gt;
+
+&lt;p&gt;The service container has a factory that makes creating a new procedure loader easy:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JonnyW\PhantomJs\Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JonnyW\PhantomJs\DependencyInjection\ServiceContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$location&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/path/to/your/procedure/directory&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$serviceContainer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ServiceContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$procedureLoader&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$serviceContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;procedure_loader_factory&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createProcedureLoader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The client contains a chain procedure loader which lets you set multiple loaders at the same time. Ultimately this means that you can load your custom scripts while still maintaining the ability to load the default scripts if you choose. &lt;/p&gt;
+
+&lt;p&gt;Now add your procedure loader to the chain loader:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getProcedureLoader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addLoader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$procedureLoader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The last thing you need to do is to tell the request which script you want to load for that request. This is done by setting the request type to the name of your procedure file, minus the extension:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+    
+   &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessageFactory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+   &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;my_procedure&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or if you are using a custom request as outlined in the &lt;a href=&quot;#using-custom-request-parameters-in-your-script&quot;&gt;custom request parameters&lt;/a&gt; section, you can implement a getType method which returns the name of your procedure, eliminating the need to set the request type for each request:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JonnyW\PhantomJs\Message\Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CustomRequest&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Request&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    
+        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;my_procedure&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Below is a full example for clarity:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JonnyW\PhantomJs\Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JonnyW\PhantomJs\DependencyInjection\ServiceContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$location&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/path/to/your/procedure/directory&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$serviceContainer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ServiceContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$procedureLoader&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$serviceContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;procedure_loader_factory&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createProcedureLoader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getProcedureLoader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addLoader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$procedureLoader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessageFactory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;my_procedure&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessageFactory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    
+    &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;troubleshooting&quot;&gt;Troubleshooting&lt;/h4&gt;
+  &lt;p&gt;If you find that your script isn’t running or that you are receiving a status of ‘0’ back in the response, chances are you have a syntax error in you script. It pays to turn debugging on in the client &lt;code&gt;$client-&amp;gt;debug(true)&lt;/code&gt; which will then give you access to some log information through &lt;code&gt;$client-&amp;gt;getLog()&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;See more detailed information about &lt;a href=&quot;/debugging.html&quot;&gt;debugging&lt;/a&gt;.&lt;/p&gt;
 </description>
 				<pubDate>Fri, 25 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/advanced.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/advanced.html</guid>
+				<link>/advanced.html</link>
+				<guid isPermaLink="true">/advanced.html</guid>
 			</item>
 		
 			<item>
@@ -525,8 +854,8 @@ code etc.&lt;/li&gt;
 &lt;p&gt;In the meantime, check out the &lt;a href=&quot;https://github.com/jonnnnyw/php-phantomjs/tree/master/examples&quot;&gt;examples&lt;/a&gt; in the Github repo.&lt;/p&gt;
 </description>
 				<pubDate>Thu, 24 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/debugging.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/debugging.html</guid>
+				<link>/debugging.html</link>
+				<guid isPermaLink="true">/debugging.html</guid>
 			</item>
 		
 			<item>
@@ -534,8 +863,8 @@ code etc.&lt;/li&gt;
 				<description>&lt;p&gt;This documentation page will be up in the next couple of days.&lt;/p&gt;
 </description>
 				<pubDate>Wed, 23 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html</guid>
+				<link>/troubleshooting.html</link>
+				<guid isPermaLink="true">/troubleshooting.html</guid>
 			</item>
 		
 	</channel>

@@ -58,8 +58,10 @@ This will ensure the latest version of PhantomJS is installed for your system, i
 Finally, install PHP PhantomJS from the root of your project:
 
 {% highlight bash %}
-
-    composer require "jonnyw/php-phantomjs:3.*"
+    
+    #bash
+    
+    $ composer require "jonnyw/php-phantomjs:3.*"
 {% endhighlight %}
 
 If you would like to use another installation method or would like to see more detailed installation instructions, see the [installation]({{ site.BASE_PATH }}/installation.html) documentation.
