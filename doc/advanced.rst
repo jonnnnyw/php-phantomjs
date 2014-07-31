@@ -120,16 +120,8 @@ detailed information on writing custom scripts.
         ...
         
 
-Important
-^^^^^^^^^
-
-    | Make sure that ``phantom.exit(1);`` is always called after your
-    | script has run or if you encounter an error. This requires you to
-    | take care when handling PhantomJS errors to ensure that you exit the
-    | PhantomJS script, whether the script was successfully executed or
-    | not. If you do not call ``phantom.exit(1);`` then PhantomJS will
-    | continue to run until your PHP script times out. If you find that
-    | your custom script is hanging then this is most likely the cause.
+.. important::
+   Make sure that ``phantom.exit(1);`` is always called after your script has run or if you encounter an error. This requires you to take care when handling PhantomJS errors to ensure that you exit the PhantomJS script, whether the script was successfully executed or not. If you do not call ``phantom.exit(1);`` then PhantomJS will continue to run until your PHP script times out. If you find that your custom script is hanging then this is most likely the cause.
 
 It is a good practice to create a global error handler in your script
 that exits PhantomJS:
@@ -362,14 +354,8 @@ Below is a full example for clarity:
         
         $client->send($request, $response);
 
-Troubleshooting
-^^^^^^^^^^^^^^^
-
-    | If you find that your script isn't running or that you are receiving
-    | a status of '0' back in the response, chances are you have a syntax
-    | error in you script. It pays to turn debugging on in the client
-    | ``$client->debug(true)`` which will then give you access to some log
-    | information through ``$client->getLog()``.
+.. important::
+   If you find that your script isn't running or that you are receiving a status of '0' back in the response, chances are you have a syntax error in you script. It pays to turn debugging on in the client ``$client->debug(true)`` which will then give you access to some log information through ``$client->getLog()``.
 
 See more detailed information about
 `debugging <{{%20site.BASE_PATH%20}}/debugging.html>`__.
