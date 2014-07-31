@@ -53,9 +53,7 @@ section.
 Finally, install the composer depedencies for your project:
 
 .. code:: shell
-        
-        #bash
-        
+                
         $ php composer.phar install
 
 Custom Installation
@@ -91,9 +89,7 @@ Once you have updated your bin location run composer install to install
 PhantomJS:
 
 .. code:: shell
-        
-        #bash
-        
+                
         $ php composer.phar install
 
 This should install the correct PhantomJS executable for your system to
