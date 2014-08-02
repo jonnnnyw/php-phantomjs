@@ -3,11 +3,11 @@ Troubleshooting
 
 -  `It's not installing anything to my bin
    directory <#its-not-installing-anything-to-my-bin-directory>`__
--  `I am getting a InvalidExecutableException when making a
+-  `I am getting a ``InvalidExecutableException`` when making a
    request <#i-am-getting-a-invalidexecutableexception-when-making-a-request>`__
--  `I am getting a NotWritableException when making a
+-  `I am getting a ``NotWritableException`` when making a
    request <#i-am-getting-a-notwritableexception-when-making-a-request>`__
--  `Why do I need the phantomloader
+-  `Why do I need the ``phantomloader``
    file? <#why-do-i-need-the-phantomloader-file>`__
 -  `Why am I getting a status code of 0 in the
    response? <#why-am-i-getting-a-status-code-of-0-in-the-response>`__
@@ -15,11 +15,11 @@ Troubleshooting
 -  `Can I set the screenshot size? <#can-i-set-the-screenshot-size>`__
 -  `Can I set the viewport size? <#can-i-set-the-viewport-size>`__
 -  `How to I debug a request? <#how-to-i-debug-a-request>`__
--  `I am getting SyntaxError: Parse error in the debug
+-  `I am getting ``SyntaxError: Parse error`` in the debug
    log <#i-am-getting-syntaxerror-parse-error-in-the-debug-log>`__
 
 It's not installing anything to my bin directory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When installing via composer, as outlined in the `installation
 guide <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/installation.html>`__, it is recommended
@@ -52,9 +52,7 @@ This should install 2 files to your bin folder: ``phantomjs`` and
 ``phantomloader``. If you do not have these 2 files in your bin folder
 then check that the folder is writable and run composer install again.
 
-    Note
-    ^^^^
-
+.. important::
     If you do not define a bin directory in your ``composer.json`` file
     then the default install location will be ``vendor/bin/``. If you
     choose to not set a bin folder path then you will need to make sure
@@ -62,7 +60,7 @@ then check that the folder is writable and run composer install again.
     ``$client->setBinDir('vendor/bin');`` before making a request.
 
 I am getting a ``InvalidExecutableException`` when making a request
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you have installed via composer, as outlined in the `installation
 guide <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/installation.html>`__, then you should
@@ -91,7 +89,7 @@ request:
         $client->setBinDir('/path/to/bin/dir');
 
 I am getting a ``NotWritableException`` when making a request
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When making a request, the PHP PhantomJS library compiles a temporary
 script file to your system's tmp folder. The location of this folder is
@@ -100,7 +98,7 @@ this directory is not writable by your application then you will receive
 this exception.
 
 Why do I need the ``phantomloader`` file?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A proxy loader file is used get around a quirk that PhantomJS has when
 it encounters a syntax error in a script file. By default, if PhantomJS
@@ -123,7 +121,7 @@ screenshots. See `It's not saving my
 screenshots <#its-not-saving-my-screenshots>`__.
 
 Why am I getting a status code of 0 in the response?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A status code of 0 in the response object generally means the request
 did not complete successfully. This could mean that the URL you are
@@ -239,7 +237,7 @@ instead of ``success``, chances are the URL you are requesting is
 invalid or not resolving.
 
 It's not saving my screenshots
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When making a capture request you need to make sure that you are setting
 the file location that you want the screenshot saved to, including the
@@ -268,7 +266,7 @@ has permissions to write files to the directory you are setting for your
 screen captures.
 
 Can I set the screenshot size?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Yes, you can set the width and height of your capture along with the x
 and y coordinates of where the capture should start from:
@@ -297,7 +295,7 @@ and y coordinates of where the capture should start from:
         $client->send($request, $response);
 
 Can I set the viewport size?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Yes, you can set the viewport dimensions on both regular and capture
 requests:
@@ -321,7 +319,7 @@ requests:
         $client->send($request, $response);
 
 How to I debug a request?
-^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By setting the debug flag to ``true`` on the client, you can get a dump
 of information output from PhantomJS along with some info events added
@@ -362,7 +360,7 @@ from the URL you are calling, in the response object:
         var_dump($response->getConsole()); // Outputs array of console errors and stack trace
 
 I am getting ``SyntaxError: Parse error`` in the debug log
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You will only get this error if the script file that is being run by
 PhantomJS has a syntax error. If you are writing your own `custom
