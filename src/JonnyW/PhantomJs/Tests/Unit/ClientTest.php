@@ -19,6 +19,11 @@ use JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface;
  */
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
+
+/** +++++++++++++++++++++++++++++++++++ **/
+/** ++++++++++++++ TESTS ++++++++++++++ **/
+/** +++++++++++++++++++++++++++++++++++ **/
+
     /**
      * Test get instance returns instance
      * of client.

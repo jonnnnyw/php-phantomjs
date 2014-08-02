@@ -11,13 +11,15 @@ var page       = require('webpage').create(),
     left       = {{ request.getRectLeft() }},
     width      = {{ request.getRectWidth() }},
     height     = {{ request.getRectHeight() }},
+    vpWidth    = {{ request.getViewportWidth() }},
+    vpHeight   = {{ request.getViewportHeight() }},
     debug      = [],
     logs       = [],
     procedure  = {};
 
 
 /**
- * Define viewport width & height for capture.
+ * Define width & height of screenshot.
  */
 if(width && height) {
     
@@ -28,6 +30,19 @@ if(width && height) {
         left: left,
         width: width,
         height: height
+    };
+}
+
+/**
+ * Set viewport size.
+ */
+if(vpWidth && vpHeight) {
+    
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set viewport size ~ width: ' + vpWidth + ' height: ' + vpHeight);
+    
+    page.viewportSize = {
+        width: vpWidth,
+        height: vpHeight
     };
 }
 

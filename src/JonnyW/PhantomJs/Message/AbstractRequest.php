@@ -68,6 +68,22 @@ abstract class AbstractRequest implements RequestInterface
     protected $delay;
 
     /**
+     * Viewport width.
+     *
+     * @var int
+     * @access protected
+     */
+    protected $viewportWidth;
+
+    /**
+     * Viewport height.
+     *
+     * @var int
+     * @access protected
+     */
+    protected $viewportHeight;
+
+    /**
      * Internal constructor
      *
      * @access public
@@ -81,6 +97,8 @@ abstract class AbstractRequest implements RequestInterface
         $this->headers        = array();
         $this->data           = array();
         $this->delay          = 0;
+        $this->viewportWidth  = 0;
+        $this->viewportHeight = 0;
 
         $this->setMethod($method);
         $this->setTimeout($timeout);
@@ -171,6 +189,42 @@ abstract class AbstractRequest implements RequestInterface
     public function getDelay()
     {
         return (int) $this->delay;
+    }
+
+    /**
+     * Set viewport size.
+     *
+     * @access public
+     * @param  int  $width
+     * @param  int  $height
+     * @return void
+     */
+    public function setViewportSize($width, $height)
+    {
+        $this->viewportWidth  = (int) $width;
+        $this->viewportHeight = (int) $height;
+    }
+
+    /**
+     * Get viewport width.
+     *
+     * @access public
+     * @return int
+     */
+    public function getViewportWidth()
+    {
+        return (int) $this->viewportWidth;
+    }
+
+    /**
+     * Get viewport height.
+     *
+     * @access public
+     * @return int
+     */
+    public function getViewportHeight()
+    {
+        return (int) $this->viewportHeight;
     }
 
     /**

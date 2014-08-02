@@ -430,6 +430,40 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($headers, $request->getHeaders('default'));
     }
 
+    /**
+     * Test set viewport size sets viewport width.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetViewportSizeSetsViewportWidth()
+    {
+        $width  = 100;
+        $height = 200;
+
+        $request = $this->getRequest();
+        $request->setViewportSize($width, $height);
+
+        $this->assertSame($width, $request->getViewportWidth());
+    }
+
+    /**
+     * Test set viewport size sets viewport height.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetViewportSizeSetsViewportHeight()
+    {
+        $width  = 100;
+        $height = 200;
+
+        $request = $this->getRequest();
+        $request->setViewportSize($width, $height);
+
+        $this->assertSame($height, $request->getViewportHeight());
+    }
+
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ TEST ENTITIES ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/

@@ -521,6 +521,40 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($captureFile, $captureRequest->getCaptureFile());
     }
 
+    /**
+     * Test set viewport size sets viewport width.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetViewportSizeSetsViewportWidth()
+    {
+        $width  = 100;
+        $height = 200;
+
+        $caputreRequest = $this->getCaptureRequest();
+        $caputreRequest->setViewportSize($width, $height);
+
+        $this->assertSame($width, $caputreRequest->getViewportWidth());
+    }
+
+    /**
+     * Test set viewport size sets viewport height.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetViewportSizeSetsViewportHeight()
+    {
+        $width  = 100;
+        $height = 200;
+
+        $caputreRequest = $this->getCaptureRequest();
+        $caputreRequest->setViewportSize($width, $height);
+
+        $this->assertSame($height, $caputreRequest->getViewportHeight());
+    }
+
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ TEST ENTITIES ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/

@@ -312,6 +312,68 @@ EOF;
     }
 
     /**
+     * Test set viewport size sets
+     * size of viewport in default
+     * request.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetViewportSizeSetsSizeOfViewportInDefaultRequest()
+    {
+        $width  = 100;
+        $height = 200;
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setViewportsize($width, $height);
+
+        $client->send($request, $response);
+
+        $logs = explode("\n", $client->getLog());
+
+        $startIndex = $this->getLogEntryIndex($logs, 'Set viewport size ~ width: 100 height: 200');
+
+        $this->assertTrue(($startIndex !== false));
+    }
+
+    /**
+     * Test set viewport size sets
+     * size of viewport in capture
+     * request.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetViewportSizeSetsSizeOfViewportInCaptureRequest()
+    {
+        $width  = 100;
+        $height = 200;
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setViewportsize($width, $height);
+
+        $client->send($request, $response);
+
+        $logs = explode("\n", $client->getLog());
+
+        $startIndex = $this->getLogEntryIndex($logs, 'Set viewport size ~ width: 100 height: 200');
+
+        $this->assertTrue(($startIndex !== false));
+    }
+
+    /**
      * Test delay logs start time
      * in client for default request.
      *

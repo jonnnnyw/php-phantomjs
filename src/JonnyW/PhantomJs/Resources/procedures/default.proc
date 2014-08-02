@@ -6,10 +6,25 @@ var page       = require('webpage').create(),
     system     = require('system'),
     headers    = {{ request.getHeaders('json') }},
     delay      = {{ request.getDelay() }},
+    vpWidth    = {{ request.getViewportWidth() }},
+    vpHeight   = {{ request.getViewportHeight() }},
     response   = {},
     debug      = [],
     logs       = [],
     procedure  = {};
+
+/**
+ * Set viewport size.
+ */
+if(vpWidth && vpHeight) {
+    
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set viewport size ~ width: ' + vpWidth + ' height: ' + vpHeight);
+    
+    page.viewportSize = {
+        width: vpWidth,
+        height: vpHeight
+    };
+}
 
 /**
  * Define custom headers.
