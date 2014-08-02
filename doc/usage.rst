@@ -9,6 +9,7 @@ library.
 -  `Other Request Methods <#other-request-methods>`__
 -  `Response Data <#response-data>`__
 -  `Screen Captures <#screen-captures>`__
+-  `Set Viewport Size <#set-viewport-size>`__
 -  `Custom Timeout <#custom-timeout>`__
 -  `Delay Page Render <#delay-page-render>`__
 -  `Custom Run Options <#custom-run-options>`__
@@ -148,7 +149,7 @@ A standard response gives you access to the following interface:
 
 If the response contains a status code of 0, chances are the request
 failed. Check the request `debug
-log <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/troubleshooting.rst#debugging>`__
+log <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/troubleshooting.rst#how-to-i-debug-a-request>`__
 for more detailed information about what may have gone wrong.
 
 Screen Captures
@@ -199,6 +200,29 @@ capture:
         
         $request->setCaptureFile($file);
         $request->setCaptureDimensions($width, $height, $top, $left);
+        
+        $client->send($request, $response);
+
+Set Viewport Size
+-----------------
+
+You can easily set the viewport size for a request:
+
+.. code:: php
+
+        <?php
+    
+        use JonnyW\PhantomJs\Client;
+        
+        $client = Client::getInstance();
+        
+        $request  = $client->getMessageFactory()->createRequest('http://google.com');
+        $response = $client->getMessageFactory()->createResponse();
+            
+        $width  = 200;
+        $height = 400;
+        
+        $request->setViewportSize($width, $height);
         
         $client->send($request, $response);
 

@@ -18,6 +18,7 @@ Feature List
 -  View detailed PhantomJS debuged information
 -  Save screen captures to local disk
 -  Define screen capture x, y, width and height parameters
+-  Set viewport size
 -  Delay page rendering for a specified time
 -  Execute PhantomJS with command line options
 -  Easily build and run custom PhantomJS scripts
