@@ -22,7 +22,7 @@ It's not installing anything to my bin directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When installing via composer, as outlined in the `installation
-guide <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/installation.html>`__, it is recommended
+guide <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/installation.rst>`__, it is recommended
 that you define the location of the bin folder for your project. This
 can be done by adding the following to your ``composer.json`` file:
 
@@ -63,7 +63,7 @@ I am getting a ``InvalidExecutableException`` when making a request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you have installed via composer, as outlined in the `installation
-guide <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/installation.html>`__, then you should
+guide <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/installation.rst>`__, then you should
 have 2 files installed in either the ``bin`` or ``vendor/bin/``
 directory, in the root of your project. These files are called
 ``phantomjs`` and ``phantomloader``.
@@ -364,7 +364,7 @@ I am getting ``SyntaxError: Parse error`` in the debug log
 
 You will only get this error if the script file that is being run by
 PhantomJS has a syntax error. If you are writing your own `custom
-scripts <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/advanced.html#custom-phantomjs-scripts>`__
+scripts <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/advanced.rst#custom-phantomjs-scripts>`__
 then try setting the `debug flag <#how-to-i-debug-a-request>`__ which
 *should* print some more detailed information in the debug log. Also
 check that you aren't setting any parameters to ``null`` in your request
