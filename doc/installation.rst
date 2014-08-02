@@ -72,8 +72,6 @@ executable file:
 
 .. important::
     The PHP PhantomJS library also requires a `phantomloader` file that comes bundled with the library and is installed to the bin folder defined in your `composer.json` file. If you are setting a custom path to the PhantomJS executable, you need to make sure that the `phantomloader` file can be found in the bin folder it was installed to.
-    
-    See below if you wish to use a custom bin folder.
 
 If you would like composer to install all executable files to a custom bin location when installing dependencies, set the bin dir location in your project's `composer.json` file:
 
