@@ -15,10 +15,10 @@
 	<![endif]-->
 
 	<!-- Le styles -->
-	<link href="http://jonnnnyw.github.io/php-phantomjs/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="http://jonnnnyw.github.io/php-phantomjs/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href="http://jonnnnyw.github.io/php-phantomjs/assets/resources/syntax/syntax.css" rel="stylesheet">
-	<link href="http://jonnnnyw.github.io/php-phantomjs/assets/css/style.css" rel="stylesheet">
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
 
 	<!-- Le fav and touch icons -->
 	<!-- Update these with your own images
@@ -28,9 +28,9 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 	-->
 
-	<link rel="alternate" type="application/rss+xml" title="" href="http://jonnnnyw.github.io/php-phantomjs/feed.xml">
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
 
-    <script>
+    <!--<script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -38,7 +38,7 @@
         
         ga('create', 'UA-53289013-1', 'auto');
         ga('send', 'pageview');
-    </script>
+    </script>-->
 
 </head>
 
@@ -63,8 +63,8 @@
                 allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link"></iframe>
     		
     		
-			<a class="navbar-brand" href="http://jonnnnyw.github.io/php-phantomjs/">
-				<img src="http://jonnnnyw.github.io/php-phantomjs/assets/media/phantomjs-small.png" class="img-circle" />
+			<a class="navbar-brand" href="/">
+				<img src="/assets/media/phantomjs-small.png" class="img-circle" />
 				PHP PhantomJs
 			</a>
 		</div>
@@ -72,11 +72,11 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="http://jonnnnyw.github.io/php-phantomjs/">Home</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html">Installation</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html">Usage</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html">Advanced</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html">Troubleshooting</a></li>
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/installation.html">Installation</a></li>
+				<li><a href="/usage.html">Usage</a></li>
+				<li><a href="/advanced.html">Advanced</a></li>
+				<li><a href="/troubleshooting.html">Troubleshooting</a></li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</nav>
@@ -87,11 +87,11 @@
 			<i class="fa fa-bars"></i>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-		    <li><a href="http://jonnnnyw.github.io/php-phantomjs/"><i class="fa fa-home"></i>Home</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html"><i class="fa fa-folder"></i>Installation</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html"><i class="fa fa-folder"></i>Usage</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html"><i class="fa fa-folder"></i>Advanced</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+		    <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/installation.html"><i class="fa fa-folder"></i>Installation</a></li>
+			<li><a href="/usage.html"><i class="fa fa-folder"></i>Usage</a></li>
+			<li><a href="/advanced.html"><i class="fa fa-folder"></i>Advanced</a></li>
+			<li><a href="/troubleshooting.html"><i class="fa fa-folder"></i>Troubleshooting</a></li>
 			<li class="divider"></li>
 			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
 		</ul>
@@ -100,11 +100,11 @@
 	<div class="col-sm-3 sidebar hidden-xs">
 		<! -- sidebar.html -->
 <header class="sidebar-header" role="banner">
-	<a href="http://jonnnnyw.github.io/php-phantomjs/">
-		<img src="http://jonnnnyw.github.io/php-phantomjs/assets/media/phantomjs.png" class="img-circle" />
+	<a href="/">
+		<img src="/assets/media/phantomjs.png" class="img-circle" />
 	</a>
 	<h3 class="title">
-        <a href="http://jonnnnyw.github.io/php-phantomjs/">PHP PhantomJs</a>
+        <a href="/">PHP PhantomJs</a>
     </h3>
 </header>
 
@@ -146,7 +146,261 @@
 	<div class="col-sm-10">
 	
 	  <div class="article_body">
-	  <p>This documentation page will be up in the next couple of days.</p>
+	  <ul>
+  <li><a href="#its-not-installing-anything-to-my-bin-directory">It’s not installing anything to my bin directory</a></li>
+  <li><a href="#i-am-getting-a-invalidexecutableexception-when-making-a-request">I am getting a <code>InvalidExecutableException</code> when making a request</a></li>
+  <li><a href="#i-am-getting-a-notwritableexception-when-making-a-request">I am getting a <code>NotWritableException</code> when making a request</a></li>
+  <li><a href="#why-do-i-need-the-phantomloader-file">Why do I need the <code>phantomloader</code> file?</a></li>
+  <li><a href="#why-am-i-getting-a-status-code-of-0-in-the-response">Why am I getting a status code of 0 in the response?</a></li>
+  <li><a href="#its-not-saving-my-screenshots">It’s not saving my screenshots</a></li>
+  <li><a href="#can-i-set-the-screenshot-size">Can I set the screenshot size?</a></li>
+  <li><a href="#can-i-set-the-viewport-size">Can I set the viewport size?</a></li>
+  <li><a href="#how-to-i-debug-a-request">How to I debug a request?</a></li>
+  <li><a href="#i-am-getting-syntaxerror-parse-error-in-the-debug-log">I am getting <code>SyntaxError: Parse error</code> in the debug log</a></li>
+</ul>
+
+<hr />
+
+<h4 id="its-not-installing-anything-to-my-bin-directory">It’s not installing anything to my bin directory</h4>
+
+<p>When installing via composer, as outlined in the <a href="/installation.html">installation guide</a>, it is recommended that you define the location of the bin folder for your project. This can be done by adding the following to your <code>composer.json</code> file:</p>
+
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1">#composer.json</span>
+
+    <span class="p-Indicator">{</span>
+        <span class="s">&quot;config&quot;</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
+            <span class="s">&quot;bin-dir&quot;</span><span class="p-Indicator">:</span> <span class="s">&quot;/path/to/your/projects/bin/dir&quot;</span>
+        <span class="p-Indicator">}</span>
+    <span class="p-Indicator">}</span></code></pre></div>
+
+<p>You need to make sure that this directory exists and is writable before you install your composer depedencies.</p>
+
+<p>Once you have defined your bin folder in your <code>composer.json</code> file, run composer install from the root of your project:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#bash</span>
+    
+    <span class="nv">$ </span>php composer.phar install</code></pre></div>
+
+<p>This should install 2 files to your bin folder: <code>phantomjs</code> and <code>phantomloader</code>. If you do not have these 2 files in your bin folder then check that the folder is writable and run composer install again.</p>
+
+<blockquote>
+  <h4 id="note">Note</h4>
+  <p>If you do not define a bin directory in your <code>composer.json</code> file then the default install location will be <code>vendor/bin/</code>. If you choose to not set a bin folder path then you will need to make sure that this path is set in the client by calling <code>$client-&gt;setBinDir('vendor/bin');</code> before making a request.</p>
+</blockquote>
+
+<h4 id="i-am-getting-a-invalidexecutableexception-when-making-a-request">I am getting a <code>InvalidExecutableException</code> when making a request</h4>
+
+<p>If you have installed via composer, as outlined in the <a href="/installation.html">installation guide</a>, then you should have 2 files installed in either the <code>bin</code> or <code>vendor/bin/</code> directory, in the root of your project. These files are called <code>phantomjs</code> and <code>phantomloader</code>. </p>
+
+<p>Check that these files exist and are executable by your application. If they do not exist, see <a href="#its-not-installing-anything-to-my-bin-directory">It’s not installing anything to my bin directory</a>.</p>
+
+<p>If the PHP PhantomJS library cannot locate either of these files then it will throw a <code>InvalidExecutableException</code>. The message in the exception should tell you which one it can’t execute. If both of these files exist and they are executable by your application, you may need to set the path to the directory that these files live in before making a request:</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> 
+    
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setBinDir</span><span class="p">(</span><span class="s1">&#39;/path/to/bin/dir&#39;</span><span class="p">);</span></code></pre></div>
+
+<h4 id="i-am-getting-a-notwritableexception-when-making-a-request">I am getting a <code>NotWritableException</code> when making a request</h4>
+
+<p>When making a request, the PHP PhantomJS library compiles a temporary script file to your system’s tmp folder. The location of this folder is determined through the use of the <code>sys_get_temp_dir()</code> function. If this directory is not writable by your application then you will receive this exception.</p>
+
+<h4 id="why-do-i-need-the-phantomloader-file">Why do I need the <code>phantomloader</code> file?</h4>
+
+<p>A proxy loader file is used get around a quirk that PhantomJS has when it encounters a syntax error in a script file. By default, if PhantomJS encounters a syntax error when loading a script file it will not exit execution. This means that PHP PhantomJS will continue to wait for a response from PhantomJS until PHP reaches its script execution timeout period. This also means you won’t get any debug information informing you that the PhantomJS script has a syntax error.</p>
+
+<p>To get around this, script files are loaded through a loader script. This handles the event of a syntax error and ensures that PhantomJS exits when an error is encountered.</p>
+
+<p>The <code>phantomloader</code> file is required in order for the PHP PhantomJS library to run so please make sure that it was installed to your bin folder and is readable by your application.</p>
+
+<p>Another reason for getting this exception is when you are trying to save screenshots. See <a href="#its-not-saving-my-screenshots">It’s not saving my screenshots</a>.</p>
+
+<h4 id="why-am-i-getting-a-status-code-of-0-in-the-response">Why am I getting a status code of 0 in the response?</h4>
+
+<p>A status code of 0 in the response object generally means the request did not complete successfully. This could mean that the URL you are requesting did not return a response or that something happened when making the request that did not raise an error in the PHP PhantomJS library.</p>
+
+<p>Becuase and exception was not thrown, chances are the issue is with PhantomJS itself or at the endpoint you are calling.</p>
+
+<p>One possible reason for this is that your request has timed out before a response was returned from the endpoint that you are requesting. Depending on what you are requesting, some websites seem to take a while to return a response. An example of this is <a href="https://myspace.com/">myspace.com</a> which, at the time of writing this, takes a considerable amount of time resolve through PhantomJS.</p>
+
+<p>To work around this you can try increasing the timeout period in the PHP PhantomJS client:</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+    
+    <span class="nv">$timeout</span> <span class="o">=</span> <span class="mi">20000</span><span class="p">;</span> <span class="c1">// 20 seconds</span>
+    
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setTimeout</span><span class="p">(</span><span class="nv">$timeout</span><span class="p">);</span>
+    
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+
+<p>If you are still having a problem then you should enable debugging, before you make the request, and check the debug log. This contains a dump of information from PhantomJS which could help to track down why you are not getting a response.</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">debug</span><span class="p">(</span><span class="k">true</span><span class="p">);</span> <span class="c1">// Set debug flag</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+        
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+    
+    <span class="k">echo</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getLog</span><span class="p">();</span> <span class="c1">// Output log</span></code></pre></div>
+
+<p>You can also try running a test script through your PhantomJS executable, from the command line, to see if you get a valid response back. Save the following script somewhere:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">//test-script.js</span>
+
+    <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpage&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">(),</span>
+        <span class="nx">url</span> <span class="o">=</span> <span class="s1">&#39;YOUR REQUEST URL&#39;</span><span class="p">,</span> <span class="c1">// Change this to the URL you want to request</span>
+        <span class="nx">response</span><span class="p">;</span> 
+
+    <span class="nx">page</span><span class="p">.</span><span class="nx">onResourceReceived</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">response</span> <span class="o">=</span> <span class="nx">r</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="nx">phantom</span><span class="p">.</span><span class="nx">onError</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">trace</span><span class="p">)</span> <span class="p">{</span>
+  
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">trace</span><span class="p">);</span>
+        <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">};</span>
+ 
+    <span class="nx">page</span><span class="p">.</span><span class="nx">open</span> <span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
+        
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">status</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">));</span>
+        <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
+    <span class="p">});</span></code></pre></div>
+
+<p>And then, assuming you have saved the script above to <code>test-script.js</code> in the root of your project and your PhantomJS executable is located at <code>bin/phantomjs</code>, run the following:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#bash</span>
+
+    <span class="nv">$ </span>bin/phantomjs ./test-script.js</code></pre></div>
+
+<p>You should see an output of the response from PhantomJS:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#bash</span>
+
+    success
+    <span class="o">{</span><span class="s2">&quot;contentType&quot;</span>:<span class="s2">&quot;text/javascript; charset=UTF-8&quot;</span>, <span class="s2">&quot;headers&quot;</span>: ...</code></pre></div>
+
+<p>If you don’t see <code>success</code> followed by a JSON encoded response object then there is something the with the URL you are requesting or your PhantomJS executable. Try reinstalling PhantomJS. If you see <code>fail</code> instead of <code>success</code>, chances are the URL you are requesting is invalid or not resolving.</p>
+
+<h4 id="its-not-saving-my-screenshots">It’s not saving my screenshots</h4>
+
+<p>When making a capture request you need to make sure that you are setting the file location that you want the screenshot saved to, including the filename:</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createCaptureRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+    
+    <span class="nv">$file</span> <span class="o">=</span> <span class="s1">&#39;/path/to/save/your/screen/capture/file.jpg&#39;</span><span class="p">;</span>
+    
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureFile</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span> <span class="c1">// Set the capture file</span>
+    
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+
+<p>The file itself does not need to exist but the parent directory must exist and be writable by your application. Check that your application has permissions to write files to the directory you are setting for your screen captures.</p>
+
+<h4 id="can-i-set-the-screenshot-size">Can I set the screenshot size?</h4>
+
+<p>Yes, you can set the width and height of your capture along with the x and y coordinates of where the capture should start from:</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createCaptureRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+    
+    <span class="nv">$file</span> <span class="o">=</span> <span class="s1">&#39;/path/to/save/your/screen/capture/file.jpg&#39;</span><span class="p">;</span>
+    
+    <span class="nv">$top</span>    <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="nv">$left</span>   <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="nv">$width</span>  <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+    <span class="nv">$height</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
+    
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureFile</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureDimensions</span><span class="p">(</span><span class="nv">$width</span><span class="p">,</span> <span class="nv">$height</span><span class="p">,</span> <span class="nv">$top</span><span class="p">,</span> <span class="nv">$left</span><span class="p">);</span>
+    
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+
+<h4 id="can-i-set-the-viewport-size">Can I set the viewport size?</h4>
+
+<p>Yes, you can set the viewport dimensions on both regular and capture requests:</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+        
+    <span class="nv">$width</span>  <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+    <span class="nv">$height</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
+    
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setViewportSize</span><span class="p">(</span><span class="nv">$width</span><span class="p">,</span> <span class="nv">$height</span><span class="p">);</span> <span class="c1">// Set viewport size</span>
+    
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+
+<h4 id="how-to-i-debug-a-request">How to I debug a request?</h4>
+
+<p>By setting the debug flag to <code>true</code> on the client, you can get a dump of information output from PhantomJS along with some info events added by the PHP PhantomJS library:</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">debug</span><span class="p">(</span><span class="k">true</span><span class="p">);</span> <span class="c1">// Set debug flag</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+        
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+    
+    <span class="k">echo</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getLog</span><span class="p">();</span> <span class="c1">// Output log</span></code></pre></div>
+
+<p>You can also get any javacript console errors along with a stack trace from the URL you are calling, in the response object:</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+        
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
+    
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getConsole</span><span class="p">());</span> <span class="c1">// Outputs array of console errors and stack trace</span></code></pre></div>
+
+<h4 id="i-am-getting-syntaxerror-parse-error-in-the-debug-log">I am getting <code>SyntaxError: Parse error</code> in the debug log</h4>
+
+<p>You will only get this error if the script file that is being run by PhantomJS has a syntax error. If you are writing your own <a href="/advanced.html#custom-phantomjs-scripts">custom scripts</a> then try setting the <a href="#how-to-i-debug-a-request">debug flag</a> which <em>should</em> print some more detailed information in the debug log. Also check that you aren’t setting any parameters to <code>null</code> in your request object as this could be causing a javascript error due to javascript variables being set to nothing e.g. <code>var width = ,</code>.</p>
 
 	  </div>
 
@@ -157,7 +411,7 @@
     <hr>
     <ul class="pager">
         
-        <li class="previous"><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html" title="Advanced Usage">&larr; Advanced Usage</a></li>
+        <li class="previous"><a href="/advanced.html" title="Advanced Usage">&larr; Advanced Usage</a></li>
         
         
     </ul>
@@ -177,9 +431,9 @@
 		</footer>
 	</div>
 
-	<script type="text/javascript" src="http://jonnnnyw.github.io/php-phantomjs/assets/resources/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="http://jonnnnyw.github.io/php-phantomjs/assets/resources/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="http://jonnnnyw.github.io/php-phantomjs/assets/js/app.js"></script>
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
 	
 </body>
 </html>

@@ -11,6 +11,8 @@ fullview: true
 * [Custom Installation](#custom-installation)
 * [Installing from tarball](#installing-from-tarball)
 
+---
+
 Prerequisites
 -------------
 

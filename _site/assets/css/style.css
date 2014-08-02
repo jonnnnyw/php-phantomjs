@@ -97,6 +97,10 @@ article{
 	margin-bottom: 20px;
 }
 
+.article_body ul {
+    margin-bottom: 30px;
+}
+
 .post-date {
 	text-transform: uppercase;
 	font-size: 14px;
