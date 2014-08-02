@@ -3,11 +3,11 @@ Troubleshooting
 
 -  `It's not installing anything to my bin
    directory <#its-not-installing-anything-to-my-bin-directory>`__
--  `I am getting a ``InvalidExecutableException`` when making a
+-  `I am getting a InvalidExecutableException when making a
    request <#i-am-getting-a-invalidexecutableexception-when-making-a-request>`__
--  `I am getting a ``NotWritableException`` when making a
+-  `I am getting a NotWritableException when making a
    request <#i-am-getting-a-notwritableexception-when-making-a-request>`__
--  `Why do I need the ``phantomloader``
+-  `Why do I need the phantomloader
    file? <#why-do-i-need-the-phantomloader-file>`__
 -  `Why am I getting a status code of 0 in the
    response? <#why-am-i-getting-a-status-code-of-0-in-the-response>`__
@@ -15,7 +15,7 @@ Troubleshooting
 -  `Can I set the screenshot size? <#can-i-set-the-screenshot-size>`__
 -  `Can I set the viewport size? <#can-i-set-the-viewport-size>`__
 -  `How to I debug a request? <#how-to-i-debug-a-request>`__
--  `I am getting ``SyntaxError: Parse error`` in the debug
+-  `I am getting SyntaxError: Parse error in the debug
    log <#i-am-getting-syntaxerror-parse-error-in-the-debug-log>`__
 
 It's not installing anything to my bin directory
