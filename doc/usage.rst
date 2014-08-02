@@ -149,7 +149,7 @@ A standard response gives you access to the following interface:
 
 If the response contains a status code of 0, chances are the request
 failed. Check the request `debug
-log <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/troubleshooting.rst#how-to-i-debug-a-request>`__
+log <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/troubleshooting.rst#how-do-i-debug-a-request>`__
 for more detailed information about what may have gone wrong.
 
 Screen Captures

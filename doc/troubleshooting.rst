@@ -14,7 +14,7 @@ Troubleshooting
 -  `It's not saving my screenshots <#its-not-saving-my-screenshots>`__
 -  `Can I set the screenshot size? <#can-i-set-the-screenshot-size>`__
 -  `Can I set the viewport size? <#can-i-set-the-viewport-size>`__
--  `How to I debug a request? <#how-to-i-debug-a-request>`__
+-  `How do I debug a request? <#how-do-i-debug-a-request>`__
 -  `I am getting SyntaxError: Parse error in the debug
    log <#i-am-getting-syntaxerror-parse-error-in-the-debug-log>`__
 
@@ -318,7 +318,7 @@ requests:
     
         $client->send($request, $response);
 
-How to I debug a request?
+How do I debug a request?
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By setting the debug flag to ``true`` on the client, you can get a dump
@@ -365,7 +365,7 @@ I am getting ``SyntaxError: Parse error`` in the debug log
 You will only get this error if the script file that is being run by
 PhantomJS has a syntax error. If you are writing your own `custom
 scripts <https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/advanced.rst#custom-phantomjs-scripts>`__
-then try setting the `debug flag <#how-to-i-debug-a-request>`__ which
+then try setting the `debug flag <#how-do-i-debug-a-request>`__ which
 *should* print some more detailed information in the debug log. Also
 check that you aren't setting any parameters to ``null`` in your request
 object as this could be causing a javascript error due to javascript
