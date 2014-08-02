@@ -26,15 +26,16 @@ body{
 	color: #fff;
 }
 
-a.nav-link {
-	padding-bottom: 5px;
-	padding-top: 7px;
-	color: #aaa;
+.nav-link {
+	position: relative;
+    float: right;
+    margin-top: 15px;
+    margin-bottom: 8px;
 }
-a.nav-link i{
-	font-size: 16px;
+
+.nav-link.last {
+    margin-right: 10px;
 }
-a.nav-link:hover { color: #777 }
 
 #bio {
 	font-family: "Courier New", Courier, monospace;

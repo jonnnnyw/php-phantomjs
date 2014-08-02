@@ -3,8 +3,8 @@
 	<channel>
 		<title>PHP PhantomJs</title>
 		<description>Run PhantomJS scripts through PHP</description>
-		<link>http://jonnnnyw.github.io/php-phantomjs/</link>
-		<atom:link href="http://jonnnnyw.github.io/php-phantomjs/feed.xml" rel="self" type="application/rss+xml" />
+		<link>/</link>
+		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
 				<title>Introduction</title>
@@ -34,7 +34,9 @@ code etc.&lt;/li&gt;
 
 &lt;p&gt;It is recommended that you use Composer to install PHP PhantomJS. First, add the following to your project’s &lt;code&gt;composer.json&lt;/code&gt; file:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;scripts&amp;quot;&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#composer.json&lt;/span&gt;
+
+    &lt;span class=&quot;s&quot;&gt;&amp;quot;scripts&amp;quot;&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;s&quot;&gt;&amp;quot;post-install-cmd&amp;quot;&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;[&lt;/span&gt;
             &lt;span class=&quot;s&quot;&gt;&amp;quot;PhantomInstaller\\Installer::installPhantomJS&amp;quot;&lt;/span&gt;
         &lt;span class=&quot;p-Indicator&quot;&gt;],&lt;/span&gt;
@@ -45,7 +47,9 @@ code etc.&lt;/li&gt;
 
 &lt;p&gt;This will ensure the latest version of PhantomJS is installed for your system, in your bin folder. If you haven’t defined your bin folder in your composer.json, add the path:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;config&amp;quot;&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#composer.json&lt;/span&gt;
+    
+    &lt;span class=&quot;s&quot;&gt;&amp;quot;config&amp;quot;&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;s&quot;&gt;&amp;quot;bin-dir&amp;quot;&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;bin&amp;quot;&lt;/span&gt;
     &lt;span class=&quot;p-Indicator&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -55,7 +59,7 @@ code etc.&lt;/li&gt;
     
     &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;composer require &lt;span class=&quot;s2&quot;&gt;&amp;quot;jonnyw/php-phantomjs:3.*&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;If you would like to use another installation method or would like to see more detailed installation instructions, see the &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/installation.html&quot;&gt;installation&lt;/a&gt; documentation.&lt;/p&gt;
+&lt;p&gt;If you would like to use another installation method or would like to see more detailed installation instructions, see the &lt;a href=&quot;/installation.html&quot;&gt;installation&lt;/a&gt; documentation.&lt;/p&gt;
 
 &lt;h2 id=&quot;basic-usage&quot;&gt;Basic Usage&lt;/h2&gt;
 
@@ -108,12 +112,12 @@ code etc.&lt;/li&gt;
     &lt;span class=&quot;c1&quot;&gt;// Send the request&lt;/span&gt;
     &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;For more detailed examples see the &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/usage.html&quot;&gt;usage&lt;/a&gt; section, or to create your own custom scripts check out the &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/advanced.html&quot;&gt;advanced&lt;/a&gt; documentation.&lt;/p&gt;
+&lt;p&gt;For more detailed examples see the &lt;a href=&quot;/usage.html&quot;&gt;usage&lt;/a&gt; section, or to create your own custom scripts check out the &lt;a href=&quot;/advanced.html&quot;&gt;advanced&lt;/a&gt; documentation.&lt;/p&gt;
 
 </description>
 				<pubDate>Mon, 28 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/introduction.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/introduction.html</guid>
+				<link>/introduction.html</link>
+				<guid isPermaLink="true">/introduction.html</guid>
 			</item>
 		
 			<item>
@@ -139,7 +143,9 @@ code etc.&lt;/li&gt;
 
 &lt;p&gt;Create a &lt;code&gt;composer.json&lt;/code&gt; file in the root of your project:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;p-Indicator&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#composer.json&lt;/span&gt;
+
+    &lt;span class=&quot;p-Indicator&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;s&quot;&gt;&amp;quot;require&amp;quot;&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;s&quot;&gt;&amp;quot;jonnyw/php-phantomjs&amp;quot;&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;3.*&amp;quot;&lt;/span&gt;
         &lt;span class=&quot;p-Indicator&quot;&gt;},&lt;/span&gt;
@@ -177,7 +183,9 @@ code etc.&lt;/li&gt;
 
 &lt;p&gt;If you would like composer to install the PhantomJS executable to a custom location when installing dependencies, set the bin dir location in your project’s &lt;code&gt;composer.json&lt;/code&gt; file:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;p-Indicator&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#composer.json&lt;/span&gt;
+
+    &lt;span class=&quot;p-Indicator&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;s&quot;&gt;&amp;quot;config&amp;quot;&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;s&quot;&gt;&amp;quot;bin-dir&amp;quot;&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/path/to/your/projects/bin/dir&amp;quot;&lt;/span&gt;
         &lt;span class=&quot;p-Indicator&quot;&gt;}&lt;/span&gt;
@@ -218,8 +226,8 @@ code etc.&lt;/li&gt;
 &lt;p&gt;Make sure the components are in your include path and that the PhantomJS executable is installed to your projects bin folder as mentioned in the &lt;a href=&quot;#custom-installation&quot;&gt;Custom Installation&lt;/a&gt; section.&lt;/p&gt;
 </description>
 				<pubDate>Sun, 27 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/installation.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/installation.html</guid>
+				<link>/installation.html</link>
+				<guid isPermaLink="true">/installation.html</guid>
 			</item>
 		
 			<item>
@@ -237,7 +245,7 @@ code etc.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#custom-run-options&quot;&gt;Custom Run Options&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;For more advanced customization or to load your own PhantomJS scripts, see the &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/advanced.html&quot;&gt;advanced&lt;/a&gt; documentation.&lt;/p&gt;
+&lt;p&gt;For more advanced customization or to load your own PhantomJS scripts, see the &lt;a href=&quot;/advanced.html&quot;&gt;advanced&lt;/a&gt; documentation.&lt;/p&gt;
 
 &lt;h2 id=&quot;basic-request&quot;&gt;Basic Request&lt;/h2&gt;
 
@@ -398,7 +406,7 @@ code etc.&lt;/li&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;If the response contains a status code of 0, chances are the request failed. Check the request &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/debugging.html&quot;&gt;debug log&lt;/a&gt; for more detailed information about what may have gone wrong.&lt;/p&gt;
+&lt;p&gt;If the response contains a status code of 0, chances are the request failed. Check the request &lt;a href=&quot;/debugging.html&quot;&gt;debug log&lt;/a&gt; for more detailed information about what may have gone wrong.&lt;/p&gt;
 
 &lt;h2 id=&quot;screen-captures&quot;&gt;Screen Captures&lt;/h2&gt;
 
@@ -518,8 +526,8 @@ code etc.&lt;/li&gt;
 &lt;p&gt;See the &lt;a href=&quot;http://phantomjs.org/api/command-line.html&quot;&gt;PhantomJS Documentation&lt;/a&gt; for a full list of command line options.&lt;/p&gt;
 </description>
 				<pubDate>Sat, 26 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/usage.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/usage.html</guid>
+				<link>/usage.html</link>
+				<guid isPermaLink="true">/usage.html</guid>
 			</item>
 		
 			<item>
@@ -840,22 +848,11 @@ code etc.&lt;/li&gt;
   &lt;p&gt;If you find that your script isn’t running or that you are receiving a status of ‘0’ back in the response, chances are you have a syntax error in you script. It pays to turn debugging on in the client &lt;code&gt;$client-&amp;gt;debug(true)&lt;/code&gt; which will then give you access to some log information through &lt;code&gt;$client-&amp;gt;getLog()&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;See more detailed information about &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/debugging.html&quot;&gt;debugging&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;See more detailed information about &lt;a href=&quot;/debugging.html&quot;&gt;debugging&lt;/a&gt;.&lt;/p&gt;
 </description>
 				<pubDate>Fri, 25 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/advanced.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/advanced.html</guid>
-			</item>
-		
-			<item>
-				<title>Debugging</title>
-				<description>&lt;p&gt;This documentation page will be up in the next couple of days.&lt;/p&gt;
-
-&lt;p&gt;In the meantime, check out the &lt;a href=&quot;https://github.com/jonnnnyw/php-phantomjs/tree/master/examples&quot;&gt;examples&lt;/a&gt; in the Github repo.&lt;/p&gt;
-</description>
-				<pubDate>Thu, 24 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/debugging.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/debugging.html</guid>
+				<link>/advanced.html</link>
+				<guid isPermaLink="true">/advanced.html</guid>
 			</item>
 		
 			<item>
@@ -863,8 +860,8 @@ code etc.&lt;/li&gt;
 				<description>&lt;p&gt;This documentation page will be up in the next couple of days.&lt;/p&gt;
 </description>
 				<pubDate>Wed, 23 Jul 2014 00:00:00 +0100</pubDate>
-				<link>http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html</link>
-				<guid isPermaLink="true">http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html</guid>
+				<link>/troubleshooting.html</link>
+				<guid isPermaLink="true">/troubleshooting.html</guid>
 			</item>
 		
 	</channel>

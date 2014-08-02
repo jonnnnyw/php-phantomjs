@@ -31,7 +31,7 @@
 	-->
 
 	<link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.BASE_PATH }}/feed.xml">
-	
+
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -41,7 +41,7 @@
         ga('create', 'UA-53289013-1', 'auto');
         ga('send', 'pageview');
     </script>
-    
+
 </head>
 
 <body>
@@ -55,25 +55,16 @@
 				<span class="icon-bar"></span>
 			</button>
 			
-			<!--
-			{% if site.author.github %}
-			<a type="button" class="navbar-toggle nav-link" href="http://github.com/{{ site.author.github }}">
-				<i class="fa fa-github"></i>
-			</a>
-			{% endif %}
-			{% if site.author.twitter %}
-			<a type="button" class="navbar-toggle nav-link" href="http://twitter.com/{{ site.author.twitter }}">
-				<i class="fa fa-twitter"></i>
-			</a>
-			{% endif %}
-			{% if site.author.email %}
-			<a type="button" class="navbar-toggle nav-link" href="mailto:{{ site.author.email }}">
-				<i class="fa fa-envelope"></i>
-			</a>
-			{% endif %}
+			{% if site.github.fork %}
+            <iframe src="http://ghbtns.com/github-btn.html?user={{ site.github.username }}&repo={{ site.github.repo }}&type=fork&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link last"></iframe>
+    		{% endif %}
 			
-			-->
-			
+			{% if site.github.watch %}
+            <iframe src="http://ghbtns.com/github-btn.html?user={{ site.github.username }}&repo={{ site.github.repo }}&type=watch&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link"></iframe>
+    		{% endif %}
+    		
 			<a class="navbar-brand" href="{{ site.BASE_PATH }}/">
 				<img src="{{ site.BASE_PATH }}/assets/media/phantomjs-small.png" class="img-circle" />
 				{{ site.title }}
@@ -87,7 +78,6 @@
 				<li><a href="{{ site.BASE_PATH}}/installation.html">Installation</a></li>
 				<li><a href="{{ site.BASE_PATH}}/usage.html">Usage</a></li>
 				<li><a href="{{ site.BASE_PATH}}/advanced.html">Advanced</a></li>
-				<li><a href="{{ site.BASE_PATH}}/debugging.html">Debugging</a></li>
 				<li><a href="{{ site.BASE_PATH}}/troubleshooting.html">Troubleshooting</a></li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
@@ -103,7 +93,6 @@
 			<li><a href="{{ site.BASE_PATH}}/installation.html"><i class="fa fa-folder"></i>Installation</a></li>
 			<li><a href="{{ site.BASE_PATH}}/usage.html"><i class="fa fa-folder"></i>Usage</a></li>
 			<li><a href="{{ site.BASE_PATH}}/advanced.html"><i class="fa fa-folder"></i>Advanced</a></li>
-			<li><a href="{{ site.BASE_PATH}}/debugging.html"><i class="fa fa-folder"></i>Debugging</a></li>
 			<li><a href="{{ site.BASE_PATH}}/troubleshooting.html"><i class="fa fa-folder"></i>Troubleshooting</a></li>
 			<li class="divider"></li>
 			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>

@@ -32,6 +32,8 @@ Create a `composer.json` file in the root of your project:
 
 {% highlight yaml %}
 
+    #composer.json
+
     {
         "require": {
             "jonnyw/php-phantomjs": "3.*"
@@ -79,6 +81,8 @@ If you would prefer to use a custom install location for the PhantomJS executabl
 If you would like composer to install the PhantomJS executable to a custom location when installing dependencies, set the bin dir location in your project's `composer.json` file:
 
 {% highlight yaml %}
+
+    #composer.json
 
     {
         "config": {

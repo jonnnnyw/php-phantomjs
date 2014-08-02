@@ -34,6 +34,8 @@ Installation
 It is recommended that you use Composer to install PHP PhantomJS. First, add the following to your project’s `composer.json` file:
 
 {% highlight yaml %}
+    
+    #composer.json
 
     "scripts": {
         "post-install-cmd": [
@@ -49,7 +51,9 @@ It is recommended that you use Composer to install PHP PhantomJS. First, add the
 This will ensure the latest version of PhantomJS is installed for your system, in your bin folder. If you haven’t defined your bin folder in your composer.json, add the path:
 
 {% highlight yaml %}
-
+    
+    #composer.json
+    
     "config": {
         "bin-dir": "bin"
     }

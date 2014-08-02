@@ -13,21 +13,18 @@
     </div>
 
     <div class="clearfix"></div>
+    
+    <hr>
+    <ul class="pager">
+        {% if page.next %}
+        <li class="previous"><a href="{{ site.BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">&larr; {{ page.next.title }}</a></li>
+        {% endif %}
+        {% if page.previous %}
+        <li class="next"><a href="{{ site.BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">{{ page.previous.title }} &rarr;</a></li>
+        {% endif %}
+    </ul>
 
-		<ul class="pager">
-		  {% if page.previous %}
-		  <li class="previous"><a href="{{ site.BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; {{ page.previous.title }}</a></li>
-		  {% endif %}
-		  {% if page.next %}
-		  <li class="next"><a href="{{ site.BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{ page.next.title }} &rarr;</a></li>
-		  {% endif %}
-		</ul>
-
-		<hr>
-	</div>
 	
-	<div class="col-sm-2 sidebar-2">
-	
-	</div>
+    
 </article>
-<div class="clearfix"></div>
+

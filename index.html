@@ -3,7 +3,7 @@ layout: page
 tagline:
 ---
 
-{% for post in paginator.posts %}
+{% for post in site.posts limit: 1 %}
 
 <div class="page-header">
   <h1>{{ post.title }} {% if post.tagline %} <small>{{ post.tagline }}</small>{% endif %}</h1>
@@ -24,27 +24,18 @@ tagline:
     {% endif %}
     {% endif %}
   </div>
+  
+  <div class="clearfix"></div>
+  <hr/>
+
+  <ul class="pager"> 
+      {% if site.posts[1] %}
+      <li class="next">
+        <a href="{{ site.BASE_PATH }}{{ site.posts[1].url }}" title="{{ site.posts[1].title }}">{{ site.posts[1].title }} &rarr;</a>
+      </li>
+      {% endif %}
+  </ul>
 
 </article>
 {% endfor %}
-<hr/>
 
-<ul class="pager"> 
-
-  {% if paginator.previous_page %}
-  <li class="previous">
-    {% if paginator.previous_page == 1 %}
-    <a href="{{ site.BASE_PATH }}/">&larr; Previous</a>
-    {% else %}
-    <a href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.previous_page }}">&larr; Previous</a>
-    {% endif %}
-  </li>
-  {% endif %}
-
-  {% if paginator.next_page %}
-  <li class="next">
-    <a href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.next_page }}">Next &rarr;</a>
-  </li>
-  {% endif %}
-
-</ul>

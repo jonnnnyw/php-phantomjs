@@ -20,12 +20,12 @@ description: Run PhantomJS scripts through PHP
 
 author:
   name: Jonny W
-  email:
-  github: 
-  twitter: 
-  pinterest: 
-  linkedin: 
-  email_md5: 
+
+github:
+  username: jonnnnyw
+  repo: php-phantomjs
+  watch: true
+  fork: true
 
 rss_path: feed.xml
 
