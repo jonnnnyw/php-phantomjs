@@ -167,6 +167,10 @@ A default request instance contains the following accessors:
 +--------------------------+-----------------------------------------------+------------------------------------+
 | getDelay()               | The page render delay in seconds.             | {{ request.getDelay() }}           |
 +--------------------------+-----------------------------------------------+------------------------------------+
+| getViewportWidth()       | The viewport width.                           | {{ request.getViewportWidth() }}   |
++--------------------------+-----------------------------------------------+------------------------------------+
+| getViewportHeight()      | The viewport height.                          | {{ request.getViewportHeight() }}  |
++--------------------------+-----------------------------------------------+------------------------------------+
 | getUrl()                 | The request URL.                              | {{ request.getUrl() }}             |
 +--------------------------+-----------------------------------------------+------------------------------------+
 | getBody()                | The request body (POST, PUT).                 | {{ request.getBody() }}            |
