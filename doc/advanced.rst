@@ -358,4 +358,4 @@ Below is a full example for clarity:
    If you find that your script isn't running or that you are receiving a status of '0' back in the response, chances are you have a syntax error in you script. It pays to turn debugging on in the client ``$client->debug(true)`` which will then give you access to some log information through ``$client->getLog()``.
 
 See more detailed information about
-`debugging <{{%20site.BASE_PATH%20}}/debugging.html>`__.
+`troubleshooting https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/troubleshooting.rst>`__.

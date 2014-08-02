@@ -121,8 +121,8 @@ And if you would like to save a screen capture to local disk:
     // Send the request
     $client->send($request, $response);
 
-For more detailed examples see the `examples`_ section, or to create
+For more detailed examples see the `usage`_ section, or to create
 your own custom scripts check out the `advanced`_ documentation.
 
-.. _examples: http://jonnnnyw.github.io/php-phantomjs/examples.html
-.. _advanced: http://jonnnnyw.github.io/php-phantomjs/advanced.html
+.. _usage: https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/usage.rst
+.. _advanced: https://github.com/jonnnnyw/php-phantomjs/blob/master/doc/advanced.rst
