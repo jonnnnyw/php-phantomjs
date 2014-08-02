@@ -421,7 +421,7 @@ code etc.&lt;/li&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;If the response contains a status code of 0, chances are the request failed. Check the request &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html#how-to-i-debug-a-request&quot;&gt;debug log&lt;/a&gt; for more detailed information about what may have gone wrong.&lt;/p&gt;
+&lt;p&gt;If the response contains a status code of 0, chances are the request failed. Check the request &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html#how-do-i-debug-a-request&quot;&gt;debug log&lt;/a&gt; for more detailed information about what may have gone wrong.&lt;/p&gt;
 
 &lt;h2 id=&quot;screen-captures&quot;&gt;Screen Captures&lt;/h2&gt;
 
@@ -913,7 +913,7 @@ code etc.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#its-not-saving-my-screenshots&quot;&gt;It’s not saving my screenshots&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#can-i-set-the-screenshot-size&quot;&gt;Can I set the screenshot size?&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#can-i-set-the-viewport-size&quot;&gt;Can I set the viewport size?&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#how-to-i-debug-a-request&quot;&gt;How to I debug a request?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#how-do-i-debug-a-request&quot;&gt;How do I debug a request?&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#i-am-getting-syntaxerror-parse-error-in-the-debug-log&quot;&gt;I am getting &lt;code&gt;SyntaxError: Parse error&lt;/code&gt; in the debug log&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1123,7 +1123,7 @@ code etc.&lt;/li&gt;
     
     &lt;span class=&quot;nv&quot;&gt;$client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h4 id=&quot;how-to-i-debug-a-request&quot;&gt;How to I debug a request?&lt;/h4&gt;
+&lt;h4 id=&quot;how-do-i-debug-a-request&quot;&gt;How do I debug a request?&lt;/h4&gt;
 
 &lt;p&gt;By setting the debug flag to &lt;code&gt;true&lt;/code&gt; on the client, you can get a dump of information output from PhantomJS along with some info events added by the PHP PhantomJS library:&lt;/p&gt;
 
@@ -1158,7 +1158,7 @@ code etc.&lt;/li&gt;
 
 &lt;h4 id=&quot;i-am-getting-syntaxerror-parse-error-in-the-debug-log&quot;&gt;I am getting &lt;code&gt;SyntaxError: Parse error&lt;/code&gt; in the debug log&lt;/h4&gt;
 
-&lt;p&gt;You will only get this error if the script file that is being run by PhantomJS has a syntax error. If you are writing your own &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/advanced.html#custom-phantomjs-scripts&quot;&gt;custom scripts&lt;/a&gt; then try setting the &lt;a href=&quot;#how-to-i-debug-a-request&quot;&gt;debug flag&lt;/a&gt; which &lt;em&gt;should&lt;/em&gt; print some more detailed information in the debug log. Also check that you aren’t setting any parameters to &lt;code&gt;null&lt;/code&gt; in your request object as this could be causing a javascript error due to javascript variables being set to nothing e.g. &lt;code&gt;var width = ,&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You will only get this error if the script file that is being run by PhantomJS has a syntax error. If you are writing your own &lt;a href=&quot;http://jonnnnyw.github.io/php-phantomjs/advanced.html#custom-phantomjs-scripts&quot;&gt;custom scripts&lt;/a&gt; then try setting the &lt;a href=&quot;#how-do-i-debug-a-request&quot;&gt;debug flag&lt;/a&gt; which &lt;em&gt;should&lt;/em&gt; print some more detailed information in the debug log. Also check that you aren’t setting any parameters to &lt;code&gt;null&lt;/code&gt; in your request object as this could be causing a javascript error due to javascript variables being set to nothing e.g. &lt;code&gt;var width = ,&lt;/code&gt;.&lt;/p&gt;
 </description>
 				<pubDate>Wed, 23 Jul 2014 00:00:00 +0100</pubDate>
 				<link>http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html</link>

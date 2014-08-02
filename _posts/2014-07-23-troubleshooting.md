@@ -14,7 +14,7 @@ fullview: true
 * [It's not saving my screenshots](#its-not-saving-my-screenshots)
 * [Can I set the screenshot size?](#can-i-set-the-screenshot-size)
 * [Can I set the viewport size?](#can-i-set-the-viewport-size)
-* [How to I debug a request?](#how-to-i-debug-a-request)
+* [How do I debug a request?](#how-do-i-debug-a-request)
 * [I am getting `SyntaxError: Parse error` in the debug log](#i-am-getting-syntaxerror-parse-error-in-the-debug-log)
 
 ---
@@ -256,7 +256,7 @@ Yes, you can set the viewport dimensions on both regular and capture requests:
     $client->send($request, $response);
 {% endhighlight %}
 
-#### How to I debug a request?
+#### How do I debug a request?
 
 By setting the debug flag to `true` on the client, you can get a dump of information output from PhantomJS along with some info events added by the PHP PhantomJS library:
 
@@ -297,4 +297,4 @@ You can also get any javacript console errors along with a stack trace from the 
 
 #### I am getting `SyntaxError: Parse error` in the debug log
 
-You will only get this error if the script file that is being run by PhantomJS has a syntax error. If you are writing your own [custom scripts]({{ site.BASE_PATH }}/advanced.html#custom-phantomjs-scripts) then try setting the [debug flag](#how-to-i-debug-a-request) which *should* print some more detailed information in the debug log. Also check that you aren't setting any parameters to `null` in your request object as this could be causing a javascript error due to javascript variables being set to nothing e.g. `var width = ,`.
+You will only get this error if the script file that is being run by PhantomJS has a syntax error. If you are writing your own [custom scripts]({{ site.BASE_PATH }}/advanced.html#custom-phantomjs-scripts) then try setting the [debug flag](#how-do-i-debug-a-request) which *should* print some more detailed information in the debug log. Also check that you aren't setting any parameters to `null` in your request object as this could be causing a javascript error due to javascript variables being set to nothing e.g. `var width = ,`.

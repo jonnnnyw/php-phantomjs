@@ -155,7 +155,7 @@
   <li><a href="#its-not-saving-my-screenshots">It’s not saving my screenshots</a></li>
   <li><a href="#can-i-set-the-screenshot-size">Can I set the screenshot size?</a></li>
   <li><a href="#can-i-set-the-viewport-size">Can I set the viewport size?</a></li>
-  <li><a href="#how-to-i-debug-a-request">How to I debug a request?</a></li>
+  <li><a href="#how-do-i-debug-a-request">How do I debug a request?</a></li>
   <li><a href="#i-am-getting-syntaxerror-parse-error-in-the-debug-log">I am getting <code>SyntaxError: Parse error</code> in the debug log</a></li>
 </ul>
 
@@ -365,7 +365,7 @@
     
     <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
 
-<h4 id="how-to-i-debug-a-request">How to I debug a request?</h4>
+<h4 id="how-do-i-debug-a-request">How do I debug a request?</h4>
 
 <p>By setting the debug flag to <code>true</code> on the client, you can get a dump of information output from PhantomJS along with some info events added by the PHP PhantomJS library:</p>
 
@@ -400,7 +400,7 @@
 
 <h4 id="i-am-getting-syntaxerror-parse-error-in-the-debug-log">I am getting <code>SyntaxError: Parse error</code> in the debug log</h4>
 
-<p>You will only get this error if the script file that is being run by PhantomJS has a syntax error. If you are writing your own <a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html#custom-phantomjs-scripts">custom scripts</a> then try setting the <a href="#how-to-i-debug-a-request">debug flag</a> which <em>should</em> print some more detailed information in the debug log. Also check that you aren’t setting any parameters to <code>null</code> in your request object as this could be causing a javascript error due to javascript variables being set to nothing e.g. <code>var width = ,</code>.</p>
+<p>You will only get this error if the script file that is being run by PhantomJS has a syntax error. If you are writing your own <a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html#custom-phantomjs-scripts">custom scripts</a> then try setting the <a href="#how-do-i-debug-a-request">debug flag</a> which <em>should</em> print some more detailed information in the debug log. Also check that you aren’t setting any parameters to <code>null</code> in your request object as this could be causing a javascript error due to javascript variables being set to nothing e.g. <code>var width = ,</code>.</p>
 
 	  </div>
 
