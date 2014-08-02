@@ -84,6 +84,32 @@ interface RequestInterface
     public function getDelay();
 
     /**
+     * Set viewport size.
+     *
+     * @access public
+     * @param  int  $width
+     * @param  int  $height
+     * @return void
+     */
+    public function setViewportSize($width, $height);
+
+    /**
+     * Get viewport width.
+     *
+     * @access public
+     * @return int
+     */
+    public function getViewportWidth();
+
+    /**
+     * Get viewport height.
+     *
+     * @access public
+     * @return int
+     */
+    public function getViewportHeight();
+
+    /**
      * Set request URL
      *
      * @access public

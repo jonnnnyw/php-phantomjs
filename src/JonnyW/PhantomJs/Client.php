@@ -47,6 +47,14 @@ class Client implements ClientInterface
     protected $messageFactory;
 
     /**
+     * Bin directory path.
+     *
+     * @var string
+     * @access protected
+     */
+    protected $binDir;
+
+    /**
      * Path to PhantomJs executable
      *
      * @var string
@@ -98,8 +106,9 @@ class Client implements ClientInterface
     {
         $this->procedureLoader = $procedureLoader;
         $this->messageFactory  = $messageFactory;
-        $this->phantomJs       = 'bin/phantomjs';
-        $this->phantomLoader   = 'bin/phantomloader';
+        $this->binDir          = 'bin';
+        $this->phantomJs       = '%s/phantomjs';
+        $this->phantomLoader   = '%s/phantomloader';
         $this->options         = array();
     }
 
@@ -189,6 +198,31 @@ class Client implements ClientInterface
     }
 
     /**
+     * Set bin directory.
+     *
+     * @access public
+     * @param  string                   $path
+     * @return \JonnyW\PhantomJs\Client
+     */
+    public function setBinDir($path)
+    {
+        $this->binDir = rtrim($path, '/\\');
+
+        return $this;
+    }
+
+    /**
+     * Get bin directory.
+     *
+     * @access public
+     * @return string
+     */
+    public function getBinDir()
+    {
+        return $this->binDir;
+    }
+
+    /**
      * Set new PhantomJs executable path.
      *
      * @access public
@@ -212,7 +246,7 @@ class Client implements ClientInterface
      */
     public function getPhantomJs()
     {
-        return $this->phantomJs;
+        return sprintf($this->phantomJs, $this->getBinDir());
     }
 
     /**
@@ -239,7 +273,7 @@ class Client implements ClientInterface
      */
     public function getPhantomLoader()
     {
-        return $this->phantomLoader;
+        return sprintf($this->phantomLoader, $this->getBinDir());
     }
 
     /**

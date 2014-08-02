@@ -44,6 +44,23 @@ interface ClientInterface
     public function send(RequestInterface $request, ResponseInterface $response);
 
     /**
+     * Set bin directory.
+     *
+     * @access public
+     * @param  string                   $path
+     * @return \JonnyW\PhantomJs\Client
+     */
+    public function setBinDir($path);
+
+    /**
+     * Get bin directory.
+     *
+     * @access public
+     * @return string
+     */
+    public function getBinDir();
+
+    /**
      * Set new PhantomJs executable path.
      *
      * @access public

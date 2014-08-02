@@ -417,6 +417,182 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('--debug=true', $command);
     }
 
+    /**
+     * Test set bin dir strips forward
+     * slash from end.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetBinDirStripsForwardSlashFromEnd()
+    {
+        $binDir = '/path/to/bin/dir/';
+
+        $procedureLoader = $this->getProcedureLoader();
+        $messageFactory  = $this->getMessageFactory();
+
+        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client->setBinDir($binDir);
+
+        $this->assertSame('/path/to/bin/dir', $client->getBinDir());
+    }
+
+    /**
+     * Test set bin dir strips multiple forward
+     * slashes from end.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetBinDirStripsMultipleForwardSlashesFromEnd()
+    {
+        $binDir = '/path/to/bin/dir//';
+
+        $procedureLoader = $this->getProcedureLoader();
+        $messageFactory  = $this->getMessageFactory();
+
+        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client->setBinDir($binDir);
+
+        $this->assertSame('/path/to/bin/dir', $client->getBinDir());
+    }
+
+    /**
+     * Test set bin dir strips backslash
+     * from end.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetBinDirStripsBackslashFromEnd()
+    {
+        $binDir = '\path\to\bin\dir\\';
+
+        $procedureLoader = $this->getProcedureLoader();
+        $messageFactory  = $this->getMessageFactory();
+
+        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client->setBinDir($binDir);
+
+        $this->assertSame('\path\to\bin\dir', $client->getBinDir());
+    }
+
+    /**
+     * Test set bin dir strips multiple
+     * backslashes from end.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetBinDirStripsMultipleBackslashesFromEnd()
+    {
+        $binDir = '\path\to\bin\dir\\\\';
+
+        $procedureLoader = $this->getProcedureLoader();
+        $messageFactory  = $this->getMessageFactory();
+
+        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client->setBinDir($binDir);
+
+        $this->assertSame('\path\to\bin\dir', $client->getBinDir());
+    }
+
+    /**
+     * Test set bin dir sets path of
+     * PhantomJs executable.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetBinDirSetsPathOfPhantomJsExecutable()
+    {
+        $binDir = '/path/to/bin/dir';
+
+        $procedureLoader = $this->getProcedureLoader();
+        $messageFactory  = $this->getMessageFactory();
+
+        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client->setBinDir($binDir);
+
+        $this->assertSame('/path/to/bin/dir/phantomjs', $client->getPhantomJs());
+    }
+
+    /**
+     * Test set bin dir sets path of
+     * Phantom loader executable.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetBinDirSetsPathOfPhantomLoaderExecutable()
+    {
+        $binDir = '/path/to/bin/dir';
+
+        $procedureLoader = $this->getProcedureLoader();
+        $messageFactory  = $this->getMessageFactory();
+
+        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client->setBinDir($binDir);
+
+        $this->assertSame('/path/to/bin/dir/phantomloader', $client->getPhantomLoader());
+    }
+
+    /**
+     * Test set bin dir does not set
+     * path of PhantomJs executable if
+     * custom PhantomJs executable path
+     * is set.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetBinDirDoesNotSetPathToPhantomJsExecutableIfCustomPhantomJsPathIsSet()
+    {
+        $binDir  = '/path/to/bin/dir';
+        $path    = '/path/to/phantomjs';
+
+        $procedureLoader = $this->getProcedureLoader();
+        $messageFactory  = $this->getMessageFactory();
+
+        $client = $this->getClient($procedureLoader, $messageFactory);
+
+        $phantomJs = new \ReflectionProperty(get_class($client), 'phantomJs');
+        $phantomJs->setAccessible(true);
+        $phantomJs->setValue($client, $path);
+
+        $client->setBinDir($binDir);
+
+        $this->assertSame($path, $client->getPhantomJs());
+    }
+
+    /**
+     * Test set bin dir does not set
+     * path of Phantom loader executable if
+     * custom Phantom loader executable path
+     * is set.
+     *
+     * @access public
+     * @return void
+     */
+    public function testSetBinDirDoesNotSetPathToPhantomLoaderExecutableIfCustomPhantomLoaderPathIsSet()
+    {
+        $binDir  = '/path/to/bin/dir';
+        $path    = '/path/to/phantomloader';
+
+        $procedureLoader = $this->getProcedureLoader();
+        $messageFactory  = $this->getMessageFactory();
+
+        $client = $this->getClient($procedureLoader, $messageFactory);
+
+        $phantomLoader = new \ReflectionProperty(get_class($client), 'phantomLoader');
+        $phantomLoader->setAccessible(true);
+        $phantomLoader->setValue($client, $path);
+
+        $client->setBinDir($binDir);
+
+        $this->assertSame($path, $client->getPhantomLoader());
+    }
+
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ TEST ENTITIES ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/
