@@ -57,6 +57,7 @@ class ServiceContainer extends ContainerBuilder
         $loader->load('config.yml');
         $loader->load('services.yml');
 
+        $this->setParameter('phantomjs.cache_dir', sys_get_temp_dir());
         $this->setParameter('phantomjs.resource_dir', __DIR__.'/../Resources');
     }
 }
