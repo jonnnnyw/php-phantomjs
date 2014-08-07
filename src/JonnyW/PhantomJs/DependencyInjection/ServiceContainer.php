@@ -22,7 +22,7 @@ class ServiceContainer extends ContainerBuilder
     /**
      * Service container instance
      *
-     * @var \JonnyW\PhantomJs\ServiceContainer
+     * @var \JonnyW\PhantomJs\DependencyInjection\ServiceContainer
      * @access private
      */
     private static $instance;
@@ -31,7 +31,6 @@ class ServiceContainer extends ContainerBuilder
      * Get singleton instance
      *
      * @access public
-     * @param  \JonnyW\PhantomJs\Message\FactoryInterface $messageFactory
      * @return \JonnyW\PhantomJs\Client
      */
     public static function getInstance()

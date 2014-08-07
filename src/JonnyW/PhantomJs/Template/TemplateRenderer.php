@@ -28,7 +28,6 @@ class TemplateRenderer implements TemplateRendererInterface
      *
      * @access public
      * @param  \Twig_Environment $twig
-     * @return void
      */
     public function __construct(\Twig_Environment $twig)
     {

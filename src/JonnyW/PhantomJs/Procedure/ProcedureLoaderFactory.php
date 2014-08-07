@@ -31,7 +31,6 @@ class ProcedureLoaderFactory implements ProcedureLoaderFactoryInterface
      *
      * @access public
      * @param  \JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface $procedureFactory
-     * @return void
      */
     public function __construct(ProcedureFactoryInterface $procedureFactory)
     {
@@ -42,7 +41,7 @@ class ProcedureLoaderFactory implements ProcedureLoaderFactoryInterface
      * Create procedure loader instance.
      *
      * @access public
-     * @param  string                                      $directory
+     * @param  string $directory
      * @return \JonnyW\PhantomJs\Procedure\ProcedureLoader
      */
     public function createProcedureLoader($directory)
@@ -62,7 +61,7 @@ class ProcedureLoaderFactory implements ProcedureLoaderFactoryInterface
      * Create file locator instance.
      *
      * @access protected
-     * @param  string                                $directory
+     * @param  string $directory
      * @return \Symfony\Component\Config\FileLocator
      * @throws \InvalidArgumentException
      */

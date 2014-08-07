@@ -107,7 +107,7 @@ class TemplateRendererTest extends TestCase
     /**
      * Get template renderer instance.
      *
-     * @param  \Twig_Environment                          $twig
+     * @param  \Twig_Environment $twig
      * @return \JonnyW\PhantomJs\Message\TemplateRenderer
      */
     protected function getTemplateRenderer(\Twig_Environment $twig)
