@@ -87,9 +87,9 @@ abstract class AbstractRequest implements RequestInterface
      * Internal constructor
      *
      * @access public
-     * @param string $url (default: null)
-     * @param string $method (default: RequestInterface::METHOD_GET)
-     * @param int $timeout (default: 5000)
+     * @param string $url     (default: null)
+     * @param string $method  (default: RequestInterface::METHOD_GET)
+     * @param int    $timeout (default: 5000)
      */
     public function __construct($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
     {
@@ -111,7 +111,7 @@ abstract class AbstractRequest implements RequestInterface
      * Set request method
      *
      * @access public
-     * @param  string $method
+     * @param  string                                             $method
      * @return \JonnyW\PhantomJs\Message\AbstractRequest
      * @throws \JonnyW\PhantomJs\Exception\InvalidMethodException
      */
@@ -144,7 +144,7 @@ abstract class AbstractRequest implements RequestInterface
      * Set timeout period
      *
      * @access public
-     * @param  int $timeout
+     * @param  int                                       $timeout
      * @return \JonnyW\PhantomJs\Message\AbstractRequest
      */
     public function setTimeout($timeout)
@@ -169,7 +169,7 @@ abstract class AbstractRequest implements RequestInterface
      * Set page load delay time (seconds).
      *
      * @access public
-     * @param  int $delay
+     * @param  int                                       $delay
      * @return \JonnyW\PhantomJs\Message\AbstractRequest
      */
     public function setDelay($delay)
@@ -230,7 +230,7 @@ abstract class AbstractRequest implements RequestInterface
      * Set request URL
      *
      * @access public
-     * @param  string $url
+     * @param  string                                          $url
      * @return \JonnyW\PhantomJs\Message\AbstractRequest
      * @throws \JonnyW\PhantomJs\Exception\InvalidUrlException
      */
@@ -290,7 +290,7 @@ abstract class AbstractRequest implements RequestInterface
      * Set request data
      *
      * @access public
-     * @param  array $data
+     * @param  array                                     $data
      * @return \JonnyW\PhantomJs\Message\AbstractRequest
      */
     public function setRequestData(array $data)
@@ -320,7 +320,7 @@ abstract class AbstractRequest implements RequestInterface
      * Set headers
      *
      * @access public
-     * @param  array $headers
+     * @param  array                                     $headers
      * @return \JonnyW\PhantomJs\Message\AbstractRequest
      */
     public function setHeaders(array $headers)
@@ -332,8 +332,8 @@ abstract class AbstractRequest implements RequestInterface
      * Add single header
      *
      * @access public
-     * @param  string $header
-     * @param  string $value
+     * @param  string                                    $header
+     * @param  string                                    $value
      * @return \JonnyW\PhantomJs\Message\AbstractRequest
      */
     public function addHeader($header, $value)
@@ -347,7 +347,7 @@ abstract class AbstractRequest implements RequestInterface
      * Merge headers with existing
      *
      * @access public
-     * @param  array $headers
+     * @param  array                                     $headers
      * @return \JonnyW\PhantomJs\Message\AbstractRequest
      */
     public function addHeaders(array $headers)

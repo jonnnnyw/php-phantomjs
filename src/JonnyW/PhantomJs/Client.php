@@ -98,8 +98,8 @@ class Client implements ClientInterface
      * Internal constructor
      *
      * @access public
-     * @param  \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface $procedureLoader
-     * @param  \JonnyW\PhantomJs\Message\MessageFactoryInterface $messageFactory
+     * @param \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface $procedureLoader
+     * @param \JonnyW\PhantomJs\Message\MessageFactoryInterface    $messageFactory
      */
     public function __construct(ProcedureLoaderInterface $procedureLoader, MessageFactoryInterface $messageFactory)
     {
@@ -200,7 +200,7 @@ class Client implements ClientInterface
      * Set bin directory.
      *
      * @access public
-     * @param  string $path
+     * @param  string                   $path
      * @return \JonnyW\PhantomJs\Client
      */
     public function setBinDir($path)
@@ -225,7 +225,7 @@ class Client implements ClientInterface
      * Set new PhantomJs executable path.
      *
      * @access public
-     * @param  string $path
+     * @param  string                   $path
      * @return \JonnyW\PhantomJs\Client
      */
     public function setPhantomJs($path)
@@ -252,7 +252,7 @@ class Client implements ClientInterface
      * Set PhantomJs loader executable path.
      *
      * @access public
-     * @param  string $path
+     * @param  string                   $path
      * @return \JonnyW\PhantomJs\Client
      */
     public function setPhantomLoader($path)
@@ -279,7 +279,7 @@ class Client implements ClientInterface
      * Set PhantomJs run options.
      *
      * @access public
-     * @param  array $options
+     * @param  array                    $options
      * @return \JonnyW\PhantomJs\Client
      */
     public function setOptions(array $options)
@@ -304,7 +304,7 @@ class Client implements ClientInterface
      * Add single PhantomJs run option.
      *
      * @access public
-     * @param  string $option
+     * @param  string                   $option
      * @return \JonnyW\PhantomJs\Client
      */
     public function addOption($option)
@@ -320,7 +320,7 @@ class Client implements ClientInterface
      * Debug.
      *
      * @access public
-     * @param  boolean $doDebug
+     * @param  boolean                  $doDebug
      * @return \JonnyW\PhantomJs\Client
      */
     public function debug($doDebug)
@@ -334,7 +334,7 @@ class Client implements ClientInterface
      * Set log info.
      *
      * @access public
-     * @param  string $info
+     * @param  string                   $info
      * @return \JonnyW\PhantomJs\Client
      */
     public function setLog($info)
@@ -372,7 +372,7 @@ class Client implements ClientInterface
      * Validate execuable file.
      *
      * @access private
-     * @param  string $file
+     * @param  string                                                 $file
      * @return boolean
      * @throws \JonnyW\PhantomJs\Exception\InvalidExecutableException
      */

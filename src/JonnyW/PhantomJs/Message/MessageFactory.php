@@ -42,9 +42,9 @@ class MessageFactory implements MessageFactoryInterface
      * Create request instance.
      *
      * @access public
-     * @param  string $url
-     * @param  string $method
-     * @param  int $timeout
+     * @param  string                            $url
+     * @param  string                            $method
+     * @param  int                               $timeout
      * @return \JonnyW\PhantomJs\Message\Request
      */
     public function createRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
@@ -56,9 +56,9 @@ class MessageFactory implements MessageFactoryInterface
      * Create capture request instance.
      *
      * @access public
-     * @param  string $url
-     * @param  string $method
-     * @param  int $timeout
+     * @param  string                            $url
+     * @param  string                            $method
+     * @param  int                               $timeout
      * @return \JonnyW\PhantomJs\Message\Request
      */
     public function createCaptureRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)

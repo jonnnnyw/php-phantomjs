@@ -43,7 +43,7 @@ class Request extends AbstractRequest
      * Set request type
      *
      * @access public
-     * @param  string $type
+     * @param  string                                    $type
      * @return \JonnyW\PhantomJs\Message\AbstractRequest
      */
     public function setType($type)

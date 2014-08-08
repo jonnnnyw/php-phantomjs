@@ -47,7 +47,7 @@ interface ClientInterface
      * Set bin directory.
      *
      * @access public
-     * @param  string $path
+     * @param  string                   $path
      * @return \JonnyW\PhantomJs\Client
      */
     public function setBinDir($path);

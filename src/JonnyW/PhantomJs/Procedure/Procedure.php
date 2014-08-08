@@ -60,9 +60,9 @@ class Procedure implements ProcedureInterface
      * Internal constructor.
      *
      * @access public
-     * @param  \JonnyW\PhantomJs\Parser\ParserInterface $parser
-     * @param  \JonnyW\PhantomJs\Cache\CacheInterface $cacheHandler
-     * @param  \JonnyW\PhantomJs\Template\TemplateRendererInterface $renderer
+     * @param \JonnyW\PhantomJs\Parser\ParserInterface             $parser
+     * @param \JonnyW\PhantomJs\Cache\CacheInterface               $cacheHandler
+     * @param \JonnyW\PhantomJs\Template\TemplateRendererInterface $renderer
      */
     public function __construct(ParserInterface $parser, CacheInterface $cacheHandler, TemplateRendererInterface $renderer)
     {
@@ -75,9 +75,9 @@ class Procedure implements ProcedureInterface
      * Run procedure.
      *
      * @access public
-     * @param  \JonnyW\PhantomJs\ClientInterface $client
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface $request
-     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @param  \JonnyW\PhantomJs\ClientInterface                    $client
+     * @param  \JonnyW\PhantomJs\Message\RequestInterface           $request
+     * @param  \JonnyW\PhantomJs\Message\ResponseInterface          $response
      * @throws \JonnyW\PhantomJs\Exception\ProcedureFailedException
      * @throws \Exception
      * @throws \JonnyW\PhantomJs\Exception\NotWritableException
@@ -137,7 +137,7 @@ class Procedure implements ProcedureInterface
      * Load procedure.
      *
      * @access public
-     * @param  string $procedure
+     * @param  string                                $procedure
      * @return \JonnyW\PhantomJs\Procedure\Procedure
      */
     public function load($procedure)

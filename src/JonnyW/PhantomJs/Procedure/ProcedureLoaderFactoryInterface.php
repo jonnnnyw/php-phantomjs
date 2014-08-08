@@ -20,7 +20,7 @@ interface ProcedureLoaderFactoryInterface
      * Create procedure loader instance.
      *
      * @access public
-     * @param  string $directory
+     * @param  string                                               $directory
      * @return \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface
      */
     public function createProcedureLoader($directory);

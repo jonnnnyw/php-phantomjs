@@ -8,8 +8,6 @@
  */
 namespace JonnyW\PhantomJs\Procedure;
 
-use JonnyW\PhantomJs\Exception\NotExistsException;
-
 /**
  * PHP PhantomJs
  *
@@ -29,7 +27,7 @@ class ChainProcedureLoader implements ProcedureLoaderInterface
      * Internal constructor.
      *
      * @access public
-     * @param  array $procedureLoaders
+     * @param array $procedureLoaders
      */
     public function __construct(array $procedureLoaders)
     {
@@ -52,7 +50,7 @@ class ChainProcedureLoader implements ProcedureLoaderInterface
      * Load procedure instance by id.
      *
      * @access public
-     * @param  string $id
+     * @param  string                                         $id
      * @throws \InvalidArgumentException
      * @return \JonnyW\PhantomJs\Procedure\ProcedureInterface
      */

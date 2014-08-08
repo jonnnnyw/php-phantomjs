@@ -48,9 +48,9 @@ class ProcedureFactory implements ProcedureFactoryInterface
      * Internal constructor.
      *
      * @access public
-     * @param  \JonnyW\PhantomJs\Parser\ParserInterface $parser
-     * @param  \JonnyW\PhantomJs\Cache\CacheInterface $cacheHandler
-     * @param  \JonnyW\PhantomJs\Template\TemplateRendererInterface $renderer
+     * @param \JonnyW\PhantomJs\Parser\ParserInterface             $parser
+     * @param \JonnyW\PhantomJs\Cache\CacheInterface               $cacheHandler
+     * @param \JonnyW\PhantomJs\Template\TemplateRendererInterface $renderer
      */
     public function __construct(ParserInterface $parser, CacheInterface $cacheHandler, TemplateRendererInterface $renderer)
     {

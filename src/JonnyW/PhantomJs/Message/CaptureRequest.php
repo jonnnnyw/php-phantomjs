@@ -63,9 +63,9 @@ class CaptureRequest extends AbstractRequest
      * Internal constructor
      *
      * @access public
-     * @param string $url (default: null)
-     * @param string $method (default: RequestInterface::METHOD_GET)
-     * @param int $timeout (default: 5000)
+     * @param  string                                   $url     (default: null)
+     * @param  string                                   $method  (default: RequestInterface::METHOD_GET)
+     * @param  int                                      $timeout (default: 5000)
      * @return \JonnyW\PhantomJs\Message\CaptureRequest
      */
     public function __construct($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
@@ -93,10 +93,10 @@ class CaptureRequest extends AbstractRequest
      * Set viewport size.
      *
      * @access public
-     * @param  int $width
-     * @param  int $height
-     * @param  int $top    (default: 0)
-     * @param  int $left   (default: 0)
+     * @param  int                                       $width
+     * @param  int                                       $height
+     * @param  int                                       $top    (default: 0)
+     * @param  int                                       $left   (default: 0)
      * @return \JonnyW\PhantomJs\Message\AbstractRequest
      */
     public function setCaptureDimensions($width, $height, $top = 0, $left = 0)
@@ -157,7 +157,7 @@ class CaptureRequest extends AbstractRequest
      * Set file to save screen capture.
      *
      * @access public
-     * @param  string $file
+     * @param  string                                           $file
      * @throws \JonnyW\PhantomJs\Exception\NotWritableException
      * @return \JonnyW\PhantomJs\Message\CaptureRequest
      */
