@@ -29,6 +29,7 @@ interface CacheInterface
      * Fetch data from file.
      *
      * @access public
+     * @param string $id
      * @return void
      */
     public function fetch($id);

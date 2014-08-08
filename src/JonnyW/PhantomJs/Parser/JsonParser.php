@@ -19,7 +19,7 @@ class JsonParser implements ParserInterface
      * Parse json string into array.
      *
      * @access public
-     * @param  string    $data
+     * @param  string $data
      * @return \stdClass
      */
     public function parse($data)

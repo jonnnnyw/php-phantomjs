@@ -19,7 +19,7 @@ interface ProcedureLoaderInterface
      * Load procedure instance by id.
      *
      * @access public
-     * @param  string                                         $id
+     * @param  string $id
      * @return \JonnyW\PhantomJs\Procedure\ProcedureInterface
      */
     public function load($id);

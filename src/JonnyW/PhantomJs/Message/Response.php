@@ -83,6 +83,7 @@ class Response implements ResponseInterface
      * Import response data
      *
      * @access public
+     * @param array $data
      * @return \JonnyW\PhantomJs\Message\Response
      */
     public function import(array $data)
@@ -111,7 +112,7 @@ class Response implements ResponseInterface
      * Set headers array
      *
      * @access protected
-     * @param  array                              $headers
+     * @param  array $headers
      * @return \JonnyW\PhantomJs\Message\Response
      */
     protected function setHeaders(array $headers)
@@ -165,7 +166,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * Get page content from respone
+     * Get page content from response
      *
      * @access public
      * @return string

@@ -26,11 +26,10 @@ class ChainProcedureLoader implements ProcedureLoaderInterface
     protected $procedureLoaders;
 
     /**
-     * Internal cosntructure.
+     * Internal constructor.
      *
      * @access public
      * @param  array $procedureLoaders
-     * @return void
      */
     public function __construct(array $procedureLoaders)
     {
@@ -53,12 +52,13 @@ class ChainProcedureLoader implements ProcedureLoaderInterface
      * Load procedure instance by id.
      *
      * @access public
-     * @param  string                                         $id
+     * @param  string $id
+     * @throws \InvalidArgumentException
      * @return \JonnyW\PhantomJs\Procedure\ProcedureInterface
-     * @throws \JonnyW\PhantomJs\Exception\NotExistsException
      */
     public function load($id)
     {
+        /** @var \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface $loader */
         foreach ($this->procedureLoaders as $loader) {
 
             try {

@@ -40,7 +40,6 @@ class FileCache implements CacheInterface
      * @access public
      * @param  string $directory
      * @param  string $extension
-     * @return void
      */
     public function __construct($directory, $extension)
     {
@@ -52,8 +51,8 @@ class FileCache implements CacheInterface
      * Write data to storage.
      *
      * @access public
-     * @param  string                                           $id
-     * @param  string                                           $data
+     * @param  string $id
+     * @param  string $data
      * @return string
      * @throws \JonnyW\PhantomJs\Exception\NotWritableException
      */
@@ -79,7 +78,9 @@ class FileCache implements CacheInterface
      * Fetch data from file.
      *
      * @access public
-     * @return void
+     * @param string $id
+     * @return mixed|void
+     * @throws \JonnyW\PhantomJs\Exception\NotExistsException
      */
     public function fetch($id)
     {
@@ -122,7 +123,7 @@ class FileCache implements CacheInterface
      * Is data writeable.
      *
      * @access protected
-     * @param  string  $id
+     * @param $file
      * @return boolean
      */
     protected function isWritable($file)
@@ -160,7 +161,8 @@ class FileCache implements CacheInterface
      *
      * @access protected
      * @param  string $id
-     * @return void
+     * @return string
+     * @throws \JonnyW\PhantomJs\Exception\NotWritableException
      */
     protected function getFileName($id)
     {

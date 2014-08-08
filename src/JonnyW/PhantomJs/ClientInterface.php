@@ -30,7 +30,7 @@ interface ClientInterface
      * Get message factory instance
      *
      * @access public
-     * @return \JonnyW\PhantomJs\Message\FactoryInterface
+     * @return \JonnyW\PhantomJs\Message\MessageFactoryInterface
      */
     public function getMessageFactory();
 
@@ -47,7 +47,7 @@ interface ClientInterface
      * Set bin directory.
      *
      * @access public
-     * @param  string                   $path
+     * @param  string $path
      * @return \JonnyW\PhantomJs\Client
      */
     public function setBinDir($path);
