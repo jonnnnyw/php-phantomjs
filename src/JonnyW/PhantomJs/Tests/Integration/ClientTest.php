@@ -153,7 +153,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
 
         $client->send($request, $response);
 
@@ -175,7 +175,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
 
         $client->send($request, $response);
 
@@ -197,7 +197,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-console-error.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-console-error.php');
 
         $client->send($request, $response);
 
@@ -222,7 +222,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-console-error.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-console-error.php');
 
         $client->send($request, $response);
 
@@ -245,11 +245,37 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-console-error.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-console-error.php');
 
         $client->send($request, $response);
 
         $this->assertNotEmpty($response->getHeaders());
+    }
+
+    /**
+     * Test POST request sends request data.
+     *
+     * @access public
+     * @return void
+     */
+    public function testPostRequestSendsRequestData()
+    {
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('POST');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-post.php');
+        $request->setRequestData(array(
+            'test1' => urlencode('http://test.com'),
+            'test2' => 100,
+        ));
+
+        $client->send($request, $response);
+
+        $this->assertContains(sprintf('<li>test1=%s</li>', 'http://test.com'), $response->getContent());
+        $this->assertContains(sprintf('<li>test2=%s</li>', 100), $response->getContent());
     }
 
     /**
@@ -270,7 +296,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-console-error.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-console-error.php');
         $request->setCaptureFile($file);
 
         $client->send($request, $response);
@@ -299,7 +325,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-capture.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
         $request->setCaptureFile($file);
         $request->setCaptureDimensions($width, $height);
 
@@ -330,7 +356,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
         $request->setViewportsize($width, $height);
 
         $client->send($request, $response);
@@ -361,7 +387,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
         $request->setViewportsize($width, $height);
 
         $client->send($request, $response);
@@ -382,7 +408,7 @@ EOF;
      */
     public function testDelayLogsStartTimeInClientForDefaultRequest()
     {
-        $delay = 2;
+        $delay = 1;
 
         $client = $this->getClient();
 
@@ -390,7 +416,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -411,7 +437,7 @@ EOF;
      */
     public function testDelayLogsEndTimeInClientForDefaultRequest()
     {
-        $delay = 2;
+        $delay = 1;
 
         $client = $this->getClient();
 
@@ -419,7 +445,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -440,7 +466,7 @@ EOF;
      */
     public function testDelayDelaysPageRenderForSpecifiedTimeForDefaultRequest()
     {
-        $delay = 2;
+        $delay = 1;
 
         $client = $this->getClient();
 
@@ -448,7 +474,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -473,7 +499,7 @@ EOF;
      */
     public function testDelayLogsStartTimeInClientForCaptureRequest()
     {
-        $delay = 2;
+        $delay = 1;
 
         $client = $this->getClient();
 
@@ -481,7 +507,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-capture.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -502,7 +528,7 @@ EOF;
      */
     public function testDelayLogsEndTimeInClientForCaptureRequest()
     {
-        $delay = 2;
+        $delay = 1;
 
         $client = $this->getClient();
 
@@ -510,7 +536,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-capture.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -531,7 +557,7 @@ EOF;
      */
     public function testDelayDelaysPageRenderForSpecifiedTimeForCaptureRequest()
     {
-        $delay = 2;
+        $delay = 1;
 
         $client = $this->getClient();
 
@@ -539,7 +565,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-capture.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -571,7 +597,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnnnyw.github.io/php-phantomjs/tests/test-default.html');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
 
         $client->send($request, $response);
 

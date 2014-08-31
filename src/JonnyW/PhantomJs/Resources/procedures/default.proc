@@ -1,3 +1,4 @@
+{% autoescape false %}
 
 /**
  * Set up page and script parameters.
@@ -138,3 +139,5 @@ procedure.execute = function (status) {
     
     phantom.exit();
 };
+
+{% endautoescape %}
