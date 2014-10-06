@@ -283,7 +283,7 @@ abstract class AbstractRequest implements RequestInterface
             return '';
         }
 
-        return urldecode(http_build_query($this->getRequestData()));
+        return http_build_query($this->getRequestData());
     }
 
     /**
