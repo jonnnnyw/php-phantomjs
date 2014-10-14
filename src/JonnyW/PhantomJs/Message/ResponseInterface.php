@@ -96,4 +96,12 @@ interface ResponseInterface
      * @return string
      */
     public function getTime();
+
+    /**
+     * Get content-disposition data
+     *
+     * @access public
+     * @return string
+     */
+    public function getData();
 }
