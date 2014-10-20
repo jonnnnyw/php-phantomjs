@@ -183,4 +183,15 @@ interface RequestInterface
      * @return array
      */
     public function getHeaders($format = 'default');
+
+    /**
+     * @param string $zipDownload
+     * @return mixed
+     */
+    public function setZipDownload($zipDownload);
+
+    /**
+     * @return string
+     */
+    public function getZipDownload();
 }

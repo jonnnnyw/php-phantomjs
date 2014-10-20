@@ -84,6 +84,14 @@ abstract class AbstractRequest implements RequestInterface
     protected $viewportHeight;
 
     /**
+     * Download location
+     *
+     * @var string
+     * @access protected
+     */
+    protected $zipDownload;
+
+    /**
      * Internal constructor
      *
      * @access public
@@ -98,6 +106,7 @@ abstract class AbstractRequest implements RequestInterface
         $this->delay          = 0;
         $this->viewportWidth  = 0;
         $this->viewportHeight = 0;
+        $this->zipDownload    = '';
 
         $this->setMethod($method);
         $this->setTimeout($timeout);
@@ -401,5 +410,27 @@ abstract class AbstractRequest implements RequestInterface
         }
 
         return $flat;
+    }
+
+    /**
+     * Download location if the file is .zip
+     *
+     * @return string
+     */
+    public function getZipDownload()
+    {
+        return (string) $this->zipDownload;
+    }
+
+    /**
+     * Download location if the file is a .zip
+     *
+     * @param string $downloadLocation
+     * @return $this
+     */
+    public function setZipDownload($zipDownload)
+    {
+        $this->zipDownload = (string)$zipDownload;
+        return $this;
     }
 }

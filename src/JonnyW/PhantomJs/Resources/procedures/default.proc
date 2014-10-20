@@ -5,6 +5,8 @@
  */
 var page       = require('webpage').create(),
     system     = require('system'),
+    fs         = require('fs'),
+    downloadLoc = '{{ request.getZipDownload() }}',
     headers    = {{ request.getHeaders('json') }},
     delay      = {{ request.getDelay() }},
     vpWidth    = {{ request.getViewportWidth() }},
@@ -53,6 +55,9 @@ page.onResourceTimeout = function (e) {
 page.onResourceReceived = function (r) {
     if(!response.status) response = r;
 
+    if(r.body && r.contentType.indexOf("zip") > -1) {
+        fs.write(downloadLoc,r.body,'b');
+    }
     response.data = r.body;
 };
 
@@ -105,7 +110,6 @@ page.open ('{{ request.getUrl() }}', '{{ request.getMethod() }}', '{{ request.ge
     if(!delay) {
         return procedure.execute(status);
     }
-    
     debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Delaying page render for ' + delay + ' second(s)');
     
     window.setTimeout(function () { 
