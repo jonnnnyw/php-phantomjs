@@ -185,13 +185,24 @@ interface RequestInterface
     public function getHeaders($format = 'default');
 
     /**
-     * @param string $zipDownload
+     * @param string $downloadLocation
      * @return mixed
      */
-    public function setZipDownload($zipDownload);
+    public function setDownloadLocation($downloadLocation);
 
     /**
      * @return string
      */
-    public function getZipDownload();
+    public function getDownloadLocation();
+
+    /**
+     * @param string $downloadContentType
+     * @return mixed
+     */
+    public function setDownloadContentType($downloadContentType);
+
+    /**
+     * @return string
+     */
+    public function getDownloadContentType();
 }

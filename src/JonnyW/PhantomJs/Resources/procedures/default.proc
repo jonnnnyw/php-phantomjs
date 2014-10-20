@@ -6,7 +6,8 @@
 var page       = require('webpage').create(),
     system     = require('system'),
     fs         = require('fs'),
-    downloadLoc = '{{ request.getZipDownload() }}',
+    downloadLocation = '{{ request.getDownloadLocation() }}',
+    downloadContentType = '{{ request.getDownloadContentType() }}',
     headers    = {{ request.getHeaders('json') }},
     delay      = {{ request.getDelay() }},
     vpWidth    = {{ request.getViewportWidth() }},
@@ -16,7 +17,9 @@ var page       = require('webpage').create(),
     logs       = [],
     procedure  = {};
 
-page.captureContent = ['.*']; // capture everything
+if(downloadContentType && downloadLocation) {
+    page.captureContent = ['.' + downloadContentType];
+}
 
 /**
  * Set viewport size.
@@ -55,8 +58,8 @@ page.onResourceTimeout = function (e) {
 page.onResourceReceived = function (r) {
     if(!response.status) response = r;
 
-    if(r.body && r.contentType.indexOf("zip") > -1) {
-        fs.write(downloadLoc,r.body,'b');
+    if(r.body && downloadLocation && downloadContentType && r.contentType.indexOf(downloadContentType) > -1 ) {
+        fs.write(downloadLocation,r.body,'b');
     }
     response.data = r.body;
 };

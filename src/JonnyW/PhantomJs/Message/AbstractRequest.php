@@ -89,7 +89,15 @@ abstract class AbstractRequest implements RequestInterface
      * @var string
      * @access protected
      */
-    protected $zipDownload;
+    protected $downloadLocation;
+
+    /**
+     * The content type to accept for download
+     *
+     * @var string
+     * @access protected
+     */
+    protected $downloadContentType;
 
     /**
      * Internal constructor
@@ -106,7 +114,8 @@ abstract class AbstractRequest implements RequestInterface
         $this->delay          = 0;
         $this->viewportWidth  = 0;
         $this->viewportHeight = 0;
-        $this->zipDownload    = '';
+        $this->downloadLocation    = '';
+        $this->downloadContentType    = '';
 
         $this->setMethod($method);
         $this->setTimeout($timeout);
@@ -417,20 +426,42 @@ abstract class AbstractRequest implements RequestInterface
      *
      * @return string
      */
-    public function getZipDownload()
+    public function getDownloadLocation()
     {
-        return (string) $this->zipDownload;
+        return (string) $this->downloadLocation;
     }
 
     /**
-     * Download location if the file is a .zip
+     * Download location of a file
      *
      * @param string $downloadLocation
      * @return $this
      */
-    public function setZipDownload($zipDownload)
+    public function setDownloadLocation($downloadLocation)
     {
-        $this->zipDownload = (string)$zipDownload;
+        $this->downloadLocation = (string)$downloadLocation;
+        return $this;
+    }
+
+    /**
+     * Content type to allow to be downloaded
+     *
+     * @return string
+     */
+    public function getDownloadContentType()
+    {
+        return (string) $this->downloadContentType;
+    }
+
+    /**
+     * Content type to allow to be downloaded
+     *
+     * @param string $downloadContentType
+     * @return $this
+     */
+    public function setDownloadContentType($downloadContentType)
+    {
+        $this->downloadContentType = (string)$downloadContentType;
         return $this;
     }
 }
