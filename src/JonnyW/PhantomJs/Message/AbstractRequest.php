@@ -107,7 +107,7 @@ abstract class AbstractRequest implements RequestInterface
      * @param string $method  (default: RequestInterface::METHOD_GET)
      * @param int    $timeout (default: 5000)
      */
-    public function __construct($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
+    public function __construct($url = null, $method = RequestInterface::METHOD_GET, $timeout = 30000)
     {
         $this->headers        = array();
         $this->data           = array();

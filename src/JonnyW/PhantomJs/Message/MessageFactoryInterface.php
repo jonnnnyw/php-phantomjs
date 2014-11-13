@@ -32,7 +32,7 @@ interface MessageFactoryInterface
      * @param  int                                        $timeout (default: 5000)
      * @return \JonnyW\PhantomJs\Message\RequestInterface
      */
-    public function createRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000);
+    public function createRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 30000);
 
     /**
      * Create capture request instance.
@@ -43,7 +43,7 @@ interface MessageFactoryInterface
      * @param  int                                        $timeout (default: 5000)
      * @return \JonnyW\PhantomJs\Message\RequestInterface
      */
-    public function createCaptureRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000);
+    public function createCaptureRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 30000);
 
     /**
      * Create response instance.

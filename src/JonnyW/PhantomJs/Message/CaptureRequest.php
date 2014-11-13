@@ -68,7 +68,7 @@ class CaptureRequest extends AbstractRequest
      * @param  int                                      $timeout (default: 5000)
      * @return \JonnyW\PhantomJs\Message\CaptureRequest
      */
-    public function __construct($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
+    public function __construct($url = null, $method = RequestInterface::METHOD_GET, $timeout = 30000)
     {
         parent::__construct($url, $method, $timeout);
 
