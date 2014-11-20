@@ -187,6 +187,8 @@ class Client implements ClientInterface
         $this->validateExecutable($phantomJs);
         $this->validateExecutable($phantomLoader);
 
+        $this->addOption('--ssl-protocol=any');
+
         $options = $this->getOptions();
 
         if ($this->debug) {

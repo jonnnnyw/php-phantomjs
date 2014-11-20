@@ -61,7 +61,7 @@ class MessageFactory implements MessageFactoryInterface
      * @param  int                               $timeout
      * @return \JonnyW\PhantomJs\Message\Request
      */
-    public function createCaptureRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
+    public function createCaptureRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 30000)
     {
         return new CaptureRequest($url, $method, $timeout);
     }
