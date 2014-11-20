@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.1.7 - 20/11/2014
+### [CGIV-4172](https://channelgrabber.atlassian.net/browse/CGIV-4172)
+Added so that phantomJS will always have the option telling it to
+accept all SSL options
+
 ## 3.1.6 - 14/11/2014
 ### [CGIV-4103](https://channelgrabber.atlassian.net/browse/CGIV-4103)
 Increased request timeout to 30000 (30 seconds) rather than the previous
