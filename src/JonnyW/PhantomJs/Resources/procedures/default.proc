@@ -5,6 +5,9 @@
  */
 var page       = require('webpage').create(),
     system     = require('system'),
+    fs         = require('fs'),
+    downloadLocation = '{{ request.getDownloadLocation() }}',
+    downloadContentType = '{{ request.getDownloadContentType() }}',
     headers    = {{ request.getHeaders('json') }},
     delay      = {{ request.getDelay() }},
     vpWidth    = {{ request.getViewportWidth() }},
@@ -13,6 +16,10 @@ var page       = require('webpage').create(),
     debug      = [],
     logs       = [],
     procedure  = {};
+
+if(downloadContentType && downloadLocation) {
+    page.captureContent = ['.' + downloadContentType];
+}
 
 /**
  * Set viewport size.
@@ -50,6 +57,11 @@ page.onResourceTimeout = function (e) {
  */
 page.onResourceReceived = function (r) {
     if(!response.status) response = r;
+
+    if(r.body && downloadLocation && downloadContentType && r.contentType.indexOf(downloadContentType) > -1 ) {
+        fs.write(downloadLocation,r.body,'b');
+    }
+    response.data = r.body;
 };
 
 /**
@@ -101,7 +113,6 @@ page.open ('{{ request.getUrl() }}', '{{ request.getMethod() }}', '{{ request.ge
     if(!delay) {
         return procedure.execute(status);
     }
-    
     debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Delaying page render for ' + delay + ' second(s)');
     
     window.setTimeout(function () { 
