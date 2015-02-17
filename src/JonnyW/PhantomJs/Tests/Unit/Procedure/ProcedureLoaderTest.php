@@ -53,8 +53,7 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
         $procedureFactory = $this->getProcedureFactory();
         $fileLocator      = $this->getFileLocator();
 
-        $fileLocator->expects($this->any())
-            ->method('locate')
+        $fileLocator->method('locate')
             ->will($this->returnValue('http://example.com/index.html'));
 
         $procedureLoader = $this->getProcedureLoader($procedureFactory, $fileLocator);
@@ -75,8 +74,7 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
         $procedureFactory = $this->getProcedureFactory();
         $fileLocator      = $this->getFileLocator();
 
-        $fileLocator->expects($this->any())
-            ->method('locate')
+        $fileLocator->method('locate')
             ->will($this->returnValue('/invalid/file.proc'));
 
         $procedureLoader = $this->getProcedureLoader($procedureFactory, $fileLocator);
@@ -98,12 +96,10 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
         $fileLocator      = $this->getFileLocator();
         $procedure        = $this->getProcedure();
 
-        $fileLocator->expects($this->any())
-            ->method('locate')
+        $fileLocator->method('locate')
             ->will($this->returnValue($file));
 
-        $procedureFactory->expects($this->any())
-            ->method('createProcedure')
+        $procedureFactory->method('createProcedure')
             ->will($this->returnValue($procedure));
 
         $procedureLoader = $this->getProcedureLoader($procedureFactory, $fileLocator);
@@ -127,12 +123,10 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
         $fileLocator      = $this->getFileLocator();
         $procedure        = $this->getProcedure();
 
-        $fileLocator->expects($this->any())
-            ->method('locate')
+        $fileLocator->method('locate')
             ->will($this->returnValue($file));
 
-        $procedureFactory->expects($this->any())
-            ->method('createProcedure')
+        $procedureFactory->method('createProcedure')
             ->will($this->returnValue($procedure));
 
         $procedureLoader = $this->getProcedureLoader($procedureFactory, $fileLocator);

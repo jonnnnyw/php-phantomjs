@@ -51,8 +51,7 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('\InvalidArgumentException');
 
         $procedureLoader = $this->getProcedureLoader();
-        $procedureLoader->expects($this->any())
-            ->method('load')
+        $procedureLoader->method('load')
             ->will($this->throwException(new \Exception()));
 
         $procedureLoaders = array(
@@ -74,8 +73,7 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
         $procedure = $this->getProcedure();
 
         $procedureLoader = $this->getProcedureLoader();
-        $procedureLoader->expects($this->any())
-            ->method('load')
+        $procedureLoader->method('load')
             ->will($this->returnValue($procedure));
 
         $procedureLoaders = array(

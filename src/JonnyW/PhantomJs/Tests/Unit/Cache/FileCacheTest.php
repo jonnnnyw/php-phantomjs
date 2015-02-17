@@ -94,8 +94,7 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
         $fileCache = $this->getMockFileCache(array('writeData'), $this->directory, 'txt');
-        $fileCache->expects($this->any())
-            ->method('writeData')
+        $fileCache->method('writeData')
             ->will($this->returnValue(false));
 
         $fileCache->save($this->filename, 'Test');

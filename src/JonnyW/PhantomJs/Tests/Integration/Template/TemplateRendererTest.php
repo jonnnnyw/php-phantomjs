@@ -69,8 +69,7 @@ class TemplateRendererTest extends TestCase
         $template = 'var param = {{ request.getTimeout() }}';
 
         $request = $this->getRequest();
-        $request->expects($this->any())
-            ->method('getTimeout')
+        $request->method('getTimeout')
             ->will($this->returnValue(5000));
 
         $renderer = $this->getInjectedTemplateRenderer();
