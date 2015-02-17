@@ -161,6 +161,32 @@ EOF;
     }
 
     /**
+     * Test response contains 200 status code if
+     * request URL contains reserved characters.
+     *
+     * @access public
+     * @return void
+     */
+    public function testResponseContains200StatusCodeIfRequestUrlContainsReservedCharacters()
+    {
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setRequestData(array(
+            'test1' => 'http://test.com',
+            'test2' => 'A string with an \' ) / # some other invalid [ characters.'
+        ));
+
+        $client->send($request, $response);
+
+        $this->assertEquals(200, $response->getStatus());
+    }
+
+    /**
      * Test response contains valid body if page is
      * successfully loaded.
      *
@@ -268,14 +294,14 @@ EOF;
         $request->setMethod('POST');
         $request->setUrl('http://jonnyw.kiwi/tests/test-post.php');
         $request->setRequestData(array(
-            'test1' => urlencode('http://test.com'),
-            'test2' => 100,
+            'test1' => 'http://test.com',
+            'test2' => 'A string with an \' ) / # some other invalid [ characters.'
         ));
 
         $client->send($request, $response);
 
         $this->assertContains(sprintf('<li>test1=%s</li>', 'http://test.com'), $response->getContent());
-        $this->assertContains(sprintf('<li>test2=%s</li>', 100), $response->getContent());
+        $this->assertContains(sprintf('<li>test2=%s</li>', 'A string with an \' ) / # some other invalid [ characters.'), $response->getContent());
     }
 
     /**
