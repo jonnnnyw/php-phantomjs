@@ -183,4 +183,26 @@ interface RequestInterface
      * @return array
      */
     public function getHeaders($format = 'default');
+
+    /**
+     * @param string $downloadLocation
+     * @return mixed
+     */
+    public function setDownloadLocation($downloadLocation);
+
+    /**
+     * @return string
+     */
+    public function getDownloadLocation();
+
+    /**
+     * @param string $downloadContentType
+     * @return mixed
+     */
+    public function setDownloadContentType($downloadContentType);
+
+    /**
+     * @return string
+     */
+    public function getDownloadContentType();
 }

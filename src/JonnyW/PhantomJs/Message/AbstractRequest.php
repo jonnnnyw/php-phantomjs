@@ -84,6 +84,22 @@ abstract class AbstractRequest implements RequestInterface
     protected $viewportHeight;
 
     /**
+     * Download location
+     *
+     * @var string
+     * @access protected
+     */
+    protected $downloadLocation;
+
+    /**
+     * The content type to accept for download
+     *
+     * @var string
+     * @access protected
+     */
+    protected $downloadContentType;
+
+    /**
      * Internal constructor
      *
      * @access public
@@ -98,6 +114,8 @@ abstract class AbstractRequest implements RequestInterface
         $this->delay          = 0;
         $this->viewportWidth  = 0;
         $this->viewportHeight = 0;
+        $this->downloadLocation    = '';
+        $this->downloadContentType    = '';
 
         $this->setMethod($method);
         $this->setTimeout($timeout);
@@ -401,5 +419,49 @@ abstract class AbstractRequest implements RequestInterface
         }
 
         return $flat;
+    }
+
+    /**
+     * Download location if the file is .zip
+     *
+     * @return string
+     */
+    public function getDownloadLocation()
+    {
+        return (string) $this->downloadLocation;
+    }
+
+    /**
+     * Download location of a file
+     *
+     * @param string $downloadLocation
+     * @return $this
+     */
+    public function setDownloadLocation($downloadLocation)
+    {
+        $this->downloadLocation = (string)$downloadLocation;
+        return $this;
+    }
+
+    /**
+     * Content type to allow to be downloaded
+     *
+     * @return string
+     */
+    public function getDownloadContentType()
+    {
+        return (string) $this->downloadContentType;
+    }
+
+    /**
+     * Content type to allow to be downloaded
+     *
+     * @param string $downloadContentType
+     * @return $this
+     */
+    public function setDownloadContentType($downloadContentType)
+    {
+        $this->downloadContentType = (string)$downloadContentType;
+        return $this;
     }
 }

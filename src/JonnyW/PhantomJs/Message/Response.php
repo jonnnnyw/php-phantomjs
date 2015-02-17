@@ -80,6 +80,13 @@ class Response implements ResponseInterface
     public $console;
 
     /**
+     * Data from content-disposition, can be null
+     * @var string
+     * @access public
+     */
+    public $data;
+
+    /**
      * Import response data
      *
      * @access public
@@ -243,5 +250,16 @@ class Response implements ResponseInterface
     public function getConsole()
     {
         return $this->console;
+    }
+
+    /**
+     * Get content-disposition data
+     *
+     * @access public
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
     }
 }
