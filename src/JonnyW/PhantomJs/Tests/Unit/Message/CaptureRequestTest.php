@@ -24,16 +24,33 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test get type returns capture request type.
+     * Test capture type is returned by default
+     * if no type is set.
      *
      * @access public
      * @return void
      */
-    public function testGetTypeReturnsCaptureRequestType()
+    public function testCaptureTypeIsReturnedByDefaultIfNotTypeIsSet()
     {
         $captureRequest = $this->getCaptureRequest();
 
         $this->assertSame(RequestInterface::REQUEST_TYPE_CAPTURE, $captureRequest->getType());
+    }
+
+    /**
+     * Test custom type is returned if type is set.
+     *
+     * @access public
+     * @return void
+     */
+    public function testCustomTypeIsReturnedIfTypeIsSet()
+    {
+        $requestType = 'testType';
+
+        $captureRequest = $this->getCaptureRequest();
+        $captureRequest->setType($requestType);
+
+        $this->assertSame($requestType, $captureRequest->getType());
     }
 
     /**

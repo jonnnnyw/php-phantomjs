@@ -20,6 +20,14 @@ class CaptureRequest extends AbstractRequest
     implements CaptureRequestInterface
 {
     /**
+     * Request type
+     *
+     * @var string
+     * @access protected
+     */
+    protected $type;
+
+    /**
      * File to save capture.
      *
      * @var string
@@ -79,14 +87,32 @@ class CaptureRequest extends AbstractRequest
     }
 
     /**
-     * Get request type.
+     * Get request type
      *
      * @access public
      * @return string
      */
     public function getType()
     {
-        return RequestInterface::REQUEST_TYPE_CAPTURE;
+        if (!$this->type) {
+            return RequestInterface::REQUEST_TYPE_CAPTURE;
+        }
+
+        return $this->type;
+    }
+
+    /**
+     * Set request type
+     *
+     * @access public
+     * @param  string                                    $type
+     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
     }
 
     /**
