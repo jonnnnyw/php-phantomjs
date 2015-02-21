@@ -8,8 +8,13 @@
  */
 namespace JonnyW\PhantomJs\Tests\Unit\Procedure;
 
+use Twig_Environment;
+use Twig_Loader_String;
+use JonnyW\PhantomJs\Cache\FileCache;
 use JonnyW\PhantomJs\Cache\CacheInterface;
+use JonnyW\PhantomJs\Parser\JsonParser;
 use JonnyW\PhantomJs\Parser\ParserInterface;
+use JonnyW\PhantomJs\Template\TemplateRenderer;
 use JonnyW\PhantomJs\Template\TemplateRendererInterface;
 use JonnyW\PhantomJs\Procedure\ProcedureFactory;
 
@@ -26,13 +31,13 @@ class ProcedureFactoryTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test create procedure returns instance
-     * of procedure.
+     * Test factory can create instance of
+     * procedure.
      *
      * @access public
      * @return void
      */
-    public function testCreateProcedureReturnsInstanceOfProcedure()
+    public function testFactoryCanCreateInstanceOfProcedure()
     {
         $parser    = $this->getParser();
         $cache     = $this->getCache();
@@ -63,46 +68,48 @@ class ProcedureFactoryTest extends \PHPUnit_Framework_TestCase
         return $procedureFactory;
     }
 
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++ MOCKS / STUBS ++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
-
     /**
-     * Get mock parser instance.
+     * Get parser.
      *
      * @access protected
-     * @return \JonnyW\PhantomJs\Parser\ParserInterface
+     * @return \JonnyW\PhantomJs\Parser\JsonParser
      */
     protected function getParser()
     {
-        $mockParser = $this->getMock('\JonnyW\PhantomJs\Parser\ParserInterface');
+        $parser = new JsonParser();
 
-        return $mockParser;
+        return $parser;
     }
 
     /**
-     * Get mock cache instance.
+     * Get cache.
      *
      * @access protected
-     * @return \JonnyW\PhantomJs\Cache\CacheInterface
+     * @param  string                            $cacheDir  (default: '')
+     * @param  string                            $extension (default: 'proc')
+     * @return \JonnyW\PhantomJs\Cache\FileCache
      */
-    protected function getCache()
+    protected function getCache($cacheDir = '', $extension = 'proc')
     {
-        $mockCache = $this->getMock('\JonnyW\PhantomJs\Cache\CacheInterface');
+        $cache = new FileCache(($cacheDir ? $cacheDir : sys_get_temp_dir()), 'proc');
 
-        return $mockCache;
+        return $cache;
     }
 
     /**
-     * Get mock template renderer instance.
+     * Get template renderer.
      *
      * @access protected
-     * @return \JonnyW\PhantomJs\Template\TemplateRendererInterface
+     * @return \JonnyW\PhantomJs\Template\TemplateRenderer
      */
     protected function getRenderer()
     {
-        $mockTemplateRenderer = $this->getMock('\JonnyW\PhantomJs\Template\TemplateRendererInterface');
+        $twig = new Twig_Environment(
+            new Twig_Loader_String()
+        );
 
-        return $mockTemplateRenderer;
+        $renderer = new TemplateRenderer($twig);
+
+        return $renderer;
     }
 }

@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace JonnyW\PhantomJs\Message;
+namespace JonnyW\PhantomJs\Http;
 
 /**
  * PHP PhantomJs

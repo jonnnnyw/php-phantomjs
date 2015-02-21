@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace JonnyW\PhantomJs\Message;
+namespace JonnyW\PhantomJs\Http;
 
 use JonnyW\PhantomJs\Exception\NotWritableException;
 
@@ -71,10 +71,10 @@ class CaptureRequest extends AbstractRequest
      * Internal constructor
      *
      * @access public
-     * @param  string                                   $url     (default: null)
-     * @param  string                                   $method  (default: RequestInterface::METHOD_GET)
-     * @param  int                                      $timeout (default: 5000)
-     * @return \JonnyW\PhantomJs\Message\CaptureRequest
+     * @param  string                                $url     (default: null)
+     * @param  string                                $method  (default: RequestInterface::METHOD_GET)
+     * @param  int                                   $timeout (default: 5000)
+     * @return \JonnyW\PhantomJs\Http\CaptureRequest
      */
     public function __construct($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
     {
@@ -105,8 +105,8 @@ class CaptureRequest extends AbstractRequest
      * Set request type
      *
      * @access public
-     * @param  string                                    $type
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @param  string                                 $type
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      */
     public function setType($type)
     {
@@ -119,11 +119,11 @@ class CaptureRequest extends AbstractRequest
      * Set viewport size.
      *
      * @access public
-     * @param  int                                       $width
-     * @param  int                                       $height
-     * @param  int                                       $top    (default: 0)
-     * @param  int                                       $left   (default: 0)
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @param  int                                    $width
+     * @param  int                                    $height
+     * @param  int                                    $top    (default: 0)
+     * @param  int                                    $left   (default: 0)
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      */
     public function setCaptureDimensions($width, $height, $top = 0, $left = 0)
     {
@@ -185,7 +185,7 @@ class CaptureRequest extends AbstractRequest
      * @access public
      * @param  string                                           $file
      * @throws \JonnyW\PhantomJs\Exception\NotWritableException
-     * @return \JonnyW\PhantomJs\Message\CaptureRequest
+     * @return \JonnyW\PhantomJs\Http\CaptureRequest
      */
     public function setCaptureFile($file)
     {

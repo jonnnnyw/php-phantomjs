@@ -7,6 +7,8 @@ parameters:
     phantomjs.cache_dir: /tmp
     phantomjs.procedure_dir: "%phantomjs.resource_dir%/procedures"
     phantomjs.procedure_extension: proc
+    phantomjs.validator_dir: "%phantomjs.resource_dir%/validators"
+    phantomjs.validator_engine: "esprima-2.0.0.js"
 
 ##################
 ### PROCEDURES ###
@@ -16,18 +18,25 @@ parameters:
     phantomjs.procedure.chain_loader.class: JonnyW\PhantomJs\Procedure\ChainProcedureLoader
     phantomjs.procedure.procedure_factory.class: JonnyW\PhantomJs\Procedure\ProcedureFactory
     phantomjs.procedure.procedure_loader_factory.class: JonnyW\PhantomJs\Procedure\ProcedureLoaderFactory
+    phantomjs.procedure.procedure_validator.class: JonnyW\PhantomJs\Procedure\ProcedureValidator
 
-################
-### MESSAGES ###
-################
+############
+### HTTP ###
+############
 
-    phantomjs.message.message_factory.class: JonnyW\PhantomJs\Message\MessageFactory
+    phantomjs.http.message_factory.class: JonnyW\PhantomJs\Http\MessageFactory
 
 ################
 ### PARSING ####
 ################
 
     phantomjs.parser.json_parser.class: JonnyW\PhantomJs\Parser\JsonParser
+
+###################
+### VALIDATION ####
+###################
+
+    phantomjs.validator.esprima.class: JonnyW\PhantomJs\Validator\Esprima
 
 ##################
 ### TEMPLATES ####

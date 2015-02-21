@@ -6,9 +6,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace JonnyW\PhantomJs\Tests\Unit\Message;
+namespace JonnyW\PhantomJs\Tests\Unit\Http;
 
-use JonnyW\PhantomJs\Message\MessageFactory;
+use JonnyW\PhantomJs\Http\MessageFactory;
 
 /**
  * PHP PhantomJs
@@ -23,38 +23,36 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test get instance returns instance of
-     * message factory.
+     * Test factory method creates message factory.
      *
      * @access public
      * @return void
      */
-    public function testGetInstanceReturnsInstanceOfMessageFactory()
+    public function testFactoryMethodCreatesMessageFactory()
     {
-        $this->assertInstanceOf('\JonnyW\PhantomJs\Message\MessageFactory', MessageFactory::getInstance());
+        $this->assertInstanceOf('\JonnyW\PhantomJs\Http\MessageFactory', MessageFactory::getInstance());
     }
 
     /**
-     * Test create request returns instance of request.
+     * Test can create request.
      *
      * @access public
      * @return void
      */
-    public function testCreateRequestReturnsInstanceOfRequest()
+    public function testCanCreateRequest()
     {
         $messageFactory = $this->getMessageFactory();
 
-        $this->assertInstanceOf('\JonnyW\PhantomJs\Message\Request', $messageFactory->createRequest());
+        $this->assertInstanceOf('\JonnyW\PhantomJs\Http\Request', $messageFactory->createRequest());
     }
 
     /**
-     * Test create request with URL sets
-     * URL in request.
+     * Test can create request with URL.
      *
      * @access public
      * @return void
      */
-    public function testCreateRequestWithUrlSetsUrlInRequest()
+    public function testCanCreateRequestWithUrl()
     {
         $url = 'http://test.com';
 
@@ -65,13 +63,12 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test create request with method sets
-     * method in request.
+     * Test can create request with method.
      *
      * @access public
      * @return void
      */
-    public function testCreateRequestWithMethodSetsMethodInRequest()
+    public function testCanCreateRequestWithMethod()
     {
         $method = 'POST';
 
@@ -82,13 +79,12 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test create request with timeout sets
-     * timeout in request.
+     * Test can create request with timeout.
      *
      * @access public
      * @return void
      */
-    public function testCreateRequestWithTimeoutSetsTimeoutInRequest()
+    public function testCanCreateRequestWithTimeout()
     {
         $timeout = 123456789;
 
@@ -99,27 +95,25 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test create capture request returns
-     * instance of capture request.
+     * Test can create capture request.
      *
      * @access public
      * @return void
      */
-    public function testCreateCaptureRequestReturnsInstanceOfCaptureRequest()
+    public function testCanCreateCaptureRequest()
     {
         $messageFactory = $this->getMessageFactory();
 
-        $this->assertInstanceOf('\JonnyW\PhantomJs\Message\CaptureRequest', $messageFactory->createCaptureRequest());
+        $this->assertInstanceOf('\JonnyW\PhantomJs\Http\CaptureRequest', $messageFactory->createCaptureRequest());
     }
 
     /**
-     * Test create capture request with URL sets
-     * URL in capture request.
+     * Test can create capture request with URL.
      *
      * @access public
      * @return void
      */
-    public function testCreateCaptureRequestWithUrlSetsUrlInCaptureRequest()
+    public function testCanCreateCaptureRequestWithUrl()
     {
         $url = 'http://test.com';
 
@@ -130,13 +124,13 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test create capture request with method sets
-     * method in capture request.
+     * Test can create capture request
+     * with method.
      *
      * @access public
      * @return void
      */
-    public function testCreateCaptureRequestWithMethodSetsMethodInCaptureRequest()
+    public function testCanCreateCaptureRequestWithMethod()
     {
         $method = 'POST';
 
@@ -147,13 +141,12 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test create capture request with timeout sets
-     * timeout in capture request.
+     * Test can create capture request with timeout.
      *
      * @access public
      * @return void
      */
-    public function testCreateCaptureRequestWithTimeoutSetsTimeoutInCaptureRequest()
+    public function testCanCreateCaptureRequestWithTimeout()
     {
         $timeout = 123456789;
 
@@ -164,16 +157,16 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test create response returns instance of response.
+     * Test can create response.
      *
      * @access public
      * @return void
      */
-    public function testCreateResponseReturnsInstanceOfResponse()
+    public function testCanCreateResponse()
     {
         $messageFactory = $this->getMessageFactory();
 
-        $this->assertInstanceOf('\JonnyW\PhantomJs\Message\Response', $messageFactory->createResponse());
+        $this->assertInstanceOf('\JonnyW\PhantomJs\Http\Response', $messageFactory->createResponse());
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -184,7 +177,7 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
      * Get message factory instance.
      *
      * @access protected
-     * @return \JonnyW\PhantomJs\Message\MessageFactory
+     * @return \JonnyW\PhantomJs\Http\MessageFactory
      */
     protected function getMessageFactory()
     {

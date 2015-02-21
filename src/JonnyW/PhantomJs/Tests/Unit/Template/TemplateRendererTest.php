@@ -6,9 +6,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace JonnyW\PhantomJs\Tests\Integration\Template;
+namespace JonnyW\PhantomJs\Tests\Unit\Template;
 
-use JonnyW\PhantomJs\Test\TestCase;
+use Twig_Environment;
+use Twig_Loader_String;
+use JonnyW\PhantomJs\Http\Request;
 use JonnyW\PhantomJs\Template\TemplateRenderer;
 
 /**
@@ -16,7 +18,7 @@ use JonnyW\PhantomJs\Template\TemplateRenderer;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class TemplateRendererTest extends TestCase
+class TemplateRendererTest extends \PHPUnit_Framework_TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -34,7 +36,7 @@ class TemplateRendererTest extends TestCase
     {
         $template = 'var param = "{{ test }}"';
 
-        $renderer = $this->getInjectedTemplateRenderer();
+        $renderer = $this->getTemplateRenderer();
         $result   = $renderer->render($template, array('test' => 'data'));
 
         $this->assertSame('var param = "data"', $result);
@@ -51,7 +53,7 @@ class TemplateRendererTest extends TestCase
     {
         $template = 'var param = "{{ test }}", var param2 = "{{ test2 }}"';
 
-        $renderer = $this->getInjectedTemplateRenderer();
+        $renderer = $this->getTemplateRenderer();
         $result   = $renderer->render($template, array('test' => 'data', 'test2' => 'more data'));
 
         $this->assertSame('var param = "data", var param2 = "more data"', $result);
@@ -69,10 +71,9 @@ class TemplateRendererTest extends TestCase
         $template = 'var param = {{ request.getTimeout() }}';
 
         $request = $this->getRequest();
-        $request->method('getTimeout')
-            ->will($this->returnValue(5000));
+        $request->setTimeout(5000);
 
-        $renderer = $this->getInjectedTemplateRenderer();
+        $renderer = $this->getTemplateRenderer();
         $result   = $renderer->render($template, array('request' => $request));
 
         $this->assertSame('var param = 5000', $result);
@@ -91,12 +92,12 @@ class TemplateRendererTest extends TestCase
         $template = 'var param = {{ request.getHeaders("json") }}';
 
         $request = $this->getRequest();
-        $request->expects($this->once())
-            ->method('getHeaders')
-            ->with($this->identicalTo('json'));
+        $request->addHeader('json', 'test');
 
-        $renderer = $this->getInjectedTemplateRenderer();
-        $renderer->render($template, array('request' => $request));
+        $renderer = $this->getTemplateRenderer();
+        $result = $renderer->render($template, array('request' => $request));
+
+        $this->assertSame(htmlspecialchars('var param = {"json":"test"}'), $result);
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -106,46 +107,42 @@ class TemplateRendererTest extends TestCase
     /**
      * Get template renderer instance.
      *
-     * @param  \Twig_Environment                          $twig
      * @return \JonnyW\PhantomJs\Message\TemplateRenderer
      */
-    protected function getTemplateRenderer(\Twig_Environment $twig)
+    protected function getTemplateRenderer()
     {
-        $templateRenderer = new TemplateRenderer($twig);
+        $templateRenderer = new TemplateRenderer(
+            $this->getTwig()
+        );
 
         return $templateRenderer;
     }
 
     /**
-     * Get template renderer instance
-     * injected with dependencies.
+     * Get request
      *
      * @access protected
-     * @return \JonnyW\PhantomJs\Message\TemplateRenderer
-     */
-    protected function getInjectedTemplateRenderer()
-    {
-        $twig = $this->getContainer()->get('phantomjs.twig.environment');
-
-        $templateRenderer = $this->getTemplateRenderer($twig);
-
-        return $templateRenderer;
-    }
-
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++ MOCKS / STUBS ++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
-
-    /**
-     * Get mock request instance.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     * @return \JonnyW\PhantomJs\Http\Request
      */
     protected function getRequest()
     {
-        $mockRequest = $this->getMock('\JonnyW\PhantomJs\Message\RequestInterface');
+        $request = new Request();
 
-        return $mockRequest;
+        return $request;
+    }
+
+    /**
+     * Get twig
+     *
+     * @access protected
+     * @return \Twig_Environment
+     */
+    protected function getTwig()
+    {
+        $twig = new Twig_Environment(
+            new Twig_Loader_String()
+        );
+
+        return $twig;
     }
 }

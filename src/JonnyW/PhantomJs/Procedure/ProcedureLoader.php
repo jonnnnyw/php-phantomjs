@@ -21,7 +21,7 @@ class ProcedureLoader implements ProcedureLoaderInterface
     /**
      * Procedure factory.
      *
-     * @var mixed
+     * @var \JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface
      * @access protected
      */
     protected $procedureFactory;
@@ -56,11 +56,11 @@ class ProcedureLoader implements ProcedureLoaderInterface
      */
     public function load($id)
     {
-        $path    = $this->locator->locate(sprintf('%s.proc', $id));
-        $content = $this->loadFile($path);
+        $path     = $this->locator->locate(sprintf('%s.proc', $id));
+        $template = $this->loadFile($path);
 
         $procedure = $this->procedureFactory->createProcedure();
-        $procedure->load($content);
+        $procedure->setTemplate($template);
 
         return $procedure;
     }

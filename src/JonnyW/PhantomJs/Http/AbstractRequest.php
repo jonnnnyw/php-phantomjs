@@ -7,17 +7,19 @@
  * file that was distributed with this source code.
  */
 
-namespace JonnyW\PhantomJs\Message;
+namespace JonnyW\PhantomJs\Http;
 
 use JonnyW\PhantomJs\Exception\InvalidUrlException;
 use JonnyW\PhantomJs\Exception\InvalidMethodException;
+use JonnyW\PhantomJs\Procedure\InputInterface;
 
 /**
  * PHP PhantomJs
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-abstract class AbstractRequest implements RequestInterface
+abstract class AbstractRequest
+    implements RequestInterface, InputInterface
 {
     /**
      * Headers
@@ -112,13 +114,13 @@ abstract class AbstractRequest implements RequestInterface
      *
      * @access public
      * @param  string                                             $method
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      * @throws \JonnyW\PhantomJs\Exception\InvalidMethodException
      */
     public function setMethod($method)
     {
         $method     = strtoupper($method);
-        $reflection = new \ReflectionClass('\JonnyW\PhantomJs\Message\RequestInterface');
+        $reflection = new \ReflectionClass('\JonnyW\PhantomJs\Http\RequestInterface');
 
         if (!$reflection->hasConstant('METHOD_' . $method)) {
             throw new InvalidMethodException(sprintf('Invalid method provided: %s', $method));
@@ -144,8 +146,8 @@ abstract class AbstractRequest implements RequestInterface
      * Set timeout period
      *
      * @access public
-     * @param  int                                       $timeout
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @param  int                                    $timeout
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      */
     public function setTimeout($timeout)
     {
@@ -169,8 +171,8 @@ abstract class AbstractRequest implements RequestInterface
      * Set page load delay time (seconds).
      *
      * @access public
-     * @param  int                                       $delay
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @param  int                                    $delay
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      */
     public function setDelay($delay)
     {
@@ -231,7 +233,7 @@ abstract class AbstractRequest implements RequestInterface
      *
      * @access public
      * @param  string                                          $url
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      * @throws \JonnyW\PhantomJs\Exception\InvalidUrlException
      */
     public function setUrl($url)
@@ -290,8 +292,8 @@ abstract class AbstractRequest implements RequestInterface
      * Set request data
      *
      * @access public
-     * @param  array                                     $data
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @param  array                                  $data
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      */
     public function setRequestData(array $data)
     {
@@ -320,8 +322,8 @@ abstract class AbstractRequest implements RequestInterface
      * Set headers
      *
      * @access public
-     * @param  array                                     $headers
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @param  array                                  $headers
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      */
     public function setHeaders(array $headers)
     {
@@ -332,9 +334,9 @@ abstract class AbstractRequest implements RequestInterface
      * Add single header
      *
      * @access public
-     * @param  string                                    $header
-     * @param  string                                    $value
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @param  string                                 $header
+     * @param  string                                 $value
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      */
     public function addHeader($header, $value)
     {
@@ -347,8 +349,8 @@ abstract class AbstractRequest implements RequestInterface
      * Merge headers with existing
      *
      * @access public
-     * @param  array                                     $headers
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @param  array                                  $headers
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      */
     public function addHeaders(array $headers)
     {

@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace JonnyW\PhantomJs\Message;
+namespace JonnyW\PhantomJs\Http;
 
 /**
  * PHP PhantomJs
@@ -19,7 +19,7 @@ interface MessageFactoryInterface
      * Get singleton instance.
      *
      * @access public
-     * @return \JonnyW\PhantomJs\Message\MessageFactoryInterface
+     * @return \JonnyW\PhantomJs\Http\MessageFactoryInterface
      */
     public static function getInstance();
 
@@ -27,10 +27,10 @@ interface MessageFactoryInterface
      * Create request instance.
      *
      * @access public
-     * @param  string                                     $url     (default: null)
-     * @param  string                                     $method  (default: RequestInterface::METHOD_GET)
-     * @param  int                                        $timeout (default: 5000)
-     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     * @param  string                                  $url     (default: null)
+     * @param  string                                  $method  (default: RequestInterface::METHOD_GET)
+     * @param  int                                     $timeout (default: 5000)
+     * @return \JonnyW\PhantomJs\Http\RequestInterface
      */
     public function createRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000);
 
@@ -38,10 +38,10 @@ interface MessageFactoryInterface
      * Create capture request instance.
      *
      * @access public
-     * @param  string                                     $url     (default: null)
-     * @param  string                                     $method  (default: RequestInterface::METHOD_GET)
-     * @param  int                                        $timeout (default: 5000)
-     * @return \JonnyW\PhantomJs\Message\RequestInterface
+     * @param  string                                  $url     (default: null)
+     * @param  string                                  $method  (default: RequestInterface::METHOD_GET)
+     * @param  int                                     $timeout (default: 5000)
+     * @return \JonnyW\PhantomJs\Http\RequestInterface
      */
     public function createCaptureRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000);
 
@@ -49,7 +49,7 @@ interface MessageFactoryInterface
      * Create response instance.
      *
      * @access public
-     * @return \JonnyW\PhantomJs\Message\ResponseInterface
+     * @return \JonnyW\PhantomJs\Http\ResponseInterface
      */
     public function createResponse();
 }

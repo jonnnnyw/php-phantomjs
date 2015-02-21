@@ -1,0 +1,29 @@
+{% autoescape false %}
+
+{{ input.get('engine') }}
+
+var system  = require('system'),
+  syntax = {};
+
+try {
+    
+  syntax = esprima.parse("{{ input.get('procedure')|replace({'"': '\'', '\n': ' ', '\r': ' '}) }}");
+      
+} catch(e) {
+    
+  syntax.errors = [{
+    column:      e.column,
+    description: e.description,
+    index:       e.index,
+    lineNumber:  e.lineNumber,
+    message:     e.message   
+  }];
+}
+
+system.stdout.write(
+  JSON.stringify(syntax, undefined, 4)
+);
+
+phantom.exit(1);
+
+{% endautoescape %}

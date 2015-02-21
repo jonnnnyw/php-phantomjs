@@ -9,8 +9,9 @@
 namespace JonnyW\PhantomJs\Tests\Unit;
 
 use JonnyW\PhantomJs\Client;
-use JonnyW\PhantomJs\Message\MessageFactoryInterface;
+use JonnyW\PhantomJs\Http\MessageFactoryInterface;
 use JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface;
+use JonnyW\PhantomJs\Procedure\ProcedureValidatorInterface;
 
 /**
  * PHP PhantomJs
@@ -25,181 +26,145 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test get instance returns instance
-     * of client.
+     * Test can get client through
+     * factory method.
      *
      * @access public
      * @return void
      */
-    public function testGetInstanceReturnsInstanceOfClient()
+    public function testCanGetClientThroughFactoryMethod()
     {
         $this->assertInstanceOf('\JonnyW\PhantomJs\Client', Client::getInstance());
     }
 
     /**
-     * Test get message factory returns instance
-     * of message factory.
+     * Test can get message factory
      *
      * @return void
      */
-    public function testGetMessageFactoryReturnsInstanceOfMessageFactory()
+    public function testCanGetMessageFactory()
     {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
 
-        $this->assertInstanceOf('\JonnyW\PhantomJs\Message\MessageFactoryInterface', $client->getMessageFactory());
+        $this->assertInstanceOf('\JonnyW\PhantomJs\Http\MessageFactoryInterface', $client->getMessageFactory());
     }
 
     /**
-     * Test get procedure loader returns
-     * instance of proecure loader.
+     * Test can get procedure loader.
      *
      * @return void
      */
-    public function testGetProcedureLoaderReturnsInstanceOfProcedureLoader()
+    public function testCanGetProcedureLoader()
     {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
 
         $this->assertInstanceOf('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface', $client->getProcedureLoader());
     }
 
     /**
-     * Test set phantom JS throws invalid
-     * executable exception if phantom
-     * JS path is invalid.
+     * Test invalid executable exception is thrown
+     * if phantom JS path is invalid.
      *
      * @access public
      * @return void
      */
-    public function testSetPhantomJsThrowsInvalidExecutableExceptionIfPhantomJsPathIsInvalid()
+    public function testInvalidExecutableExceptionIsThrownIfPhantomJSPathIsInvalid()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidExecutableException');
 
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
         $client->setPhantomJs('/invalid/phantomjs/path');
     }
 
     /**
-     * Test set phantom loader throws invalid
-     * executable exception if phantom
-     * loader path is invalid.
+     * Test default phantom JS path is returned
+     * if no custom path is set.
      *
      * @access public
      * @return void
      */
-    public function testSetPhantomLoaderThrowsInvalidExecutableExceptionIfPhantomLoaderPathIsInvalid()
+    public function testDefaultPhantomJSPathIsReturnedIfNoCustomPathIsSet()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidExecutableException');
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->setPhantomLoader('/invalid/phantomloader/path');
-    }
-
-    /**
-     * Test get phantom JS returns default path
-     * to phantom JS executable.
-     *
-     * @access public
-     * @return void
-     */
-    public function testGetPhantomJsReturnsDefaultPathToPhantomJsExecutable()
-    {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
 
         $this->assertSame('bin/phantomjs', $client->getPhantomJs());
     }
 
     /**
-     * Test get phantom loader returns default path
-     * to phantom loader executable.
+     * Test can log data.
      *
      * @access public
      * @return void
      */
-    public function testGetPhantomLoaderReturnsDefaultPathToPhantomLoaderExecutable()
+    public function testCanLogData()
     {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-
-        $this->assertSame('bin/phantomloader', $client->getPhantomLoader());
-    }
-
-    /**
-     * Test set log sets log info in
-     * client.
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetLogSetsLogInfoInClient()
-    {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
         $log = 'Test log info';
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->setLog($log);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
+        $client->log($log);
 
         $this->assertSame($log, $client->getLog());
     }
 
     /**
-     * Test clear log clears log
-     * info in client.
+     * Test can clear log.
      *
      * @access public
      * @return void
      */
-    public function testClearLogsClearsLogInfoInClient()
+    public function testCanClearLog()
     {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
         $log = 'Test log info';
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->setLog($log);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
+        $client->log($log);
         $client->clearLog();
 
         $this->assertEmpty($client->getLog());
     }
 
     /**
-     * Test add option adds option to
-     * Phantom Js run options if option
-     * is not set.
+     * Test can add run option.
      *
      * @access public
      * @return void
      */
-    public function testAddOptionAddsOptionToPhantomJsRunOptionsIfOptionIsNotSet()
+    public function testCanAddRunOption()
     {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
         $options = array(
             'option1',
             'option2'
         );
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
         $client->setOptions($options);
         $client->addOption('option3');
 
@@ -209,45 +174,21 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test add option does not add option
-     * to Phantom Js run options if option
-     * is set.
+     * Test invalid executable exception is thrown when
+     * building command if path to phantom JS is valid.
      *
      * @access public
      * @return void
      */
-    public function testAddOptionDoesNotAddOptionToPhantomJsRunOptionsIfOptionIsSet()
-    {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $options = array(
-            'option1',
-            'option2'
-        );
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->setOptions($options);
-        $client->addOption('option2');
-
-        $this->assertSame($options, $client->getOptions());
-    }
-
-    /**
-     * Test get command throws invalid executable
-     * exception if PhantomJs is invalid.
-     *
-     * @access public
-     * @return void
-     */
-    public function testGetCommandThrowsInvalidExecutableExceptionIfPhantomJsIsInvalid()
+    public function testInvalidExecutableExceptionIsThrownWhenBuildingCommandIfPathToPhantomJSIsInvalid()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidExecutableException');
 
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
 
         $phantomJs = new \ReflectionProperty(get_class($client), 'phantomJs');
         $phantomJs->setAccessible(true);
@@ -257,131 +198,76 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get command throws invalid executable
-     * exception if PhantomLoader is invalid..
+     * Test command contains phantom JS executable
      *
      * @access public
      * @return void
      */
-    public function testGetCommandThrowsInvalidExecutableExceptionIfPhantomLoaderIsInvalid()
+    public function testCommandContainsPhantomJSExecutable()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidExecutableException');
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-
-        $phantomLoader = new \ReflectionProperty(get_class($client), 'phantomLoader');
-        $phantomLoader->setAccessible(true);
-        $phantomLoader->setValue($client, 'invalid/path');
-
-        $client->getCommand();
-    }
-
-    /**
-     * Test get command contains PhantomKs executable.
-     *
-     * @access public
-     * @return void
-     */
-    public function testGetCommandContainsPhantomJsExecutable()
-    {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
 
         $this->assertContains($client->getPhantomJs(), $client->getCommand());
     }
 
     /**
-     * Test get command contains PhantomLoader executable.
+     * Test debug flag can be set.
      *
      * @access public
      * @return void
      */
-    public function testGetCommandContainsPhantomLoaderExecutable()
+    public function testDebugFlagCanBeSet()
     {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
-
-        $this->assertContains($client->getPhantomLoader(), $client->getCommand());
-    }
-
-    /**
-     * Test get command sets debug flag if debug is
-     * set to true.
-     *
-     * @access public
-     * @return void
-     */
-    public function testGetCommandSetsDebugFlagIfDebugIsSetToTrue()
-    {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
         $client->debug(true);
 
         $this->assertContains('--debug=true', $client->getCommand());
     }
 
     /**
-     * Test get command does not set debug flag if
-     * debug is set to false.
+     * Test debug flag is not set if
+     * debugging is not enabled.
      *
      * @access public
      * @return void
      */
-    public function testGetCommandDoesNotSetDebugFlagIfDebugIsSetToFalse()
+    public function testDebugFlagIsNotSetIfDebuggingIsNotEnabled()
     {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
         $client->debug(false);
 
         $this->assertNotContains('--debug=true', $client->getCommand());
     }
 
     /**
-     * Test get command sets 1 option.
+     * Test command contains run options.
      *
      * @access public
      * @return void
      */
-    public function testGetCommandSets1Option()
+    public function testCommandContainsRunOptions()
     {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $option = '--local-storage-path=/some/path';
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->addOption($option);
-
-        $this->assertContains($option, $client->getCommand());
-    }
-
-    /**
-     * Test get command sets multiple options.
-     *
-     * @access public
-     * @return void
-     */
-    public function testGetCommandSetsMultipleOptions()
-    {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
         $option1 = '--local-storage-path=/some/path';
         $option2 = '--local-storage-quota=5';
         $option3 = '--local-to-remote-url-access=true';
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
         $client->addOption($option1);
         $client->addOption($option2);
         $client->addOption($option3);
@@ -394,20 +280,21 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get command sets debug option if
-     * additional options are set.
+     * Test debug flag is set if runs options
+     * are also set.
      *
      * @access public
      * @return void
      */
-    public function testGetCommandSetsDebugOptionIfAdditionalOptionsAreSet()
+    public function testDebugFlagIsSetIfRunOptionsAreAlsoSet()
     {
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
+        $procedureLoader    = $this->getProcedureLoader();
+        $procedureValidator = $this->getProcedureValidator();
+        $messageFactory     = $this->getMessageFactory();
 
         $option = '--local-storage-path=/some/path';
 
-        $client = $this->getClient($procedureLoader, $messageFactory);
+        $client = $this->getClient($procedureLoader, $procedureValidator, $messageFactory);
         $client->addOption($option);
         $client->debug(true);
 
@@ -417,182 +304,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('--debug=true', $command);
     }
 
-    /**
-     * Test set bin dir strips forward
-     * slash from end.
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetBinDirStripsForwardSlashFromEnd()
-    {
-        $binDir = '/path/to/bin/dir/';
-
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->setBinDir($binDir);
-
-        $this->assertSame('/path/to/bin/dir', $client->getBinDir());
-    }
-
-    /**
-     * Test set bin dir strips multiple forward
-     * slashes from end.
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetBinDirStripsMultipleForwardSlashesFromEnd()
-    {
-        $binDir = '/path/to/bin/dir//';
-
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->setBinDir($binDir);
-
-        $this->assertSame('/path/to/bin/dir', $client->getBinDir());
-    }
-
-    /**
-     * Test set bin dir strips backslash
-     * from end.
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetBinDirStripsBackslashFromEnd()
-    {
-        $binDir = '\path\to\bin\dir\\';
-
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->setBinDir($binDir);
-
-        $this->assertSame('\path\to\bin\dir', $client->getBinDir());
-    }
-
-    /**
-     * Test set bin dir strips multiple
-     * backslashes from end.
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetBinDirStripsMultipleBackslashesFromEnd()
-    {
-        $binDir = '\path\to\bin\dir\\\\';
-
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->setBinDir($binDir);
-
-        $this->assertSame('\path\to\bin\dir', $client->getBinDir());
-    }
-
-    /**
-     * Test set bin dir sets path of
-     * PhantomJs executable.
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetBinDirSetsPathOfPhantomJsExecutable()
-    {
-        $binDir = '/path/to/bin/dir';
-
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->setBinDir($binDir);
-
-        $this->assertSame('/path/to/bin/dir/phantomjs', $client->getPhantomJs());
-    }
-
-    /**
-     * Test set bin dir sets path of
-     * Phantom loader executable.
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetBinDirSetsPathOfPhantomLoaderExecutable()
-    {
-        $binDir = '/path/to/bin/dir';
-
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-        $client->setBinDir($binDir);
-
-        $this->assertSame('/path/to/bin/dir/phantomloader', $client->getPhantomLoader());
-    }
-
-    /**
-     * Test set bin dir does not set
-     * path of PhantomJs executable if
-     * custom PhantomJs executable path
-     * is set.
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetBinDirDoesNotSetPathToPhantomJsExecutableIfCustomPhantomJsPathIsSet()
-    {
-        $binDir  = '/path/to/bin/dir';
-        $path    = '/path/to/phantomjs';
-
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-
-        $phantomJs = new \ReflectionProperty(get_class($client), 'phantomJs');
-        $phantomJs->setAccessible(true);
-        $phantomJs->setValue($client, $path);
-
-        $client->setBinDir($binDir);
-
-        $this->assertSame($path, $client->getPhantomJs());
-    }
-
-    /**
-     * Test set bin dir does not set
-     * path of Phantom loader executable if
-     * custom Phantom loader executable path
-     * is set.
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetBinDirDoesNotSetPathToPhantomLoaderExecutableIfCustomPhantomLoaderPathIsSet()
-    {
-        $binDir  = '/path/to/bin/dir';
-        $path    = '/path/to/phantomloader';
-
-        $procedureLoader = $this->getProcedureLoader();
-        $messageFactory  = $this->getMessageFactory();
-
-        $client = $this->getClient($procedureLoader, $messageFactory);
-
-        $phantomLoader = new \ReflectionProperty(get_class($client), 'phantomLoader');
-        $phantomLoader->setAccessible(true);
-        $phantomLoader->setValue($client, $path);
-
-        $client->setBinDir($binDir);
-
-        $this->assertSame($path, $client->getPhantomLoader());
-    }
-
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ TEST ENTITIES ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -600,13 +311,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     /**
      * Get client instance
      *
-     * @param  \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface $procedureLoader
-     * @param  \JonnyW\PhantomJs\Message\MessageFactoryInterface    $messageFactory
+     * @param  \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface    $procedureLoader
+     * @param  \JonnyW\PhantomJs\Procedure\ProcedureValidatorInterface $procedureValidator
+     * @param  \JonnyW\PhantomJs\Http\MessageFactoryInterface          $messageFactory
      * @return \JonnyW\PhantomJs\Client
      */
-    protected function getClient(ProcedureLoaderInterface $procedureLoader, MessageFactoryInterface $messageFactory)
+    protected function getClient(ProcedureLoaderInterface $procedureLoader, ProcedureValidatorInterface $procedureValidator, MessageFactoryInterface $messageFactory)
     {
-        $client = new Client($procedureLoader, $messageFactory);
+        $client = new Client($procedureLoader, $procedureValidator, $messageFactory);
 
         return $client;
     }
@@ -616,28 +328,41 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Get mock message factory instance.
+     * Get message factory
      *
      * @access protected
-     * @return \JonnyW\PhantomJs\Message\MessageFactoryInterface
+     * @return \JonnyW\PhantomJs\Http\MessageFactoryInterface
      */
     protected function getMessageFactory()
     {
-        $mockMessageFactory = $this->getMock('\JonnyW\PhantomJs\Message\MessageFactoryInterface');
+        $messageFactory = $this->getMock('\JonnyW\PhantomJs\Http\MessageFactoryInterface');
 
-        return $mockMessageFactory;
+        return $messageFactory;
     }
 
     /**
-     * Get mock procedure loader instance.
+     * Get procedure loader.
      *
      * @access protected
      * @return \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface
      */
     protected function getProcedureLoader()
     {
-        $mockProcedureLoader = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface');
+        $procedureLoader = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface');
 
-        return $mockProcedureLoader;
+        return $procedureLoader;
+    }
+
+    /**
+     * Get procedure validator.
+     *
+     * @access protected
+     * @return \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface
+     */
+    protected function getProcedureValidator()
+    {
+        $procedureValidator = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureValidatorInterface');
+
+        return $procedureValidator;
     }
 }

@@ -23,13 +23,13 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test load throws invalid argument exception
-     * if no valid procedure loader could be found.
+     * Test invalid argument exception is thrown if
+     * not valid loader can be found.
      *
      * @access public
      * @return void
      */
-    public function testLoadThrowsInvalidArgumentExceptionIfNoValidProcedureLoaderCouldBeFound()
+    public function testInvalidArgumentExceptionIsThrownIfNoValidLoaderCanBeFound()
     {
         $this->setExpectedException('\InvalidArgumentException');
 
@@ -40,35 +40,13 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test load throws invalid argument exception if
-     * procedure loader throws exception.
+     * Test instance of procedure is returned
+     * if procedure is loaded
      *
      * @access public
      * @return void
      */
-    public function testLoadThrowsInvalidArgumentExceptionIfProcedureLoaderThrowsException()
-    {
-        $this->setExpectedException('\InvalidArgumentException');
-
-        $procedureLoader = $this->getProcedureLoader();
-        $procedureLoader->method('load')
-            ->will($this->throwException(new \Exception()));
-
-        $procedureLoaders = array(
-            $procedureLoader
-        );
-
-        $chainProcedureLoader = $this->getChainProcedureLoader($procedureLoaders);
-        $chainProcedureLoader->load('test');
-    }
-
-    /**
-     * Test load returns instance of procedure.
-     *
-     * @access public
-     * @return void
-     */
-    public function testLoadReturnsInstanceOfProcedure()
+    public function testInstanceOfProcedureIsReturnedIfProcedureIsLoaded()
     {
         $procedure = $this->getProcedure();
 
@@ -86,13 +64,13 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test add loader adds procedure loader
-     * to chain loader.
+     * Test loader can be added to chain
+     * loader.
      *
      * @access public
      * @return void
      */
-    public function testAddLoaderAddsProcedureLoaderToChainLoader()
+    public function testLoaderCanBeAddedToChainLoader()
     {
         $chainProcedureLoader = $this->getChainProcedureLoader(array());
 
@@ -127,28 +105,28 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Get mock procedure loader instance.
+     * Get procedure loader.
      *
      * @access protected
      * @return \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface
      */
     protected function getProcedureLoader()
     {
-        $mockProcedureLoader = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface');
+        $procedureLoader = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface');
 
-        return $mockProcedureLoader;
+        return $procedureLoader;
     }
 
     /**
-     * Get mock procedure instance.
+     * Get procedure.
      *
      * @access protected
      * @return \JonnyW\PhantomJs\Procedure\ProcedureInterface
      */
     protected function getProcedure()
     {
-        $mockProcedure = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureInterface');
+        $procedure = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureInterface');
 
-        return $mockProcedure;
+        return $procedure;
     }
 }

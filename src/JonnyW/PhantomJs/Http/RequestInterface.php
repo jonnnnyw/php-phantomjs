@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace JonnyW\PhantomJs\Message;
+namespace JonnyW\PhantomJs\Http;
 
 /**
  * PHP PhantomJs
@@ -24,8 +24,8 @@ interface RequestInterface
     const METHOD_DELETE  = 'DELETE';
     const METHOD_PATCH   = 'PATCH';
 
-    const REQUEST_TYPE_DEFAULT = 'default';
-    const REQUEST_TYPE_CAPTURE = 'capture';
+    const REQUEST_TYPE_DEFAULT = 'http_default';
+    const REQUEST_TYPE_CAPTURE = 'http_capture';
 
     /**
      * Get request type

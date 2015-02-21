@@ -10,9 +10,10 @@ namespace JonnyW\PhantomJs;
 
 use JonnyW\PhantomJs\Exception\InvalidExecutableException;
 use JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface;
-use JonnyW\PhantomJs\Message\MessageFactoryInterface;
-use JonnyW\PhantomJs\Message\RequestInterface;
-use JonnyW\PhantomJs\Message\ResponseInterface;
+use JonnyW\PhantomJs\Procedure\ProcedureValidatorInterface;
+use JonnyW\PhantomJs\Http\MessageFactoryInterface;
+use JonnyW\PhantomJs\Http\RequestInterface;
+use JonnyW\PhantomJs\Http\ResponseInterface;
 use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
 
 /**
@@ -23,7 +24,7 @@ use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
 class Client implements ClientInterface
 {
     /**
-     * Client instance
+     * Client.
      *
      * @var \JonnyW\PhantomJs\ClientInterface
      * @access private
@@ -31,7 +32,7 @@ class Client implements ClientInterface
     private static $instance;
 
     /**
-     * Procedure loader instance
+     * Procedure loader.
      *
      * @var \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface
      * @access protected
@@ -39,20 +40,20 @@ class Client implements ClientInterface
     protected $procedureLoader;
 
     /**
-     * Message factory instance
+     * Procedure validator.
      *
-     * @var \JonnyW\PhantomJs\Message\MessageFactoryInterface
+     * @var \JonnyW\PhantomJs\Procedure\ProcedureValidatorInterface
+     * @access protected
+     */
+    protected $procedureValidator;
+
+    /**
+     * Message factory.
+     *
+     * @var \JonnyW\PhantomJs\Http\MessageFactoryInterface
      * @access protected
      */
     protected $messageFactory;
-
-    /**
-     * Bin directory path.
-     *
-     * @var string
-     * @access protected
-     */
-    protected $binDir;
 
     /**
      * Path to PhantomJs executable
@@ -63,15 +64,7 @@ class Client implements ClientInterface
     protected $phantomJs;
 
     /**
-     * Path to PhantomJs loader executable
-     *
-     * @var string
-     * @access protected
-     */
-    protected $phantomLoader;
-
-    /**
-     * Debug.
+     * Debug flag.
      *
      * @var boolean
      * @access protected
@@ -79,36 +72,37 @@ class Client implements ClientInterface
     protected $debug;
 
     /**
-     * Log info
+     * PhantomJs run options.
      *
      * @var array
-     * @access protected
-     */
-    protected $log;
-
-    /**
-     * PhantomJs run options
-     *
-     * @var mixed
      * @access protected
      */
     protected $options;
 
     /**
+     * Log info
+     *
+     * @var string
+     * @access protected
+     */
+    protected $log;
+
+    /**
      * Internal constructor
      *
      * @access public
-     * @param \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface $procedureLoader
-     * @param \JonnyW\PhantomJs\Message\MessageFactoryInterface    $messageFactory
+     * @param  \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface    $procedureLoader
+     * @param  \JonnyW\PhantomJs\Procedure\ProcedureValidatorInterface $procedureValidator
+     * @param  \JonnyW\PhantomJs\Http\MessageFactoryInterface          $messageFactory
+     * @return void
      */
-    public function __construct(ProcedureLoaderInterface $procedureLoader, MessageFactoryInterface $messageFactory)
+    public function __construct(ProcedureLoaderInterface $procedureLoader, ProcedureValidatorInterface $procedureValidator, MessageFactoryInterface $messageFactory)
     {
-        $this->procedureLoader = $procedureLoader;
-        $this->messageFactory  = $messageFactory;
-        $this->binDir          = 'bin';
-        $this->phantomJs       = '%s/phantomjs';
-        $this->phantomLoader   = '%s/phantomloader';
-        $this->options         = array();
+        $this->procedureLoader    = $procedureLoader;
+        $this->procedureValidator = $procedureValidator;
+        $this->messageFactory     = $messageFactory;
+        $this->phantomJs          = 'bin/phantomjs';
+        $this->options            = array();
     }
 
     /**
@@ -125,6 +119,7 @@ class Client implements ClientInterface
 
             self::$instance = new Client(
                 $serviceContainer->get('procedure_loader'),
+                $serviceContainer->get('procedure_validator'),
                 $serviceContainer->get('message_factory')
             );
         }
@@ -136,7 +131,7 @@ class Client implements ClientInterface
      * Get message factory instance
      *
      * @access public
-     * @return \JonnyW\PhantomJs\Message\MessageFactoryInterface
+     * @return \JonnyW\PhantomJs\Http\MessageFactoryInterface
      */
     public function getMessageFactory()
     {
@@ -158,15 +153,20 @@ class Client implements ClientInterface
      * Send request
      *
      * @access public
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface  $request
-     * @param  \JonnyW\PhantomJs\Message\ResponseInterface $response
-     * @return \JonnyW\PhantomJs\Message\ResponseInterface
+     * @param  \JonnyW\PhantomJs\Http\RequestInterface  $request
+     * @param  \JonnyW\PhantomJs\Http\ResponseInterface $response
+     * @return \JonnyW\PhantomJs\Http\ResponseInterface
      */
     public function send(RequestInterface $request, ResponseInterface $response)
     {
-        $this->clearLog();
-
         $procedure = $this->procedureLoader->load($request->getType());
+
+        $this->procedureValidator->validate(
+            $this,
+            $procedure,
+            $request
+        );
+
         $procedure->run($this, $request, $response);
 
         return $response;
@@ -181,44 +181,16 @@ class Client implements ClientInterface
      */
     public function getCommand()
     {
-        $phantomJs     = $this->getPhantomJs();
-        $phantomLoader = $this->getPhantomLoader();
+        $phantomJs = $this->getPhantomJs();
+        $options   = $this->getOptions();
 
         $this->validateExecutable($phantomJs);
-        $this->validateExecutable($phantomLoader);
-
-        $options = $this->getOptions();
 
         if ($this->debug) {
             array_push($options, '--debug=true');
         }
 
-        return sprintf('%s %s %s', $phantomJs, implode(' ', $options), $phantomLoader);
-    }
-
-    /**
-     * Set bin directory.
-     *
-     * @access public
-     * @param  string                   $path
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function setBinDir($path)
-    {
-        $this->binDir = rtrim($path, '/\\');
-
-        return $this;
-    }
-
-    /**
-     * Get bin directory.
-     *
-     * @access public
-     * @return string
-     */
-    public function getBinDir()
-    {
-        return $this->binDir;
+        return sprintf('%s %s', $phantomJs, implode(' ', $options));
     }
 
     /**
@@ -245,34 +217,7 @@ class Client implements ClientInterface
      */
     public function getPhantomJs()
     {
-        return sprintf($this->phantomJs, $this->getBinDir());
-    }
-
-    /**
-     * Set PhantomJs loader executable path.
-     *
-     * @access public
-     * @param  string                   $path
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function setPhantomLoader($path)
-    {
-        $this->validateExecutable($path);
-
-        $this->phantomLoader = $path;
-
-        return $this;
-    }
-
-    /**
-     * Get PhantomJs loader executable path.
-     *
-     * @access public
-     * @return string
-     */
-    public function getPhantomLoader()
-    {
-        return sprintf($this->phantomLoader, $this->getBinDir());
+        return $this->phantomJs;
     }
 
     /**
@@ -331,13 +276,13 @@ class Client implements ClientInterface
     }
 
     /**
-     * Set log info.
+     * Log info.
      *
      * @access public
      * @param  string                   $info
      * @return \JonnyW\PhantomJs\Client
      */
-    public function setLog($info)
+    public function log($info)
     {
         $this->log = $info;
 

@@ -6,9 +6,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace JonnyW\PhantomJs\Tests\Unit\Message;
+namespace JonnyW\PhantomJs\Tests\Unit\Http;
 
-use JonnyW\PhantomJs\Message\Response;
+use JonnyW\PhantomJs\Http\Response;
 
 /**
  * PHP PhantomJs
@@ -23,12 +23,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test import sets status in response.
+     * Test status can be imported.
      *
      * @access public
      * @return void
      */
-    public function testImportSetsStatusInResponse()
+    public function testStatusCanBeImported()
     {
         $data = array(
             'status' => 200
@@ -41,12 +41,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test import sets content in response.
+     * Test content can be imported
      *
      * @access public
      * @return void
      */
-    public function testImportSetsContentInResponse()
+    public function testContentCanBeImported()
     {
         $data = array(
             'content' => 'Test content'
@@ -59,12 +59,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test import sets content in response.
+     * Test content type can be imported.
      *
      * @access public
      * @return void
      */
-    public function testImportSetsContentTypeInResponse()
+    public function testContentTypeCanBeImported()
     {
         $data = array(
             'contentType' => 'text/html'
@@ -77,12 +77,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test import sets URL in response.
+     * Test URL can be imported.
      *
      * @access public
      * @return void
      */
-    public function testImportSetsUrlInResponse()
+    public function testUrlCanBeImported()
     {
         $data = array(
             'url' => 'http://test.com'
@@ -95,12 +95,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test import sets redirect URL in response.
+     * Test redirect URL can be imported.
      *
      * @access public
      * @return void
      */
-    public function testImportSetsRedirectUrlInResponse()
+    public function testRedirectUrlCanBeImported()
     {
         $data = array(
             'redirectUrl' => 'http://test.com'
@@ -113,12 +113,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test import sets time in response.
+     * Test time can be imported.
      *
      * @access public
      * @return void
      */
-    public function testImportSetsTimeInResponse()
+    public function testTimeCanBeImported()
     {
         $data = array(
             'time' => 123456789
@@ -131,12 +131,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test import sets headers in response.
+     * Test headers can be imported.
      *
      * @access public
      * @return void
      */
-    public function testImportSetsHeadersInResponse()
+    public function testHeadersCanBeImported()
     {
         $headers = array(
             array(
@@ -160,13 +160,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get header returns null if header
-     * is not set.
+     * Test null is returned if header is not set.
      *
      * @access public
      * @return void
      */
-    public function testGetHeadersReturnsNullIfHeaderIsNotSet()
+    public function testNullIsReturnedIfHeaderIsNotSet()
     {
         $response = $this->getResponse();
 
@@ -174,13 +173,12 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get header returns header if
-     * header is set.
+     * Test can get header.
      *
      * @access public
      * @return void
      */
-    public function testGetHeaderReturnsHeaderIfHeaderIsSet()
+    public function testCanGetHeader()
     {
         $headers = array(
             array(
@@ -200,13 +198,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is redirect returns true if
-     * status equals 300.
+     * Test is redirect if status code
+     * is 300.
      *
      * @access public
      * @return void
      */
-    public function testIsRedirectReturnsTrueIfStatusEquals300()
+    public function testIsRedirectIfStatusCodeIs300()
     {
         $data = array(
             'status' => 300
@@ -219,13 +217,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is redirect returns true if
-     * status equals 301.
+     * Test is redirect if status code
+     * is 301.
      *
      * @access public
      * @return void
      */
-    public function testIsRedirectReturnsTrueIfStatusEquals301()
+    public function testIsRedirectIfStatusCodeIs301()
     {
         $data = array(
             'status' => 301
@@ -238,13 +236,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is redirect returns true if
-     * status equals 302.
+     * Test is redirect if status code
+     * is 302.
      *
      * @access public
      * @return void
      */
-    public function testIsRedirectReturnsTrueIfStatusEquals302()
+    public function testIsRedirectIfStatusCodeIs302()
     {
         $data = array(
             'status' => 302
@@ -257,13 +255,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is redirect returns true if
-     * status equals 303.
+     * Test is redirect if status code
+     * is 303.
      *
      * @access public
      * @return void
      */
-    public function testIsRedirectReturnsTrueIfStatusEquals303()
+    public function testIsRedirectIfStatusCodeIs303()
     {
         $data = array(
             'status' => 303
@@ -276,13 +274,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is redirect returns true if
-     * status equals 304.
+     * Test is redirect if status code
+     * is 304.
      *
      * @access public
      * @return void
      */
-    public function testIsRedirectReturnsTrueIfStatusEquals304()
+    public function testIsRedirectIfStatusCodeIs304()
     {
         $data = array(
             'status' => 304
@@ -295,13 +293,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is redirect returns true if
-     * status equals 305.
+     * Test is redirect if status code
+     * is 305.
      *
      * @access public
      * @return void
      */
-    public function testIsRedirectReturnsTrueIfStatusEquals305()
+    public function testIsRedirectIfStatusCodeIs305()
     {
         $data = array(
             'status' => 305
@@ -314,13 +312,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is redirect returns true if
-     * status equals 306.
+     * Test is redirect if status code
+     * is 306.
      *
      * @access public
      * @return void
      */
-    public function testIsRedirectReturnsTrueIfStatusEquals306()
+    public function testIsRedirectIfStatusCodeIs306()
     {
         $data = array(
             'status' => 306
@@ -333,13 +331,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is redirect returns true if
-     * status equals 307.
+     * Test is redirect if status code
+     * is 307.
      *
      * @access public
      * @return void
      */
-    public function testIsRedirectReturnsTrueIfStatusEquals307()
+    public function testIsRedirectIfStatusCodeIs307()
     {
         $data = array(
             'status' => 307
@@ -352,13 +350,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is redirect returns false if status
-     * code is not a valid redirect code.
+     * Test is not redirect if status code is
+     * not redirect.
      *
      * @access public
      * @return void
      */
-    public function testIsRedirectReturnsFalseIfStatusCodeIsNotAValidRedirectCode()
+    public function testIsNotRedirectIfStatusCodeIsNotRedirect()
     {
         $data = array(
             'status' => 401
@@ -378,7 +376,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      * Get response instance.
      *
      * @access protected
-     * @return \JonnyW\PhantomJs\Message\Response
+     * @return \JonnyW\PhantomJs\Http\Response
      */
     protected function getResponse()
     {

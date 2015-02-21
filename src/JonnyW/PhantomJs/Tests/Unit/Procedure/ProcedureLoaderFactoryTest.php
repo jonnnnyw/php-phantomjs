@@ -31,13 +31,13 @@ class ProcedureLoaderFactoryTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test create procedure loader throws invalid
-     * argument exception if directory is not readable.
+     * Test invalid argument exceptions is thrown if directory
+     * is not readable when creating procedure loader.
      *
      * @access public
      * @return void
      */
-    public function testCreateProcedureLoaderThrowsInvalidArgumentExceptionIfDirectoryIsNotReadable()
+    public function testInvalidArgumentExceptionIsThrownIfDirectoryIsNotReadableWhenCreatingProcedureLoader()
     {
         $this->setExpectedException('\InvalidArgumentException');
 
@@ -48,13 +48,12 @@ class ProcedureLoaderFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test create procedure loader returns instance of
-     * procedure loader.
+     * Test procedure loader can be created.
      *
      * @access public
      * @return void
      */
-    public function testCreateProcedureLoaderReturnsInstanceOfProcedureLoader()
+    public function testProcedureLoaderCanBeCreated()
     {
         $procedureFactory = $this->getProcedureFactory();
 
@@ -87,16 +86,16 @@ class ProcedureLoaderFactoryTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Get mock procedure factory instance.
+     * Get procedure factory.
      *
      * @access protected
      * @return \JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface
      */
     protected function getProcedureFactory()
     {
-        $mockProcedureFactory = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface');
+        $procedureFactory = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface');
 
-        return $mockProcedureFactory;
+        return $procedureFactory;
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/

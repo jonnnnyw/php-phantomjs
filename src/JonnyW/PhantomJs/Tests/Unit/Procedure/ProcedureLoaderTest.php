@@ -8,7 +8,16 @@
  */
 namespace JonnyW\PhantomJs\Tests\Unit\Procedure;
 
+use Twig_Environment;
+use Twig_Loader_String;
 use Symfony\Component\Config\FileLocatorInterface;
+use JonnyW\PhantomJs\Cache\FileCache;
+use JonnyW\PhantomJs\Cache\CacheInterface;
+use JonnyW\PhantomJs\Parser\JsonParser;
+use JonnyW\PhantomJs\Parser\ParserInterface;
+use JonnyW\PhantomJs\Template\TemplateRenderer;
+use JonnyW\PhantomJs\Template\TemplateRendererInterface;
+use JonnyW\PhantomJs\Procedure\ProcedureFactory;
 use JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface;
 use JonnyW\PhantomJs\Procedure\ProcedureLoader;
 
@@ -40,13 +49,13 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test load throws invalid argument exception
-     * if file is not a local stream.
+     * Test invalid argument exception is thrown if procedure
+     * file is not local.
      *
      * @access public
      * @return void
      */
-    public function testLoadThrowsInvalidArgumentExceptionIfFileIsNotALocalStream()
+    public function testInvalidArgumentExceptionIsThrownIfProcedureFileIsNotLocal()
     {
         $this->setExpectedException('\InvalidArgumentException');
 
@@ -62,12 +71,12 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test load throws not exists exception if
-     * file does not exist.
+     * if procedure file does not exist.
      *
      * @access public
      * @return void
      */
-    public function testLoadThrowsNotExistsExceptionIfFileDoesNotExist()
+    public function testNotExistsExceptionIsThrownIfProcedureFileDoesNotExist()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotExistsException');
 
@@ -82,25 +91,21 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test load returns procedure instance.
+     * Test procedure can be laoded.
      *
      * @access public
      * @return void
      */
-    public function testLoadReturnsProcedureInstance()
+    public function testProcedureCanBeLoaded()
     {
-        $body = 'PROCEDURE BODY';
+        $body = 'TEST_PROCEDURE';
         $file = $this->writeProcedure($body);
 
         $procedureFactory = $this->getProcedureFactory();
         $fileLocator      = $this->getFileLocator();
-        $procedure        = $this->getProcedure();
 
         $fileLocator->method('locate')
             ->will($this->returnValue($file));
-
-        $procedureFactory->method('createProcedure')
-            ->will($this->returnValue($procedure));
 
         $procedureLoader = $this->getProcedureLoader($procedureFactory, $fileLocator);
 
@@ -108,30 +113,26 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test load sets procedure body in
-     * procedure instance.
+     * Test procedure template is set in procedure
+     * instance.
      *
      * @access public
      * @return void
      */
-    public function testLoadSetsProcedureBodyInProcedureInstance()
+    public function testProcedureTemplateIsSetInProcedureInstance()
     {
-        $body = 'PROCEDURE BODY';
+        $body = 'TEST_PROCEDURE';
         $file = $this->writeProcedure($body);
 
         $procedureFactory = $this->getProcedureFactory();
         $fileLocator      = $this->getFileLocator();
-        $procedure        = $this->getProcedure();
 
         $fileLocator->method('locate')
             ->will($this->returnValue($file));
 
-        $procedureFactory->method('createProcedure')
-            ->will($this->returnValue($procedure));
-
         $procedureLoader = $this->getProcedureLoader($procedureFactory, $fileLocator);
 
-        $this->assertSame($body, $procedureLoader->load('test')->getProcedure());
+        $this->assertSame($body, $procedureLoader->load('test')->getTemplate());
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -153,50 +154,86 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
         return $procedureLoader;
     }
 
+    /**
+     * Get procedure factory instance.
+     *
+     * @access protected
+     * @param  \JonnyW\PhantomJs\Parser\ParserInterface             $parser
+     * @param  \JonnyW\PhantomJs\Cache\CacheInterface               $cacheHandler
+     * @param  \JonnyW\PhantomJs\Template\TemplateRendererInterface $renderer
+     * @return \JonnyW\PhantomJs\Procedure\ProcedureFactory
+     */
+    protected function getProcedureFactory()
+    {
+        $parser   = $this->getParser();
+        $cache    = $this->getCache();
+        $renderer = $this->getRenderer();
+
+        $procedureFactory = new ProcedureFactory($parser, $cache, $renderer);
+
+        return $procedureFactory;
+    }
+
+    /**
+     * Get parser.
+     *
+     * @access protected
+     * @return \JonnyW\PhantomJs\Parser\JsonParser
+     */
+    protected function getParser()
+    {
+        $parser = new JsonParser();
+
+        return $parser;
+    }
+
+    /**
+     * Get cache.
+     *
+     * @access protected
+     * @param  string                            $cacheDir  (default: '')
+     * @param  string                            $extension (default: 'proc')
+     * @return \JonnyW\PhantomJs\Cache\FileCache
+     */
+    protected function getCache($cacheDir = '', $extension = 'proc')
+    {
+        $cache = new FileCache(($cacheDir ? $cacheDir : sys_get_temp_dir()), 'proc');
+
+        return $cache;
+    }
+
+    /**
+     * Get template renderer.
+     *
+     * @access protected
+     * @return \JonnyW\PhantomJs\Template\TemplateRenderer
+     */
+    protected function getRenderer()
+    {
+        $twig = new Twig_Environment(
+            new Twig_Loader_String()
+        );
+
+        $renderer = new TemplateRenderer($twig);
+
+        return $renderer;
+    }
+
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ MOCKS / STUBS ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Get mock procedure factory instance.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface
-     */
-    protected function getProcedureFactory()
-    {
-        $mockProcedureFactory = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface');
-
-        return $mockProcedureFactory;
-    }
-
-    /**
-     * Get mock file locator instance.
+     * Get file locator.
      *
      * @access protected
      * @return \Symfony\Component\Config\FileLocatorInterface
      */
     protected function getFileLocator()
     {
-        $mockFileLocator = $this->getMock('\Symfony\Component\Config\FileLocatorInterface');
+        $fileLocator = $this->getMock('\Symfony\Component\Config\FileLocatorInterface');
 
-        return $mockFileLocator;
-    }
-
-    /**
-     * Get mock procedure instance.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Procedure\Procedure
-     */
-    protected function getProcedure()
-    {
-        $mockProcedure = $this->getMockBuilder('\JonnyW\PhantomJs\Procedure\Procedure')
-            ->setMethods(null)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        return $mockProcedure;
+        return $fileLocator;
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/

@@ -6,10 +6,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace JonnyW\PhantomJs\Tests\Unit\Message;
+namespace JonnyW\PhantomJs\Tests\Unit\Http;
 
-use JonnyW\PhantomJs\Message\Request;
-use JonnyW\PhantomJs\Message\RequestInterface;
+use JonnyW\PhantomJs\Http\Request;
+use JonnyW\PhantomJs\Http\RequestInterface;
 
 /**
  * PHP PhantomJs
@@ -24,13 +24,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test get type returns default request
-     * type if not type is set.
+     * Test default type is returned by default
+     * if no type is set.
      *
      * @access public
      * @return void
      */
-    public function testGetTypeReturnsDefaultRequestTypeIfNoTypeIsSet()
+    public function testDefaultTypeIsReturnedByDefaultIfNotTypeIsSet()
     {
         $request = $this->getRequest();
 
@@ -38,13 +38,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get type returns set request
-     * type.
+     * Test custom type can be set.
      *
      * @access public
      * @return void
      */
-    public function testGetTypeReturnsSetRequestType()
+    public function testCustomTypeCanBeSet()
     {
         $requestType = 'testType';
 
@@ -62,7 +61,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testUrlCanBeSetViaConstructor()
     {
-        $url     = 'http://test.com';
+        $url            = 'http://test.com';
         $request = $this->getRequest($url);
 
         $this->assertSame($url, $request->getUrl());
@@ -76,7 +75,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testMethodCanBeSetViaConstructor()
     {
-        $method  = 'GET';
+        $method         = 'GET';
         $request = $this->getRequest(null, $method);
 
         $this->assertSame($method, $request->getMethod());
@@ -90,20 +89,20 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testTimeoutCanBeSetViaConstructor()
     {
-        $timeout = 100000;
+        $timeout        = 100000;
         $request = $this->getRequest('http://test.com', 'GET', $timeout);
 
         $this->assertSame($timeout, $request->getTimeout());
     }
 
     /**
-     * Test set method throws invalid method
-     * exception if an invalid method is set
+     * Test invalid method is thrown if method
+     * is invalid.
      *
      * @access public
      * @return void
      */
-    public function testSetMethodThrowsInvalidMethodExceptionIfAnInvalidMethodIsSet()
+    public function testInvalidMethodIsThrownIfMethodIsInvalid()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidMethodException');
 
@@ -111,30 +110,14 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $request->setMethod('INVALID_METHOD');
     }
 
-  /**
-     * Test set method throws invalid method
-     * exception if an invalid method is set
-     * via constructor
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetMethodThrowsInvalidMethodExceptionIfAnInvalidMethodIsSetViaConstructor()
-    {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidMethodException');
-
-        $this->getRequest('http://test.com', 'INVALID_METHOD');
-    }
-
     /**
-     * Test set URL throws invalid
-     * URL exception if an invalid
-     * URL is set.
+     * Test invalid URL exception is thrown
+     * if URL is invalid format.
      *
      * @access public
      * @return void
      */
-    public function testSetUrlThrowsInvalidUrlExceptionIfAnInvalidUrlIsSet()
+    public function testInvalidUrlExceptionIsThrownIfUrlIsInvalidFormat()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidUrlException');
 
@@ -143,13 +126,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL returns URL without query
-     * paramters if method is not HEAD or GET.
+     * Test URL does not contain query params if
+     * mehtod is not HEAD or GET.
      *
      * @access public
      * @return void
      */
-    public function testGetUrlReturnsUrlWithoutQueryParametersIfMethodIsNotHeadOrGet()
+    public function testUrlDoesNotContainQueryParamsIfMethodIsNotHeadOrGet()
     {
         $url = 'http://test.com';
 
@@ -167,13 +150,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL returns URL with query
-     * parameters if method is GET.
+     * Test URL does contain query params if mehthod
+     * is GET.
      *
      * @access public
      * @return void
      */
-    public function testGetUrlReturnsUrlWithQueryParametersIfMethodIsGet()
+    public function testUrlDoesContainQueryParamsIfMethodIsGet()
     {
         $url = 'http://test.com';
 
@@ -193,13 +176,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL returns URL with query
-     * parameters if method is HEAD.
+     * Test URL does contain query params if method
+     * is HEAD.
      *
      * @access public
      * @return void
      */
-    public function testGetUrlReturnsUrlWithQueryParametersIfMethodIsHead()
+    public function testUrlDoesContainQueryParamsIfMethodIsHead()
     {
         $url = 'http://test.com';
 
@@ -219,13 +202,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL returns URL with query
-     * parameters if method is HEAD.
+     * Test query params are appended to URL if
+     * URL contains existng query params.
      *
      * @access public
      * @return void
      */
-    public function testGetUrlAppendsQueryParametersIfUrlHasExistingQueryParameters()
+    public function testQueryParamsAreAppendedToUrlIfUrlContainsExistingQueryParams()
     {
         $url = 'http://test.com?existing_param=Existing';
 
@@ -245,13 +228,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get body returns an empty
-     * string if method is GET.
+     * Test request contains no body if method
+     * is GET.
      *
      * @access public
      * @return void
      */
-    public function testGetBodyReturnsAnEmptyStringIfMethodIsGet()
+    public function testRequestContainsNoBodyIfMethodIsGet()
     {
         $data = array(
             'test_param1' => 'Testing1',
@@ -266,13 +249,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get body returns and empty
-     * string if method is HEAD.
+     * Test request contains no body if method
+     * is HEAD.
      *
      * @access public
      * @return void
      */
-    public function testGetBodyReturnsAnEmptyStringIfMethodIsHead()
+    public function testRequestContainsNoBodyIfMethodIsHead()
     {
         $data = array(
             'test_param1' => 'Testing1',
@@ -287,13 +270,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get body returns query string if
-     * method is not HEAD or GET.
+     * Test request contains a body if method is
+     * not HEAD or GET.
      *
      * @access public
      * @return void
      */
-    public function testGetBodyReturnsQueryStringIfMethodIsNotHeadOrGet()
+    public function testRequestContainsABodyIfMethodIsNotHeadOrGet()
     {
         $data = array(
             'test_param1' => 'Testing1',
@@ -310,13 +293,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get request data returns flattened
-     * request data if flatten is set to true.
+     * Test request data can be flattened.
      *
      * @access public
      * @return void
      */
-    public function testGetRequestDataReturnsFlattenedRequestDataIfFlattenIsSetToTrue()
+    public function testRequestDataCanBeFalttened()
     {
         $data = array(
             'test_param1' => 'Testing1',
@@ -339,13 +321,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get request data returns unflattened
-     * request data if flatten is set to false
+     * Test raw request data can be accessed.
      *
      * @access public
      * @return void
      */
-    public function testGetRequestDataReturnsUnflattenedRequestDataIfFlattenIsSetToFalse()
+    public function testRawRequestDataCanBeAccessed()
     {
         $data = array(
             'test_param1' => 'Testing1',
@@ -362,13 +343,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test add headers merge headers with
-     * existing headers.
+     * Test headers can be added.
      *
      * @access public
      * @return void
      */
-    public function testAddHeadersMergesHeadersWithExistingHeaders()
+    public function testHeadersCanBeAdded()
     {
         $existingHeaders = array(
             'Header1' => 'Header 1'
@@ -389,13 +369,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get headers returns JSON encoded
-     * headers if format is set to JSON.
+     * Test headers can be accessed in
+     * JSON format
      *
      * @access public
      * @return void
      */
-    public function testGetHeadersReturnsJsonEncodedHeadersIfFormatIsSetToJson()
+    public function testHeadersCanBeAccessedInJsonFormat()
     {
         $headers = array(
             'Header1' => 'Header 1',
@@ -411,13 +391,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get headers returns headers as
-     * array if format is not set to json
+     * Test raw headers can be accessed.
      *
      * @access public
      * @return void
      */
-    public function testGetHeadersReturnsHeadersAsArrayIfFormatIsNotSetToJson()
+    public function testRawHeadersCanBeAccessed()
     {
         $headers = array(
             'Header1' => 'Header 1',
@@ -431,37 +410,37 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set viewport size sets viewport width.
+     * Test can set viewport width.
      *
      * @access public
      * @return void
      */
-    public function testSetViewportSizeSetsViewportWidth()
+    public function testCanSetViewportWidth()
     {
         $width  = 100;
         $height = 200;
 
-        $request = $this->getRequest();
-        $request->setViewportSize($width, $height);
+        $caputreRequest = $this->getRequest();
+        $caputreRequest->setViewportSize($width, $height);
 
-        $this->assertSame($width, $request->getViewportWidth());
+        $this->assertSame($width, $caputreRequest->getViewportWidth());
     }
 
     /**
-     * Test set viewport size sets viewport height.
+     * Test can set viewport height.
      *
      * @access public
      * @return void
      */
-    public function testSetViewportSizeSetsViewportHeight()
+    public function testCanSetViewportHeight()
     {
         $width  = 100;
         $height = 200;
 
-        $request = $this->getRequest();
-        $request->setViewportSize($width, $height);
+        $caputreRequest = $this->getRequest();
+        $caputreRequest->setViewportSize($width, $height);
 
-        $this->assertSame($height, $request->getViewportHeight());
+        $this->assertSame($height, $caputreRequest->getViewportHeight());
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -472,10 +451,10 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      * Get request instance.
      *
      * @access protected
-     * @param  string                            $url     (default: null)
-     * @param  string                            $method  (default: RequestInterface::METHOD_GET)
-     * @param  int                               $timeout (default: 5000)
-     * @return \JonnyW\PhantomJs\Message\Request
+     * @param  string                         $url     (default: null)
+     * @param  string                         $method  (default: RequestInterface::METHOD_GET)
+     * @param  int                            $timeout (default: 5000)
+     * @return \JonnyW\PhantomJs\Http\Request
      */
     protected function getRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
     {

@@ -11,8 +11,6 @@ namespace JonnyW\PhantomJs\Procedure;
 use JonnyW\PhantomJs\ClientInterface;
 use JonnyW\PhantomJs\Cache\CacheInterface;
 use JonnyW\PhantomJs\Parser\ParserInterface;
-use JonnyW\PhantomJs\Message\RequestInterface;
-use JonnyW\PhantomJs\Message\ResponseInterface;
 use JonnyW\PhantomJs\Template\TemplateRendererInterface;
 use JonnyW\PhantomJs\Exception\NotWritableException;
 use JonnyW\PhantomJs\Exception\ProcedureFailedException;
@@ -41,20 +39,20 @@ class Procedure implements ProcedureInterface
     protected $cacheHandler;
 
     /**
-     * Procedure template.
-     *
-     * @var string
-     * @access protected
-     */
-    protected $procedure;
-
-    /**
      * Template renderer.
      *
      * @var \JonnyW\PhantomJs\Template\TemplateRendererInterface
      * @access protected
      */
     protected $renderer;
+
+    /**
+     * Procedure template.
+     *
+     * @var string
+     * @access protected
+     */
+    protected $template;
 
     /**
      * Internal constructor.
@@ -76,21 +74,19 @@ class Procedure implements ProcedureInterface
      *
      * @access public
      * @param  \JonnyW\PhantomJs\ClientInterface                    $client
-     * @param  \JonnyW\PhantomJs\Message\RequestInterface           $request
-     * @param  \JonnyW\PhantomJs\Message\ResponseInterface          $response
+     * @param  \JonnyW\PhantomJs\Procedure\InputInterface           $input
+     * @param  \JonnyW\PhantomJs\Procedure\OutputInterface          $output
      * @throws \JonnyW\PhantomJs\Exception\ProcedureFailedException
-     * @throws \Exception
      * @throws \JonnyW\PhantomJs\Exception\NotWritableException
      * @return void
      */
-    public function run(ClientInterface $client, RequestInterface $request, ResponseInterface $response)
+    public function run(ClientInterface $client, InputInterface $input, OutputInterface $output)
     {
         try {
 
-            $template  = $this->getProcedure();
-            $procedure = $this->renderer->render($template, array('request' => $request));
-
-            $executable = $this->write($procedure);
+            $executable = $this->write(
+                $this->compile($input)
+            );
 
             $descriptorspec = array(
                 array('pipe', 'r'),
@@ -113,11 +109,11 @@ class Procedure implements ProcedureInterface
 
             proc_close($process);
 
-            $response->import(
+            $output->import(
                 $this->parser->parse($result)
             );
 
-            $client->setLog($log);
+            $client->log($log);
 
             $this->remove($executable);
 
@@ -129,20 +125,20 @@ class Procedure implements ProcedureInterface
                 $this->remove($executable);
             }
 
-            throw new ProcedureFailedException(sprintf('Error when executing PhantomJs procedure "%s" - %s', $request->getType(), $e->getMessage()));
+            throw new ProcedureFailedException(sprintf('Error when executing PhantomJs procedure - %s', $e->getMessage()));
         }
     }
 
     /**
-     * Load procedure.
+     * Set procedure template.
      *
      * @access public
-     * @param  string                                $procedure
+     * @param  string                                $template
      * @return \JonnyW\PhantomJs\Procedure\Procedure
      */
-    public function load($procedure)
+    public function setTemplate($template)
     {
-        $this->procedure = $procedure;
+        $this->template = $template;
 
         return $this;
     }
@@ -153,23 +149,33 @@ class Procedure implements ProcedureInterface
      * @access public
      * @return string
      */
-    public function getProcedure()
+    public function getTemplate()
     {
-        return $this->procedure;
+        return $this->template;
     }
 
     /**
-     * Write procedure script cache.
+     * Compile procedure.
+     *
+     * @access public
+     * @param  \JonnyW\PhantomJs\Procedure\InputInterface $input
+     * @return void
+     */
+    public function compile(InputInterface $input)
+    {
+       return $this->renderer->render($this->getTemplate(), array('input' => $input));
+    }
+
+    /**
+     * Write compiled procedure to cache.
      *
      * @access protected
-     * @param  string $procedure
+     * @param  string $compiled
      * @return string
      */
-    protected function write($procedure)
+    protected function write($compiled)
     {
-        $executable = $this->cacheHandler->save(uniqid(), $procedure);
-
-        return $executable;
+        return $this->cacheHandler->save(uniqid(), $compiled);
     }
 
     /**

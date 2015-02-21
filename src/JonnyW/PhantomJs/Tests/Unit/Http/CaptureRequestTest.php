@@ -6,10 +6,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace JonnyW\PhantomJs\Tests\Unit\Message;
+namespace JonnyW\PhantomJs\Tests\Unit\Http;
 
-use JonnyW\PhantomJs\Message\CaptureRequest;
-use JonnyW\PhantomJs\Message\RequestInterface;
+use JonnyW\PhantomJs\Http\CaptureRequest;
+use JonnyW\PhantomJs\Http\RequestInterface;
 
 /**
  * PHP PhantomJs
@@ -38,12 +38,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test custom type is returned if type is set.
+     * Test custom type can be set.
      *
      * @access public
      * @return void
      */
-    public function testCustomTypeIsReturnedIfTypeIsSet()
+    public function testCustomTypeCanBeSet()
     {
         $requestType = 'testType';
 
@@ -96,13 +96,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set method throws invalid method
-     * exception if an invalid method is set
+     * Test invalid method is thrown if method
+     * is invalid.
      *
      * @access public
      * @return void
      */
-    public function testSetMethodThrowsInvalidMethodExceptionIfAnInvalidMethodIsSet()
+    public function testInvalidMethodIsThrownIfMethodIsInvalid()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidMethodException');
 
@@ -110,29 +110,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest->setMethod('INVALID_METHOD');
     }
 
-  /**
-     * Test set method throws invalid method
-     * exception if an invalid method is set
-     * via constructor
-     *
-     * @access public
-     * @return void
-     */
-    public function testSetMethodThrowsInvalidMethodExceptionIfAnInvalidMethodIsSetViaConstructor()
-    {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidMethodException');
-
-        $this->getCaptureRequest('http://test.com', 'INVALID_METHOD');
-    }
-
     /**
-     * Test set capture dimensions sets
-     * rect width.
+     * Test rect width can be set.
      *
      * @access public
      * @return void
      */
-    public function testSetCaptureDimensionsSetsRectWidth()
+    public function testRectWidthCanBeSet()
     {
         $width  = 100;
         $height = 200;
@@ -144,13 +128,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set capture dimensions sets
-     * rect height.
+     * Test rect height can be set.
      *
      * @access public
      * @return void
      */
-    public function testSetCaptureDimensionsSetsRectHeight()
+    public function testRectHeightCanBeSet()
     {
         $width  = 100;
         $height = 200;
@@ -162,13 +145,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set capture dimensions sets
-     * rect top.
+     * Test rect top can be set.
      *
      * @access public
      * @return void
      */
-    public function testSetCaptureDimensionsSetsRectTop()
+    public function testRectTopCanBeSet()
     {
         $width  = 100;
         $height = 200;
@@ -181,13 +163,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set capture dimensions sets
-     * rect left.
+     * Test rect left can be set.
      *
      * @access public
      * @return void
      */
-    public function testSetCaptureDimensionsSetsRectLeft()
+    public function testRectLeftCanBeSet()
     {
         $width  = 100;
         $height = 200;
@@ -200,14 +181,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set URL throws invalid
-     * URL exception if an invalid
-     * URL is set.
+     * Test invalid URL exception is thrown
+     * if URL is invalid format.
      *
      * @access public
      * @return void
      */
-    public function testSetUrlThrowsInvalidUrlExceptionIfAnInvalidUrlIsSet()
+    public function testInvalidUrlExceptionIsThrownIfUrlIsInvalidFormat()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidUrlException');
 
@@ -216,13 +196,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL returns URL without query
-     * paramters if method is not HEAD or GET.
+     * Test URL does not contain query params if
+     * mehtod is not HEAD or GET.
      *
      * @access public
      * @return void
      */
-    public function testGetUrlReturnsUrlWithoutQueryParametersIfMethodIsNotHeadOrGet()
+    public function testUrlDoesNotContainQueryParamsIfMethodIsNotHeadOrGet()
     {
         $url = 'http://test.com';
 
@@ -240,13 +220,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL returns URL with query
-     * parameters if method is GET.
+     * Test URL does contain query params if mehthod
+     * is GET.
      *
      * @access public
      * @return void
      */
-    public function testGetUrlReturnsUrlWithQueryParametersIfMethodIsGet()
+    public function testUrlDoesContainQueryParamsIfMethodIsGet()
     {
         $url = 'http://test.com';
 
@@ -266,13 +246,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL returns URL with query
-     * parameters if method is HEAD.
+     * Test URL does contain query params if method
+     * is HEAD.
      *
      * @access public
      * @return void
      */
-    public function testGetUrlReturnsUrlWithQueryParametersIfMethodIsHead()
+    public function testUrlDoesContainQueryParamsIfMethodIsHead()
     {
         $url = 'http://test.com';
 
@@ -292,13 +272,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL returns URL with query
-     * parameters if method is HEAD.
+     * Test query params are appended to URL if
+     * URL contains existng query params.
      *
      * @access public
      * @return void
      */
-    public function testGetUrlAppendsQueryParametersIfUrlHasExistingQueryParameters()
+    public function testQueryParamsAreAppendedToUrlIfUrlContainsExistingQueryParams()
     {
         $url = 'http://test.com?existing_param=Existing';
 
@@ -318,13 +298,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get body returns an empty
-     * string if method is GET.
+     * Test request contains no body if method
+     * is GET.
      *
      * @access public
      * @return void
      */
-    public function testGetBodyReturnsAnEmptyStringIfMethodIsGet()
+    public function testRequestContainsNoBodyIfMethodIsGet()
     {
         $data = array(
             'test_param1' => 'Testing1',
@@ -339,13 +319,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get body returns and empty
-     * string if method is HEAD.
+     * Test request contains no body if method
+     * is HEAD.
      *
      * @access public
      * @return void
      */
-    public function testGetBodyReturnsAnEmptyStringIfMethodIsHead()
+    public function testRequestContainsNoBodyIfMethodIsHead()
     {
         $data = array(
             'test_param1' => 'Testing1',
@@ -360,13 +340,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get body returns query string if
-     * method is not HEAD or GET.
+     * Test request contains a body if method is
+     * not HEAD or GET.
      *
      * @access public
      * @return void
      */
-    public function testGetBodyReturnsQueryStringIfMethodIsNotHeadOrGet()
+    public function testRequestContainsABodyIfMethodIsNotHeadOrGet()
     {
         $data = array(
             'test_param1' => 'Testing1',
@@ -383,13 +363,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get request data returns flattened
-     * request data if flatten is set to true.
+     * Test request data can be flattened.
      *
      * @access public
      * @return void
      */
-    public function testGetRequestDataReturnsFlattenedRequestDataIfFlattenIsSetToTrue()
+    public function testRequestDataCanBeFalttened()
     {
         $data = array(
             'test_param1' => 'Testing1',
@@ -412,13 +391,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get request data returns unflattened
-     * request data if flatten is set to false
+     * Test raw request data can be accessed.
      *
      * @access public
      * @return void
      */
-    public function testGetRequestDataReturnsUnflattenedRequestDataIfFlattenIsSetToFalse()
+    public function testRawRequestDataCanBeAccessed()
     {
         $data = array(
             'test_param1' => 'Testing1',
@@ -435,13 +413,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test add headers merge headers with
-     * existing headers.
+     * Test headers can be added.
      *
      * @access public
      * @return void
      */
-    public function testAddHeadersMergesHeadersWithExistingHeaders()
+    public function testHeadersCanBeAdded()
     {
         $existingHeaders = array(
             'Header1' => 'Header 1'
@@ -462,13 +439,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get headers returns JSON encoded
-     * headers if format is set to JSON.
+     * Test headers can be accessed in
+     * JSON format
      *
      * @access public
      * @return void
      */
-    public function testGetHeadersReturnsJsonEncodedHeadersIfFormatIsSetToJson()
+    public function testHeadersCanBeAccessedInJsonFormat()
     {
         $headers = array(
             'Header1' => 'Header 1',
@@ -484,13 +461,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get headers returns headers as
-     * array if format is not set to json
+     * Test raw headers can be accessed.
      *
      * @access public
      * @return void
      */
-    public function testGetHeadersReturnsHeadersAsArrayIfFormatIsNotSetToJson()
+    public function testRawHeadersCanBeAccessed()
     {
         $headers = array(
             'Header1' => 'Header 1',
@@ -504,14 +480,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set capture file throws not
-     * writable exception if file path
-     * is not writable.
+     * Test not writable exception is thrown if
+     * capture path is not writable.
      *
      * @access public
      * @return void
      */
-    public function testSetCaptureFileThrowsNotWriteableExceptionIfFilePathIsNotWriteable()
+    public function tesNotWritableExceptonIsThrownIfCapturePathIsNotWritable()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
@@ -522,13 +497,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get capture file returns capture
-     * file if capture file is set.
+     * Test can set capture file.
      *
      * @access public
      * @return void
      */
-    public function testGetCaptureFileReturnsCaptureFileIfCaptureFileIsSet()
+    public function testCanSetCaptureFile()
     {
         $captureFile = sprintf('%s/test.jpg', sys_get_temp_dir());
 
@@ -539,12 +513,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set viewport size sets viewport width.
+     * Test can set viewport width.
      *
      * @access public
      * @return void
      */
-    public function testSetViewportSizeSetsViewportWidth()
+    public function testCanSetViewportWidth()
     {
         $width  = 100;
         $height = 200;
@@ -556,12 +530,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set viewport size sets viewport height.
+     * Test can set viewport height.
      *
      * @access public
      * @return void
      */
-    public function testSetViewportSizeSetsViewportHeight()
+    public function testCanSetViewportHeight()
     {
         $width  = 100;
         $height = 200;
@@ -580,10 +554,10 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
      * Get capture request instance.
      *
      * @access protected
-     * @param  string                                   $url     (default: null)
-     * @param  string                                   $method  (default: RequestInterface::METHOD_GET)
-     * @param  int                                      $timeout (default: 5000)
-     * @return \JonnyW\PhantomJs\Message\CaptureRequest
+     * @param  string                                $url     (default: null)
+     * @param  string                                $method  (default: RequestInterface::METHOD_GET)
+     * @param  int                                   $timeout (default: 5000)
+     * @return \JonnyW\PhantomJs\Http\CaptureRequest
      */
     protected function getCaptureRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
     {

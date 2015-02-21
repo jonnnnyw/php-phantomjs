@@ -8,8 +8,8 @@
  */
 namespace JonnyW\PhantomJs;
 
-use JonnyW\PhantomJs\Message\RequestInterface;
-use JonnyW\PhantomJs\Message\ResponseInterface;
+use JonnyW\PhantomJs\Http\RequestInterface;
+use JonnyW\PhantomJs\Http\ResponseInterface;
 
 /**
  * PHP PhantomJs
@@ -30,7 +30,7 @@ interface ClientInterface
      * Get message factory instance
      *
      * @access public
-     * @return \JonnyW\PhantomJs\Message\MessageFactoryInterface
+     * @return \JonnyW\PhantomJs\Http\MessageFactoryInterface
      */
     public function getMessageFactory();
 
@@ -38,27 +38,19 @@ interface ClientInterface
      * Send request
      *
      * @access public
-     * @param \JonnyW\PhantomJs\Message\RequestInterface  $request
-     * @param \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @param \JonnyW\PhantomJs\Http\RequestInterface  $request
+     * @param \JonnyW\PhantomJs\Http\ResponseInterface $response
      */
     public function send(RequestInterface $request, ResponseInterface $response);
 
     /**
-     * Set bin directory.
-     *
-     * @access public
-     * @param  string                   $path
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function setBinDir($path);
-
-    /**
-     * Get bin directory.
+     * Get PhantomJs run command with
+     * loader and run options.
      *
      * @access public
      * @return string
      */
-    public function getBinDir();
+    public function getCommand();
 
     /**
      * Set new PhantomJs executable path.
@@ -75,22 +67,6 @@ interface ClientInterface
      * @return string
      */
     public function getPhantomJs();
-
-        /**
-     * Set PhantomJs loader executable path.
-     *
-     * @access public
-     * @param string $path
-     */
-    public function setPhantomLoader($path);
-
-    /**
-     * Get PhantomJs loader executable path.
-     *
-     * @access public
-     * @return string
-     */
-    public function getPhantomLoader();
 
     /**
      * Set PhantomJs run options.
@@ -125,12 +101,13 @@ interface ClientInterface
     public function debug($doDebug);
 
     /**
-     * Set log info.
+     * Log info.
      *
      * @access public
-     * @param string $info
+     * @param  string                   $info
+     * @return \JonnyW\PhantomJs\Client
      */
-    public function setLog($info);
+    public function log($info);
 
     /**
      * Get log info.
@@ -144,6 +121,7 @@ interface ClientInterface
      * Clear log info.
      *
      * @access public
+     * @return \JonnyW\PhantomJs\Client
      */
     public function clearLog();
 }

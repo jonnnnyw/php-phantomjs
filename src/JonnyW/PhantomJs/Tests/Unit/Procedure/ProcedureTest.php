@@ -8,9 +8,16 @@
  */
 namespace JonnyW\PhantomJs\Tests\Unit\Procedure;
 
+use Twig_Environment;
+use Twig_Loader_String;
+use JonnyW\PhantomJs\Cache\FileCache;
 use JonnyW\PhantomJs\Cache\CacheInterface;
+use JonnyW\PhantomJs\Parser\JsonParser;
 use JonnyW\PhantomJs\Parser\ParserInterface;
+use JonnyW\PhantomJs\Template\TemplateRenderer;
 use JonnyW\PhantomJs\Template\TemplateRendererInterface;
+use JonnyW\PhantomJs\Procedure\Input;
+use JonnyW\PhantomJs\Procedure\Output;
 use JonnyW\PhantomJs\Procedure\Procedure;
 
 /**
@@ -26,79 +33,96 @@ class ProcedureTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test load procedure sets procedure
-     * body in procedure instance.
+     * Test procedure template can be
+     * set in procedure
      *
      * @access public
      * @return void
      */
-    public function testLoadProcedureSetsProcedureBodyInProcedureInstance()
+    public function testProcedureTemplateCanBeSetInProcedure()
     {
-        $template = 'TEST PRODCEDURE';
+        $template = 'PROCEDURE_TEMPLATE';
 
         $parser    = $this->getParser();
         $cache     = $this->getCache();
         $renderer  = $this->getRenderer();
 
         $procedure = $this->getProcedure($parser, $cache, $renderer);
-        $procedure->load($template);
+        $procedure->setTemplate($template);
 
-        $this->assertSame($procedure->getProcedure(), $template);
+        $this->assertSame($procedure->getTemplate(), $template);
     }
 
     /**
-     * Test run throws note writeable exception
-     * if procedure executable file cannot
-     * be written.
+     * Test procedure can be compiled.
      *
      * @access public
      * @return void
      */
-    public function testRunThrowsNotWriteableExceptionIfProcedureExecutableFileCannotBeWritten()
+    public function testProcedureCanBeCompiled()
+    {
+        $template = 'TEST_{{ input.get("uncompiled") }}_PROCEDURE';
+
+        $parser    = $this->getParser();
+        $cache     = $this->getCache();
+        $renderer  = $this->getRenderer();
+
+        $input  = $this->getInput();
+        $input->set('uncompiled', 'COMPILED');
+
+        $procedure = $this->getProcedure($parser, $cache, $renderer);
+        $procedure->setTemplate($template);
+
+        $this->assertSame('TEST_COMPILED_PROCEDURE', $procedure->compile($input));
+    }
+
+    /**
+     * Test not writable exception is thrown if procedure
+     * script cannot be written to file
+     *
+     * @access public
+     * @return void
+     */
+    public function testNotWritableExceptionIsThrownIfProcedureScriptCannotBeWrittenToFile()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
         $parser   = $this->getParser();
         $renderer = $this->getRenderer();
 
-        $cache = $this->getCache();
-        $cache->expects($this->once())
-            ->method('save')
-            ->will($this->throwException(new \JonnyW\PhantomJs\Exception\NotWritableException()));
+        $cache = $this->getCache('/an/invalid/dir');
 
-        $client   = $this->getClient();
-        $request  = $this->getRequest();
-        $response = $this->getResponse();
+        $client = $this->getClient();
+        $input  = $this->getInput();
+        $output = $this->getOutput();
 
         $procedure = $this->getProcedure($parser, $cache, $renderer);
-        $procedure->run($client, $request, $response);
+        $procedure->run($client, $input, $output);
     }
 
     /**
-     * Test run throws procedure failed exception
-     * if an exception is encountered.
+     * Test procedure failed exception is thrown if procedure
+     * cannot be run.
      *
      * @access public
      * @return void
      */
-    public function testRunThrowsProcedureFailedExceptionIfAnExceptionIsEncountered()
+    public function testProcedureFailedExceptionIsThrownIfProcedureCannotBeRun()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\ProcedureFailedException');
 
-        $parser = $this->getParser();
-        $cache  = $this->getCache();
-
+        $parser   = $this->getParser();
+        $cache    = $this->getCache();
         $renderer = $this->getRenderer();
-        $renderer->expects($this->once())
-            ->method('render')
+        $input    = $this->getInput();
+        $output   = $this->getOutput();
+
+        $client = $this->getClient();
+        $client->method('getCommand')
             ->will($this->throwException(new \Exception()));
 
-        $client   = $this->getClient();
-        $request  = $this->getRequest();
-        $response = $this->getResponse();
-
         $procedure = $this->getProcedure($parser, $cache, $renderer);
-        $procedure->run($client, $request, $response);
+        $procedure->run($client, $input, $output);
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -121,85 +145,92 @@ class ProcedureTest extends \PHPUnit_Framework_TestCase
         return $procedure;
     }
 
+    /**
+     * Get parser.
+     *
+     * @access protected
+     * @return \JonnyW\PhantomJs\Parser\JsonParser
+     */
+    protected function getParser()
+    {
+        $parser = new JsonParser();
+
+        return $parser;
+    }
+
+    /**
+     * Get cache.
+     *
+     * @access protected
+     * @param  string                            $cacheDir  (default: '')
+     * @param  string                            $extension (default: 'proc')
+     * @return \JonnyW\PhantomJs\Cache\FileCache
+     */
+    protected function getCache($cacheDir = '', $extension = 'proc')
+    {
+        $cache = new FileCache(($cacheDir ? $cacheDir : sys_get_temp_dir()), 'proc');
+
+        return $cache;
+    }
+
+    /**
+     * Get template renderer.
+     *
+     * @access protected
+     * @return \JonnyW\PhantomJs\Template\TemplateRenderer
+     */
+    protected function getRenderer()
+    {
+        $twig = new Twig_Environment(
+            new Twig_Loader_String()
+        );
+
+        $renderer = new TemplateRenderer($twig);
+
+        return $renderer;
+    }
+
+    /**
+     * Get input
+     *
+     * @access protected
+     * @return \JonnyW\PhantomJs\Procedure\Input
+     */
+    protected function getInput()
+    {
+        $input = new Input();
+
+        return $input;
+    }
+
+    /**
+     * Get output.
+     *
+     * @access protected
+     * @return \JonnyW\PhantomJs\Procedure\Output
+     */
+    protected function getOutput()
+    {
+        $output = new Output();
+
+        return $output;
+    }
+
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ MOCKS / STUBS ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Get mock parser instance.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Parser\ParserInterface
-     */
-    protected function getParser()
-    {
-        $mockParser = $this->getMock('\JonnyW\PhantomJs\Parser\ParserInterface');
-
-        return $mockParser;
-    }
-
-    /**
-     * Get mock cache instance.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Cache\CacheInterface
-     */
-    protected function getCache()
-    {
-        $mockCache = $this->getMock('\JonnyW\PhantomJs\Cache\CacheInterface');
-
-        return $mockCache;
-    }
-
-    /**
-     * Get mock template renderer instance.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Template\TemplateRendererInterface
-     */
-    protected function getRenderer()
-    {
-        $mockTemplateRenderer = $this->getMock('\JonnyW\PhantomJs\Template\TemplateRendererInterface');
-
-        return $mockTemplateRenderer;
-    }
-
-    /**
-     * Get mock client instance.
+     * Get client.
      *
      * @access protected
      * @return \JonnyW\PhantomJs\ClientInterface
      */
     protected function getClient()
     {
-        $mockClient = $this->getMock('\JonnyW\PhantomJs\ClientInterface');
+        $client = $this->getMock('\JonnyW\PhantomJs\ClientInterface');
 
-        return $mockClient;
+        return $client;
     }
 
-    /**
-     * Get mock request instance.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Message\RequestInterface
-     */
-    protected function getRequest()
-    {
-        $mockRequest = $this->getMock('\JonnyW\PhantomJs\Message\RequestInterface');
-
-        return $mockRequest;
-    }
-
-    /**
-     * Get mock response instance.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Message\ResponseInterface
-     */
-    protected function getResponse()
-    {
-        $mockResponse = $this->getMock('\JonnyW\PhantomJs\Message\ResponseInterface');
-
-        return $mockResponse;
-    }
 }

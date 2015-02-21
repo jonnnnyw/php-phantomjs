@@ -73,14 +73,16 @@ EOF;
     }
 
     /**
-     * Test request returns a status code of zero
-     * if a procedure parse exception is encountered.
+     * Test syntax exception is thrown if request
+     * procedure contains syntax error.
      *
      * @access public
      * @return void
      */
-    public function testRequestReturnsAStatusCodeOfZeroIfAProcedureParseExceptionIsEncountered()
+    public function testSyntaxExceptionIsThrownIfRequestProcedureContainsSyntaxError()
     {
+        $this->setExpectedException('\JonnyW\PhantomJs\Exception\SyntaxException');
+
         $content = 'TEST_PROCEDURE';
 
         $procedure = <<<EOF
@@ -101,41 +103,6 @@ EOF;
         $request->setType('test');
 
         $client->send($request, $response);
-
-        $this->assertEquals(0, $response->getStatus());
-    }
-
-    /**
-     * Test client contains parse error in log if
-     * a parse exception is encountered.
-     *
-     * @access public
-     * @return void
-     */
-    public function testClientContainsParseErrorInLogIfAParseExceptionIsEncountered()
-    {
-        $content = 'TEST_PROCEDURE';
-
-        $procedure = <<<EOF
-    console.log(;
-EOF;
-
-        $this->writeProcedure($procedure);
-
-        $procedureLoaderFactory = $this->getContainer()->get('procedure_loader_factory');
-        $procedureLoader        = $procedureLoaderFactory->createProcedureLoader($this->directory);
-
-        $client = $this->getClient();
-        $client->getProcedureLoader()->addLoader($procedureLoader);
-
-        $request  = $client->getMessageFactory()->createRequest();
-        $response = $client->getMessageFactory()->createResponse();
-
-        $request->setType('test');
-
-        $client->send($request, $response);
-
-        $this->assertContains('SyntaxError: Parse error', $client->getLog());
     }
 
     /**
@@ -505,7 +472,7 @@ EOF;
 
         $client->send($request, $response);
 
-        $logs = explode("\n", $client->getLog());
+        $logs = explode("\\n", $client->getLog());
 
         $startIndex = $this->getLogEntryIndex($logs, 'Delaying page render for');
         $endIndex   = $this->getLogEntryIndex($logs, 'Rendering page after');
@@ -538,7 +505,7 @@ EOF;
 
         $client->send($request, $response);
 
-        $logs = explode("\n", $client->getLog());
+        $logs = explode("\\n", $client->getLog());
 
         $startIndex = $this->getLogEntryIndex($logs, 'Delaying page render for');
 
@@ -567,7 +534,7 @@ EOF;
 
         $client->send($request, $response);
 
-        $logs = explode("\n", $client->getLog());
+        $logs = explode("\\n", $client->getLog());
 
         $endIndex = $this->getLogEntryIndex($logs, 'Rendering page after');
 
@@ -596,7 +563,7 @@ EOF;
 
         $client->send($request, $response);
 
-        $logs = explode("\n", $client->getLog());
+        $logs = explode("\\n", $client->getLog());
 
         $startIndex = $this->getLogEntryIndex($logs, 'Delaying page render for');
         $endIndex   = $this->getLogEntryIndex($logs, 'Rendering page after');

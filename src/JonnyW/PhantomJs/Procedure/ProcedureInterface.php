@@ -9,8 +9,6 @@
 namespace JonnyW\PhantomJs\Procedure;
 
 use JonnyW\PhantomJs\ClientInterface;
-use JonnyW\PhantomJs\Message\RequestInterface;
-use JonnyW\PhantomJs\Message\ResponseInterface;
 
 /**
  * PHP PhantomJs
@@ -24,18 +22,18 @@ interface ProcedureInterface
      *
      * @access public
      * @param \JonnyW\PhantomJs\ClientInterface           $client
-     * @param \JonnyW\PhantomJs\Message\RequestInterface  $request
-     * @param \JonnyW\PhantomJs\Message\ResponseInterface $response
+     * @param \JonnyW\PhantomJs\Procedure\InputInterface  $input
+     * @param \JonnyW\PhantomJs\Procedure\OutputInterface $output
      */
-    public function run(ClientInterface $client, RequestInterface $request, ResponseInterface $response);
+    public function run(ClientInterface $client, InputInterface $input, OutputInterface $output);
 
     /**
-     * Load procedure.
+     * Set procedure template.
      *
      * @access public
-     * @param string $procedure
+     * @param string $template
      */
-    public function load($procedure);
+    public function setTemplate($template);
 
     /**
      * Get procedure template.
@@ -43,5 +41,14 @@ interface ProcedureInterface
      * @access public
      * @return string
      */
-    public function getProcedure();
+    public function getTemplate();
+
+    /**
+     * Compile procedure.
+     *
+     * @access public
+     * @param  \JonnyW\PhantomJs\Procedure\InputInterface $input
+     * @return string
+     */
+    public function compile(InputInterface $input);
 }

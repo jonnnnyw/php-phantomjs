@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace JonnyW\PhantomJs\Message;
+namespace JonnyW\PhantomJs\Http;
 
 /**
  * PHP PhantomJs
@@ -43,8 +43,8 @@ class Request extends AbstractRequest
      * Set request type
      *
      * @access public
-     * @param  string                                    $type
-     * @return \JonnyW\PhantomJs\Message\AbstractRequest
+     * @param  string                                 $type
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
      */
     public function setType($type)
     {

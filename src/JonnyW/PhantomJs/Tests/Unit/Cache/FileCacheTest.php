@@ -38,13 +38,13 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test exists returns false if
-     * file does not exist.
+     * Test false is returned if file
+     * does not exist.
      *
      * @access public
      * @return void
      */
-    public function testExistsReturnsFalesIfFileDoesNotExist()
+    public function testFalseIsReturnedIfFileDoesNotExist()
     {
         $fileCache = $this->getFileCache($this->directory, 'txt');
 
@@ -52,13 +52,12 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test exists returns true if
-     * file does exist.
+     * Test true is returned if file does exist.
      *
      * @access public
      * @return void
      */
-    public function testExistsReturnsTrueIfFileDoesExist()
+    public function testTrueIsReturnedIfFileDoesExist()
     {
         touch($this->getFilename());
 
@@ -68,12 +67,12 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test save throws not writable
-     * exception if file is not writable
+     * Test not writable exception is thrown if file
+     * cannot be saved due to write permissions.
      *
      * @return void
      */
-    public function testSaveThrowsNotWritableExceptionIfFileIsNotWritable()
+    public function testNotWritableExceptionIsThrownIfFileCannotBeSavedDueToWritePermissions()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
@@ -82,32 +81,13 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test save throws not writable
-     * exception if write data returns
-     * false
+     * Test test file location is returned
+     * if file is successfully saved.
      *
      * @access public
      * @return void
      */
-    public function testSaveThrowsNotWritableExceptionIfWriteFileReturnsFalse()
-    {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
-
-        $fileCache = $this->getMockFileCache(array('writeData'), $this->directory, 'txt');
-        $fileCache->method('writeData')
-            ->will($this->returnValue(false));
-
-        $fileCache->save($this->filename, 'Test');
-    }
-
-    /**
-     * Test save returns file location if
-     * file is successfully saved.
-     *
-     * @access public
-     * @return void
-     */
-    public function testSaveReturnsFileLocationIfFileIsSuccessfullySaved()
+    public function testFileLocationIsReturnedIfFileIsSuccessfullySaved()
     {
         $fileCache  = $this->getFileCache($this->directory, 'txt');
         $file       = $fileCache->save($this->filename, 'Test');
@@ -117,13 +97,13 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test save with directory path
-     * saves file to directory
+     * Test file can be saved
+     * with directory path
      *
      * @access public
      * @return void
      */
-    public function testSaveWithDirectoryPathSavesFileToDirectory()
+    public function testFileCanBeSavedWithDirectoryPath()
     {
         $fileCache  = $this->getFileCache('', 'txt');
         $file       = $fileCache->save($this->directory, 'Test');
@@ -134,14 +114,13 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test save with directory path
-     * throws not writable exception
-     * if path is not writable
+     * Test not writable exception is thrown
+     * if directory path is not writable.
      *
      * @access public
      * @return void
      */
-    public function testSaveWithDirectoryPathThrowsNotWritableExceptionIfPathIsNotWritable()
+    public function testNotWritableExceptionIsThrownIfDirectoryPathIsNotWritable()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
@@ -150,13 +129,13 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test save with absolute filename
-     * saves file.
+     * Test file can be saved with absolute
+     * path.
      *
      * @access public
      * @return void
      */
-    public function testSaveWithAbsoluteFilenameSavesFile()
+    public function testFileCanBeSavedWithAbsolutePath()
     {
         $test = sprintf('%1$s/%2$s', $this->directory, 'new-file.txt');
 
@@ -169,13 +148,13 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch data returns not exists
-     * exception if file does not exist.
+     * Test not exists exception is thrown when
+     * fetching data that doesn't exsit
      *
      * @access public
      * @return void
      */
-    public function testFetchDataThrowsNotExistsExceptionIfFileDoesNotExist()
+    public function testNotExistsExceptionIsThrownIfWhenFetchingDataThatDoesntExist()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotExistsException');
 
@@ -185,13 +164,12 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch data returns data if
-     * file exists..
+     * Test data can be fetched from cache.
      *
      * @access public
      * @return void
      */
-    public function testFetchDataReturnsDataIfFileExists()
+    public function testDataCanBeFetchedFromCache()
     {
         $test = 'Test';
 
@@ -204,12 +182,12 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test delete removes file.
+     * Test data can be deleted from cache.
      *
      * @access public
      * @return void
      */
-    public function testDeleteRemovesFile()
+    public function testDataCanBeDeletedFromCache()
     {
         $fileCache = $this->getFileCache($this->directory, 'txt');
 
@@ -236,26 +214,6 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
         $fileCache = new FileCache($directory, $extension);
 
         return $fileCache;
-    }
-
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++ MOCKS / STUBS ++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
-
-    /**
-     * Get mock file cache.
-     *
-     * @access protected
-     * @param  array                             $methods
-     * @param  string                            $directory
-     * @param  string                            $extension
-     * @return \JonnyW\PhantomJs\Cache\FileCache
-     */
-    protected function getMockFileCache(array $methods, $directory, $extension)
-    {
-        $mockFileCache = $this->getMock('\JonnyW\PhantomJs\Cache\FileCache', $methods, array($directory, $extension));
-
-        return $mockFileCache;
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/
