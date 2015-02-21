@@ -19,7 +19,7 @@
         "symfony/filesystem": "~2.3",
         "symfony/yaml": "~2.3",
         "twig/twig": "~1.16",
-        "jakoch/phantomjs-installer": "2.0.0"
+        "jakoch/phantomjs-installer": "1.9.8"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0"
