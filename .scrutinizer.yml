@@ -6,7 +6,8 @@ before_commands:
     - "composer install --dev --prefer-source"
 
 tools:
-    external_code_coverage: true
+    external_code_coverage:
+        timeout: 1200
     php_cpd:
         enabled: true
         excluded_dirs: ["examples", "vendor"]
