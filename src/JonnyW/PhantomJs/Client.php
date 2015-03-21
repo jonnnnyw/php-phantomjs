@@ -117,7 +117,7 @@ class Client implements ClientInterface
 
             $serviceContainer = ServiceContainer::getInstance();
 
-            self::$instance = new Client(
+            self::$instance = new static(
                 $serviceContainer->get('procedure_loader'),
                 $serviceContainer->get('procedure_validator'),
                 $serviceContainer->get('message_factory')
