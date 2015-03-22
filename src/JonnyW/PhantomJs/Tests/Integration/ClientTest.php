@@ -289,7 +289,7 @@ EOF;
 
         $request->setMethod('GET');
         $request->setUrl('http://jonnyw.kiwi/tests/test-console-error.php');
-        $request->setCaptureFile($file);
+        $request->setOutputFile($file);
 
         $client->send($request, $response);
 
@@ -318,7 +318,7 @@ EOF;
 
         $request->setMethod('GET');
         $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
-        $request->setCaptureFile($file);
+        $request->setOutputFile($file);
         $request->setCaptureDimensions($width, $height);
 
         $client->send($request, $response);
@@ -327,6 +327,138 @@ EOF;
 
         $this->assertEquals($width, $imageInfo[0]);
         $this->assertEquals($height, $imageInfo[1]);
+    }
+
+    /**
+     * Test PDF request saves pdf to
+     * to local disk.
+     *
+     * @access public
+     * @return void
+     */
+    public function testPdfRequestSavesPdfToLocalDisk()
+    {
+        $this->filename = 'test.pdf';
+        $file = ($this->directory . '/' . $this->filename);
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createPdfRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setOutputFile($file);
+
+        $client->send($request, $response);
+
+        $this->assertTrue(file_exists($file));
+    }
+
+    /**
+     * Test capture request saves file to
+     * disk with correct paper size.
+     *
+     * @access public
+     * @return void
+     */
+    public function testPdfRequestSavesFileToDiskWithCorrectPaperSize()
+    {
+        $this->filename = 'test.pdf';
+        $file = ($this->directory . '/' . $this->filename);
+
+        $width  = 20;
+        $height = 30;
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createPdfRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setOutputFile($file);
+        $request->setPaperSize(sprintf('%scm', $width), sprintf('%scm', $height));
+        $request->setMargin('0cm');
+
+        $client->send($request, $response);
+
+        $pdf = \ZendPdf\PdfDocument::load($file);
+
+        $pdfWidth  = round(($pdf->pages[0]->getWidth() * 0.0352777778));
+        $pdfHeight = round(($pdf->pages[0]->getHeight()  * 0.0352777778));
+
+        $this->assertEquals($width, $pdfWidth);
+        $this->assertEquals($height, $pdfHeight);
+    }
+
+    /**
+     * Test capture request saves file to
+     * disk with correct format size.
+     *
+     * @access public
+     * @return void
+     */
+    public function testPdfRequestSavesFileToDiskWithCorrectFormatSize()
+    {
+        $this->filename = 'test.pdf';
+        $file = ($this->directory . '/' . $this->filename);
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createPdfRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setOutputFile($file);
+        $request->setFormat('A4');
+        $request->setMargin('0cm');
+
+        $client->send($request, $response);
+
+        $pdf = \ZendPdf\PdfDocument::load($file);
+
+        $pdfWidth  = round(($pdf->pages[0]->getWidth() * 0.0352777778));
+        $pdfHeight = round(($pdf->pages[0]->getHeight()  * 0.0352777778));
+
+        $this->assertEquals(21, $pdfWidth);
+        $this->assertEquals(30, $pdfHeight);
+    }
+
+    /**
+     * Test capture request saves file to
+     * disk with correct orientation.
+     *
+     * @access public
+     * @return void
+     */
+    public function testPdfRequestSavesFileToDiskWithCorrectOrientation()
+    {
+        $this->filename = 'test.pdf';
+        $file = ($this->directory . '/' . $this->filename);
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createPdfRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setOutputFile($file);
+        $request->setFormat('A4');
+        $request->setOrientation('landscape');
+        $request->setMargin('0cm');
+
+        $client->send($request, $response);
+
+        $pdf = \ZendPdf\PdfDocument::load($file);
+
+        $pdfWidth  = round(($pdf->pages[0]->getWidth() * 0.0352777778));
+        $pdfHeight = round(($pdf->pages[0]->getHeight()  * 0.0352777778));
+
+        $this->assertEquals(30, $pdfWidth);
+        $this->assertEquals(21, $pdfHeight);
     }
 
     /**

@@ -18,9 +18,14 @@ var page       = require('webpage').create(),
 [[ engine.load('global_variables') ]]
 
 /**
- * Define width & height of screenshot
+ * Define width & height of capture
  */
 [[ engine.load('page_clip_rect') ]]
+
+/**
+ * Define paper size.
+ */
+[[ engine.load('page_paper_size') ]]
 
 /**
  * Define viewport size.

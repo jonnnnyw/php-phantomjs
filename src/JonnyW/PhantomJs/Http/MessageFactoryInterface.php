@@ -46,6 +46,17 @@ interface MessageFactoryInterface
     public function createCaptureRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000);
 
     /**
+     * Create PDF request instance.
+     *
+     * @access public
+     * @param  string                            $url
+     * @param  string                            $method
+     * @param  int                               $timeout
+     * @return \JonnyW\PhantomJs\Http\PdfRequest
+     */
+    public function createPdfRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000);
+
+    /**
      * Create response instance.
      *
      * @access public

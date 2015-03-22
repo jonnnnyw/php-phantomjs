@@ -1,20 +1,20 @@
 
-{% if input.getType() == 'capture' %}
+{% if input.getType() == 'capture' or input.getType() == 'pdf' %}
 
-var top    = {{ input.getRectTop() }},
-    left   = {{ input.getRectLeft() }},
-    width  = {{ input.getRectWidth() }},
-    height = {{ input.getRectHeight() }};
+var rectTop    = {{ input.getRectTop() }},
+    rectLeft   = {{ input.getRectLeft() }},
+    rectWidth  = {{ input.getRectWidth() }},
+    rectHeight = {{ input.getRectHeight() }};
 
-if(width && height) {
+if(rectWidth && rectHeight) {
     
-    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set capture clipping size ~ top: ' + top + ' left: ' + left + ' ' + width + 'x' + height);
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set capture clipping size ~ top: ' + rectTop + ' left: ' + rectLeft + ' ' + rectWidth + 'x' + rectHeight);
     
     page.clipRect = {
-        top: top,
-        left: left,
-        width: width,
-        height: height
+        top: rectTop,
+        left: rectLeft,
+        width: rectWidth,
+        height: rectHeight
     };
 }
 

@@ -56,14 +56,28 @@ class MessageFactory implements MessageFactoryInterface
      * Create capture request instance.
      *
      * @access public
-     * @param  string                         $url
-     * @param  string                         $method
-     * @param  int                            $timeout
-     * @return \JonnyW\PhantomJs\Http\Request
+     * @param  string                                $url
+     * @param  string                                $method
+     * @param  int                                   $timeout
+     * @return \JonnyW\PhantomJs\Http\CaptureRequest
      */
     public function createCaptureRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
     {
         return new CaptureRequest($url, $method, $timeout);
+    }
+
+    /**
+     * Create PDF request instance.
+     *
+     * @access public
+     * @param  string                            $url
+     * @param  string                            $method
+     * @param  int                               $timeout
+     * @return \JonnyW\PhantomJs\Http\PdfRequest
+     */
+    public function createPdfRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
+    {
+        return new PdfRequest($url, $method, $timeout);
     }
 
     /**

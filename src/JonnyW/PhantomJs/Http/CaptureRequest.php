@@ -28,12 +28,12 @@ class CaptureRequest extends AbstractRequest
     protected $type;
 
     /**
-     * File to save capture.
+     * File to save output.
      *
      * @var string
      * @access protected
      */
-    protected $captureFile;
+    protected $outputFile;
 
     /**
      * Rect top
@@ -180,32 +180,32 @@ class CaptureRequest extends AbstractRequest
     }
 
     /**
-     * Set file to save screen capture.
+     * Set file to save output.
      *
      * @access public
      * @param  string                                           $file
      * @throws \JonnyW\PhantomJs\Exception\NotWritableException
      * @return \JonnyW\PhantomJs\Http\CaptureRequest
      */
-    public function setCaptureFile($file)
+    public function setOutputFile($file)
     {
         if (!is_writable(dirname($file))) {
-            throw new NotWritableException(sprintf('Capture file is not writeable by PhantomJs: %s', $file));
+            throw new NotWritableException(sprintf('Output file is not writeable by PhantomJs: %s', $file));
         }
 
-        $this->captureFile = $file;
+        $this->outputFile = $file;
 
         return $this;
     }
 
     /**
-     * Get capture file.
+     * Get output file.
      *
      * @access public
      * @return string
      */
-    public function getCaptureFile()
+    public function getOutputFile()
     {
-        return $this->captureFile;
+        return $this->outputFile;
     }
 }

@@ -1,0 +1,32 @@
+
+{% if input.getType() == 'pdf' %}
+
+    var paperWidth       = '{{ input.getPaperWidth() }}',
+        paperHeight      = '{{ input.getPaperHeight() }}',
+        paperFormat      = '{{ input.getFormat() }}',
+        paperOrientation = '{{ input.getOrientation() }}',
+        paperMargin      = '{{ input.getMargin() }}';
+    
+    if(paperWidth && paperHeight) {
+        
+        debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set page size ~ width: ' + paperWidth + ' height: ' + paperHeight + ' margin: ' + paperMargin);
+        
+        page.paperSize = { 
+            width:  paperWidth, 
+            height: paperHeight, 
+            margin: paperMargin 
+        };
+
+    } else {
+        
+        debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set page size ~ format: ' + paperFormat + ' orientation: ' + paperOrientation + ' margin: ' + paperMargin);
+        
+        page.paperSize = { 
+            format:      paperFormat, 
+            orientation: paperOrientation, 
+            margin:      paperMargin 
+        };
+        
+    }
+
+{% endif %}

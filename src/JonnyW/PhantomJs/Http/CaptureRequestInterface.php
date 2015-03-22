@@ -60,18 +60,18 @@ interface CaptureRequestInterface
     public function getRectHeight();
 
     /**
-     * Set file to save screen capture.
+     * Set file to save output.
      *
      * @access public
      * @param string $file
      */
-    public function setCaptureFile($file);
+    public function setOutputFile($file);
 
     /**
-     * Get capture file.
+     * Get output file.
      *
      * @access public
      * @return string
      */
-    public function getCaptureFile();
+    public function getOutputFile();
 }

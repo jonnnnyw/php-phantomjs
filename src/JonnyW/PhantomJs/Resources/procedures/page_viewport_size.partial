@@ -1,14 +1,14 @@
 
-var width  = {{ input.getViewportWidth() }},
-    height = {{ input.getViewportHeight() }};
+var viewportWidth  = {{ input.getViewportWidth() }},
+    viewportHeight = {{ input.getViewportHeight() }};
 
-if(width && height) {
+if(viewportWidth && viewportHeight) {
     
-    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set viewport size ~ width: ' + width + ' height: ' + height);
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set viewport size ~ width: ' + viewportWidth + ' height: ' + viewportHeight);
     
     page.viewportSize = {
-        width: width,
-        height: height
+        width: viewportWidth,
+        height: viewportHeight
     };
 }
 

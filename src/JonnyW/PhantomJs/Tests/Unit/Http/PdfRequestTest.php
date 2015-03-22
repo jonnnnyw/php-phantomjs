@@ -8,7 +8,7 @@
  */
 namespace JonnyW\PhantomJs\Tests\Unit\Http;
 
-use JonnyW\PhantomJs\Http\CaptureRequest;
+use JonnyW\PhantomJs\Http\PdfRequest;
 use JonnyW\PhantomJs\Http\RequestInterface;
 
 /**
@@ -16,7 +16,7 @@ use JonnyW\PhantomJs\Http\RequestInterface;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class CaptureRequestTest extends \PHPUnit_Framework_TestCase
+class PdfRequestTest extends \PHPUnit_Framework_TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -24,17 +24,17 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Test capture type is returned by default
+     * Test PDF type is returned by default
      * if no type is set.
      *
      * @access public
      * @return void
      */
-    public function testCaptureTypeIsReturnedByDefaultIfNotTypeIsSet()
+    public function testPdfTypeIsReturnedByDefaultIfNotTypeIsSet()
     {
-        $captureRequest = $this->getCaptureRequest();
+        $pdfRequest = $this->getPdfRequest();
 
-        $this->assertSame(RequestInterface::REQUEST_TYPE_CAPTURE, $captureRequest->getType());
+        $this->assertSame(RequestInterface::REQUEST_TYPE_PDF, $pdfRequest->getType());
     }
 
     /**
@@ -47,10 +47,10 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     {
         $requestType = 'testType';
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setType($requestType);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setType($requestType);
 
-        $this->assertSame($requestType, $captureRequest->getType());
+        $this->assertSame($requestType, $pdfRequest->getType());
     }
 
     /**
@@ -62,9 +62,9 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     public function testUrlCanBeSetViaConstructor()
     {
         $url            = 'http://test.com';
-        $captureRequest = $this->getCaptureRequest($url);
+        $pdfRequest = $this->getPdfRequest($url);
 
-        $this->assertSame($url, $captureRequest->getUrl());
+        $this->assertSame($url, $pdfRequest->getUrl());
     }
 
     /**
@@ -76,9 +76,9 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     public function testMethodCanBeSetViaConstructor()
     {
         $method         = 'GET';
-        $captureRequest = $this->getCaptureRequest(null, $method);
+        $pdfRequest = $this->getPdfRequest(null, $method);
 
-        $this->assertSame($method, $captureRequest->getMethod());
+        $this->assertSame($method, $pdfRequest->getMethod());
     }
 
     /**
@@ -90,9 +90,9 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     public function testTimeoutCanBeSetViaConstructor()
     {
         $timeout        = 100000;
-        $captureRequest = $this->getCaptureRequest('http://test.com', 'GET', $timeout);
+        $pdfRequest = $this->getPdfRequest('http://test.com', 'GET', $timeout);
 
-        $this->assertSame($timeout, $captureRequest->getTimeout());
+        $this->assertSame($timeout, $pdfRequest->getTimeout());
     }
 
     /**
@@ -106,78 +106,8 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidMethodException');
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setMethod('INVALID_METHOD');
-    }
-
-    /**
-     * Test rect width can be set.
-     *
-     * @access public
-     * @return void
-     */
-    public function testRectWidthCanBeSet()
-    {
-        $width  = 100;
-        $height = 200;
-
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setCaptureDimensions($width, $height);
-
-        $this->assertSame($width, $captureRequest->getRectWidth());
-    }
-
-    /**
-     * Test rect height can be set.
-     *
-     * @access public
-     * @return void
-     */
-    public function testRectHeightCanBeSet()
-    {
-        $width  = 100;
-        $height = 200;
-
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setCaptureDimensions($width, $height);
-
-        $this->assertSame($height, $captureRequest->getRectHeight());
-    }
-
-    /**
-     * Test rect top can be set.
-     *
-     * @access public
-     * @return void
-     */
-    public function testRectTopCanBeSet()
-    {
-        $width  = 100;
-        $height = 200;
-        $top    = 50;
-
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setCaptureDimensions($width, $height, $top);
-
-        $this->assertSame($top, $captureRequest->getRectTop());
-    }
-
-    /**
-     * Test rect left can be set.
-     *
-     * @access public
-     * @return void
-     */
-    public function testRectLeftCanBeSet()
-    {
-        $width  = 100;
-        $height = 200;
-        $left   = 50;
-
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setCaptureDimensions($width, $height, 0, $left);
-
-        $this->assertSame($left, $captureRequest->getRectLeft());
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setMethod('INVALID_METHOD');
     }
 
     /**
@@ -191,8 +121,8 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidUrlException');
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setUrl('\\AnInvalidUrl');
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setUrl('\\AnInvalidUrl');
     }
 
     /**
@@ -211,12 +141,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'test_param2' => 'Testing2'
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setMethod('POST');
-        $captureRequest->setUrl($url);
-        $captureRequest->setRequestData($data);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setMethod('POST');
+        $pdfRequest->setUrl($url);
+        $pdfRequest->setRequestData($data);
 
-        $this->assertSame($url, $captureRequest->getUrl());
+        $this->assertSame($url, $pdfRequest->getUrl());
     }
 
     /**
@@ -235,14 +165,14 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'test_param2' => 'Testing2'
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setMethod('GET');
-        $captureRequest->setUrl($url);
-        $captureRequest->setRequestData($data);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setMethod('GET');
+        $pdfRequest->setUrl($url);
+        $pdfRequest->setRequestData($data);
 
         $expectedUrl = $url . '?test_param1=Testing1&test_param2=Testing2';
 
-        $this->assertSame($expectedUrl, $captureRequest->getUrl());
+        $this->assertSame($expectedUrl, $pdfRequest->getUrl());
     }
 
     /**
@@ -261,14 +191,14 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'test_param2' => 'Testing2'
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setMethod('HEAD');
-        $captureRequest->setUrl($url);
-        $captureRequest->setRequestData($data);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setMethod('HEAD');
+        $pdfRequest->setUrl($url);
+        $pdfRequest->setRequestData($data);
 
         $expectedUrl = $url . '?test_param1=Testing1&test_param2=Testing2';
 
-        $this->assertSame($expectedUrl, $captureRequest->getUrl());
+        $this->assertSame($expectedUrl, $pdfRequest->getUrl());
     }
 
     /**
@@ -287,14 +217,14 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'test_param2' => 'Testing2'
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setMethod('GET');
-        $captureRequest->setUrl($url);
-        $captureRequest->setRequestData($data);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setMethod('GET');
+        $pdfRequest->setUrl($url);
+        $pdfRequest->setRequestData($data);
 
         $expectedUrl = $url . '&test_param1=Testing1&test_param2=Testing2';
 
-        $this->assertSame($expectedUrl, $captureRequest->getUrl());
+        $this->assertSame($expectedUrl, $pdfRequest->getUrl());
     }
 
     /**
@@ -311,11 +241,11 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'test_param2' => 'Testing2'
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setMethod('GET');
-        $captureRequest->setRequestData($data);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setMethod('GET');
+        $pdfRequest->setRequestData($data);
 
-        $this->assertSame('', $captureRequest->getBody());
+        $this->assertSame('', $pdfRequest->getBody());
     }
 
     /**
@@ -332,11 +262,11 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'test_param2' => 'Testing2'
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setMethod('HEAD');
-        $captureRequest->setRequestData($data);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setMethod('HEAD');
+        $pdfRequest->setRequestData($data);
 
-        $this->assertSame('', $captureRequest->getBody());
+        $this->assertSame('', $pdfRequest->getBody());
     }
 
     /**
@@ -353,13 +283,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'test_param2' => 'Testing2'
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setMethod('POST');
-        $captureRequest->setRequestData($data);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setMethod('POST');
+        $pdfRequest->setRequestData($data);
 
         $body = 'test_param1=Testing1&test_param2=Testing2';
 
-        $this->assertSame($body, $captureRequest->getBody());
+        $this->assertSame($body, $pdfRequest->getBody());
     }
 
     /**
@@ -378,8 +308,8 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setRequestData($data);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setRequestData($data);
 
         $flatData = array(
             'test_param1'    => 'Testing1',
@@ -387,7 +317,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'test_param2[1]' => 'Testing3'
         );
 
-        $this->assertSame($flatData, $captureRequest->getRequestData(true));
+        $this->assertSame($flatData, $pdfRequest->getRequestData(true));
     }
 
     /**
@@ -406,10 +336,10 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setRequestData($data);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setRequestData($data);
 
-        $this->assertSame($data, $captureRequest->getRequestData(false));
+        $this->assertSame($data, $pdfRequest->getRequestData(false));
     }
 
     /**
@@ -429,13 +359,13 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'Header3' => 'Header 3'
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setHeaders($existingHeaders);
-        $captureRequest->addHeaders($newHeaders);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setHeaders($existingHeaders);
+        $pdfRequest->addHeaders($newHeaders);
 
         $expectedHeaders = array_merge($existingHeaders, $newHeaders);
 
-        $this->assertSame($expectedHeaders, $captureRequest->getHeaders());
+        $this->assertSame($expectedHeaders, $pdfRequest->getHeaders());
     }
 
     /**
@@ -452,12 +382,12 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'Header2' => 'Header 2'
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setHeaders($headers);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setHeaders($headers);
 
         $expectedHeaders = json_encode($headers);
 
-        $this->assertSame($expectedHeaders, $captureRequest->getHeaders('json'));
+        $this->assertSame($expectedHeaders, $pdfRequest->getHeaders('json'));
     }
 
     /**
@@ -473,10 +403,10 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'Header2' => 'Header 2'
         );
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setHeaders($headers);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setHeaders($headers);
 
-        $this->assertSame($headers, $captureRequest->getHeaders('default'));
+        $this->assertSame($headers, $pdfRequest->getHeaders('default'));
     }
 
     /**
@@ -492,8 +422,8 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
 
         $invalidPath = '/invalid/path';
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setOutputFile($invalidPath);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setOutputFile($invalidPath);
     }
 
     /**
@@ -506,10 +436,10 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     {
         $outputFile = sprintf('%s/test.jpg', sys_get_temp_dir());
 
-        $captureRequest = $this->getCaptureRequest();
-        $captureRequest->setOutputFile($outputFile);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setOutputFile($outputFile);
 
-        $this->assertSame($outputFile, $captureRequest->getOutputFile());
+        $this->assertSame($outputFile, $pdfRequest->getOutputFile());
     }
 
     /**
@@ -523,10 +453,10 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $width  = 100;
         $height = 200;
 
-        $caputreRequest = $this->getCaptureRequest();
-        $caputreRequest->setViewportSize($width, $height);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setViewportSize($width, $height);
 
-        $this->assertSame($width, $caputreRequest->getViewportWidth());
+        $this->assertSame($width, $pdfRequest->getViewportWidth());
     }
 
     /**
@@ -540,10 +470,44 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $width  = 100;
         $height = 200;
 
-        $caputreRequest = $this->getCaptureRequest();
-        $caputreRequest->setViewportSize($width, $height);
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setViewportSize($width, $height);
 
-        $this->assertSame($height, $caputreRequest->getViewportHeight());
+        $this->assertSame($height, $pdfRequest->getViewportHeight());
+    }
+
+    /**
+     * Test can set paper width.
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanSetPaperWidth()
+    {
+        $width  = '10cm';
+        $height = '20cm';
+
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setPaperSize($width, $height);
+
+        $this->assertSame($width, $pdfRequest->getPaperWidth());
+    }
+
+    /**
+     * Test can set paper height.
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanSetPaperHeight()
+    {
+        $width  = '10cm';
+        $height = '20cm';
+
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setPaperSize($width, $height);
+
+        $this->assertSame($height, $pdfRequest->getPaperHeight());
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -551,18 +515,18 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Get capture request instance.
+     * Get PDF request instance.
      *
      * @access protected
-     * @param  string                                $url     (default: null)
-     * @param  string                                $method  (default: RequestInterface::METHOD_GET)
-     * @param  int                                   $timeout (default: 5000)
-     * @return \JonnyW\PhantomJs\Http\CaptureRequest
+     * @param  string                            $url     (default: null)
+     * @param  string                            $method  (default: RequestInterface::METHOD_GET)
+     * @param  int                               $timeout (default: 5000)
+     * @return \JonnyW\PhantomJs\Http\PdfRequest
      */
-    protected function getCaptureRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
+    protected function getPdfRequest($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
     {
-        $captureRequest = new CaptureRequest($url, $method, $timeout);
+        $pdfRequest = new PdfRequest($url, $method, $timeout);
 
-        return $captureRequest;
+        return $pdfRequest;
     }
 }

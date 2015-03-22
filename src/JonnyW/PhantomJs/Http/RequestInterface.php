@@ -26,6 +26,7 @@ interface RequestInterface
 
     const REQUEST_TYPE_DEFAULT = 'default';
     const REQUEST_TYPE_CAPTURE = 'capture';
+    const REQUEST_TYPE_PDF     = 'pdf';
 
     /**
      * Get request type
