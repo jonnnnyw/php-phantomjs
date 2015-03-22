@@ -1,0 +1,21 @@
+
+{% if input.getType() == 'capture' %}
+
+var top    = {{ input.getRectTop() }},
+    left   = {{ input.getRectLeft() }},
+    width  = {{ input.getRectWidth() }},
+    height = {{ input.getRectHeight() }};
+
+if(width && height) {
+    
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set capture clipping size ~ top: ' + top + ' left: ' + left + ' ' + width + 'x' + height);
+    
+    page.clipRect = {
+        top: top,
+        left: left,
+        width: width,
+        height: height
+    };
+}
+
+{% endif %}

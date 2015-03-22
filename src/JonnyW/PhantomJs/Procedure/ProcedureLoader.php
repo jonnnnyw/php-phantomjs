@@ -56,13 +56,27 @@ class ProcedureLoader implements ProcedureLoaderInterface
      */
     public function load($id)
     {
-        $path     = $this->locator->locate(sprintf('%s.proc', $id));
-        $template = $this->loadFile($path);
-
         $procedure = $this->procedureFactory->createProcedure();
-        $procedure->setTemplate($template);
+        $procedure->setTemplate(
+            $this->loadTemplate($id)
+        );
 
         return $procedure;
+    }
+
+    /**
+     * Load procedure template by id.
+     *
+     * @access public
+     * @param  string $id
+     * @param  string $extension (default: 'proc')
+     * @return string
+     */
+    public function loadTemplate($id, $extension = 'proc')
+    {
+        $path = $this->locator->locate(sprintf('%s.%s', $id, $extension));
+
+        return $this->loadFile($path);
     }
 
     /**

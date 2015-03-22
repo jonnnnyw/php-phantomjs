@@ -43,7 +43,7 @@ class ChainProcedureLoader implements ProcedureLoaderInterface
      */
     public function addLoader(ProcedureLoaderInterface $procedureLoader)
     {
-        $this->procedureLoaders[] = $procedureLoader;
+        array_unshift($this->procedureLoaders, $procedureLoader);
     }
 
     /**
@@ -56,7 +56,7 @@ class ChainProcedureLoader implements ProcedureLoaderInterface
      */
     public function load($id)
     {
-        /** @var \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface $loader */
+        /** @var \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface $loader **/
         foreach ($this->procedureLoaders as $loader) {
 
             try {
@@ -70,5 +70,32 @@ class ChainProcedureLoader implements ProcedureLoaderInterface
         }
 
         throw new \InvalidArgumentException(sprintf('No valid procedure loader could be found to load the \'%s\' procedure.', $id));
+    }
+
+    /**
+     * Load procedure template by id.
+     *
+     * @access public
+     * @param  string                    $id
+     * @param  string                    $extension (default: 'proc')
+     * @throws \InvalidArgumentException
+     * @return string
+     */
+    public function loadTemplate($id, $extension = 'proc')
+    {
+        /** @var \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface $loader **/
+        foreach ($this->procedureLoaders as $loader) {
+
+            try {
+
+                $template = $loader->loadTemplate($id, $extension);
+
+                return $template;
+
+            } catch (\Exception $e) {}
+
+        }
+
+        throw new \InvalidArgumentException(sprintf('No valid procedure loader could be found to load the \'%s\' procedure template.', $id));
     }
 }

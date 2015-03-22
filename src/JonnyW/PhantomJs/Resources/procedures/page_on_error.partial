@@ -1,0 +1,12 @@
+
+var error = {
+    message: msg,
+    trace: []
+};
+
+trace.forEach(function(t) {
+    error.trace.push(' -> ' + (t.file || t.sourceURL) + ': ' + t.line + (t.function ? ' (in function ' + t.function + ')' : ''));
+});
+
+logs.push(error);
+

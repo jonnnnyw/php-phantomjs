@@ -8,9 +8,8 @@
  */
 namespace JonnyW\PhantomJs;
 
-use JonnyW\PhantomJs\Exception\InvalidExecutableException;
 use JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface;
-use JonnyW\PhantomJs\Procedure\ProcedureValidatorInterface;
+use JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface;
 use JonnyW\PhantomJs\Http\MessageFactoryInterface;
 use JonnyW\PhantomJs\Http\RequestInterface;
 use JonnyW\PhantomJs\Http\ResponseInterface;
@@ -32,6 +31,14 @@ class Client implements ClientInterface
     private static $instance;
 
     /**
+     * PhantomJs engine.
+     *
+     * @var \JonnyW\PhantomJs\Engine
+     * @access protected
+     */
+    protected $engine;
+
+    /**
      * Procedure loader.
      *
      * @var \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface
@@ -42,10 +49,10 @@ class Client implements ClientInterface
     /**
      * Procedure validator.
      *
-     * @var \JonnyW\PhantomJs\Procedure\ProcedureValidatorInterface
+     * @var \JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface
      * @access protected
      */
-    protected $procedureValidator;
+    protected $procedureCompiler;
 
     /**
      * Message factory.
@@ -56,53 +63,30 @@ class Client implements ClientInterface
     protected $messageFactory;
 
     /**
-     * Path to PhantomJs executable
+     * Procedure template
      *
      * @var string
      * @access protected
      */
-    protected $phantomJs;
-
-    /**
-     * Debug flag.
-     *
-     * @var boolean
-     * @access protected
-     */
-    protected $debug;
-
-    /**
-     * PhantomJs run options.
-     *
-     * @var array
-     * @access protected
-     */
-    protected $options;
-
-    /**
-     * Log info
-     *
-     * @var string
-     * @access protected
-     */
-    protected $log;
+    protected $procedure;
 
     /**
      * Internal constructor
      *
      * @access public
-     * @param  \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface    $procedureLoader
-     * @param  \JonnyW\PhantomJs\Procedure\ProcedureValidatorInterface $procedureValidator
-     * @param  \JonnyW\PhantomJs\Http\MessageFactoryInterface          $messageFactory
+     * @param  \JonnyW\PhantomJs\Engine                               $engine
+     * @param  \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface   $procedureLoader
+     * @param  \JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface $procedureCompiler
+     * @param  \JonnyW\PhantomJs\Http\MessageFactoryInterface         $messageFactory
      * @return void
      */
-    public function __construct(ProcedureLoaderInterface $procedureLoader, ProcedureValidatorInterface $procedureValidator, MessageFactoryInterface $messageFactory)
+    public function __construct(Engine $engine, ProcedureLoaderInterface $procedureLoader, ProcedureCompilerInterface $procedureCompiler, MessageFactoryInterface $messageFactory)
     {
-        $this->procedureLoader    = $procedureLoader;
-        $this->procedureValidator = $procedureValidator;
-        $this->messageFactory     = $messageFactory;
-        $this->phantomJs          = 'bin/phantomjs';
-        $this->options            = array();
+        $this->engine            = $engine;
+        $this->procedureLoader   = $procedureLoader;
+        $this->procedureCompiler = $procedureCompiler;
+        $this->messageFactory    = $messageFactory;
+        $this->procedure         = 'http_default';
     }
 
     /**
@@ -118,13 +102,25 @@ class Client implements ClientInterface
             $serviceContainer = ServiceContainer::getInstance();
 
             self::$instance = new static(
+                $serviceContainer->get('engine'),
                 $serviceContainer->get('procedure_loader'),
-                $serviceContainer->get('procedure_validator'),
+                $serviceContainer->get('procedure_compiler'),
                 $serviceContainer->get('message_factory')
             );
         }
 
         return self::$instance;
+    }
+
+    /**
+     * Get PhantomJs engine.
+     *
+     * @access public
+     * @return \JonnyW\PhantomJs\Engine
+     */
+    public function getEngine()
+    {
+        return $this->engine;
     }
 
     /**
@@ -159,174 +155,46 @@ class Client implements ClientInterface
      */
     public function send(RequestInterface $request, ResponseInterface $response)
     {
-        $procedure = $this->procedureLoader->load($request->getType());
+        $procedure = $this->procedureLoader->load($this->procedure);
 
-        $this->procedureValidator->validate(
-            $this,
-            $procedure,
-            $request
-        );
+        $this->procedureCompiler->compile($procedure, $request);
 
-        $procedure->run($this, $request, $response);
+        $procedure->run($request, $response);
 
         return $response;
     }
 
     /**
-     * Get PhantomJs run command with
-     * loader and run options.
-     *
-     * @access public
-     * @return string
-     */
-    public function getCommand()
-    {
-        $phantomJs = $this->getPhantomJs();
-        $options   = $this->getOptions();
-
-        $this->validateExecutable($phantomJs);
-
-        if ($this->debug) {
-            array_push($options, '--debug=true');
-        }
-
-        return sprintf('%s %s', $phantomJs, implode(' ', $options));
-    }
-
-    /**
-     * Set new PhantomJs executable path.
-     *
-     * @access public
-     * @param  string                   $path
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function setPhantomJs($path)
-    {
-        $this->validateExecutable($path);
-
-        $this->phantomJs = $path;
-
-        return $this;
-    }
-
-    /**
-     * Get PhantomJs executable path.
-     *
-     * @access public
-     * @return string
-     */
-    public function getPhantomJs()
-    {
-        return $this->phantomJs;
-    }
-
-    /**
-     * Set PhantomJs run options.
-     *
-     * @access public
-     * @param  array                    $options
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function setOptions(array $options)
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    /**
-     * Get PhantomJs run options.
-     *
-     * @access public
-     * @return array
-     */
-    public function getOptions()
-    {
-        return (array) $this->options;
-    }
-
-    /**
-     * Add single PhantomJs run option.
-     *
-     * @access public
-     * @param  string                   $option
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function addOption($option)
-    {
-        if (!in_array($option, $this->options)) {
-            $this->options[] = $option;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Debug.
-     *
-     * @access public
-     * @param  boolean                  $doDebug
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function debug($doDebug)
-    {
-        $this->debug = $doDebug;
-
-        return $this;
-    }
-
-    /**
-     * Log info.
-     *
-     * @access public
-     * @param  string                   $info
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function log($info)
-    {
-        $this->log = $info;
-
-        return $this;
-    }
-
-    /**
-     * Get log info.
+     * Get log.
      *
      * @access public
      * @return string
      */
     public function getLog()
     {
-        return $this->log;
+        return $this->getEngine()->getLog();
     }
 
     /**
-     * Clear log info.
+     * Set procedure template.
      *
      * @access public
-     * @return \JonnyW\PhantomJs\Client
+     * @param  string $procedure
+     * @return void
      */
-    public function clearLog()
+    public function setProcedure($procedure)
     {
-        $this->log = '';
-
-        return $this;
+        $this->procedure = $procedure;
     }
 
     /**
-     * Validate execuable file.
+     * Get procedure template.
      *
-     * @access private
-     * @param  string                                                 $file
-     * @return boolean
-     * @throws \JonnyW\PhantomJs\Exception\InvalidExecutableException
+     * @access public
+     * @return string
      */
-    private function validateExecutable($file)
+    public function getProcedure()
     {
-        if (!file_exists($file) || !is_executable($file)) {
-            throw new InvalidExecutableException(sprintf('File does not exist or is not executable: %s', $file));
-        }
-
-        return true;
+        return $this->procedure;
     }
 }

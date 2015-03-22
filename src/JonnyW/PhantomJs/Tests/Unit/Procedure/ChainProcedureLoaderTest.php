@@ -82,6 +82,47 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
         $chainProcedureLoader->load('test');
     }
 
+    /**
+     * Test invalid argument exception is thrown if
+     * not valid loader can be found when loading template
+     *
+     * @access public
+     * @return void
+     */
+    public function testInvalidArgumentExceptionIsThrownIfNoValidLoaderCanBeFoundWhenLoadingTemplate()
+    {
+        $this->setExpectedException('\InvalidArgumentException');
+
+        $procedureLoaders = array();
+
+        $chainProcedureLoader = $this->getChainProcedureLoader($procedureLoaders);
+        $chainProcedureLoader->loadTemplate('test');
+    }
+
+    /**
+     * Test template is returned if
+     * procedure template is loaded.
+     *
+     * @access public
+     * @return void
+     */
+    public function testTemplateIsReturnedIfProcedureTemplateIsLoaded()
+    {
+        $template = 'Test template';
+
+        $procedureLoader = $this->getProcedureLoader();
+        $procedureLoader->method('loadTemplate')
+            ->will($this->returnValue($template));
+
+        $procedureLoaders = array(
+            $procedureLoader
+        );
+
+        $chainProcedureLoader = $this->getChainProcedureLoader($procedureLoaders);
+
+        $this->assertSame($template, $chainProcedureLoader->loadTemplate('test'));
+    }
+
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ TEST ENTITIES ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/

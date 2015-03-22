@@ -9,9 +9,10 @@
 
 namespace JonnyW\PhantomJs\Procedure;
 
-use \JonnyW\PhantomJs\Cache\CacheInterface;
-use \JonnyW\PhantomJs\Parser\ParserInterface;
-use \JonnyW\PhantomJs\Template\TemplateRendererInterface;
+use JonnyW\PhantomJs\Engine;
+use JonnyW\PhantomJs\Cache\CacheInterface;
+use JonnyW\PhantomJs\Parser\ParserInterface;
+use JonnyW\PhantomJs\Template\TemplateRendererInterface;
 
 /**
  * PHP PhantomJs
@@ -20,6 +21,14 @@ use \JonnyW\PhantomJs\Template\TemplateRendererInterface;
  */
 class ProcedureFactory implements ProcedureFactoryInterface
 {
+    /**
+     * PhantomJS engine
+     *
+     * @var \JonnyW\PhantomJs\Engine
+     * @access protected
+     */
+    protected $engine;
+
     /**
      * Parser.
      *
@@ -48,12 +57,14 @@ class ProcedureFactory implements ProcedureFactoryInterface
      * Internal constructor.
      *
      * @access public
+     * @param \JonnyW\PhantomJs\Engine                             $engine
      * @param \JonnyW\PhantomJs\Parser\ParserInterface             $parser
      * @param \JonnyW\PhantomJs\Cache\CacheInterface               $cacheHandler
      * @param \JonnyW\PhantomJs\Template\TemplateRendererInterface $renderer
      */
-    public function __construct(ParserInterface $parser, CacheInterface $cacheHandler, TemplateRendererInterface $renderer)
+    public function __construct(Engine $engine, ParserInterface $parser, CacheInterface $cacheHandler, TemplateRendererInterface $renderer)
     {
+        $this->engine       = $engine;
         $this->parser       = $parser;
         $this->cacheHandler = $cacheHandler;
         $this->renderer     = $renderer;
@@ -68,6 +79,7 @@ class ProcedureFactory implements ProcedureFactoryInterface
     public function createProcedure()
     {
         $procedure = new Procedure(
+            $this->engine,
             $this->parser,
             $this->cacheHandler,
             $this->renderer

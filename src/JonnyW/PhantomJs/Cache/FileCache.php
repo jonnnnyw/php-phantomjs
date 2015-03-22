@@ -102,8 +102,10 @@ class FileCache implements CacheInterface
      */
     public function delete($id)
     {
-        if ($this->exists($id)) {
-            unlink($this->getFilename($id));
+        $files = glob($this->getFilename($id));
+
+        if (count($files)) {
+            array_map('unlink', $files);
         }
     }
 

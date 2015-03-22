@@ -23,4 +23,14 @@ interface ProcedureLoaderInterface
      * @return \JonnyW\PhantomJs\Procedure\ProcedureInterface
      */
     public function load($id);
+
+    /**
+     * Load procedure template by id.
+     *
+     * @access public
+     * @param  string $id
+     * @param  string $extension (default: 'proc')
+     * @return string
+     */
+    public function loadTemplate($id, $extension = 'proc');
 }

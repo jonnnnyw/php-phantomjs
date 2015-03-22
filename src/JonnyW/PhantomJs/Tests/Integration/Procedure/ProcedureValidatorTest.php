@@ -8,14 +8,8 @@
  */
 namespace JonnyW\PhantomJs\Tests\Integration\Procedure;
 
-use Twig_Environment;
-use Twig_Loader_String;
 use Symfony\Component\Config\FileLocator;
 use JonnyW\PhantomJs\Client;
-use JonnyW\PhantomJs\Cache\FileCache;
-use JonnyW\PhantomJs\Parser\JsonParser;
-use JonnyW\PhantomJs\Template\TemplateRenderer;
-use JonnyW\PhantomJs\Procedure\Input;
 use JonnyW\PhantomJs\Procedure\Procedure;
 use JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface;
 use JonnyW\PhantomJs\Procedure\ProcedureValidator;
@@ -49,14 +43,8 @@ class ProcedureValidatorTest extends \PHPUnit_Framework_TestCase
         $procedureLoader = $this->getProcedureLoader();
         $esprima         = $this->getEsprima();
 
-        $client    = $this->getClient();
-        $procedure = $this->getProcedure();
-        $message   = $this->getInput();
-
-        $procedure->setTemplate('return false; var');
-
         $validator = $this->getValidator($procedureLoader, $esprima);
-        $validator->validate($client, $procedure, $message);
+        $validator->validate('return false; var');
     }
 
     /**
@@ -70,16 +58,10 @@ class ProcedureValidatorTest extends \PHPUnit_Framework_TestCase
         $procedureLoader = $this->getProcedureLoader();
         $esprima         = $this->getEsprima();
 
-        $client    = $this->getClient();
-        $procedure = $this->getProcedure();
-        $message   = $this->getInput();
-
-        $procedure->setTemplate('return false; var');
-
         try {
 
             $validator = $this->getValidator($procedureLoader, $esprima);
-            $validator->validate($client, $procedure, $message);
+            $validator->validate('return false; var');
 
         } catch (\JonnyW\PhantomJs\Exception\SyntaxException $e) {
             $this->assertNotEmpty($e->getErrors());
@@ -101,14 +83,8 @@ class ProcedureValidatorTest extends \PHPUnit_Framework_TestCase
         $procedureLoader = $this->getProcedureLoader();
         $esprima         = $this->getEsprima();
 
-        $client    = $this->getClient();
-        $procedure = $this->getProcedure();
-        $message   = $this->getInput();
-
-        $procedure->setTemplate('var test = function () { console.log("ok"); }');
-
         $validator = $this->getValidator($procedureLoader, $esprima);
-        $validator->validate($client, $procedure, $message);
+        $validator->validate('var test = function () { console.log("ok"); }');
     }
 
     /**
@@ -122,15 +98,9 @@ class ProcedureValidatorTest extends \PHPUnit_Framework_TestCase
         $procedureLoader = $this->getProcedureLoader();
         $esprima         = $this->getEsprima();
 
-        $client    = $this->getClient();
-        $procedure = $this->getProcedure();
-        $message   = $this->getInput();
-
-        $procedure->setTemplate('var test = function () { console.log("ok"); }; phantom.exit(1);');
-
         $validator = $this->getValidator($procedureLoader, $esprima);
 
-        $this->assertTrue($validator->validate($client, $procedure, $message));
+        $this->assertTrue($validator->validate('var test = function () { console.log("ok"); }; phantom.exit(1);'));
     }
 
     /**
@@ -145,15 +115,9 @@ class ProcedureValidatorTest extends \PHPUnit_Framework_TestCase
         $procedureLoader = $this->getProcedureLoader();
         $esprima         = $this->getEsprima();
 
-        $client    = $this->getClient();
-        $procedure = $this->getProcedure();
-        $message   = $this->getInput();
-
-        $procedure->setTemplate('/** * Test comment **/ var test = function () { console.log("ok"); }; phantom.exit(1);');
-
         $validator = $this->getValidator($procedureLoader, $esprima);
 
-        $this->assertTrue($validator->validate($client, $procedure, $message));
+        $this->assertTrue($validator->validate('/** * Test comment **/ var test = function () { console.log("ok"); }; phantom.exit(1);'));
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -176,20 +140,6 @@ class ProcedureValidatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Get client.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Client
-     */
-    protected function getClient()
-    {
-        $client = Client::getInstance();
-        $client->setPhantomJs(sprintf('%s/../../../../../../bin/phantomjs', __DIR__));
-
-        return $client;
-    }
-
-    /**
      * Get procedure loader.
      *
      * @access protected
@@ -198,81 +148,6 @@ class ProcedureValidatorTest extends \PHPUnit_Framework_TestCase
     protected function getProcedureLoader()
     {
         return  Client::getInstance()->getProcedureLoader();
-    }
-
-    /**
-     * Get procedure instance.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Procedure\Procedure
-     */
-    protected function getProcedure()
-    {
-        $procedure = new Procedure(
-            $this->getParser(),
-            $this->getCache(),
-            $this->getRenderer()
-        );
-
-        return $procedure;
-    }
-
-    /**
-     * Get parser.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Parser\JsonParser
-     */
-    protected function getParser()
-    {
-        $parser = new JsonParser();
-
-        return $parser;
-    }
-
-    /**
-     * Get cache.
-     *
-     * @access protected
-     * @param  string                            $cacheDir  (default: '')
-     * @param  string                            $extension (default: 'proc')
-     * @return \JonnyW\PhantomJs\Cache\FileCache
-     */
-    protected function getCache($cacheDir = '', $extension = 'proc')
-    {
-        $cache = new FileCache(($cacheDir ? $cacheDir : sys_get_temp_dir()), 'proc');
-
-        return $cache;
-    }
-
-    /**
-     * Get template renderer.
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Template\TemplateRenderer
-     */
-    protected function getRenderer()
-    {
-        $twig = new Twig_Environment(
-            new Twig_Loader_String()
-        );
-
-        $renderer = new TemplateRenderer($twig);
-
-        return $renderer;
-    }
-
-    /**
-     * Get input
-     *
-     * @access protected
-     * @return \JonnyW\PhantomJs\Procedure\Input
-     */
-    protected function getInput()
-    {
-        $input = new Input();
-
-        return $input;
     }
 
     /**

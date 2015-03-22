@@ -1,0 +1,14 @@
+
+var width  = {{ input.getViewportWidth() }},
+    height = {{ input.getViewportHeight() }};
+
+if(width && height) {
+    
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set viewport size ~ width: ' + width + ' height: ' + height);
+    
+    page.viewportSize = {
+        width: width,
+        height: height
+    };
+}
+

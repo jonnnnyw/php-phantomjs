@@ -10,6 +10,12 @@ parameters:
     phantomjs.validator_dir: "%phantomjs.resource_dir%/validators"
     phantomjs.validator_engine: "esprima-2.0.0.js"
 
+##############
+### ENGINE ###
+##############
+
+    phantomjs.engine.class: JonnyW\PhantomJs\Engine
+
 ##################
 ### PROCEDURES ###
 ##################
@@ -19,6 +25,7 @@ parameters:
     phantomjs.procedure.procedure_factory.class: JonnyW\PhantomJs\Procedure\ProcedureFactory
     phantomjs.procedure.procedure_loader_factory.class: JonnyW\PhantomJs\Procedure\ProcedureLoaderFactory
     phantomjs.procedure.procedure_validator.class: JonnyW\PhantomJs\Procedure\ProcedureValidator
+    phantomjs.procedure.procedure_compiler.class: JonnyW\PhantomJs\Procedure\ProcedureCompiler
 
 ############
 ### HTTP ###
@@ -44,6 +51,7 @@ parameters:
 
     phantomjs.template.template_renderer.class: JonnyW\PhantomJs\Template\TemplateRenderer
     phantomjs.twig.environment.class: Twig_Environment
+    phantomjs.twig.lexer.class: Twig_Lexer
     phantomjs.twig.string_loader.class: Twig_Loader_String
 
 ##################

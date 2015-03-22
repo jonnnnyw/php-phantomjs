@@ -10,6 +10,7 @@ namespace JonnyW\PhantomJs\Tests\Unit\Procedure;
 
 use Twig_Environment;
 use Twig_Loader_String;
+use JonnyW\PhantomJs\Engine;
 use JonnyW\PhantomJs\Cache\FileCache;
 use JonnyW\PhantomJs\Cache\CacheInterface;
 use JonnyW\PhantomJs\Parser\JsonParser;
@@ -43,11 +44,12 @@ class ProcedureTest extends \PHPUnit_Framework_TestCase
     {
         $template = 'PROCEDURE_TEMPLATE';
 
+        $engne     = $this->getEngine();
         $parser    = $this->getParser();
         $cache     = $this->getCache();
         $renderer  = $this->getRenderer();
 
-        $procedure = $this->getProcedure($parser, $cache, $renderer);
+        $procedure = $this->getProcedure($engne, $parser, $cache, $renderer);
         $procedure->setTemplate($template);
 
         $this->assertSame($procedure->getTemplate(), $template);
@@ -63,6 +65,7 @@ class ProcedureTest extends \PHPUnit_Framework_TestCase
     {
         $template = 'TEST_{{ input.get("uncompiled") }}_PROCEDURE';
 
+        $engne     = $this->getEngine();
         $parser    = $this->getParser();
         $cache     = $this->getCache();
         $renderer  = $this->getRenderer();
@@ -70,7 +73,7 @@ class ProcedureTest extends \PHPUnit_Framework_TestCase
         $input  = $this->getInput();
         $input->set('uncompiled', 'COMPILED');
 
-        $procedure = $this->getProcedure($parser, $cache, $renderer);
+        $procedure = $this->getProcedure($engne, $parser, $cache, $renderer);
         $procedure->setTemplate($template);
 
         $this->assertSame('TEST_COMPILED_PROCEDURE', $procedure->compile($input));
@@ -87,17 +90,17 @@ class ProcedureTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
+        $engne    = $this->getEngine();
         $parser   = $this->getParser();
         $renderer = $this->getRenderer();
 
         $cache = $this->getCache('/an/invalid/dir');
 
-        $client = $this->getClient();
         $input  = $this->getInput();
         $output = $this->getOutput();
 
-        $procedure = $this->getProcedure($parser, $cache, $renderer);
-        $procedure->run($client, $input, $output);
+        $procedure = $this->getProcedure($engne, $parser, $cache, $renderer);
+        $procedure->run($input, $output);
     }
 
     /**
@@ -117,12 +120,12 @@ class ProcedureTest extends \PHPUnit_Framework_TestCase
         $input    = $this->getInput();
         $output   = $this->getOutput();
 
-        $client = $this->getClient();
-        $client->method('getCommand')
+        $engne = $this->getEngine();
+        $engne->method('getCommand')
             ->will($this->throwException(new \Exception()));
 
-        $procedure = $this->getProcedure($parser, $cache, $renderer);
-        $procedure->run($client, $input, $output);
+        $procedure = $this->getProcedure($engne, $parser, $cache, $renderer);
+        $procedure->run($input, $output);
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -133,14 +136,15 @@ class ProcedureTest extends \PHPUnit_Framework_TestCase
      * Get procedure instance.
      *
      * @access protected
+     * @param  \JonnyW\PhantomJs\Engine                             $engine
      * @param  \JonnyW\PhantomJs\Parser\ParserInterface             $parser
      * @param  \JonnyW\PhantomJs\Cache\CacheInterface               $cacheHandler
      * @param  \JonnyW\PhantomJs\Template\TemplateRendererInterface $renderer
      * @return \JonnyW\PhantomJs\Procedure\Procedure
      */
-    protected function getProcedure(ParserInterface $parser, CacheInterface $cacheHandler, TemplateRendererInterface $renderer)
+    protected function getProcedure(Engine $engine, ParserInterface $parser, CacheInterface $cacheHandler, TemplateRendererInterface $renderer)
     {
-        $procedure = new Procedure($parser, $cacheHandler, $renderer);
+        $procedure = new Procedure($engine, $parser, $cacheHandler, $renderer);
 
         return $procedure;
     }
@@ -221,16 +225,15 @@ class ProcedureTest extends \PHPUnit_Framework_TestCase
 /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
-     * Get client.
+     * Get engine
      *
      * @access protected
-     * @return \JonnyW\PhantomJs\ClientInterface
+     * @return \JonnyW\PhantomJs\Engine
      */
-    protected function getClient()
+    protected function getEngine()
     {
-        $client = $this->getMock('\JonnyW\PhantomJs\ClientInterface');
+        $engine = $this->getMock('\JonnyW\PhantomJs\Engine');
 
-        return $client;
+        return $engine;
     }
-
 }

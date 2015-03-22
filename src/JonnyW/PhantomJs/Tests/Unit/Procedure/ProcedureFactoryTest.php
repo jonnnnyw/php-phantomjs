@@ -10,6 +10,7 @@ namespace JonnyW\PhantomJs\Tests\Unit\Procedure;
 
 use Twig_Environment;
 use Twig_Loader_String;
+use JonnyW\PhantomJs\Engine;
 use JonnyW\PhantomJs\Cache\FileCache;
 use JonnyW\PhantomJs\Cache\CacheInterface;
 use JonnyW\PhantomJs\Parser\JsonParser;
@@ -39,11 +40,12 @@ class ProcedureFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testFactoryCanCreateInstanceOfProcedure()
     {
+        $engine    = $this->getEngine();
         $parser    = $this->getParser();
         $cache     = $this->getCache();
         $renderer  = $this->getRenderer();
 
-        $procedureFactory = $this->getProcedureFactory($parser, $cache, $renderer);
+        $procedureFactory = $this->getProcedureFactory($engine, $parser, $cache, $renderer);
 
         $this->assertInstanceOf('\JonnyW\PhantomJs\Procedure\Procedure', $procedureFactory->createProcedure());
     }
@@ -56,16 +58,30 @@ class ProcedureFactoryTest extends \PHPUnit_Framework_TestCase
      * Get procedure factory instance.
      *
      * @access protected
+     * @param  \JonnyW\PhantomJs\Engine                             $engine
      * @param  \JonnyW\PhantomJs\Parser\ParserInterface             $parser
      * @param  \JonnyW\PhantomJs\Cache\CacheInterface               $cacheHandler
      * @param  \JonnyW\PhantomJs\Template\TemplateRendererInterface $renderer
      * @return \JonnyW\PhantomJs\Procedure\ProcedureFactory
      */
-    protected function getProcedureFactory(ParserInterface $parser, CacheInterface $cacheHandler, TemplateRendererInterface $renderer)
+    protected function getProcedureFactory(Engine $engine, ParserInterface $parser, CacheInterface $cacheHandler, TemplateRendererInterface $renderer)
     {
-        $procedureFactory = new ProcedureFactory($parser, $cacheHandler, $renderer);
+        $procedureFactory = new ProcedureFactory($engine, $parser, $cacheHandler, $renderer);
 
         return $procedureFactory;
+    }
+
+    /**
+     * Get engine.
+     *
+     * @access protected
+     * @return \JonnyW\PhantomJs\Engine
+     */
+    protected function getEngine()
+    {
+        $engine = new Engine();
+
+        return $engine;
     }
 
     /**

@@ -1,5 +1,15 @@
 services:
 
+##############
+### ENGINE ###
+##############
+
+    engine:
+        alias: phantomjs.engine
+
+    phantomjs.engine:
+        class: %phantomjs.engine.class%
+
 ##################
 ### PROCEDURES ###
 ##################
@@ -9,6 +19,9 @@ services:
 
     procedure_validator:
         alias: phantomjs.procedure.procedure_validator
+
+    procedure_compiler:
+        alias: phantomjs.procedure.procedure_compiler
 
     procedure_loader_factory:
         alias: phantomjs.procedure.procedure_loader_factory
@@ -35,6 +48,7 @@ services:
     phantomjs.procedure.procedure_factory:
         class: %phantomjs.procedure.procedure_factory.class%
         arguments:
+            - @engine
             - @phantomjs.parser.json_parser
             - @phantomjs.cache.file_cache
             - @phantomjs.template.template_renderer
@@ -44,6 +58,15 @@ services:
         class: %phantomjs.procedure.procedure_loader_factory.class%
         arguments:
             - @phantomjs.procedure.procedure_factory
+        public: false
+
+    phantomjs.procedure.procedure_compiler:
+        class: %phantomjs.procedure.procedure_compiler.class%
+        arguments:
+            - @procedure_loader
+            - @procedure_validator
+            - @phantomjs.cache.file_cache
+            - @phantomjs.procedure.template_renderer
         public: false
 
     phantomjs.procedure.procedure_validator:
@@ -110,6 +133,27 @@ services:
 
     phantomjs.twig.string_loader:
         class: %phantomjs.twig.string_loader.class%
+        public: false
+
+    phantomjs.procedure.template_renderer:
+        class: %phantomjs.template.template_renderer.class%
+        arguments:
+            - @phantomjs.procedure.twig.environment
+        public: false
+
+    phantomjs.procedure.twig.environment:
+        class: %phantomjs.twig.environment.class%
+        arguments:
+            - @phantomjs.twig.string_loader
+        public: false
+        calls:
+            - [ "setLexer", [ @phantomjs.procedure.twig.lexer ] ]
+
+    phantomjs.procedure.twig.lexer:
+        class: %phantomjs.twig.lexer.class%
+        arguments:
+            - @phantomjs.procedure.twig.environment
+            - { tag_variable: [ "[[", "]]" ], tag_comment: [ "[#", "#]" ], tag_block:  [ "[%", "%]" ], interpolation:  [ "#[", "]" ] }
         public: false
 
 ##################

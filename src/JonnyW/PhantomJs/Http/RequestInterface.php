@@ -24,8 +24,8 @@ interface RequestInterface
     const METHOD_DELETE  = 'DELETE';
     const METHOD_PATCH   = 'PATCH';
 
-    const REQUEST_TYPE_DEFAULT = 'http_default';
-    const REQUEST_TYPE_CAPTURE = 'http_capture';
+    const REQUEST_TYPE_DEFAULT = 'default';
+    const REQUEST_TYPE_CAPTURE = 'capture';
 
     /**
      * Get request type

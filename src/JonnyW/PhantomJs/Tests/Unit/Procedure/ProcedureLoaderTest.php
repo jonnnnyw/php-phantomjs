@@ -11,6 +11,7 @@ namespace JonnyW\PhantomJs\Tests\Unit\Procedure;
 use Twig_Environment;
 use Twig_Loader_String;
 use Symfony\Component\Config\FileLocatorInterface;
+use JonnyW\PhantomJs\Engine;
 use JonnyW\PhantomJs\Cache\FileCache;
 use JonnyW\PhantomJs\Cache\CacheInterface;
 use JonnyW\PhantomJs\Parser\JsonParser;
@@ -135,6 +136,28 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($body, $procedureLoader->load('test')->getTemplate());
     }
 
+    /**
+     * Test procedure template can be loaded.
+     *
+     * @access public
+     * @return void
+     */
+    public function testProcedureTemplateCanBeLoaded()
+    {
+        $body = 'TEST_PROCEDURE';
+        $file = $this->writeProcedure($body);
+
+        $procedureFactory = $this->getProcedureFactory();
+        $fileLocator      = $this->getFileLocator();
+
+        $fileLocator->method('locate')
+            ->will($this->returnValue($file));
+
+        $procedureLoader = $this->getProcedureLoader($procedureFactory, $fileLocator);
+
+        $this->assertNotNull($procedureLoader->loadTemplate('test'));
+    }
+
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ TEST ENTITIES ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -165,13 +188,27 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedureFactory()
     {
+        $engine   = $this->getEngine();
         $parser   = $this->getParser();
         $cache    = $this->getCache();
         $renderer = $this->getRenderer();
 
-        $procedureFactory = new ProcedureFactory($parser, $cache, $renderer);
+        $procedureFactory = new ProcedureFactory($engine, $parser, $cache, $renderer);
 
         return $procedureFactory;
+    }
+
+    /**
+     * Get engine.
+     *
+     * @access protected
+     * @return \JonnyW\PhantomJs\Engine
+     */
+    protected function getEngine()
+    {
+        $engine = new Engine();
+
+        return $engine;
     }
 
     /**

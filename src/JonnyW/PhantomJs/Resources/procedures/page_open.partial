@@ -1,0 +1,16 @@
+
+var delay = {{ input.getDelay() }};
+
+if(!delay) {
+    return procedure.execute(status);
+}
+
+debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Delaying page render for ' + delay + ' second(s)');
+
+window.setTimeout(function () { 
+
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Rendering page after delaying for ' + delay + ' second(s)');
+    procedure.execute(status); 
+
+}, (delay * 1000));
+

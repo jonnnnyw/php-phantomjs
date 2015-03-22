@@ -10,6 +10,7 @@ namespace JonnyW\PhantomJs\Tests\Integration;
 
 use JonnyW\PhantomJs\Test\TestCase;
 use JonnyW\PhantomJs\Client;
+use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
 
 /**
  * PHP PhantomJs
@@ -60,12 +61,11 @@ EOF;
         $procedureLoader        = $procedureLoaderFactory->createProcedureLoader($this->directory);
 
         $client = $this->getClient();
+        $client->setProcedure('test');
         $client->getProcedureLoader()->addLoader($procedureLoader);
 
         $request  = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
-
-        $request->setType('test');
 
         $client->send($request, $response);
 
@@ -95,12 +95,11 @@ EOF;
         $procedureLoader        = $procedureLoaderFactory->createProcedureLoader($this->directory);
 
         $client = $this->getClient();
+        $client->setProcedure('test');
         $client->getProcedureLoader()->addLoader($procedureLoader);
 
         $request  = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
-
-        $request->setType('test');
 
         $client->send($request, $response);
     }
@@ -584,7 +583,7 @@ EOF;
     public function testDebugLogsDebugInfoToClientLog()
     {
         $client = $this->getClient();
-        $client->debug(true);
+        $client->getEngine()->debug(true);
 
         $request  = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
@@ -608,7 +607,16 @@ EOF;
      */
     protected function getClient()
     {
-        return Client::getInstance();
+        $serviceContainer = ServiceContainer::getInstance();
+
+        $client = new Client(
+            $serviceContainer->get('engine'),
+            $serviceContainer->get('procedure_loader'),
+            $serviceContainer->get('procedure_compiler'),
+            $serviceContainer->get('message_factory')
+        );
+
+        return $client;
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/

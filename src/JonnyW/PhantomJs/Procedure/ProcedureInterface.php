@@ -8,8 +8,6 @@
  */
 namespace JonnyW\PhantomJs\Procedure;
 
-use JonnyW\PhantomJs\ClientInterface;
-
 /**
  * PHP PhantomJs
  *
@@ -21,11 +19,10 @@ interface ProcedureInterface
      * Run procedure.
      *
      * @access public
-     * @param \JonnyW\PhantomJs\ClientInterface           $client
      * @param \JonnyW\PhantomJs\Procedure\InputInterface  $input
      * @param \JonnyW\PhantomJs\Procedure\OutputInterface $output
      */
-    public function run(ClientInterface $client, InputInterface $input, OutputInterface $output);
+    public function run(InputInterface $input, OutputInterface $output);
 
     /**
      * Set procedure template.

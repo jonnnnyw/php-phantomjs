@@ -198,6 +198,27 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
         $this->assertFileNotExists($file);
     }
 
+    /**
+     * Test data can be deleted from
+     * cache using wildcard.
+     *.
+     *
+     * @access public
+     * @return void
+     */
+    public function testDataCanBeDeletedFromCacheUsingWildcard()
+    {
+        $fileCache = $this->getFileCache($this->directory, 'txt');
+
+        $file1 = $fileCache->save('test_file_1', 'Test1');
+        $file2 = $fileCache->save('test_file_2', 'Test2');
+
+        $fileCache->delete('test_file_*');
+
+        $this->assertFileNotExists($file1);
+        $this->assertFileNotExists($file2);
+    }
+
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ TEST ENTITIES ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/

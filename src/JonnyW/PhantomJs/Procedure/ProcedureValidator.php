@@ -8,7 +8,6 @@
  */
 namespace JonnyW\PhantomJs\Procedure;
 
-use JonnyW\PhantomJs\ClientInterface;
 use JonnyW\PhantomJs\Validator\EngineInterface;
 use JonnyW\PhantomJs\Exception\SyntaxException;
 use JonnyW\PhantomJs\Exception\RequirementException;
@@ -53,20 +52,14 @@ class ProcedureValidator implements ProcedureValidatorInterface
      * Validate procedure.
      *
      * @access public
-     * @param  \JonnyW\PhantomJs\ClientInterface                        $client
-     * @param  \JonnyW\PhantomJs\Procedure\ProcedureInterface           $procedure
-     * @param  \JonnyW\PhantomJs\Procedure\InputInterface               $message
+     * @param  string                                                   $procedure
      * @return boolean
      * @throws \JonnyW\PhantomJs\Exception\ProcedureValidationException
      */
-    public function validate(ClientInterface $client, ProcedureInterface $procedure, InputInterface $message)
+    public function validate($procedure)
     {
-        $compiled = $procedure->compile(
-            $message
-        );
-
-        $this->validateSyntax($client, $compiled);
-        $this->validateRequirements($client, $compiled);
+        $this->validateSyntax($procedure);
+        $this->validateRequirements($procedure);
 
         return true;
     }
@@ -75,21 +68,20 @@ class ProcedureValidator implements ProcedureValidatorInterface
      * Validate syntax.
      *
      * @access protected
-     * @param  \JonnyW\PhantomJs\ClientInterface           $client
-     * @param  stromg                                      $compiled
+     * @param  string                                      $procedure
      * @return void
      * @throws \JonnyW\PhantomJs\Exception\SyntaxException
      */
-    protected function validateSyntax(ClientInterface $client, $compiled)
+    protected function validateSyntax($procedure)
     {
         $input  = new Input();
         $output = new Output();
 
-        $input->set('procedure', $compiled);
+        $input->set('procedure', $procedure);
         $input->set('engine', $this->engine->toString());
 
         $validator = $this->procedureLoader->load('validator');
-        $validator->run($client, $input, $output);
+        $validator->run($input, $output);
 
         $errors = $output->get('errors');
 
@@ -102,14 +94,13 @@ class ProcedureValidator implements ProcedureValidatorInterface
      * validateRequirements function.
      *
      * @access protected
-     * @param  \JonnyW\PhantomJs\ClientInterface                $client
-     * @param  stromg                                           $compiled
+     * @param  string                                           $procedure
      * @return void
      * @throws \JonnyW\PhantomJs\Exception\RequirementException
      */
-    protected function validateRequirements(ClientInterface $client, $compiled)
+    protected function validateRequirements($procedure)
     {
-        if (preg_match('/phantom\.exit\(/', $compiled, $matches) !== 1) {
+        if (preg_match('/phantom\.exit\(/', $procedure, $matches) !== 1) {
             throw new RequirementException('Your procedure must contain a \'phantom.exit(1);\' command to avoid the PhantomJS process hanging');
         }
     }

@@ -1,0 +1,14 @@
+    
+var stack = [];
+
+trace.forEach(function(t) {
+    stack.push(' -> ' + (t.file || t.sourceURL) + ': ' + t.line + (t.function ? ' (in function ' + t.function + ')' : ''));
+});
+
+response.status  = 500;
+response.content = msg;
+response.console = stack;
+
+system.stdout.write(JSON.stringify(response, undefined, 4));
+phantom.exit(1);
+

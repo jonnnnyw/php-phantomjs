@@ -1,0 +1,23 @@
+
+if (status === 'success') {
+    
+    try {
+    
+        response.content = page.evaluate(function () {
+            return document.getElementsByTagName('html')[0].innerHTML
+        });
+    
+    } catch(e) {
+
+        response.status  = 500;
+        response.content = e.message;
+    }
+}
+
+response.console = logs;
+
+system.stderr.write(debug.join('\\n') + '\\n');
+system.stdout.write(JSON.stringify(response, undefined, 4));
+
+phantom.exit();
+

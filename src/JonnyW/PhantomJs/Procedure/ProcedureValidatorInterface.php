@@ -8,8 +8,6 @@
  */
 namespace JonnyW\PhantomJs\Procedure;
 
-use JonnyW\PhantomJs\ClientInterface;
-
 /**
  * PHP PhantomJs
  *
@@ -21,10 +19,9 @@ interface ProcedureValidatorInterface
      * Validate procedure.
      *
      * @access public
-     * @param  \JonnyW\PhantomJs\ClientInterface              $client
-     * @param  \JonnyW\PhantomJs\Procedure\ProcedureInterface $procedure
-     * @param  \JonnyW\PhantomJs\Procedure\InputInterface     $message
+     * @param  string                                                   $procedure
      * @return boolean
+     * @throws \JonnyW\PhantomJs\Exception\ProcedureValidationException
      */
-    public function validate(ClientInterface $client, ProcedureInterface $procedure, InputInterface $message);
+    public function validate($procedure);
 }

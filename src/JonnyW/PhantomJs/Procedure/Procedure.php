@@ -8,7 +8,7 @@
  */
 namespace JonnyW\PhantomJs\Procedure;
 
-use JonnyW\PhantomJs\ClientInterface;
+use JonnyW\PhantomJs\Engine;
 use JonnyW\PhantomJs\Cache\CacheInterface;
 use JonnyW\PhantomJs\Parser\ParserInterface;
 use JonnyW\PhantomJs\Template\TemplateRendererInterface;
@@ -22,6 +22,14 @@ use JonnyW\PhantomJs\Exception\ProcedureFailedException;
  */
 class Procedure implements ProcedureInterface
 {
+    /**
+     * PhantomJS engine
+     *
+     * @var \JonnyW\PhantomJs\Engine
+     * @access protected
+     */
+    protected $engine;
+
     /**
      * Parser instance.
      *
@@ -58,12 +66,14 @@ class Procedure implements ProcedureInterface
      * Internal constructor.
      *
      * @access public
+     * @param \JonnyW\PhantomJs\Engine                             $engine
      * @param \JonnyW\PhantomJs\Parser\ParserInterface             $parser
      * @param \JonnyW\PhantomJs\Cache\CacheInterface               $cacheHandler
      * @param \JonnyW\PhantomJs\Template\TemplateRendererInterface $renderer
      */
-    public function __construct(ParserInterface $parser, CacheInterface $cacheHandler, TemplateRendererInterface $renderer)
+    public function __construct(Engine $engine, ParserInterface $parser, CacheInterface $cacheHandler, TemplateRendererInterface $renderer)
     {
+        $this->engine       = $engine;
         $this->parser       = $parser;
         $this->cacheHandler = $cacheHandler;
         $this->renderer     = $renderer;
@@ -73,14 +83,13 @@ class Procedure implements ProcedureInterface
      * Run procedure.
      *
      * @access public
-     * @param  \JonnyW\PhantomJs\ClientInterface                    $client
      * @param  \JonnyW\PhantomJs\Procedure\InputInterface           $input
      * @param  \JonnyW\PhantomJs\Procedure\OutputInterface          $output
      * @throws \JonnyW\PhantomJs\Exception\ProcedureFailedException
      * @throws \JonnyW\PhantomJs\Exception\NotWritableException
      * @return void
      */
-    public function run(ClientInterface $client, InputInterface $input, OutputInterface $output)
+    public function run(InputInterface $input, OutputInterface $output)
     {
         try {
 
@@ -94,7 +103,7 @@ class Procedure implements ProcedureInterface
                 array('pipe', 'w')
             );
 
-            $process = proc_open(escapeshellcmd(sprintf('%s %s', $client->getCommand(), $executable)), $descriptorspec, $pipes, null, null);
+            $process = proc_open(escapeshellcmd(sprintf('%s %s', $this->engine->getCommand(), $executable)), $descriptorspec, $pipes, null, null);
 
             if (!is_resource($process)) {
                 throw new ProcedureFailedException('proc_open() did not return a resource');
@@ -113,7 +122,7 @@ class Procedure implements ProcedureInterface
                 $this->parser->parse($result)
             );
 
-            $client->log($log);
+            $this->engine->log($log);
 
             $this->remove($executable);
 

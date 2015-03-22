@@ -27,12 +27,28 @@ interface ClientInterface
     public static function getInstance();
 
     /**
+     * Get engine instance.
+     *
+     * @access public
+     * @return \JonnyW\PhantomJs\Engine
+     */
+    public function getEngine();
+
+    /**
      * Get message factory instance
      *
      * @access public
      * @return \JonnyW\PhantomJs\Http\MessageFactoryInterface
      */
     public function getMessageFactory();
+
+    /**
+     * Get procedure loader instance
+     *
+     * @access public
+     * @return \JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface
+     */
+    public function getProcedureLoader();
 
     /**
      * Send request
@@ -44,73 +60,7 @@ interface ClientInterface
     public function send(RequestInterface $request, ResponseInterface $response);
 
     /**
-     * Get PhantomJs run command with
-     * loader and run options.
-     *
-     * @access public
-     * @return string
-     */
-    public function getCommand();
-
-    /**
-     * Set new PhantomJs executable path.
-     *
-     * @access public
-     * @param string $path
-     */
-    public function setPhantomJs($path);
-
-    /**
-     * Get PhantomJs executable path.
-     *
-     * @access public
-     * @return string
-     */
-    public function getPhantomJs();
-
-    /**
-     * Set PhantomJs run options.
-     *
-     * @access public
-     * @param array $options
-     */
-    public function setOptions(array $options);
-
-    /**
-     * Get PhantomJs run options.
-     *
-     * @access public
-     * @return array
-     */
-    public function getOptions();
-
-    /**
-     * Add single PhantomJs run option.
-     *
-     * @access public
-     * @param string $option
-     */
-    public function addOption($option);
-
-    /**
-     * Debug.
-     *
-     * @access public
-     * @param boolean $doDebug
-     */
-    public function debug($doDebug);
-
-    /**
-     * Log info.
-     *
-     * @access public
-     * @param  string                   $info
-     * @return \JonnyW\PhantomJs\Client
-     */
-    public function log($info);
-
-    /**
-     * Get log info.
+     * Get log.
      *
      * @access public
      * @return string
@@ -118,10 +68,19 @@ interface ClientInterface
     public function getLog();
 
     /**
-     * Clear log info.
+     * Set procedure template.
      *
      * @access public
-     * @return \JonnyW\PhantomJs\Client
+     * @param  string $procedure
+     * @return void
      */
-    public function clearLog();
+    public function setProcedure($procedure);
+
+    /**
+     * Get procedure template.
+     *
+     * @access public
+     * @return string
+     */
+    public function getProcedure();
 }

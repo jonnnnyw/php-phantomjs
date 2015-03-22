@@ -24,6 +24,6 @@ system.stdout.write(
   JSON.stringify(syntax, undefined, 4)
 );
 
-phantom.exit(1);
+phantom.exit();
 
 {% endautoescape %}
