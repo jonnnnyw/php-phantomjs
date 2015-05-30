@@ -28,6 +28,8 @@ class JsonParser implements ParserInterface
             return array();
         }
 
+        $data = strstr($data, "{");
+
         if (substr($data, 0, 1) !== '{' &&
             substr($data, 0, 1) !== '[') {
             return array();
