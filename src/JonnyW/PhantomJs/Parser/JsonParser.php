@@ -31,7 +31,7 @@ class JsonParser implements ParserInterface
         $firstCurlyPos   = (strpos($data, "{") === false) ? -1 : strpos($data, "{");
         $firstSquaredPos = (strpos($data, "[") === false) ? -1 : strpos($data, "[");
 
-        if ($firstCurlyPos > $firstSquaredPos) {
+        if ($firstCurlyPos < $firstSquaredPos) {
             $data = strstr($data, "{");
         } else {
             $data = strstr($data, "[");
