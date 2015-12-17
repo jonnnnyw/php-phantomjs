@@ -16,9 +16,9 @@ Feature List
 * View detailed response data including page content, headers, status code etc.
 * Handle redirects
 * View javascript console errors
-* View detailed PhantomJS debugged information
-* Save screen captures to local disk 
-* Export pages to PDF
+* View detailed PhantomJS debuged information
+* Save screen captures to local disk
+* Output web pages to PDF document
 * Set viewport size
 * Define screen capture x, y, width and height parameters
 * Delay page rendering for a specified time
