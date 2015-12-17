@@ -83,9 +83,9 @@ article .share .gplus:hover {
 }
 
 .page-header {
+    margin-top: 50px;
     padding: 0 5% 0;
-	color: #e74c3c;
-	text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+	color: #2c3e50;
 }
 
 article{
@@ -127,6 +127,24 @@ article.home h4 a:hover {
 	color: #e74c3c;
 }
 
+h2 {
+    margin-top: 40px;
+}
+
+blockquote {
+    margin-top: 30px;
+    background-color: #dbfcff;
+    border-left: 5px solid #30cad4;
+}
+
+code, .highlight .na, .highlight .nv {
+    color: #0fb4c0;
+}
+
+.highlight .sd {
+    color: #999988;
+}
+
 .author .author-image {
   float: left;
   margin-right: 20px;
@@ -134,7 +152,13 @@ article.home h4 a:hover {
 
 footer {
 	padding-top: 15px;
-	font-family: 'Ubuntu';
+    text-align: center;
+}
+
+.panel {
+    margin: 0;
+    border: none;
+    background-color: transparent;
 }
 
 /* nav-vertical-tabs component */
@@ -160,6 +184,10 @@ footer {
     border-radius: 4px 0 0 4px;
 }
 
+.navbar-nav {
+    margin-top: 30px;
+}
+
 .badge { background: #F2756A; }
 
 #nav-menu{
@@ -168,11 +196,34 @@ footer {
     right: 45px;
     z-index: 2000;
 }
+#nav-version{
+    position: fixed;
+    top: 45px;
+    right: 90px;
+    z-index: 2000;
+}
 #nav-menu .dropdown-menu {
     left: inherit;
     right: 0px;
 }
-
+#version-notice{
+    background-color: #30cad4;
+    padding: 5px 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #157380;
+    z-index: 9999;
+}
+#version-notice span {
+    color: #fff;
+}
+.version-toggle {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
 ul.dropdown-menu>li>a>i.fa {
     width: 1.3em;
 }
@@ -195,3 +246,15 @@ table th, table td {
 table th, table tr:nth-child(even) {
     background-color: #fefefe;
 }
+
+.fa-terminal:before {
+    padding-right: 5px;
+}
+
+@media (max-width: 768px) {
+    #version-notice {
+        top: 67px;
+        position: absolute;
+    }
+}
+

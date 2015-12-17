@@ -43,59 +43,95 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-default visible-xs" role="navigation">
+    
+     
+
+	<nav class="navbar navbar-default visible-xs" role="navigation" id="global-nav">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<button type="button" class="navbar-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-main">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
 			
-			
-            <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=fork&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link last"></iframe>
-    		
-			
-			
-            <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link"></iframe>
-    		
+			<button type="button" class="navbar-toggle version-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-version">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-terminal"><b>3.0</b> version</</span>
+			</button>
     		
 			<a class="navbar-brand" href="http://jonnnnyw.github.io/php-phantomjs/">
 				<img src="http://jonnnnyw.github.io/php-phantomjs/assets/media/phantomjs-small.png" class="img-circle" />
 				PHP PhantomJs
 			</a>
 		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="http://jonnnnyw.github.io/php-phantomjs/">Home</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html">Installation</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html">Usage</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html">Advanced</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html">Troubleshooting</a></li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
+        
+        <div class="panel">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-version">
+    			<ul class="nav navbar-nav">
+    				<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/" title="Version 4.0" class="active"><b>4.0</b> version</a></li>
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="Version 3.0"><b>3.0</b> version</a></li>
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
+        <div class="panel">
+    		<!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-main">
+    			<ul class="nav navbar-nav">
+        			
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/">Introduction</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/2-installation/">Installation</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/3-usage/">Usage</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/4-advanced/">Advanced Usage</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/5-troubleshooting/">Troubleshooting</a></li>
+                    
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
 	</nav>
-
+    
+	<!-- version-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-version">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-terminal"><b>3.0</b> version</i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+		    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/" title="4.0 version" class="active"><b>4.0</b> version</a></li>
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="3.0 version"><b>3.0</b> version</a></li>
+			<li class="divider"></li>
+		</ul>
+	</div>
+    
 	<!-- nav-menu-dropdown -->
 	<div class="btn-group hidden-xs" id="nav-menu">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			<i class="fa fa-bars"></i>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-		    <li><a href="http://jonnnnyw.github.io/php-phantomjs/"><i class="fa fa-home"></i>Home</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html"><i class="fa fa-folder"></i>Installation</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html"><i class="fa fa-folder"></i>Usage</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html"><i class="fa fa-folder"></i>Advanced</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+		    
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/"><i class="fa fa-folder"></i>Introduction</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/2-installation/"><i class="fa fa-folder"></i>Installation</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/3-usage/"><i class="fa fa-folder"></i>Usage</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/4-advanced/"><i class="fa fa-folder"></i>Advanced Usage</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/5-troubleshooting/"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+			
 			<li class="divider"></li>
 			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
 		</ul>
 	</div>
+
 
 	<div class="col-sm-3 sidebar hidden-xs">
 		<! -- sidebar.html -->
@@ -120,7 +156,7 @@
 		
 		<li>
             <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="83" height="20"></iframe>
+                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20"></iframe>
 		</li>
 		
 		
@@ -136,15 +172,18 @@
 
 	</div>
 
+    <p id="version-notice">You are currently viewing version <span>3.0</span> documentation.</p>
+
 	<div class="col-sm-9 col-sm-offset-3">
+
 		<div class="page-header">
   <h1>Installation </h1>
 </div>
 	
 <article>
-
+    
 	<div class="col-sm-10">
-	
+      
 	  <div class="article_body">
 	  <ul>
   <li><a href="#prerequisites">Prerequisites</a></li>
@@ -163,13 +202,13 @@
 
 <p>Install <a href="https://getcomposer.org/">Composer</a> for your project:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="c">#bash</span>
 
-    <span class="nv">$ </span>curl -s http://getcomposer.org/installer <span class="p">|</span> php</code></pre></div>
+    <span class="nv">$ </span>curl -s http://getcomposer.org/installer <span class="p">|</span> php</code></pre></figure>
 
 <p>Create a <code>composer.json</code> file in the root of your project:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1">#composer.json</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">    <span class="c1">#composer.json</span>
 
     <span class="p-Indicator">{</span>
         <span class="s">&quot;require&quot;</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
@@ -186,26 +225,28 @@
                 <span class="s">&quot;PhantomInstaller\\Installer::installPhantomJS&quot;</span>
             <span class="p-Indicator">]</span>
         <span class="p-Indicator">}</span>
-    <span class="p-Indicator">}</span></code></pre></div>
+    <span class="p-Indicator">}</span></code></pre></figure>
 
 <p>It is important that you have the ‘scripts’ section shown above in your <code>composer.json</code> file as it will install the latest version of PhantomJS for your system to your project’s bin folder. It is recommended that you create a bin folder in the root of your project as this is where the PHP PhantomJS library will look for your PhantomJS executable. If you would prefer to use a PhantomJS executable in a custom location, see the <a href="#custom-installation">Custom Installation</a> section.</p>
 
 <p>Finally, install the composer depedencies for your project:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    
+    <span class="c">#bash</span>
     
-    <span class="nv">$ </span>php composer.phar install</code></pre></div>
+    <span class="nv">$ </span>php composer.phar install</code></pre></figure>
 
 <h2 id="custom-installation">Custom Installation</h2>
 
 <p>If you would prefer to use a custom install location for the PhantomJS executable, you simply need to tell the client where to find the executable file:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
     
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
 
     <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setPhantomJs</span><span class="p">(</span><span class="s1">&#39;/path/to/phantomjs&#39;</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setPhantomJs</span><span class="p">(</span><span class="s1">&#39;/path/to/phantomjs&#39;</span><span class="p">);</span></code></pre></figure>
 
 <blockquote>
   <h4 id="important">Important</h4>
@@ -216,32 +257,34 @@
 
 <p>If you would like composer to install all executable files to a custom bin location when installing dependencies, set the bin dir location in your project’s <code>composer.json</code> file:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1">#composer.json</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">    <span class="c1">#composer.json</span>
 
     <span class="p-Indicator">{</span>
         <span class="s">&quot;config&quot;</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
             <span class="s">&quot;bin-dir&quot;</span><span class="p-Indicator">:</span> <span class="s">&quot;/path/to/your/projects/bin/dir&quot;</span>
         <span class="p-Indicator">}</span>
-    <span class="p-Indicator">}</span></code></pre></div>
+    <span class="p-Indicator">}</span></code></pre></figure>
 
 <p>You will need to make sure that this directory exists and is writable by Composer before running the composer install.</p>
 
 <p>Once you have updated your bin location run composer install to install PhantomJS:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    
+    <span class="c">#bash</span>
     
-    <span class="nv">$ </span>php composer.phar install</code></pre></div>
+    <span class="nv">$ </span>php composer.phar install</code></pre></figure>
 
 <p>This should install the correct PhantomJS executable for your system and the required <code>phantomloader</code> file to the bin locaiton you defined in your <code>composer.json</code> file. </p>
 
 <p>Now you need to tell the client where to find your bin folder:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> 
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">        </span>
+<span class="x">    </span><span class="cp">&lt;?php</span> 
     
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
 
     <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setBinDir</span><span class="p">(</span><span class="s1">&#39;/path/to/bin/dir&#39;</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setBinDir</span><span class="p">(</span><span class="s1">&#39;/path/to/bin/dir&#39;</span><span class="p">);</span></code></pre></figure>
 
 <h2 id="installing-from-tarball">Installing from tarball</h2>
 
@@ -269,10 +312,10 @@
     <hr>
     <ul class="pager">
         
-        <li class="previous"><a href="http://jonnnnyw.github.io/php-phantomjs/introduction.html" title="Introduction">&larr; Introduction</a></li>
+        <li class="previous"><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/3-usage/" title="Usage">&larr; Usage</a></li>
         
         
-        <li class="next"><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html" title="Usage">Usage &rarr;</a></li>
+        <li class="next"><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="Introduction">Introduction &rarr;</a></li>
         
     </ul>
 
@@ -286,7 +329,7 @@
 		<footer>
 			<hr/>
 			<p>
-				&copy; 2014 PHP PhantomJs. Theme: Modified <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek.
+				&copy; 2015 PHP PhantomJs
 			</p>
 		</footer>
 	</div>

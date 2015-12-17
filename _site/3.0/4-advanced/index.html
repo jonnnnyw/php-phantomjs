@@ -43,59 +43,95 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-default visible-xs" role="navigation">
+    
+     
+
+	<nav class="navbar navbar-default visible-xs" role="navigation" id="global-nav">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<button type="button" class="navbar-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-main">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
 			
-			
-            <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=fork&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link last"></iframe>
-    		
-			
-			
-            <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link"></iframe>
-    		
+			<button type="button" class="navbar-toggle version-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-version">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-terminal"><b>3.0</b> version</</span>
+			</button>
     		
 			<a class="navbar-brand" href="http://jonnnnyw.github.io/php-phantomjs/">
 				<img src="http://jonnnnyw.github.io/php-phantomjs/assets/media/phantomjs-small.png" class="img-circle" />
 				PHP PhantomJs
 			</a>
 		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="http://jonnnnyw.github.io/php-phantomjs/">Home</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html">Installation</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html">Usage</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html">Advanced</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html">Troubleshooting</a></li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
+        
+        <div class="panel">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-version">
+    			<ul class="nav navbar-nav">
+    				<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/" title="Version 4.0" class="active"><b>4.0</b> version</a></li>
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="Version 3.0"><b>3.0</b> version</a></li>
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
+        <div class="panel">
+    		<!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-main">
+    			<ul class="nav navbar-nav">
+        			
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/">Introduction</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/2-installation/">Installation</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/3-usage/">Usage</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/4-advanced/">Advanced Usage</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/5-troubleshooting/">Troubleshooting</a></li>
+                    
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
 	</nav>
-
+    
+	<!-- version-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-version">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-terminal"><b>3.0</b> version</i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+		    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/" title="4.0 version" class="active"><b>4.0</b> version</a></li>
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="3.0 version"><b>3.0</b> version</a></li>
+			<li class="divider"></li>
+		</ul>
+	</div>
+    
 	<!-- nav-menu-dropdown -->
 	<div class="btn-group hidden-xs" id="nav-menu">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			<i class="fa fa-bars"></i>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-		    <li><a href="http://jonnnnyw.github.io/php-phantomjs/"><i class="fa fa-home"></i>Home</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html"><i class="fa fa-folder"></i>Installation</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html"><i class="fa fa-folder"></i>Usage</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html"><i class="fa fa-folder"></i>Advanced</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+		    
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/"><i class="fa fa-folder"></i>Introduction</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/2-installation/"><i class="fa fa-folder"></i>Installation</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/3-usage/"><i class="fa fa-folder"></i>Usage</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/4-advanced/"><i class="fa fa-folder"></i>Advanced Usage</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/5-troubleshooting/"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+			
 			<li class="divider"></li>
 			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
 		</ul>
 	</div>
+
 
 	<div class="col-sm-3 sidebar hidden-xs">
 		<! -- sidebar.html -->
@@ -120,7 +156,7 @@
 		
 		<li>
             <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="83" height="20"></iframe>
+                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20"></iframe>
 		</li>
 		
 		
@@ -136,25 +172,25 @@
 
 	</div>
 
+    <p id="version-notice">You are currently viewing version <span>3.0</span> documentation.</p>
+
 	<div class="col-sm-9 col-sm-offset-3">
+
 		<div class="page-header">
   <h1>Advanced Usage </h1>
 </div>
 	
 <article>
-
+    
 	<div class="col-sm-10">
-	
+      
 	  <div class="article_body">
 	  <ul>
   <li><a href="#phantomjs-command-line-options">PhantomJS command line options</a></li>
-  <li><a href="#custom-phantomjs-scripts">Custom PhantomJS scripts</a>
-    <ul>
-      <li><a href="#writing-a-custom-script">Writing a custom script</a></li>
-      <li><a href="#using-custom-request-parameters-in-your-script">Using custom request parameters in your script</a></li>
-      <li><a href="#loading-your-script">Loading your script</a></li>
-    </ul>
-  </li>
+  <li><a href="#custom-phantomjs-scripts">Custom PhantomJS scripts</a></li>
+  <li><a href="#writing-a-custom-script">Writing a custom script</a></li>
+  <li><a href="#using-custom-request-parameters-in-your-script">Using custom request parameters in your script</a></li>
+  <li><a href="#loading-your-script">Loading your script</a></li>
 </ul>
 
 <hr />
@@ -163,7 +199,7 @@
 
 <p>The PhantomJS API contains a range of command line options that can be passed when executing the PhantomJS executable. These can also be passed in via the client before a request:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -174,11 +210,11 @@
     <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
     <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
 
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <p>You can also set a path to a JSON configuration file that contains multiple PhantomJS options:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -188,7 +224,7 @@
     <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
     <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
 
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <p>See the <a href="http://phantomjs.org/api/command-line.html">PhantomJS Documentation</a> for a full list of command line options.</p>
 
@@ -198,12 +234,12 @@
 
 <p>Script files or ‘procedures’ as they are referred to in the application are closely mapped to requests. When you create a default request instance, you are essentially running the default javascript procedure that comes bundled with the application. When you create a capture request you are running the capture procedure.</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
     <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">();</span> <span class="c1">// ~/Resources/procedures/default.proc</span>
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createCaptureRequest</span><span class="p">();</span> <span class="c1">// ~/Resources/procedures/capture.proc</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createCaptureRequest</span><span class="p">();</span> <span class="c1">// ~/Resources/procedures/capture.proc</span></code></pre></figure>
 
 <h3 id="writing-a-custom-script">Writing a custom script</h3>
 
@@ -211,14 +247,19 @@
 
 <p>Create the file somewhere and make sure it can be read by your application. Make a note of the path to the directory where your file is created as you will need this when loading your script which is explained later in this guide.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    
+    <span class="c">#bash</span>
     
     <span class="nv">$ </span>touch my_procedure.proc
-    <span class="nv">$ </span>chmod <span class="m">755</span> my_procedure.proc</code></pre></div>
+    <span class="nv">$ </span>chmod <span class="m">755</span> my_procedure.proc
+    </code></pre></figure>
 
 <p>Next open your procedure file in your text editor and write your PhantomJS script. The <a href="http://phantomjs.org/quick-start.html">PhantomJS documentation</a> has more detailed information on writing custom scripts.</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// my_procedure.proc</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    
+    
+    
+    <span class="c1">// my_procedure.proc</span>
 
     <span class="kd">var</span> <span class="nx">page</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpage&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
     
@@ -230,7 +271,10 @@
         <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="p">});</span>
     
-    <span class="p">...</span></code></pre></div>
+    <span class="p">...</span>
+    
+    
+    </code></pre></figure>
 
 <blockquote>
   <h4 id="important">Important</h4>
@@ -239,14 +283,20 @@
 
 <p>It is a good practice to create a global error handler in your script that exits PhantomJS:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// my_procedure.proc</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    
+    
+    
+    <span class="c1">// my_procedure.proc</span>
 
     <span class="nx">phantom</span><span class="p">.</span><span class="nx">onError</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">trace</span><span class="p">)</span> <span class="p">{</span>
   
         <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="p">};</span>
     
-    <span class="p">...</span></code></pre></div>
+    <span class="p">...</span>
+    
+    
+    </code></pre></figure>
 
 <h3 id="using-custom-request-parameters-in-your-script">Using custom request parameters in your script</h3>
 
@@ -349,7 +399,7 @@
 
 <p>If you would like to inject additional data into your script through custom accessors, simply extend the request class with your own:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Message\Request</span><span class="p">;</span>
     
@@ -360,19 +410,25 @@
         <span class="p">{</span>
             <span class="k">return</span> <span class="s1">&#39;Something!&#39;</span><span class="p">;</span>
         <span class="p">}</span>
-    <span class="p">}</span></code></pre></div>
+    <span class="p">}</span></code></pre></figure>
 
 <p>Now you will be able to access the data in your custom script when using your custom request:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// my_procedure.proc</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    
+    
+    
+    <span class="c1">// my_procedure.proc</span>
 
     <span class="kd">var</span> <span class="nx">something</span> <span class="o">=</span> <span class="s1">&#39;{{ request.getSomething() }}&#39;</span><span class="p">;</span> <span class="c1">// Get something</span>
     
-    <span class="p">...</span></code></pre></div>
+    <span class="p">...</span>
+    
+    
+    </code></pre></figure>
 
 <p>And to use your custom request simply create a new instance of it and pass it to the client:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -384,7 +440,7 @@
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setMethod</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">);</span>
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setUrl</span><span class="p">(</span><span class="s1">&#39;http://www.google.com&#39;</span><span class="p">);</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <h3 id="loading-your-script">Loading your script</h3>
 
@@ -392,7 +448,7 @@
 
 <p>The service container has a factory that makes creating a new procedure loader easy:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
     
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\DependencyInjection\ServiceContainer</span><span class="p">;</span>
@@ -404,35 +460,35 @@
     <span class="nv">$procedureLoader</span> <span class="o">=</span> <span class="nv">$serviceContainer</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;procedure_loader_factory&#39;</span><span class="p">)</span>
         <span class="o">-&gt;</span><span class="na">createProcedureLoader</span><span class="p">(</span><span class="nv">$location</span><span class="p">);</span>
         
-    <span class="o">...</span></code></pre></div>
+    <span class="o">...</span></code></pre></figure>
 
 <p>The client contains a chain procedure loader which lets you set multiple loaders at the same time. Ultimately this means that you can load your custom scripts while still maintaining the ability to load the default scripts if you choose. </p>
 
 <p>Now add your procedure loader to the chain loader:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="o">...</span>
     
     <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
     <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getProcedureLoader</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">addLoader</span><span class="p">(</span><span class="nv">$procedureLoader</span><span class="p">);</span>
     
-    <span class="o">...</span></code></pre></div>
+    <span class="o">...</span></code></pre></figure>
 
 <p>The last thing you need to do is to tell the request which script you want to load for that request. This is done by setting the request type to the name of your procedure file, minus the extension:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="o">...</span>
     
    <span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">();</span>
    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setType</span><span class="p">(</span><span class="s1">&#39;my_procedure&#39;</span><span class="p">);</span>
     
-    <span class="o">...</span></code></pre></div>
+    <span class="o">...</span></code></pre></figure>
 
 <p>Or if you are using a custom request as outlined in the <a href="#using-custom-request-parameters-in-your-script">custom request parameters</a> section, you can implement a <code>getType()</code> method which returns the name of your procedure, eliminating the need to set the request type for each request:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Message\Request</span><span class="p">;</span>
     
@@ -443,11 +499,11 @@
         <span class="p">{</span>
             <span class="k">return</span> <span class="s1">&#39;my_procedure&#39;</span><span class="p">;</span>
         <span class="p">}</span>
-    <span class="p">}</span></code></pre></div>
+    <span class="p">}</span></code></pre></figure>
 
 <p>Below is a full example for clarity:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
     
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\DependencyInjection\ServiceContainer</span><span class="p">;</span>
@@ -467,7 +523,7 @@
     
     <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <blockquote>
   <h4 id="troubleshooting">Troubleshooting</h4>
@@ -485,10 +541,10 @@
     <hr>
     <ul class="pager">
         
-        <li class="previous"><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html" title="Usage">&larr; Usage</a></li>
+        <li class="previous"><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/5-troubleshooting/" title="Troubleshooting">&larr; Troubleshooting</a></li>
         
         
-        <li class="next"><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html" title="Troubleshooting">Troubleshooting &rarr;</a></li>
+        <li class="next"><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/3-usage/" title="Usage">Usage &rarr;</a></li>
         
     </ul>
 
@@ -502,7 +558,7 @@
 		<footer>
 			<hr/>
 			<p>
-				&copy; 2014 PHP PhantomJs. Theme: Modified <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek.
+				&copy; 2015 PHP PhantomJs
 			</p>
 		</footer>
 	</div>

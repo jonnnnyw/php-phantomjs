@@ -1,8 +1,11 @@
 
 paginate: 1 
-permalink: none
+permalink: :title/
 paginate_path: "page:num"
-exclude: ["README.md"] 
+gems:
+    - jekyll-paginate
+exclude:
+    - "README.md" 
 highlighter: pygments
 markdown: kramdown
 kramdown:
@@ -14,6 +17,14 @@ defaults:
       path: "" 
     values:
       title: PHP PhantomJS
+
+collections:
+  version_3:
+    output: true
+    permalink: /3.0/:title/
+  version_4:
+    output: true
+    permalink: /4.0/:title/
 
 title: PHP PhantomJs
 description: Run PhantomJS scripts through PHP
@@ -28,5 +39,8 @@ github:
   fork: true
 
 rss_path: feed.xml
+
+latest_version: 4.0
+latest_collection: version_4
 
 BASE_PATH: http://jonnnnyw.github.io/php-phantomjs

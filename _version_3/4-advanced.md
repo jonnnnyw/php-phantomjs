@@ -4,10 +4,11 @@ title: Advanced Usage
 categories: []
 tags: []
 fullview: true
+version: 3.0
 ---
 
-* [PhantomJS command line options](#phantomjs-command-line-options)
-* [Custom PhantomJS scripts](#custom-phantomjs-scripts)
+  * [PhantomJS command line options](#phantomjs-command-line-options)
+  * [Custom PhantomJS scripts](#custom-phantomjs-scripts)
   * [Writing a custom script](#writing-a-custom-script)
   * [Using custom request parameters in your script](#using-custom-request-parameters-in-your-script)
   * [Loading your script](#loading-your-script)

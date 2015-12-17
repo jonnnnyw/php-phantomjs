@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Custom Scripts</title>
+	
+	<meta name="author" content="Jonny W">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="http://jonnnnyw.github.io/php-phantomjs/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://jonnnnyw.github.io/php-phantomjs/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="http://jonnnnyw.github.io/php-phantomjs/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="http://jonnnnyw.github.io/php-phantomjs/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<!-- Update these with your own images
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	-->
+
+	<link rel="alternate" type="application/rss+xml" title="" href="http://jonnnnyw.github.io/php-phantomjs/feed.xml">
+
+   <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        
+        ga('create', 'UA-53289013-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+</head>
+
+<body>
+    
+     
+
+	<nav class="navbar navbar-default visible-xs" role="navigation" id="global-nav">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-main">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<button type="button" class="navbar-toggle version-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-version">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-terminal"><b>4.0</b> version</</span>
+			</button>
+    		
+			<a class="navbar-brand" href="http://jonnnnyw.github.io/php-phantomjs/">
+				<img src="http://jonnnnyw.github.io/php-phantomjs/assets/media/phantomjs-small.png" class="img-circle" />
+				PHP PhantomJs
+			</a>
+		</div>
+        
+        <div class="panel">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-version">
+    			<ul class="nav navbar-nav">
+    				<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/" title="Version 4.0" class="active"><b>4.0</b> version</a></li>
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="Version 3.0"><b>3.0</b> version</a></li>
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
+        <div class="panel">
+    		<!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-main">
+    			<ul class="nav navbar-nav">
+        			
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/">Introduction</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/2-installation/">Installation</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/3-usage/">Usage</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/4-custom-scripts/">Custom Scripts</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/5-caching/">Caching</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/6-debugging/">Debugging</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/7-troubleshooting/">Troubleshooting</a></li>
+                    
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
+	</nav>
+    
+	<!-- version-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-version">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-terminal"><b>4.0</b> version</i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+		    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/" title="4.0 version" class="active"><b>4.0</b> version</a></li>
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="3.0 version"><b>3.0</b> version</a></li>
+			<li class="divider"></li>
+		</ul>
+	</div>
+    
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+		    
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/"><i class="fa fa-folder"></i>Introduction</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/2-installation/"><i class="fa fa-folder"></i>Installation</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/3-usage/"><i class="fa fa-folder"></i>Usage</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/4-custom-scripts/"><i class="fa fa-folder"></i>Custom Scripts</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/5-caching/"><i class="fa fa-folder"></i>Caching</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/6-debugging/"><i class="fa fa-folder"></i>Debugging</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/7-troubleshooting/"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+			
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div>
+
+
+	<div class="col-sm-3 sidebar hidden-xs">
+		<! -- sidebar.html -->
+<header class="sidebar-header" role="banner">
+	<a href="http://jonnnnyw.github.io/php-phantomjs/">
+		<img src="http://jonnnnyw.github.io/php-phantomjs/assets/media/phantomjs.png" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="http://jonnnnyw.github.io/php-phantomjs/">PHP PhantomJs</a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	Run PhantomJS scripts through PHP
+</div>
+
+
+<div id="contact-list" class="text-center">
+
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+            <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=watch&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20"></iframe>
+		</li>
+		
+		
+		<li>
+			<iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=fork&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="83" height="20"></iframe>
+		</li>
+		
+	</ul>
+
+</div>
+<! -- sidebar.html end -->
+
+	</div>
+
+    <p id="version-notice">You are currently viewing version <span>4.0</span> documentation.</p>
+
+	<div class="col-sm-9 col-sm-offset-3">
+
+		<div class="page-header">
+  <h1>Custom Scripts </h1>
+</div>
+	
+<article>
+    
+	<div class="col-sm-10">
+      
+	  <div class="article_body">
+	  <ul>
+  <li><a href="#custom-phantomjs-scripts">Custom PhantomJS scripts</a></li>
+  <li><a href="#partial-script-injection">Partial script injection</a></li>
+  <li><a href="#writing-a-custom-template">Writing a custom template</a></li>
+  <li><a href="#using-custom-request-parameters-in-your-script">Using custom request parameters in your script</a></li>
+</ul>
+
+<hr />
+
+<h2 id="custom-phantomjs-scripts">Custom PhantomJS scripts</h2>
+
+<p>In most cases you shouldn’t need to worry about the javascript files that run the PHP PhantomJS library but there may be times when you want to execute your own custom PhantomJS scripts through the client. This can be easily achieved in 2 ways - either through <a href="#partial-script-injection">partial script injection</a> or by <a href="#writing-a-custom-template">writing your own custom template</a>.</p>
+
+<p>When PhantomJS performs a request it loads a script template file and builds a PhantomJS script by injecting small blocks of javascript code into the template. These partial code blocks inject functionality such as setting the viewport size, capture options, error handling etc. These code blocks may be overridden allowing you to manipulate the way requests are performed, with little effort.</p>
+
+<p>Alternatively you can write your own script template changing how PHP PhantomJS executes scripts altogether. This requires more work but can be very powerful.</p>
+
+<blockquote>
+  <h4 id="note">Note</h4>
+  <p>PHP PhantomJS compiles, validates and caches scripts when they are first run to greatly improve performance. If you would like to clear this cache or disable it while you are writing your own scripts then refer to the <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/caching/">caching section</a>.</p>
+</blockquote>
+
+<h2 id="partial-script-injection">Partial script injection</h2>
+
+<p>Partial script injection is the easiest way to manipulate the scripts that are executed by PhantomJS. When PHP PhantomJS performs a request it loads a script template and compiles small blocks of javascript into the template before executing the script. These injected blocks contain different pieces of PhantomJS functionality such as setting the viewport size, capture options, logging and error handling etc. You can override as many of these blocks as you please to change they way a script functions.</p>
+
+<p>The following outlines the partial blocks that are compiled into a PHP PhantomJS template by default.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Block Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="http://">global_variables.partial</a></td>
+      <td>Allows any javascript variables to be injected at the top of the script.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">page_clip_rect.partial</a></td>
+      <td>If the request is a screen capture, this will define the page clipping rectangle.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">page_custom_headers.partial</a></td>
+      <td>Set any custom headers on the page object.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">page_on_error.partial</a></td>
+      <td>Defines the code that is executed on page error.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">page_on_resource_received.partial</a></td>
+      <td>Defines the code that is executed on resource receive.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">page_on_resource_timeout.partial</a></td>
+      <td>Defines the code that is executed on resource timeout.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">page_open.partial</a></td>
+      <td>Defines the code that is executed on page open.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">page_paper_size.partial</a></td>
+      <td>If the request is PDF output, this will set up the paper size.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">page_settings.partial</a></td>
+      <td>Defines any page settings most notably the resource timeout value.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">page_viewport_size.partial</a></td>
+      <td>Set up the viewport size if defined in the request.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">phantom_on_error.partial</a></td>
+      <td>Defines the code that is execute on PhantomJS error.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">procedure_capture.partial</a></td>
+      <td>Defines the code that is executed if the request is a capture request.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">procedure_default.partial</a></td>
+      <td>Defines the code that is executed for a default request.</td>
+    </tr>
+    <tr>
+      <td><a href="http://">procedure_pdf.partial</a></td>
+      <td>Defines the code that is executed if the request is a PDF request.</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <h4 id="note-1">Note</h4>
+  <p>It may pay to check out the <a href="http://">default script template</a> to see where each of these blocks are rendered when compiling the PhantomJS script.</p>
+</blockquote>
+
+<p>To override a partial block with your own code first you need to create a file with the same name as the block that you are overriding. Make sure that this file can be read by your application.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    
+    <span class="c">#bash</span>
+    
+    <span class="nv">$ </span>touch phantom_on_error.partial
+    <span class="nv">$ </span>chmod <span class="m">755</span> phantom_on_error.partial
+    </code></pre></figure>
+
+<p>Next open your partial block in your text editor and write the code you wish to execute. The <a href="http://phantomjs.org/quick-start.html">PhantomJS documentation</a> has more detailed information on writing custom scripts.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    
+    
+    
+    <span class="c1">// phantom_on_error.partial</span>
+    
+    <span class="kd">var</span> <span class="nx">error</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">msg</span><span class="o">:</span> <span class="s1">&#39;There was an error!&#39;</span>  
+    <span class="p">};</span>
+    
+    <span class="nx">system</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+    <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="p">...</span>
+    
+    
+    </code></pre></figure>
+
+<p>Now you need to tell PHP PhantomJS where to look for your partial block. This is achieved by creating a procedure loader that points at your custom script directory. The service container has a factory that makes creating a new procedure loader easy.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+    
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\DependencyInjection\ServiceContainer</span><span class="p">;</span>
+    
+    <span class="nv">$location</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/script/directory&#39;</span><span class="p">;</span>
+    
+    <span class="nv">$serviceContainer</span> <span class="o">=</span> <span class="nx">ServiceContainer</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    
+    <span class="nv">$procedureLoader</span> <span class="o">=</span> <span class="nv">$serviceContainer</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;procedure_loader_factory&#39;</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">createProcedureLoader</span><span class="p">(</span><span class="nv">$location</span><span class="p">);</span>
+        
+    <span class="o">...</span></code></pre></figure>
+
+<p>Finally add your procedure loader to the load loop. By default the client contains a chain procedure loader which lets you maintain multiple procedure loaders. Ultimately this means that you can load your custom script blocks while still maintaining the ability to load the default ones.</p>
+
+<p>So now just add the procedure loader that you created above to the chain loader.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+
+    <span class="o">...</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getProcedureLoader</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">addLoader</span><span class="p">(</span><span class="nv">$procedureLoader</span><span class="p">);</span>
+    
+    <span class="o">...</span></code></pre></figure>
+
+<blockquote>
+  <h4 id="note-2">Note</h4>
+  <p>If multiple procedure loaders are defined, PHP PhantomJS will alwasy look for custom scripts first before falling back on the default ones.</p>
+</blockquote>
+
+<p>Now whenever you perform a request PHP PhantomJS will look in your script directory first for any partial blocks to inject. You can override as many script blocks as you wish but be aware that in doing so you may limit or break the functionality of the PHP PhantomJS library.</p>
+
+<p>Below is a full example for clarity.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+    
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\DependencyInjection\ServiceContainer</span><span class="p">;</span>
+    
+    <span class="nv">$location</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/script/directory&#39;</span><span class="p">;</span>
+    
+    <span class="nv">$serviceContainer</span> <span class="o">=</span> <span class="nx">ServiceContainer</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    
+    <span class="nv">$procedureLoader</span> <span class="o">=</span> <span class="nv">$serviceContainer</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;procedure_loader_factory&#39;</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">createProcedureLoader</span><span class="p">(</span><span class="nv">$location</span><span class="p">);</span>
+        
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getProcedureLoader</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">addLoader</span><span class="p">(</span><span class="nv">$procedureLoader</span><span class="p">);</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">();</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+    
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
+
+<blockquote>
+  <h4 id="note-3">Note</h4>
+  <p>PHP PhantomJS compiles and caches scripts when they are first run to greatly improve performance. This cache can be easily <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/caching/#clearing-the-cache">cleared</a> or <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/caching/#disabling-the-cache">disabled</a> while you are developing your own custom scripts. Do be aware that script execution time will be greatly increased by disabling the cache.</p>
+</blockquote>
+
+<blockquote>
+  <h4 id="note-4">Note</h4>
+  <p>Scripts are validated using a Javascript validation engine when they are compiled. For help debugging validation errors see the <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/debugging/#validation-errors">debugging</a> section.</p>
+</blockquote>
+
+<h2 id="writing-a-custom-template">Writing a custom template</h2>
+
+<p>The script template that is run by PHP PhantomJS on each request can be easily replaced with your own version. This requires more work to get right but can be very powerful.</p>
+
+<p>The first step in creating your script is to create a procedure file somewhere. For the purpose of this guide we will refer to it as <code>my_procedure.proc</code> but in reality it can be called anything you like. The only requirement is that the file extension must be <code>.proc</code>.</p>
+
+<p>Create the file somewhere and make sure it can be read by your application.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    
+    <span class="c">#bash</span>
+    
+    <span class="nv">$ </span>touch my_procedure.proc
+    <span class="nv">$ </span>chmod <span class="m">755</span> my_procedure.proc
+    </code></pre></figure>
+
+<p>Next open your procedure file in a text editor and write your PhantomJS script. The <a href="http://phantomjs.org/quick-start.html">PhantomJS documentation</a> has more detailed information on writing scripts for PhantomJS.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    
+    
+    
+    <span class="c1">// my_procedure.proc</span>
+
+    <span class="kd">var</span> <span class="nx">page</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpage&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+    
+    <span class="nx">page</span><span class="p">.</span><span class="nx">open</span> <span class="p">(</span><span class="s1">&#39;{{ input.getUrl() }}&#39;</span><span class="p">,</span> <span class="s1">&#39;{{ input.getMethod() }}&#39;</span><span class="p">,</span> <span class="s1">&#39;{{ input.getBody() }}&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
+         
+        <span class="c1">// It is important that you exit PhantomJS</span>
+        <span class="c1">// when your script has run or when you</span>
+        <span class="c1">// encounter an error</span>
+        <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">});</span>
+    
+    <span class="p">...</span>
+    
+    
+    </code></pre></figure>
+
+<blockquote>
+  <h4 id="important">Important</h4>
+  <p>Make sure that <code>phantom.exit(1);</code> is always called after your script has run or if you encounter an error. This requires you to take care when handling PhantomJS errors to ensure that you exit the PhantomJS script, whether the script was successfully executed or not. If you do not call <code>phantom.exit(1);</code> then PhantomJS will continue to run until your PHP script times out. You will most likely receive a validation error if you omit this from your script anyway.</p>
+</blockquote>
+
+<p>It is a good practice to create a global error handler in your script that exits PhantomJS.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    
+    
+    
+    <span class="c1">// my_procedure.proc</span>
+
+    <span class="nx">phantom</span><span class="p">.</span><span class="nx">onError</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">trace</span><span class="p">)</span> <span class="p">{</span>
+  
+        <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">};</span>
+    
+    <span class="p">...</span>
+    
+    
+    </code></pre></figure>
+
+<p>As with the overriding of partial blocks mentioned earlier in this section, you need to tell PHP PhantomJS where to look for script template. This is achieved by creating a procedure loader that points at your custom script directory. The service container has a factory that makes creating a new procedure loader easy.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+    
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\DependencyInjection\ServiceContainer</span><span class="p">;</span>
+    
+    <span class="nv">$location</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/script/directory&#39;</span><span class="p">;</span>
+    
+    <span class="nv">$serviceContainer</span> <span class="o">=</span> <span class="nx">ServiceContainer</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    
+    <span class="nv">$procedureLoader</span> <span class="o">=</span> <span class="nv">$serviceContainer</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;procedure_loader_factory&#39;</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">createProcedureLoader</span><span class="p">(</span><span class="nv">$location</span><span class="p">);</span>
+        
+    <span class="o">...</span></code></pre></figure>
+
+<p>Now add your procedure loader to the load loop. By default the client contains a chain procedure loader which lets you maintain multiple procedure loaders. Ultimately this means that you can load your custom templates while still maintaining the ability to load the default ones.</p>
+
+<p>So now just add the procedure loader that you created above to the chain loader.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+
+    <span class="o">...</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getProcedureLoader</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">addLoader</span><span class="p">(</span><span class="nv">$procedureLoader</span><span class="p">);</span>
+    
+    <span class="o">...</span></code></pre></figure>
+
+<p>Finally you need to tell the client which procedure template to load when making a request. The template name is the name of your procedure template file minus the <code>.proc</code> part.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+
+    <span class="o">...</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setProcedure</span><span class="p">(</span><span class="s1">&#39;my_procedure&#39;</span><span class="p">);</span>
+    
+    <span class="o">...</span></code></pre></figure>
+
+<p>Below is a full example for clarity.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+    
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\DependencyInjection\ServiceContainer</span><span class="p">;</span>
+    
+    <span class="nv">$location</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/script/directory&#39;</span><span class="p">;</span>
+    
+    <span class="nv">$serviceContainer</span> <span class="o">=</span> <span class="nx">ServiceContainer</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    
+    <span class="nv">$procedureLoader</span> <span class="o">=</span> <span class="nv">$serviceContainer</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;procedure_loader_factory&#39;</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">createProcedureLoader</span><span class="p">(</span><span class="nv">$location</span><span class="p">);</span>
+        
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setProcedure</span><span class="p">(</span><span class="s1">&#39;my_procedure&#39;</span><span class="p">);</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getProcedureLoader</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">addLoader</span><span class="p">(</span><span class="nv">$procedureLoader</span><span class="p">);</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">();</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+    
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
+
+<blockquote>
+  <h4 id="note-5">Note</h4>
+  <p>You may choose to support <a href="#partial-script-injection">partial script blocks</a> in your template. It is worth checking out the <a href="http://">default script template</a> to get an idea on how this is achieved.</p>
+</blockquote>
+
+<h2 id="using-custom-request-parameters-in-your-script">Using custom request parameters in your script</h2>
+
+<p>Before a procedure is executed by the application it is parsed through a template parser. The PHP PhantomJS library uses the popular <a href="https://github.com/fabpot/Twig">Twig templating engine</a>. This gives you access to all the <a href="http://twig.sensiolabs.org/doc/templates.html">Twig niceness</a> which you can use in your custom scripts.</p>
+
+<p>You may have noticed in the <a href="#writing-a-custom-template">writing a custom template</a> section that we have used some Twig template tags referencing an input object e.g. <code>{{ input.getUrl() }}</code>. This is in fact the PHP request instance that you created and passed to the client when sending your request, which is injected into the Twig template parser. As a result you gain full access to all the data contained within the request instance, via the data accessor methods.</p>
+
+<p>A default request instance contains the following accessors.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Accessor</th>
+      <th>Description</th>
+      <th>Twig example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>getMethod()</td>
+      <td>The request method e.g. GET.</td>
+      <td>{{ input.getMethod() }}</td>
+    </tr>
+    <tr>
+      <td>getTimeout()</td>
+      <td>The request timeout period in milliseconds.</td>
+      <td>{{ input.getTimeout() }}</td>
+    </tr>
+    <tr>
+      <td>getDelay()</td>
+      <td>The page render delay in seconds.</td>
+      <td>{{ input.getDelay() }}</td>
+    </tr>
+    <tr>
+      <td>getViewportWidth()</td>
+      <td>The viewport width.</td>
+      <td>{{ input.getViewportWidth() }}</td>
+    </tr>
+    <tr>
+      <td>getViewportHeight()</td>
+      <td>The viewport height.</td>
+      <td>{{ input.getViewportHeight() }}</td>
+    </tr>
+    <tr>
+      <td>getUrl()</td>
+      <td>The request URL.</td>
+      <td>{{ input.getUrl() }}</td>
+    </tr>
+    <tr>
+      <td>getBody()</td>
+      <td>The request body (POST, PUT).</td>
+      <td>{{ input.getBody() }}</td>
+    </tr>
+    <tr>
+      <td>getHeaders(<em>format</em>)</td>
+      <td>The request headers.</td>
+      <td>{{ input.getHeaders(‘json’) }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A capture request contains a few additional ones.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Accessor</th>
+      <th>Description</th>
+      <th>Twig example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>getRectTop()</td>
+      <td>The x coordinate of the capture region.</td>
+      <td>{{ input.getRectTop() }}</td>
+    </tr>
+    <tr>
+      <td>getRectLeft()</td>
+      <td>The y coordinate of the capture region.</td>
+      <td>{{ input.getRectLeft() }}</td>
+    </tr>
+    <tr>
+      <td>getRectWidth()</td>
+      <td>The width of the capture region.</td>
+      <td>{{ input.getRectWidth() }}</td>
+    </tr>
+    <tr>
+      <td>getRectHeight()</td>
+      <td>The height of the capture region.</td>
+      <td>{{ input.getRectHeight() }}</td>
+    </tr>
+    <tr>
+      <td>getCaptureFile()</td>
+      <td>The file to save the capture to.</td>
+      <td>{{ input.getCaptureFile() }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And a PDF request a few more.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Accessor</th>
+      <th>Description</th>
+      <th>Twig example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>getPaperWidth()</td>
+      <td>The width to save the PDF e.g. ‘20cm’.</td>
+      <td>{{ input.getPaperWidth() }}</td>
+    </tr>
+    <tr>
+      <td>getPaperHeight()</td>
+      <td>The height to save the PDF e.g. ‘20cm’.</td>
+      <td>{{ input.getPaperHeight() }}</td>
+    </tr>
+    <tr>
+      <td>getFormat()</td>
+      <td>The paper format e.g. ‘A4’.</td>
+      <td>{{ input.getFormat() }}</td>
+    </tr>
+    <tr>
+      <td>getOrientation()</td>
+      <td>The orientation - portrait or landscape.</td>
+      <td>{{ input.getOrientation() }}</td>
+    </tr>
+    <tr>
+      <td>getMargin()</td>
+      <td>The paper margin e.g. ‘1cm’.</td>
+      <td>{{ input.getMargin() }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If you would like to inject additional data into your script through custom accessors, simply extend the request class with your own.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Message\Request</span><span class="p">;</span>
+    
+    <span class="k">class</span> <span class="nc">CustomRequest</span> <span class="k">extends</span> <span class="nx">Request</span>
+    <span class="p">{</span>
+    
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">getSomething</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="s1">&#39;Something!&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>Now you will be able to access the data in your custom script when using your custom request.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    
+    
+    
+    <span class="c1">// my_procedure.proc</span>
+
+    <span class="kd">var</span> <span class="nx">something</span> <span class="o">=</span> <span class="s1">&#39;{{ input.getSomething() }}&#39;</span><span class="p">;</span> <span class="c1">// Get something</span>
+    
+    <span class="p">...</span>
+    
+    
+    </code></pre></figure>
+
+<p>And to use your custom request simply create a new instance of it and pass it to the client.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="k">new</span> <span class="nx">CustomRequest</span><span class="p">();</span>
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setMethod</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">);</span>
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setUrl</span><span class="p">(</span><span class="s1">&#39;http://www.google.com&#39;</span><span class="p">);</span>
+    
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
+
+<blockquote>
+  <h4 id="troubleshooting">Troubleshooting</h4>
+  <p>If you find that your script isn’t running or that you are receiving a status of ‘0’ back in the response, chances are you have a syntax error in you script. It pays to turn debugging on in the client <code>$client-&gt;debug(true)</code> which will then give you access to some log information through <code>$client-&gt;getLog()</code>.</p>
+</blockquote>
+
+<p>See more detailed information about <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/troubleshooting/">troubleshooting</a>.</p>
+
+	  </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+    
+    <hr>
+    <ul class="pager">
+        
+        <li class="previous"><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/5-caching/" title="Caching">&larr; Caching</a></li>
+        
+        
+        <li class="next"><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/3-usage/" title="Usage">Usage &rarr;</a></li>
+        
+    </ul>
+
+	
+    
+</article>
+
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				&copy; 2015 PHP PhantomJs
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="http://jonnnnyw.github.io/php-phantomjs/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="http://jonnnnyw.github.io/php-phantomjs/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://jonnnnyw.github.io/php-phantomjs/assets/js/app.js"></script>
+	
+</body>
+</html>
+

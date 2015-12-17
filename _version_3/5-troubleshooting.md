@@ -4,6 +4,7 @@ title: Troubleshooting
 categories: []
 tags: []
 fullview: true
+version: 3.0
 ---
 
 * [It's not installing anything to my bin directory](#its-not-installing-anything-to-my-bin-directory)

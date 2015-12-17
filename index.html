@@ -3,24 +3,24 @@ layout: page
 tagline:
 ---
 
-{% for post in site.posts limit: 1 %}
+{% for page in site[site.latest_collection] limit: 1 %}
 
 <div class="page-header">
-  <h1>{{ post.title }} {% if post.tagline %} <small>{{ post.tagline }}</small>{% endif %}</h1>
+  <h1>{{ page.title }} {% if page.tagline %} <small>{{ page.tagline }}</small>{% endif %}</h1>
 </div>
 
 <article class="home">
 
   <div>
-    {% if post.fullview %}
-    {{ post.content }}
+    {% if page.fullview %}
+    {{ page.content }}
     {% else %}
-    {% if post.shortinfo %}
-    {{ post.shortinfo }}
-    {% elsif post.description %}
-    {{ post.description }}
+    {% if page.shortinfo %}
+    {{ page.shortinfo }}
+    {% elsif page.description %}
+    {{ page.description }}
     {% else %}
-    {{ post.excerpt }}
+    {{ page.excerpt }}
     {% endif %}
     {% endif %}
   </div>
@@ -29,9 +29,9 @@ tagline:
   <hr/>
 
   <ul class="pager"> 
-      {% if site.posts[1] %}
+      {% if site.version_4[1] %}
       <li class="next">
-        <a href="{{ site.BASE_PATH }}{{ site.posts[1].url }}" title="{{ site.posts[1].title }}">{{ site.posts[1].title }} &rarr;</a>
+        <a href="{{ site.BASE_PATH }}{{ site.version_4[1].url }}" title="{{ site.version_4[1].title }}">{{ site.version_4[1].title }} &rarr;</a>
       </li>
       {% endif %}
   </ul>

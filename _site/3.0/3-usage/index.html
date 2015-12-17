@@ -43,59 +43,95 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-default visible-xs" role="navigation">
+    
+     
+
+	<nav class="navbar navbar-default visible-xs" role="navigation" id="global-nav">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<button type="button" class="navbar-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-main">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
 			
-			
-            <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=fork&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link last"></iframe>
-    		
-			
-			
-            <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link"></iframe>
-    		
+			<button type="button" class="navbar-toggle version-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-version">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-terminal"><b>3.0</b> version</</span>
+			</button>
     		
 			<a class="navbar-brand" href="http://jonnnnyw.github.io/php-phantomjs/">
 				<img src="http://jonnnnyw.github.io/php-phantomjs/assets/media/phantomjs-small.png" class="img-circle" />
 				PHP PhantomJs
 			</a>
 		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="http://jonnnnyw.github.io/php-phantomjs/">Home</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html">Installation</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html">Usage</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html">Advanced</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html">Troubleshooting</a></li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
+        
+        <div class="panel">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-version">
+    			<ul class="nav navbar-nav">
+    				<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/" title="Version 4.0" class="active"><b>4.0</b> version</a></li>
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="Version 3.0"><b>3.0</b> version</a></li>
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
+        <div class="panel">
+    		<!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-main">
+    			<ul class="nav navbar-nav">
+        			
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/">Introduction</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/2-installation/">Installation</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/3-usage/">Usage</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/4-advanced/">Advanced Usage</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/5-troubleshooting/">Troubleshooting</a></li>
+                    
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
 	</nav>
-
+    
+	<!-- version-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-version">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-terminal"><b>3.0</b> version</i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+		    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/" title="4.0 version" class="active"><b>4.0</b> version</a></li>
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="3.0 version"><b>3.0</b> version</a></li>
+			<li class="divider"></li>
+		</ul>
+	</div>
+    
 	<!-- nav-menu-dropdown -->
 	<div class="btn-group hidden-xs" id="nav-menu">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			<i class="fa fa-bars"></i>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-		    <li><a href="http://jonnnnyw.github.io/php-phantomjs/"><i class="fa fa-home"></i>Home</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html"><i class="fa fa-folder"></i>Installation</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html"><i class="fa fa-folder"></i>Usage</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html"><i class="fa fa-folder"></i>Advanced</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+		    
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/"><i class="fa fa-folder"></i>Introduction</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/2-installation/"><i class="fa fa-folder"></i>Installation</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/3-usage/"><i class="fa fa-folder"></i>Usage</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/4-advanced/"><i class="fa fa-folder"></i>Advanced Usage</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/5-troubleshooting/"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+			
 			<li class="divider"></li>
 			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
 		</ul>
 	</div>
+
 
 	<div class="col-sm-3 sidebar hidden-xs">
 		<! -- sidebar.html -->
@@ -120,7 +156,7 @@
 		
 		<li>
             <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="83" height="20"></iframe>
+                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20"></iframe>
 		</li>
 		
 		
@@ -136,15 +172,18 @@
 
 	</div>
 
+    <p id="version-notice">You are currently viewing version <span>3.0</span> documentation.</p>
+
 	<div class="col-sm-9 col-sm-offset-3">
+
 		<div class="page-header">
   <h1>Usage </h1>
 </div>
 	
 <article>
-
+    
 	<div class="col-sm-10">
-	
+      
 	  <div class="article_body">
 	  <p>This page contains some common examples of how to use the PHP PhantomJS library.</p>
 
@@ -168,7 +207,8 @@
 
 <p>A basic GET request:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
     
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -184,11 +224,11 @@
     
     <span class="k">if</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getStatus</span><span class="p">()</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getContent</span><span class="p">();</span>
-    <span class="p">}</span></code></pre></div>
+    <span class="p">}</span></code></pre></figure>
 
 <p>You can also set the URL, request method and timeout period when creating a new request instance through the message factory:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
      
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -201,13 +241,13 @@
     
     <span class="k">if</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getStatus</span><span class="p">()</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getContent</span><span class="p">();</span>
-    <span class="p">}</span></code></pre></div>
+    <span class="p">}</span></code></pre></figure>
 
 <h2 id="post-request">POST Request</h2>
 
 <p>A basic POST request:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
     
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -225,7 +265,7 @@
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setUrl</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setRequestData</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span> <span class="c1">// Set post data</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <h2 id="other-request-methods">Other Request Methods</h2>
 
@@ -243,24 +283,24 @@
 
 <p>The request method can be set when creating a new request instance through the message factory:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
     <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
     
-    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;PUT&#39;</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;PUT&#39;</span><span class="p">);</span></code></pre></figure>
 
 <p>Or on the request instance itself:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
     <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
     
     <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">();</span>
-    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setMethod</span><span class="p">(</span><span class="s1">&#39;PATCH&#39;</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setMethod</span><span class="p">(</span><span class="s1">&#39;PATCH&#39;</span><span class="p">);</span></code></pre></figure>
 
 <h2 id="response-data">Response Data</h2>
 
@@ -329,7 +369,7 @@
 
 <p>You can save screen captures of a page to your local disk by creating a screen capture request and setting the path you wish to save the file to:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -342,13 +382,13 @@
     
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureFile</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <p>You will need to make sure the directory that you are saving the file to exists and is writable by your application.</p>
 
 <p>You can also set the width, height, x and y axis for your screen capture:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -367,13 +407,13 @@
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureFile</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureDimensions</span><span class="p">(</span><span class="nv">$width</span><span class="p">,</span> <span class="nv">$height</span><span class="p">,</span> <span class="nv">$top</span><span class="p">,</span> <span class="nv">$left</span><span class="p">);</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <h2 id="set-viewport-size">Set Viewport Size</h2>
 
 <p>You can easily set the viewport size for a request:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -387,13 +427,13 @@
     
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setViewportSize</span><span class="p">(</span><span class="nv">$width</span><span class="p">,</span> <span class="nv">$height</span><span class="p">);</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <h2 id="custom-timeout">Custom Timeout</h2>
 
 <p>By default, each request will timeout after 5 seconds. You can set a custom timeout period (in milliseconds) for each request:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -406,13 +446,13 @@
     
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setTimeout</span><span class="p">(</span><span class="nv">$timeout</span><span class="p">);</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <h2 id="delay-page-render">Delay Page Render</h2>
 
 <p>Sometimes when taking screen captures you may want to wait until the page is completely loaded before saving the capture. In this instance you can set a page render delay (in seconds) for the request:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -425,7 +465,7 @@
     
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setDelay</span><span class="p">(</span><span class="nv">$delay</span><span class="p">);</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <p>You can set a page render delay for standard requests also.</p>
 
@@ -433,7 +473,7 @@
 
 <p>The PhantomJS API contains a range of command line options that can be passed when executing the PhantomJS executable. These can also be passed in via the client before a request:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -444,11 +484,11 @@
     <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
     <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
 
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <p>You can also set a path to a JSON configuration file that contains multiple PhantomJS options:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -458,7 +498,7 @@
     <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://google.com&#39;</span><span class="p">);</span>
     <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
 
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <p>See the <a href="http://phantomjs.org/api/command-line.html">PhantomJS Documentation</a> for a full list of command line options.</p>
 
@@ -471,10 +511,10 @@
     <hr>
     <ul class="pager">
         
-        <li class="previous"><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html" title="Installation">&larr; Installation</a></li>
+        <li class="previous"><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/4-advanced/" title="Advanced Usage">&larr; Advanced Usage</a></li>
         
         
-        <li class="next"><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html" title="Advanced Usage">Advanced Usage &rarr;</a></li>
+        <li class="next"><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/2-installation/" title="Installation">Installation &rarr;</a></li>
         
     </ul>
 
@@ -488,7 +528,7 @@
 		<footer>
 			<hr/>
 			<p>
-				&copy; 2014 PHP PhantomJs. Theme: Modified <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek.
+				&copy; 2015 PHP PhantomJs
 			</p>
 		</footer>
 	</div>

@@ -43,59 +43,95 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-default visible-xs" role="navigation">
+    
+     
+
+	<nav class="navbar navbar-default visible-xs" role="navigation" id="global-nav">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<button type="button" class="navbar-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-main">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
 			
-			
-            <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=fork&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link last"></iframe>
-    		
-			
-			
-            <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link"></iframe>
-    		
+			<button type="button" class="navbar-toggle version-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-version">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-terminal"><b>3.0</b> version</</span>
+			</button>
     		
 			<a class="navbar-brand" href="http://jonnnnyw.github.io/php-phantomjs/">
 				<img src="http://jonnnnyw.github.io/php-phantomjs/assets/media/phantomjs-small.png" class="img-circle" />
 				PHP PhantomJs
 			</a>
 		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="http://jonnnnyw.github.io/php-phantomjs/">Home</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html">Installation</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html">Usage</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html">Advanced</a></li>
-				<li><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html">Troubleshooting</a></li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
+        
+        <div class="panel">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-version">
+    			<ul class="nav navbar-nav">
+    				<li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/" title="Version 4.0" class="active"><b>4.0</b> version</a></li>
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="Version 3.0"><b>3.0</b> version</a></li>
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
+        <div class="panel">
+    		<!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-main">
+    			<ul class="nav navbar-nav">
+        			
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/">Introduction</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/2-installation/">Installation</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/3-usage/">Usage</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/4-advanced/">Advanced Usage</a></li>
+                    
+                    <li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/5-troubleshooting/">Troubleshooting</a></li>
+                    
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
 	</nav>
-
+    
+	<!-- version-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-version">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-terminal"><b>3.0</b> version</i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+		    <li><a href="http://jonnnnyw.github.io/php-phantomjs/4.0/" title="4.0 version" class="active"><b>4.0</b> version</a></li>
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/" title="3.0 version"><b>3.0</b> version</a></li>
+			<li class="divider"></li>
+		</ul>
+	</div>
+    
 	<!-- nav-menu-dropdown -->
 	<div class="btn-group hidden-xs" id="nav-menu">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			<i class="fa fa-bars"></i>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-		    <li><a href="http://jonnnnyw.github.io/php-phantomjs/"><i class="fa fa-home"></i>Home</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/installation.html"><i class="fa fa-folder"></i>Installation</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/usage.html"><i class="fa fa-folder"></i>Usage</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html"><i class="fa fa-folder"></i>Advanced</a></li>
-			<li><a href="http://jonnnnyw.github.io/php-phantomjs/troubleshooting.html"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+		    
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/"><i class="fa fa-folder"></i>Introduction</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/2-installation/"><i class="fa fa-folder"></i>Installation</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/3-usage/"><i class="fa fa-folder"></i>Usage</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/4-advanced/"><i class="fa fa-folder"></i>Advanced Usage</a></li>
+			
+			<li><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/5-troubleshooting/"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+			
 			<li class="divider"></li>
 			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
 		</ul>
 	</div>
+
 
 	<div class="col-sm-3 sidebar hidden-xs">
 		<! -- sidebar.html -->
@@ -120,7 +156,7 @@
 		
 		<li>
             <iframe src="http://ghbtns.com/github-btn.html?user=jonnnnyw&repo=php-phantomjs&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="83" height="20"></iframe>
+                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20"></iframe>
 		</li>
 		
 		
@@ -136,15 +172,18 @@
 
 	</div>
 
+    <p id="version-notice">You are currently viewing version <span>3.0</span> documentation.</p>
+
 	<div class="col-sm-9 col-sm-offset-3">
+
 		<div class="page-header">
   <h1>Troubleshooting </h1>
 </div>
 	
 <article>
-
+    
 	<div class="col-sm-10">
-	
+      
 	  <div class="article_body">
 	  <ul>
   <li><a href="#its-not-installing-anything-to-my-bin-directory">It’s not installing anything to my bin directory</a></li>
@@ -165,21 +204,22 @@
 
 <p>When installing via composer, as outlined in the <a href="http://jonnnnyw.github.io/php-phantomjs/installation.html">installation guide</a>, it is recommended that you define the location of the bin folder for your project. This can be done by adding the following to your <code>composer.json</code> file:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1">#composer.json</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">    <span class="c1">#composer.json</span>
 
     <span class="p-Indicator">{</span>
         <span class="s">&quot;config&quot;</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span>
             <span class="s">&quot;bin-dir&quot;</span><span class="p-Indicator">:</span> <span class="s">&quot;/path/to/your/projects/bin/dir&quot;</span>
         <span class="p-Indicator">}</span>
-    <span class="p-Indicator">}</span></code></pre></div>
+    <span class="p-Indicator">}</span></code></pre></figure>
 
 <p>You need to make sure that this directory exists and is writable before you install your composer depedencies.</p>
 
 <p>Once you have defined your bin folder in your <code>composer.json</code> file, run composer install from the root of your project:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    
+    <span class="c">#bash</span>
     
-    <span class="nv">$ </span>php composer.phar install</code></pre></div>
+    <span class="nv">$ </span>php composer.phar install</code></pre></figure>
 
 <p>This should install 2 files to your bin folder: <code>phantomjs</code> and <code>phantomloader</code>. If you do not have these 2 files in your bin folder then check that the folder is writable and run composer install again.</p>
 
@@ -196,12 +236,13 @@
 
 <p>If the PHP PhantomJS library cannot locate either of these files then it will throw a <code>InvalidExecutableException</code>. The message in the exception should tell you which one it can’t execute. If both of these files exist and they are executable by your application, you may need to set the path to the directory that these files live in before making a request:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> 
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">        </span>
+<span class="x">    </span><span class="cp">&lt;?php</span> 
     
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
 
     <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setBinDir</span><span class="p">(</span><span class="s1">&#39;/path/to/bin/dir&#39;</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setBinDir</span><span class="p">(</span><span class="s1">&#39;/path/to/bin/dir&#39;</span><span class="p">);</span></code></pre></figure>
 
 <h4 id="i-am-getting-a-notwritableexception-when-making-a-request">I am getting a <code>NotWritableException</code> when making a request</h4>
 
@@ -227,7 +268,7 @@
 
 <p>To work around this you can try increasing the timeout period in the PHP PhantomJS client:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -240,11 +281,11 @@
     
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setTimeout</span><span class="p">(</span><span class="nv">$timeout</span><span class="p">);</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <p>If you are still having a problem then you should enable debugging, before you make the request, and check the debug log. This contains a dump of information from PhantomJS which could help to track down why you are not getting a response.</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -256,11 +297,11 @@
         
     <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
     
-    <span class="k">echo</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getLog</span><span class="p">();</span> <span class="c1">// Output log</span></code></pre></div>
+    <span class="k">echo</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getLog</span><span class="p">();</span> <span class="c1">// Output log</span></code></pre></figure>
 
 <p>You can also try running a test script through your PhantomJS executable, from the command line, to see if you get a valid response back. Save the following script somewhere:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">//test-script.js</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    <span class="c1">//test-script.js</span>
 
     <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpage&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">(),</span>
         <span class="nx">url</span> <span class="o">=</span> <span class="s1">&#39;YOUR REQUEST URL&#39;</span><span class="p">,</span> <span class="c1">// Change this to the URL you want to request</span>
@@ -282,20 +323,20 @@
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">status</span><span class="p">);</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">));</span>
         <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
-    <span class="p">});</span></code></pre></div>
+    <span class="p">});</span></code></pre></figure>
 
 <p>And then, assuming you have saved the script above to <code>test-script.js</code> in the root of your project and your PhantomJS executable is located at <code>bin/phantomjs</code>, run the following:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="c">#bash</span>
 
-    <span class="nv">$ </span>bin/phantomjs ./test-script.js</code></pre></div>
+    <span class="nv">$ </span>bin/phantomjs ./test-script.js</code></pre></figure>
 
 <p>You should see an output of the response from PhantomJS:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="c">#bash</span>
 
     success
-    <span class="o">{</span><span class="s2">&quot;contentType&quot;</span>:<span class="s2">&quot;text/javascript; charset=UTF-8&quot;</span>, <span class="s2">&quot;headers&quot;</span>: ...</code></pre></div>
+    <span class="o">{</span><span class="s2">&quot;contentType&quot;</span>:<span class="s2">&quot;text/javascript; charset=UTF-8&quot;</span>, <span class="s2">&quot;headers&quot;</span>: ...</code></pre></figure>
 
 <p>If you don’t see <code>success</code> followed by a JSON encoded response object then there is something the with the URL you are requesting or your PhantomJS executable. Try reinstalling PhantomJS. If you see <code>fail</code> instead of <code>success</code>, chances are the URL you are requesting is invalid or not resolving.</p>
 
@@ -303,7 +344,7 @@
 
 <p>When making a capture request you need to make sure that you are setting the file location that you want the screenshot saved to, including the filename:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -316,7 +357,7 @@
     
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureFile</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span> <span class="c1">// Set the capture file</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <p>The file itself does not need to exist but the parent directory must exist and be writable by your application. Check that your application has permissions to write files to the directory you are setting for your screen captures.</p>
 
@@ -324,7 +365,7 @@
 
 <p>Yes, you can set the width and height of your capture along with the x and y coordinates of where the capture should start from:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -343,13 +384,13 @@
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureFile</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureDimensions</span><span class="p">(</span><span class="nv">$width</span><span class="p">,</span> <span class="nv">$height</span><span class="p">,</span> <span class="nv">$top</span><span class="p">,</span> <span class="nv">$left</span><span class="p">);</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <h4 id="can-i-set-the-viewport-size">Can I set the viewport size?</h4>
 
 <p>Yes, you can set the viewport dimensions on both regular and capture requests:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -363,13 +404,13 @@
     
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setViewportSize</span><span class="p">(</span><span class="nv">$width</span><span class="p">,</span> <span class="nv">$height</span><span class="p">);</span> <span class="c1">// Set viewport size</span>
     
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></div>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
 
 <h4 id="how-do-i-debug-a-request">How do I debug a request?</h4>
 
 <p>By setting the debug flag to <code>true</code> on the client, you can get a dump of information output from PhantomJS along with some info events added by the PHP PhantomJS library:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -381,11 +422,11 @@
         
     <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
     
-    <span class="k">echo</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getLog</span><span class="p">();</span> <span class="c1">// Output log</span></code></pre></div>
+    <span class="k">echo</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getLog</span><span class="p">();</span> <span class="c1">// Output log</span></code></pre></figure>
 
 <p>You can also get any javacript console errors along with a stack trace from the URL you are calling, in the response object:</p>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
 
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
     
@@ -396,7 +437,7 @@
         
     <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
     
-    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getConsole</span><span class="p">());</span> <span class="c1">// Outputs array of console errors and stack trace</span></code></pre></div>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getConsole</span><span class="p">());</span> <span class="c1">// Outputs array of console errors and stack trace</span></code></pre></figure>
 
 <h4 id="i-am-getting-syntaxerror-parse-error-in-the-debug-log">I am getting <code>SyntaxError: Parse error</code> in the debug log</h4>
 
@@ -411,8 +452,8 @@
     <hr>
     <ul class="pager">
         
-        <li class="previous"><a href="http://jonnnnyw.github.io/php-phantomjs/advanced.html" title="Advanced Usage">&larr; Advanced Usage</a></li>
         
+        <li class="next"><a href="http://jonnnnyw.github.io/php-phantomjs/3.0/4-advanced/" title="Advanced Usage">Advanced Usage &rarr;</a></li>
         
     </ul>
 
@@ -426,7 +467,7 @@
 		<footer>
 			<hr/>
 			<p>
-				&copy; 2014 PHP PhantomJs. Theme: Modified <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek.
+				&copy; 2015 PHP PhantomJs
 			</p>
 		</footer>
 	</div>

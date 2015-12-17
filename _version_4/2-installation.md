@@ -4,6 +4,7 @@ title: Installation
 categories: []
 tags: []
 fullview: true
+version: 4.0
 ---
 
 * [Prerequisites](#prerequisites)
@@ -38,7 +39,7 @@ Create a `composer.json` file in the root of your project:
 
     {
         "require": {
-            "jonnyw/php-phantomjs": "3.*"
+            "jonnyw/php-phantomjs": "4.*"
         },
         "config": {
             "bin-dir": "bin"
@@ -68,7 +69,7 @@ Finally, install the composer depedencies for your project:
 Custom Installation
 -------------------
 
-If you would prefer to use a custom install location for the PhantomJS executable, you simply need to tell the client where to find the executable file:
+If you would prefer to use a custom install location for the PhantomJS executable, for example you have PhantomJS installed globally, then you simply need to set the path to PhantomJS manually:
 
 {% highlight php %}
     
@@ -77,15 +78,10 @@ If you would prefer to use a custom install location for the PhantomJS executabl
     use JonnyW\PhantomJs\Client;
 
     $client = Client::getInstance();
-    $client->setPhantomJs('/path/to/phantomjs');
+    $client->getEngine()->setPath('/path/to/phantomjs');
 {% endhighlight %}
 
-> #### Important
-> The PHP PhantomJS library also requires a `phantomloader` file that comes bundled with the library and is installed to the bin folder defined in your `composer.json` file. If you are setting a custom path to the PhantomJS executable, you need to make sure that the `phantomloader` file can be found in the bin folder it was installed to.
-> 
-> See below if you wish to use a custom bin folder.
-
-If you would like composer to install all executable files to a custom bin location when installing dependencies, set the bin dir location in your project's `composer.json` file:
+If you would like composer to install the PhantomJS executable to a custom bin location when installing dependencies, set the bin dir location in your project's `composer.json` file:
 
 {% highlight yaml %}
 
@@ -109,19 +105,8 @@ Once you have updated your bin location run composer install to install PhantomJ
     $ php composer.phar install
 {% endhighlight %}
 
-This should install the correct PhantomJS executable for your system and the required `phantomloader` file to the bin locaiton you defined in your `composer.json` file. 
+This should install the correct PhantomJS executable for your system in the bin locaiton you defined in your `composer.json` file. 
 
-Now you need to tell the client where to find your bin folder:
-
-{% highlight php %}
-        
-    <?php 
-    
-    use JonnyW\PhantomJs\Client;
-
-    $client = Client::getInstance();
-    $client->setBinDir('/path/to/bin/dir');
-{% endhighlight %}
 
 Installing from tarball
 -----------------------

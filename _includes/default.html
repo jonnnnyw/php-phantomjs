@@ -45,71 +45,100 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-default visible-xs" role="navigation">
+    
+    {% if page.version %}
+        {% assign version = page.version %}
+        {% assign collection = page.collection %}
+    {% else %}
+        {% assign version = site.latest_version %}
+        {% assign collection = site.latest_collection %}
+    {% endif %} 
+
+	<nav class="navbar navbar-default visible-xs" role="navigation" id="global-nav">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<button type="button" class="navbar-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-main">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
 			
-			{% if site.github.fork %}
-            <iframe src="http://ghbtns.com/github-btn.html?user={{ site.github.username }}&repo={{ site.github.repo }}&type=fork&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link last"></iframe>
-    		{% endif %}
-			
-			{% if site.github.watch %}
-            <iframe src="http://ghbtns.com/github-btn.html?user={{ site.github.username }}&repo={{ site.github.repo }}&type=watch&count=true"
-                allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20" class="nav-link"></iframe>
-    		{% endif %}
+			<button type="button" class="navbar-toggle version-toggle" data-parent="#global-nav" data-toggle="collapse" data-target="#navbar-collapse-version">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-terminal"><b>{{ version }}</b> version</</span>
+			</button>
     		
 			<a class="navbar-brand" href="{{ site.BASE_PATH }}/">
 				<img src="{{ site.BASE_PATH }}/assets/media/phantomjs-small.png" class="img-circle" />
 				{{ site.title }}
 			</a>
 		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="{{ site.BASE_PATH }}/">Home</a></li>
-				<li><a href="{{ site.BASE_PATH}}/installation.html">Installation</a></li>
-				<li><a href="{{ site.BASE_PATH}}/usage.html">Usage</a></li>
-				<li><a href="{{ site.BASE_PATH}}/advanced.html">Advanced</a></li>
-				<li><a href="{{ site.BASE_PATH}}/troubleshooting.html">Troubleshooting</a></li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
+        
+        <div class="panel">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-version">
+    			<ul class="nav navbar-nav">
+    				<li><a href="{{ site.BASE_PATH }}/4.0/" title="Version 4.0" class="active"><b>4.0</b> version</a></li>
+                    <li><a href="{{ site.BASE_PATH }}/3.0/" title="Version 3.0"><b>3.0</b> version</a></li>
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
+        <div class="panel">
+    		<!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="navbar-collapse-main">
+    			<ul class="nav navbar-nav">
+        			{% for item in site[collection] %}
+                    <li><a href="{{ site.BASE_PATH}}{{ item.url }}">{{ item.title }}</a></li>
+                    {% endfor %}
+    			</ul>
+    		</div><!-- /.navbar-collapse -->
+        </div>
+        
 	</nav>
-
+    
+	<!-- version-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-version">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-terminal"><b>{{ version }}</b> version</i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+		    <li><a href="{{ site.BASE_PATH }}/4.0/" title="4.0 version" class="active"><b>4.0</b> version</a></li>
+			<li><a href="{{ site.BASE_PATH }}/3.0/" title="3.0 version"><b>3.0</b> version</a></li>
+			<li class="divider"></li>
+		</ul>
+	</div>
+    
 	<!-- nav-menu-dropdown -->
 	<div class="btn-group hidden-xs" id="nav-menu">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			<i class="fa fa-bars"></i>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-		    <li><a href="{{ site.BASE_PATH }}/"><i class="fa fa-home"></i>Home</a></li>
-			<li><a href="{{ site.BASE_PATH}}/installation.html"><i class="fa fa-folder"></i>Installation</a></li>
-			<li><a href="{{ site.BASE_PATH}}/usage.html"><i class="fa fa-folder"></i>Usage</a></li>
-			<li><a href="{{ site.BASE_PATH}}/advanced.html"><i class="fa fa-folder"></i>Advanced</a></li>
-			<li><a href="{{ site.BASE_PATH}}/troubleshooting.html"><i class="fa fa-folder"></i>Troubleshooting</a></li>
+		    {% for item in site[collection] %}
+			<li><a href="{{ site.BASE_PATH}}{{ item.url }}"><i class="fa fa-folder"></i>{{ item.title }}</a></li>
+			{% endfor %}
 			<li class="divider"></li>
 			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
 		</ul>
 	</div>
 
+
 	<div class="col-sm-3 sidebar hidden-xs">
 		{% include sidebar.html %}
 	</div>
 
+    <p id="version-notice">You are currently viewing version <span>{{ version }}</span> documentation.</p>
+
 	<div class="col-sm-9 col-sm-offset-3">
+
 		{{ content }}
 
 		<footer>
 			<hr/>
 			<p>
-				&copy; {{ site.time | date: '%Y' }} {{ site.title }}. Theme: Modified <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek.
+				&copy; {{ site.time | date: '%Y' }} {{ site.title }}
 			</p>
 		</footer>
 	</div>
