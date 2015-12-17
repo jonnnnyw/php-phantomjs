@@ -1,8 +1,6 @@
 PHP PhantomJS
 =============
 
-**Please Note:** Version 4.0 of this library is currently waiting on an [unresolved issue](https://github.com/ariya/phantomjs/issues/12948) with PhantomJS 2.0. 
-
 PHP PhantomJS is a flexible PHP library to load pages through the PhantomJS 
 headless browser and return the page response. It is handy for testing
 websites that demand javascript support and also supports screen captures.
@@ -20,14 +18,9 @@ Feature List
 * View javascript console errors
 * View detailed PhantomJS debugged information
 * Save screen captures to local disk 
+* Export pages to PDF
 * Set viewport size
 * Define screen capture x, y, width and height parameters
 * Delay page rendering for a specified time
 * Execute PhantomJS with command line options
 * Easily build and run custom PhantomJS scripts
-
-
-Upgrading From v2.*
----------------------
-
-If you are using a version of PHP PhantomJS prior to version v3.0.0 then you should note that there have been some major changes to the interface. Please view the [Full Documentation](http://jonnnnyw.github.io/php-phantomjs/) as a guide when upgrading your implementation.
