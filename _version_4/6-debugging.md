@@ -25,7 +25,7 @@ Verbose logging can be enabled for PhantomJS by setting the debug flag on the cl
     use JonnyW\PhantomJs\Client;
 
     $client = Client::getInstance();
-    $client->debug(true);
+    $client->getEngine()->debug(true);
 {% endhighlight %}
 
 The client log can be inspected after making a request.
