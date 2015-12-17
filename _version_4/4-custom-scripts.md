@@ -35,24 +35,24 @@ The following outlines the partial blocks that are compiled into a PHP PhantomJS
 
 | Block Name                                   | Description                                                                                      |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [global_variables.partial](http://)          | Allows any javascript variables to be injected at the top of the script.                         |
-| [page_clip_rect.partial](http://)            | If the request is a screen capture, this will define the page clipping rectangle.                |
-| [page_custom_headers.partial](http://)       | Set any custom headers on the page object.                                                       |
-| [page_on_error.partial](http://)             | Defines the code that is executed on page error.                                                 |
-| [page_on_resource_received.partial](http://) | Defines the code that is executed on resource receive.                                           |
-| [page_on_resource_timeout.partial](http://)  | Defines the code that is executed on resource timeout.                                           |
-| [page_open.partial](http://)                 | Defines the code that is executed on page open.                                                  |
-| [page_paper_size.partial](http://)           | If the request is PDF output, this will set up the paper size.                                   |
-| [page_settings.partial](http://)             | Defines any page settings most notably the resource timeout value.                               |
-| [page_viewport_size.partial](http://)        | Set up the viewport size if defined in the request.                                              |
-| [phantom_on_error.partial](http://)          | Defines the code that is execute on PhantomJS error.                                             |
-| [procedure_capture.partial](http://)         | Defines the code that is executed if the request is a capture request.                           |
-| [procedure_default.partial](http://)         | Defines the code that is executed for a default request.                                         |
-| [procedure_pdf.partial](http://)             | Defines the code that is executed if the request is a PDF request.                               |
+| [global_variables.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/global_variables.partial)          | Allows any javascript variables to be injected at the top of the script.                         |
+| [page_clip_rect.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/page_clip_rect.partial)            | If the request is a screen capture, this will define the page clipping rectangle.                |
+| [page_custom_headers.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/page_custom_headers.partial)       | Set any custom headers on the page object.                                                       |
+| [page_on_error.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/page_on_error.partial)             | Defines the code that is executed on page error.                                                 |
+| [page_on_resource_received.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/page_on_resource_received.partial) | Defines the code that is executed on resource receive.                                           |
+| [page_on_resource_timeout.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/page_on_resource_timeout.partial)  | Defines the code that is executed on resource timeout.                                           |
+| [page_open.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/page_open.partial)                 | Defines the code that is executed on page open.                                                  |
+| [page_paper_size.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/page_paper_size.partial)           | If the request is PDF output, this will set up the paper size.                                   |
+| [page_settings.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/page_settings.partial)             | Defines any page settings most notably the resource timeout value.                               |
+| [page_viewport_size.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/page_viewport_size.partial)        | Set up the viewport size if defined in the request.                                              |
+| [phantom_on_error.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/phantom_on_error.partial)          | Defines the code that is execute on PhantomJS error.                                             |
+| [procedure_capture.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/procedure_capture.partial)         | Defines the code that is executed if the request is a capture request.                           |
+| [procedure_default.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/procedure_default.partial)         | Defines the code that is executed for a default request.                                         |
+| [procedure_pdf.partial](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/procedure_pdf.partial)             | Defines the code that is executed if the request is a PDF request.                               |
 
 
 > #### Note
->  It may pay to check out the [default script template](http://) to see where each of these blocks are rendered when compiling the PhantomJS script.
+>  It may pay to check out the [default script template](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/http_default.proc) to see where each of these blocks are rendered when compiling the PhantomJS script.
 
 To override a partial block with your own code first you need to create a file with the same name as the block that you are overriding. Make sure that this file can be read by your application.
 
