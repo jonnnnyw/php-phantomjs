@@ -1,5 +1,10 @@
 language: php
 
+os:
+  - linux
+  - osx
+  - windows
+
 php:
   - 5.3
   - 5.4
