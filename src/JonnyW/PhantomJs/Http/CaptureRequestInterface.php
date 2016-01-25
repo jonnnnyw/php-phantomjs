@@ -10,7 +10,7 @@
 namespace JonnyW\PhantomJs\Http;
 
 /**
- * PHP PhantomJs
+ * PHP PhantomJs.
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
@@ -19,7 +19,6 @@ interface CaptureRequestInterface
     /**
      * Set viewport size.
      *
-     * @access public
      * @param int $width
      * @param int $height
      * @param int $top    (default: 0)
@@ -30,7 +29,6 @@ interface CaptureRequestInterface
     /**
      * Get rect top.
      *
-     * @access public
      * @return int
      */
     public function getRectTop();
@@ -38,7 +36,6 @@ interface CaptureRequestInterface
     /**
      * Get rect left.
      *
-     * @access public
      * @return int
      */
     public function getRectLeft();
@@ -46,7 +43,6 @@ interface CaptureRequestInterface
     /**
      * Get rect width.
      *
-     * @access public
      * @return int
      */
     public function getRectWidth();
@@ -54,7 +50,6 @@ interface CaptureRequestInterface
     /**
      * Get rect height.
      *
-     * @access public
      * @return int
      */
     public function getRectHeight();
@@ -62,7 +57,6 @@ interface CaptureRequestInterface
     /**
      * Set file to save output.
      *
-     * @access public
      * @param string $file
      */
     public function setOutputFile($file);
@@ -70,8 +64,37 @@ interface CaptureRequestInterface
     /**
      * Get output file.
      *
-     * @access public
      * @return string
      */
     public function getOutputFile();
+
+    /**
+     * Get image format of the capture.
+     *
+     * @return string
+     */
+    public function getFormat();
+
+    /**
+     * Set image format of capture.
+     * options: pdf, png, jpeg, bmp, ppm, gif.
+     *
+     * @param string $format
+     */
+    public function setFormat($format);
+
+    /**
+     * Get quality of capture.
+     *
+     * @return string
+     */
+    public function getQuality();
+
+    /**
+     * Set quality of the capture.
+     * example: 0 - 100.
+     *
+     * @param int $format
+     */
+    public function setQuality($quality);
 }

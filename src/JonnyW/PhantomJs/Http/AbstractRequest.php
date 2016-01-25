@@ -204,6 +204,8 @@ abstract class AbstractRequest
     {
         $this->viewportWidth  = (int) $width;
         $this->viewportHeight = (int) $height;
+
+        return $this;
     }
 
     /**
