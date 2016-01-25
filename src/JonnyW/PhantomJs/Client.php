@@ -197,4 +197,15 @@ class Client implements ClientInterface
     {
         return $this->procedure;
     }
+
+    /**
+     * Get procedure compiler.
+     *
+     * @access public
+     * @return \JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface
+     */
+    public function getProcedureCompiler()
+    {
+        return $this->procedureCompiler;
+    }
 }
