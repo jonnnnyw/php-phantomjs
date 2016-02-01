@@ -8,10 +8,6 @@ version: 4.0
 permalink: /4.0/
 ---
 
-> #### Important
-> Currently when installing PHP PhantomJS on **Linux OS** you will need to compile your own version of PhantomJS for your system. This is due to an [unresolved issue](https://github.com/ariya/phantomjs/issues/12948) with the PhantomJS Linux packages. An Ubuntu compiled version will be installed by default but this may not be compatible with your system.
-
-
 PHP PhantomJS is a flexible PHP library to load pages through the PhantomJS headless browser and return the page response. It is handy for testing websites that demand javascript support and also supports screen captures and PDF output.
 
 Feature List
