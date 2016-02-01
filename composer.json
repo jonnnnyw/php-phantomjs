@@ -25,12 +25,6 @@
         "phpunit/phpunit": "~4.0",
         "zendframework/zendpdf": "~2.0"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/jonnnnyw/phantomjs-installer"
-        }
-    ],
     "autoload": {
         "psr-0": {
             "JonnyW\\PhantomJs\\": "src"

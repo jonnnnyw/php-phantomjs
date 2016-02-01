@@ -7,11 +7,6 @@ websites that demand javascript support and also supports screen captures.
 
 [Full Documentation](http://jonnnnyw.github.io/php-phantomjs/)
 
-> #### Important
-> Currently when installing PHP PhantomJS on **Linux OS** you will need to compile your own version of PhantomJS for your system. This is due to an [unresolved issue](https://github.com/ariya/phantomjs/issues/12948) with the PhantomJS Linux packages. An Ubuntu compiled version will be installed by default but this may not be compatible with your system.
-
-
-
 [![Total Downloads](https://poser.pugx.org/jonnyw/php-phantomjs/downloads.png)](https://packagist.org/packages/jonnyw/php-phantomjs) [![Latest Stable Version](https://poser.pugx.org/jonnyw/php-phantomjs/v/stable.png)](https://packagist.org/packages/jonnyw/php-phantomjs) [![Build Status](https://travis-ci.org/jonnnnyw/php-phantomjs.png?branch=master)](https://travis-ci.org/jonnnnyw/php-phantomjs) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/badges/quality-score.png?s=631d32fa1fbb9300eb84b9b52702c7ffeac046a1)](https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/) [![Code Coverage](https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/badges/coverage.png?s=893b5997da45448e32983b8568a39630b0b2d91b)](https://scrutinizer-ci.com/g/jonnnnyw/php-phantomjs/)
 
 Feature List
