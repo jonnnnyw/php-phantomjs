@@ -486,7 +486,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
      * @access public
      * @return void
      */
-    public function tesNotWritableExceptonIsThrownIfOutputPathIsNotWritable()
+    public function testNotWritableExceptonIsThrownIfOutputPathIsNotWritable()
     {
         $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
