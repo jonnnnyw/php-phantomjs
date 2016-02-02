@@ -103,7 +103,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function testRedirectUrlCanBeImported()
     {
         $data = array(
-            'redirectUrl' => 'http://test.com'
+            'redirectURL' => 'http://test.com'
         );
 
         $response = $this->getResponse();

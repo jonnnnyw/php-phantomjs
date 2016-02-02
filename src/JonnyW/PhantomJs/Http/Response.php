@@ -64,7 +64,7 @@ class Response
      * @var string
      * @access public
      */
-    public $redirectUrl;
+    public $redirectURL;
 
     /**
      * Request time string
@@ -209,7 +209,7 @@ class Response
      */
     public function getRedirectUrl()
     {
-        return $this->redirectUrl;
+        return $this->redirectURL;
     }
 
     /**

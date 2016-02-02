@@ -243,6 +243,28 @@ EOF;
 
         $this->assertNotEmpty($response->getHeaders());
     }
+    
+    /**
+     * Test redirect URL is set in response
+     * if request is redirected.
+     *
+     * @access public
+     * @return void
+     */
+    public function testRedirectUrlIsSetInResponseIfRequestIsRedirected()
+    {
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('https://jigsaw.w3.org/HTTP/300/302.html');
+
+        $client->send($request, $response);
+
+        $this->assertNotEmpty($response->getRedirectUrl());
+    }
 
     /**
      * Test POST request sends request data.
