@@ -44,6 +44,8 @@ class TemplateRenderer implements TemplateRendererInterface
      */
     public function render($template, array $context = array())
     {
-        return $this->twig->render($template, $context);
+        $template = $this->twig->createTemplate($template);
+
+        return $template->render($context);
     }
 }
