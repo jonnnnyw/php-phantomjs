@@ -93,12 +93,12 @@ The following illustrates how to make a basic GET request and output the page co
     $client = Client::getInstance();
 
     /** 
-     * @see JonnyW\PhantomJs\Message\Request 
+     * @see JonnyW\PhantomJs\Http\Request
      **/
     $request = $client->getMessageFactory()->createRequest('http://jonnyw.me', 'GET');
 
     /** 
-     * @see JonnyW\PhantomJs\Message\Response 
+     * @see JonnyW\PhantomJs\Http\Response 
      **/
     $response = $client->getMessageFactory()->createResponse();
 
@@ -129,7 +129,7 @@ Saving a screen capture to local disk:
     $left   = 0;
     
     /** 
-     * @see JonnyW\PhantomJs\Message\CaptureRequest
+     * @see JonnyW\PhantomJs\Http\CaptureRequest
      **/
     $request = $client->getMessageFactory()->createCaptureRequest('http://jonnyw.me', 'GET');
     $request->setOutputFile('/path/to/save/capture/file.jpg');
@@ -137,7 +137,7 @@ Saving a screen capture to local disk:
     $request->setCaptureDimensions($width, $height, $top, $left);
 
     /** 
-     * @see JonnyW\PhantomJs\Message\Response 
+     * @see JonnyW\PhantomJs\Http\Response 
      **/
     $response = $client->getMessageFactory()->createResponse();
 
@@ -157,7 +157,7 @@ Outputting a page as PDF:
     $client = Client::getInstance();
 
     /** 
-     * @see JonnyW\PhantomJs\Message\PdfRequest
+     * @see JonnyW\PhantomJs\Http\PdfRequest
      **/
     $request = $client->getMessageFactory()->createPdfRequest('http://jonnyw.me', 'GET');
     $request->setOutputFile('/path/to/save/pdf/document.pdf');
@@ -166,7 +166,7 @@ Outputting a page as PDF:
     $request->setMargin('1cm');
 
     /** 
-     * @see JonnyW\PhantomJs\Message\Response 
+     * @see JonnyW\PhantomJs\Http\Response 
      **/
     $response = $client->getMessageFactory()->createResponse();
 
