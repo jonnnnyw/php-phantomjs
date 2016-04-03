@@ -303,7 +303,7 @@ Below is a full example for clarity.
 {% endhighlight %}
 
 > #### Note
-> You may choose to support [partial script blocks](#partial-script-injection) in your template. It is worth checking out the [default script template](http://) to get an idea on how this is achieved.
+> You may choose to support [partial script blocks](#partial-script-injection) in your template. It is worth checking out the [default script template](https://github.com/jonnnnyw/php-phantomjs/blob/master/src/JonnyW/PhantomJs/Resources/procedures/http_default.proc) to get an idea on how this is achieved.
 
 Using custom request parameters in your script
 ----------------------------------------------
