@@ -72,7 +72,7 @@ Finally, install PHP PhantomJS from the root of your project:
     $ composer require "jonnyw/php-phantomjs:4.*"
 {% endhighlight %}
 
-If you would like to use another installation method or would like to see more detailed installation instructions, see the [installation]({{ site.BASE_PATH }}/4.0/installation/) documentation.
+If you would like to use another installation method or would like to see more detailed installation instructions, see the [installation]({{ site.BASE_PATH }}/4.0/2-installation/) documentation.
 
 > #### Important
 > By default the PhantomJS library will look for the PhantomJS executable in the bin folder relative to where your script is running `~/bin/phantomjs`. If the executable cannot be found or if the path to your PhantomJS executable differs from the default location, for example you have installed PhantomJS globally, you will need to define the path to your PhantomJS executable manually.
@@ -175,5 +175,5 @@ Outputting a page as PDF:
     
 {% endhighlight %}
 
-For more detailed examples see the [usage]({{ site.BASE_PATH }}/4.0/usage/) section, or you can [create your own custom scripts]({{ site.BASE_PATH }}/4.0/custom-scripts/).
+For more detailed examples see the [usage]({{ site.BASE_PATH }}/4.0/3-usage/) section, or you can [create your own custom scripts]({{ site.BASE_PATH }}/4.0/4-custom-scripts/).
 
