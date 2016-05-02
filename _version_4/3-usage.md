@@ -317,7 +317,7 @@ You can easily set the viewport size for a request:
 Set Background Color
 --------------------
 
-You can easily force the background color of the requested page by setting  a `backgroundColor` body style:
+You can force the background color of the requested page by setting  a `backgroundColor` body style:
 
 {% highlight php %}
 
@@ -334,7 +334,7 @@ You can easily force the background color of the requested page by setting  a `b
     
 {% endhighlight %}
 
-The `setBackgroudColor` method can be used to set any valid CSS styles on the body tag; it is not limited to just background color.
+The `setBodyStyles` method can be used to set any valid CSS styles on the body tag; it is not limited to just background color.
 
 Custom Timeout
 --------------
