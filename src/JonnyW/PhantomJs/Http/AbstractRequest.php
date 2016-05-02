@@ -88,7 +88,7 @@ abstract class AbstractRequest
     /**
      * Body styles.
      *
-     * @var int
+     * @var array
      * @access protected
      */
     protected $bodyStyles;
