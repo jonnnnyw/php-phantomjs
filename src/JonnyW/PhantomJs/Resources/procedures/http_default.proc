@@ -75,6 +75,7 @@ phantom.onError = function(msg, trace) {
  * Open page
  */
 page.open ('{{ input.getUrl() }}', '{{ input.getMethod() }}', '{{ input.getBody() }}', function (status) {
+    [[ engine.load('page_body_styles') ]]
     [[ engine.load('page_open') ]]
 });
 

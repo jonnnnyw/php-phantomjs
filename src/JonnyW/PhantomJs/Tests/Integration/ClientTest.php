@@ -243,7 +243,7 @@ EOF;
 
         $this->assertNotEmpty($response->getHeaders());
     }
-    
+
     /**
      * Test redirect URL is set in response
      * if request is redirected.
@@ -310,7 +310,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-console-error.php');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
         $request->setOutputFile($file);
 
         $client->send($request, $response);
@@ -748,6 +748,33 @@ EOF;
         $client->send($request, $response);
 
         $this->assertContains('[DEBUG]', $client->getLog());
+    }
+
+    /**
+     * Test test can set page 
+     * background color
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanSetPageBackgroundColor()
+    {
+        $this->filename = 'test.jpg';
+        $file = ($this->directory . '/' . $this->filename);
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setBodyStyles(array('backgroundColor' => 'red'));
+        $request->setOutputFile($file);
+
+        $client->send($request, $response);
+
+        $this->assertContains('body style="background-color: red;"', $response->getContent());
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/

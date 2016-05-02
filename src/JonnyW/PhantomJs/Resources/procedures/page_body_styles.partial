@@ -1,0 +1,9 @@
+
+page.evaluate(function() {
+    
+    var styles = {{ input.getBodyStyles('json') }};
+    
+    for(var property in styles) {
+        document.body.style[property] = styles[property];
+    }
+});

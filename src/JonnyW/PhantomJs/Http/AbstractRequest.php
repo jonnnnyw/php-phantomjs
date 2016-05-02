@@ -86,6 +86,14 @@ abstract class AbstractRequest
     protected $viewportHeight;
 
     /**
+     * Body styles.
+     *
+     * @var int
+     * @access protected
+     */
+    protected $bodyStyles;
+
+    /**
      * Internal constructor
      *
      * @access public
@@ -97,6 +105,7 @@ abstract class AbstractRequest
     {
         $this->headers        = array();
         $this->data           = array();
+        $this->bodyStyles     = array();
         $this->delay          = 0;
         $this->viewportWidth  = 0;
         $this->viewportHeight = 0;
@@ -375,6 +384,36 @@ abstract class AbstractRequest
         }
 
         return $this->headers;
+    }
+
+    /**
+     * Set body styles
+     *
+     * @access public
+     * @param  array                                  $styles
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
+     */
+    public function setBodyStyles(array $styles)
+    {
+        $this->bodyStyles = $styles;
+
+        return $this;
+    }
+
+    /**
+     * Get body styles
+     *
+     * @access public
+     * @param string $format (default: 'default')
+     * @return array
+     */
+    public function getBodyStyles($format = 'default')
+    {
+        if ($format === 'json') {
+            return json_encode($this->bodyStyles);
+        }
+
+        return $this->bodyStyles;
     }
 
     /**

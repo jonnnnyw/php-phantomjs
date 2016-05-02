@@ -184,4 +184,20 @@ interface RequestInterface
      * @return array
      */
     public function getHeaders($format = 'default');
+
+    /**
+     * Set body styles
+     *
+     * @access public
+     * @param array $styles
+     */
+    public function setBodyStyles(array $styles);
+
+    /**
+     * Get body styles
+     *
+     * @access public
+     * @return array
+     */
+    public function getBodyStyles();
 }
