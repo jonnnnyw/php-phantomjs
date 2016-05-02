@@ -17,6 +17,7 @@ This page contains some common examples of how to use the PHP PhantomJS library.
 * [Screen Captures](#screen-captures)
 * [Output To PDF](#output-to-pdf)
 * [Set Viewport Size](#set-viewport-size)
+* [Set Background Color](#set-background-color)
 * [Custom Timeout](#custom-timeout)
 * [Delay Page Render](#delay-page-render)
 * [PhantomJS Options](#phantomjs-options)
@@ -312,6 +313,28 @@ You can easily set the viewport size for a request:
     ...
     
 {% endhighlight %}
+
+Set Background Color
+--------------------
+
+You can easily force the background color of the requested page by setting  a `backgroundColor` body style:
+
+{% highlight php %}
+
+    <?php
+
+    ...
+    
+    $request  = $client->getMessageFactory()->createRequest('http://jonnyw.me');
+    $request->setBodyStyles(array(
+        'backgroundColor' => '#ff0000'
+    ));
+    
+    ...
+    
+{% endhighlight %}
+
+The `setBackgroudColor` method can be used to set any valid CSS styles on the body tag; it is not limited to just background color.
 
 Custom Timeout
 --------------
