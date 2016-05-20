@@ -751,7 +751,7 @@ EOF;
     }
 
     /**
-     * Test test can set page 
+     * Test test can set page
      * background color
      *
      * @access public

@@ -404,7 +404,7 @@ abstract class AbstractRequest
      * Get body styles
      *
      * @access public
-     * @param string $format (default: 'default')
+     * @param  string $format (default: 'default')
      * @return array
      */
     public function getBodyStyles($format = 'default')
