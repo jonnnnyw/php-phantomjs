@@ -153,7 +153,7 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedureLoader()
     {
-        $procedureLoader = $this->createMock('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface');
+        $procedureLoader = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface');
 
         return $procedureLoader;
     }
@@ -166,7 +166,7 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedure()
     {
-        $procedure = $this->createMock('\JonnyW\PhantomJs\Procedure\ProcedureInterface');
+        $procedure = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureInterface');
 
         return $procedure;
     }

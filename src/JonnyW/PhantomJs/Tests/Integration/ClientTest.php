@@ -482,7 +482,7 @@ EOF;
         $this->assertEquals(30, $pdfWidth);
         $this->assertEquals(21, $pdfHeight);
     }
-    
+
     /**
      * Test can set repeating header
      * for PDF request
@@ -518,7 +518,7 @@ EOF;
 
         $this->assertContains('Header', $text);
     }
-    
+
     /**
      * Test can set repeating footer
      * for PDF request

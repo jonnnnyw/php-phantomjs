@@ -374,7 +374,7 @@ abstract class AbstractRequest
      * Get request headers
      *
      * @access public
-     * @param  string $format
+     * @param  string       $format
      * @return array|string
      */
     public function getHeaders($format = 'default')
@@ -404,7 +404,7 @@ abstract class AbstractRequest
      * Get body styles
      *
      * @access public
-     * @param  string $format (default: 'default')
+     * @param  string       $format (default: 'default')
      * @return array|string
      */
     public function getBodyStyles($format = 'default')
