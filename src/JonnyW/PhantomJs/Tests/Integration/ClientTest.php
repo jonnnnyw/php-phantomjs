@@ -73,6 +73,44 @@ EOF;
     }
 
     /**
+     * Test additional procedures can be loaded
+     * through chain loader if procedures
+     * contain comments
+     *
+     * @access public
+     * @return void
+     */
+    public function testAdditionalProceduresCanBeLoadedThroughChainLoaderIfProceduresContainComments()
+    {
+        $content = 'TEST_PROCEDURE';
+
+        $procedure = <<<EOF
+    console.log(JSON.stringify({"content": "$content"}, undefined, 4));
+    phantom.exit(1);
+    var test = function () {
+        // Test comment
+        console.log('test');
+    };
+EOF;
+
+        $this->writeProcedure($procedure);
+
+        $procedureLoaderFactory = $this->getContainer()->get('procedure_loader_factory');
+        $procedureLoader        = $procedureLoaderFactory->createProcedureLoader($this->directory);
+
+        $client = $this->getClient();
+        $client->setProcedure('test');
+        $client->getProcedureLoader()->addLoader($procedureLoader);
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $client->send($request, $response);
+
+        $this->assertSame($content, $response->getContent());
+    }
+
+    /**
      * Test syntax exception is thrown if request
      * procedure contains syntax error.
      *
