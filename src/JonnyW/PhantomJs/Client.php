@@ -208,4 +208,15 @@ class Client implements ClientInterface
     {
         return $this->procedureCompiler;
     }
+
+    /**
+     * Set lazy request flag.
+     *
+     * @access public
+     * @return void
+     */
+    public function isLazy()
+    {
+        $this->procedure = 'http_lazy';
+    }
 }

@@ -83,4 +83,12 @@ interface ClientInterface
      * @return string
      */
     public function getProcedure();
+
+    /**
+     * Set lazy request flag.
+     *
+     * @access public
+     * @return void
+     */
+    public function isLazy();
 }

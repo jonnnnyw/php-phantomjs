@@ -103,12 +103,12 @@ abstract class AbstractRequest
      */
     public function __construct($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
     {
-        $this->headers        = array();
-        $this->data           = array();
-        $this->bodyStyles     = array();
-        $this->delay          = 0;
-        $this->viewportWidth  = 0;
-        $this->viewportHeight = 0;
+        $this->headers         = array();
+        $this->data            = array();
+        $this->bodyStyles      = array();
+        $this->delay           = 0;
+        $this->viewportWidth   = 0;
+        $this->viewportHeight  = 0;
 
         $this->setMethod($method);
         $this->setTimeout($timeout);

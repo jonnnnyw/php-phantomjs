@@ -838,6 +838,55 @@ EOF;
     }
 
     /**
+     * Test lazy request returns content after
+     * all resources are loaded
+     *
+     * @access public
+     * @return void
+     */
+    public function testLazyRequestReturnsResourcesAfterAllResourcesAreLoaded()
+    {
+        $client = $this->getClient();
+        $client->isLazy();
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-lazy.php');
+        $request->setTimeout(5000);
+
+        $client->send($request, $response);
+
+        $this->assertContains('<p id="content">loaded</p>', $response->getContent());
+    }
+
+    /**
+     * Test content is returned for lazy request
+     * if timeout is reached before resource is
+     * loaded
+     *
+     * @access public
+     * @return void
+     */
+    public function testContentIsReturnedForLazyRequestIfTimeoutIsReachedBeforeResourceIsLoaded()
+    {
+        $client = $this->getClient();
+        $client->isLazy();
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-lazy.php');
+        $request->setTimeout(1000);
+
+        $client->send($request, $response);
+
+        $this->assertContains('<p id="content"></p>', $response->getContent());
+    }
+
+    /**
      * Test debug logs debug info to
      * client log.
      *
