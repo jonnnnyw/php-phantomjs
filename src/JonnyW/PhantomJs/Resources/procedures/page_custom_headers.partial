@@ -1,5 +1,3 @@
 
-var headers = {{ input.getHeaders('json') }};
-
-page.customHeaders = headers ? headers : {};
+page.customHeaders = {{ input.getHeaders()|json_encode(constant('JSON_FORCE_OBJECT')) }};
 

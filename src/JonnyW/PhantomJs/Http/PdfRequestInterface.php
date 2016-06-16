@@ -110,4 +110,40 @@ interface PdfRequestInterface
      * @return string
      */
     public function getMargin();
+
+    /**
+     * Set repeating header.
+     *
+     * @access public
+     * @param  string $content
+     * @param  string $height  (default: '1cm')
+     * @return void
+     */
+    public function setRepeatingHeader($content, $height = '1cm');
+
+    /**
+     * Get repeating header.
+     *
+     * @access public
+     * @return array
+     */
+    public function getRepeatingHeader();
+
+    /**
+     * Set repeating footer.
+     *
+     * @access public
+     * @param  string $content
+     * @param  string $height  (default: '1cm')
+     * @return void
+     */
+    public function setRepeatingFooter($content, $height = '1cm');
+
+    /**
+     * Get repeating footer.
+     *
+     * @access public
+     * @return array
+     */
+    public function getRepeatingFooter();
 }

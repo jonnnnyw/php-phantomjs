@@ -1,7 +1,7 @@
 
 page.evaluate(function() {
     
-    var styles = {{ input.getBodyStyles('json') }};
+    var styles = {{ input.getBodyStyles()|json_encode(constant('JSON_FORCE_OBJECT')) }};
     
     for(var property in styles) {
         document.body.style[property] = styles[property];

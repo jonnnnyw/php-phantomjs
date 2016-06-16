@@ -378,7 +378,7 @@ EOF;
     }
 
     /**
-     * Test capture request saves file to
+     * Test PDF request saves file to
      * disk with correct paper size.
      *
      * @access public
@@ -415,7 +415,7 @@ EOF;
     }
 
     /**
-     * Test capture request saves file to
+     * Test PDF request saves file to
      * disk with correct format size.
      *
      * @access public
@@ -449,7 +449,7 @@ EOF;
     }
 
     /**
-     * Test capture request saves file to
+     * Test PDF request saves file to
      * disk with correct orientation.
      *
      * @access public
@@ -481,6 +481,78 @@ EOF;
 
         $this->assertEquals(30, $pdfWidth);
         $this->assertEquals(21, $pdfHeight);
+    }
+    
+    /**
+     * Test can set repeating header
+     * for PDF request
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanSetRepeatingHeaderForPDFRequest()
+    {
+        $this->filename = 'test.pdf';
+        $file = ($this->directory . '/' . $this->filename);
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createPdfRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setOutputFile($file);
+        $request->setFormat('A4');
+        $request->setOrientation('landscape');
+        $request->setMargin('0cm');
+        $request->setRepeatingHeader('<h1>Header <span style="float:right">%pageNum% / %pageTotal%</span></h1>', '2cm');
+        $request->setRepeatingFooter('<footer>Footer <span style="float:right">%pageNum% / %pageTotal%</span></footer>', '2cm');
+
+        $client->send($request, $response);
+
+        $pdf = (new \Smalot\PdfParser\Parser())
+            ->parseFile($file);
+
+        $text = str_replace(' ', '', $pdf->getText());
+
+        $this->assertContains('Header', $text);
+    }
+    
+    /**
+     * Test can set repeating footer
+     * for PDF request
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanSetRepeatingFooterForPDFRequest()
+    {
+        $this->filename = 'test.pdf';
+        $file = ($this->directory . '/' . $this->filename);
+
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createPdfRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setOutputFile($file);
+        $request->setFormat('A4');
+        $request->setOrientation('landscape');
+        $request->setMargin('0cm');
+        $request->setRepeatingHeader('<h1>Header <span style="float:right">%pageNum% / %pageTotal%</span></h1>', '2cm');
+        $request->setRepeatingFooter('<footer>Footer <span style="float:right">%pageNum% / %pageTotal%</span></footer>', '2cm');
+
+        $client->send($request, $response);
+
+        $pdf = (new \Smalot\PdfParser\Parser())
+            ->parseFile($file);
+
+        $text = str_replace(' ', '', $pdf->getText());
+
+        $this->assertContains('Footer', $text);
     }
 
     /**

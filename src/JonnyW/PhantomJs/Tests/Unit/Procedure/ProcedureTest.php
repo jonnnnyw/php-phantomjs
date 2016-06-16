@@ -232,7 +232,7 @@ class ProcedureTest extends \PHPUnit_Framework_TestCase
      */
     protected function getEngine()
     {
-        $engine = $this->getMock('\JonnyW\PhantomJs\Engine');
+        $engine = $this->createMock('\JonnyW\PhantomJs\Engine');
 
         return $engine;
     }
