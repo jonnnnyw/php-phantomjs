@@ -511,8 +511,8 @@ EOF;
 
         $client->send($request, $response);
 
-        $pdf = (new \Smalot\PdfParser\Parser())
-            ->parseFile($file);
+        $parser = new \Smalot\PdfParser\Parser();
+        $pdf    = $parser->parseFile($file);
 
         $text = str_replace(' ', '', $pdf->getText());
 
@@ -547,8 +547,8 @@ EOF;
 
         $client->send($request, $response);
 
-        $pdf = (new \Smalot\PdfParser\Parser())
-            ->parseFile($file);
+        $parser = new \Smalot\PdfParser\Parser();
+        $pdf    = $parser->parseFile($file);
 
         $text = str_replace(' ', '', $pdf->getText());
 
