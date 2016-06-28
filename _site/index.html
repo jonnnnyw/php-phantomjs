@@ -195,18 +195,13 @@
 
   <div>
     
-    <blockquote>
-  <h4 id="important">Important</h4>
-  <p>Currently when installing PHP PhantomJS on <strong>Linux OS</strong> you will need to compile your own version of PhantomJS for your system. This is due to an <a href="https://github.com/ariya/phantomjs/issues/12948">unresolved issue</a> with the PhantomJS Linux packages. An Ubuntu compiled version will be installed by default but this may not be compatible with your system.</p>
-</blockquote>
-
-<p>PHP PhantomJS is a flexible PHP library to load pages through the PhantomJS headless browser and return the page response. It is handy for testing websites that demand javascript support and also supports screen captures and PDF output.</p>
+    <p>PHP PhantomJS is a flexible PHP library to load pages through the PhantomJS headless browser and return the page response. It is handy for testing websites that demand javascript support and also supports screen captures and PDF output.</p>
 
 <h2 id="feature-list">Feature List</h2>
 
 <ul>
   <li>Load webpages through the PhantomJS headless browser</li>
-  <li>View detailed response data including page content, headers, status<br />
+  <li>View detailed response data including page content, headers, status
 code etc.</li>
   <li>Handle redirects</li>
   <li>View javascript console errors</li>
@@ -214,8 +209,10 @@ code etc.</li>
   <li>Save screen captures to local disk</li>
   <li>Output web pages to PDF document</li>
   <li>Set viewport size</li>
+  <li>Set fixed header and footer for PDF output</li>
   <li>Define screen capture x, y, width and height parameters</li>
   <li>Delay page rendering for a specified time</li>
+  <li>Delay page rendering until page resources are fully loaded</li>
   <li>Execute PhantomJS with command line options</li>
   <li>Easily build and run custom PhantomJS scripts</li>
 </ul>
@@ -257,10 +254,10 @@ code etc.</li>
     
     <span class="nv">$ </span>composer require <span class="s2">&quot;jonnyw/php-phantomjs:4.*&quot;</span></code></pre></figure>
 
-<p>If you would like to use another installation method or would like to see more detailed installation instructions, see the <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/installation/">installation</a> documentation.</p>
+<p>If you would like to use another installation method or would like to see more detailed installation instructions, see the <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/2-installation/">installation</a> documentation.</p>
 
 <blockquote>
-  <h4 id="important-1">Important</h4>
+  <h4 id="important">Important</h4>
   <p>By default the PhantomJS library will look for the PhantomJS executable in the bin folder relative to where your script is running <code>~/bin/phantomjs</code>. If the executable cannot be found or if the path to your PhantomJS executable differs from the default location, for example you have installed PhantomJS globally, you will need to define the path to your PhantomJS executable manually.</p>
 
   <p><code>$client-&gt;getEngine()-&gt;setPath('/path/to/phantomjs');</code></p>
@@ -277,12 +274,12 @@ code etc.</li>
     <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
 
     <span class="sd">/** </span>
-<span class="sd">     * @see JonnyW\PhantomJs\Message\Request </span>
+<span class="sd">     * @see JonnyW\PhantomJs\Http\Request</span>
 <span class="sd">     **/</span>
     <span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://jonnyw.me&#39;</span><span class="p">,</span> <span class="s1">&#39;GET&#39;</span><span class="p">);</span>
 
     <span class="sd">/** </span>
-<span class="sd">     * @see JonnyW\PhantomJs\Message\Response </span>
+<span class="sd">     * @see JonnyW\PhantomJs\Http\Response </span>
 <span class="sd">     **/</span>
     <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
 
@@ -310,7 +307,7 @@ code etc.</li>
     <span class="nv">$left</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     
     <span class="sd">/** </span>
-<span class="sd">     * @see JonnyW\PhantomJs\Message\CaptureRequest</span>
+<span class="sd">     * @see JonnyW\PhantomJs\Http\CaptureRequest</span>
 <span class="sd">     **/</span>
     <span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createCaptureRequest</span><span class="p">(</span><span class="s1">&#39;http://jonnyw.me&#39;</span><span class="p">,</span> <span class="s1">&#39;GET&#39;</span><span class="p">);</span>
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setOutputFile</span><span class="p">(</span><span class="s1">&#39;/path/to/save/capture/file.jpg&#39;</span><span class="p">);</span>
@@ -318,7 +315,7 @@ code etc.</li>
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setCaptureDimensions</span><span class="p">(</span><span class="nv">$width</span><span class="p">,</span> <span class="nv">$height</span><span class="p">,</span> <span class="nv">$top</span><span class="p">,</span> <span class="nv">$left</span><span class="p">);</span>
 
     <span class="sd">/** </span>
-<span class="sd">     * @see JonnyW\PhantomJs\Message\Response </span>
+<span class="sd">     * @see JonnyW\PhantomJs\Http\Response </span>
 <span class="sd">     **/</span>
     <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
 
@@ -335,7 +332,7 @@ code etc.</li>
     <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
 
     <span class="sd">/** </span>
-<span class="sd">     * @see JonnyW\PhantomJs\Message\PdfRequest</span>
+<span class="sd">     * @see JonnyW\PhantomJs\Http\PdfRequest</span>
 <span class="sd">     **/</span>
     <span class="nv">$request</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createPdfRequest</span><span class="p">(</span><span class="s1">&#39;http://jonnyw.me&#39;</span><span class="p">,</span> <span class="s1">&#39;GET&#39;</span><span class="p">);</span>
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setOutputFile</span><span class="p">(</span><span class="s1">&#39;/path/to/save/pdf/document.pdf&#39;</span><span class="p">);</span>
@@ -344,7 +341,7 @@ code etc.</li>
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setMargin</span><span class="p">(</span><span class="s1">&#39;1cm&#39;</span><span class="p">);</span>
 
     <span class="sd">/** </span>
-<span class="sd">     * @see JonnyW\PhantomJs\Message\Response </span>
+<span class="sd">     * @see JonnyW\PhantomJs\Http\Response </span>
 <span class="sd">     **/</span>
     <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createResponse</span><span class="p">();</span>
 
@@ -352,7 +349,7 @@ code etc.</li>
     <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span>
     </code></pre></figure>
 
-<p>For more detailed examples see the <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/usage/">usage</a> section, or you can <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/custom-scripts/">create your own custom scripts</a>.</p>
+<p>For more detailed examples see the <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/3-usage/">usage</a> section, or you can <a href="http://jonnnnyw.github.io/php-phantomjs/4.0/4-custom-scripts/">create your own custom scripts</a>.</p>
 
 
     
@@ -379,7 +376,7 @@ code etc.</li>
 		<footer>
 			<hr/>
 			<p>
-				&copy; 2015 PHP PhantomJs
+				&copy; 2016 PHP PhantomJs
 			</p>
 		</footer>
 	</div>

@@ -211,7 +211,7 @@
     <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
 
     <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
-    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">debug</span><span class="p">(</span><span class="k">true</span><span class="p">);</span></code></pre></figure>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getEngine</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">debug</span><span class="p">(</span><span class="k">true</span><span class="p">);</span></code></pre></figure>
 
 <p>The client log can be inspected after making a request.</p>
 
@@ -290,7 +290,7 @@
 		<footer>
 			<hr/>
 			<p>
-				&copy; 2015 PHP PhantomJs
+				&copy; 2016 PHP PhantomJs
 			</p>
 		</footer>
 	</div>

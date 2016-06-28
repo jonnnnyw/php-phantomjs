@@ -204,8 +204,10 @@
   <li><a href="#screen-captures">Screen Captures</a></li>
   <li><a href="#output-to-pdf">Output To PDF</a></li>
   <li><a href="#set-viewport-size">Set Viewport Size</a></li>
+  <li><a href="#set-background-color">Set Background Color</a></li>
   <li><a href="#custom-timeout">Custom Timeout</a></li>
   <li><a href="#delay-page-render">Delay Page Render</a></li>
+  <li><a href="#on-load-finished">On Load Finished</a></li>
   <li><a href="#phantomjs-options">PhantomJS Options</a></li>
   <li><a href="#exceptions">Exceptions</a></li>
 </ul>
@@ -429,6 +431,11 @@
     <span class="o">...</span>
     </code></pre></figure>
 
+<blockquote>
+  <h4 id="note-2">Note</h4>
+  <p>Sometimes you may want to wait for all the resources on the page to load before saving a capture to disk. This can be achieved by either <a href="#delay-page-render">delaying the page render</a> or <a href="#on-load-finished">waiting for all resources to load</a>.</p>
+</blockquote>
+
 <h2 id="output-to-pdf">Output To PDF</h2>
 
 <p>You can output a page to PDF by creating a PDF request and setting the path you wish to save the document to.</p>
@@ -447,6 +454,19 @@
     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setOutputFile</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span>
     
     <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$request</span><span class="p">,</span> <span class="nv">$response</span><span class="p">);</span></code></pre></figure>
+
+<p>You can set an optional repeating header and/or footer to the PDF output.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+
+    <span class="o">...</span>
+    
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setRepeatingHeader</span><span class="p">(</span><span class="s1">&#39;&lt;h1&gt;Header &lt;span style=&quot;float:right&quot;&gt;%pageNum% / %pageTotal%&lt;/span&gt;&lt;/h1&gt;&#39;</span><span class="p">[,</span> <span class="nx">height</span><span class="p">]);</span>
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setRepeatingFooter</span><span class="p">(</span><span class="s1">&#39;&lt;footer&gt;Footer &lt;span style=&quot;float:right&quot;&gt;%pageNum% / %pageTotal%&lt;/span&gt;&lt;/footer&gt;&#39;</span><span class="p">[,</span> <span class="nx">height</span><span class="p">]);</span>
+    
+    <span class="o">...</span></code></pre></figure>
+
+<p>The <code>setRepeatingHeader</code> and <code>setRepeatingFooter</code> methods take an optional second parameter that allows you to set the height of the header and/or footer. This defaults to <code>1cm</code>. You may also use the <code>%pageNum%</code> and <code>%pageTotal%</code> placeholders to output the current page and total page count for each. Inline styles can be applied to the injected header and footer tags allowing you to define the look and feel.</p>
 
 <p>You can set the paper size and margin of the PDF.</p>
 
@@ -490,6 +510,11 @@
     <span class="o">...</span>
     </code></pre></figure>
 
+<blockquote>
+  <h4 id="note-3">Note</h4>
+  <p>Sometimes you may want to wait for all the resources on the page to load before outputting to PDF. This can be achieved by either <a href="#delay-page-render">delaying the page render</a> or <a href="#on-load-finished">waiting for all resources to load</a>.</p>
+</blockquote>
+
 <h2 id="set-viewport-size">Set Viewport Size</h2>
 
 <p>You can easily set the viewport size for a request:</p>
@@ -506,6 +531,24 @@
     
     <span class="o">...</span>
     </code></pre></figure>
+
+<h2 id="set-background-color">Set Background Color</h2>
+
+<p>You can force the background color of the requested page by setting  a <code>backgroundColor</code> body style:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+
+    <span class="o">...</span>
+    
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">(</span><span class="s1">&#39;http://jonnyw.me&#39;</span><span class="p">);</span>
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setBodyStyles</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;backgroundColor&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;#ff0000&#39;</span>
+    <span class="p">));</span>
+    
+    <span class="o">...</span>
+    </code></pre></figure>
+
+<p>The <code>setBodyStyles</code> method can be used to set any valid CSS styles on the body tag; it is not limited to just background color.</p>
 
 <h2 id="custom-timeout">Custom Timeout</h2>
 
@@ -538,6 +581,30 @@
     
     <span class="o">...</span>
     </code></pre></figure>
+
+<h2 id="on-load-finished">On Load Finished</h2>
+
+<p>Another way of delaying the page render is to wait until all the resources on the page have finished loading. This includes things like images, AJAX requests etc. This can be achieved by telling the client to lazy load the request.</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">    </span><span class="cp">&lt;?php</span>
+
+    <span class="o">...</span>
+    
+    <span class="k">use</span> <span class="nx">JonnyW\PhantomJs\Client</span><span class="p">;</span>
+    
+    <span class="nv">$client</span> <span class="o">=</span> <span class="nx">Client</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">isLazy</span><span class="p">();</span> <span class="c1">// Tells the client to wait for all resources before rendering</span>
+
+    <span class="nv">$request</span>  <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">getMessageFactory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">createRequest</span><span class="p">();</span>
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setTimeout</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span> <span class="c1">// Will render page if this timeout is reached and resources haven&#39;t finished loading</span>
+
+    <span class="o">...</span>
+    </code></pre></figure>
+
+<blockquote>
+  <h4 id="note-4">Note</h4>
+  <p>It is recommended that you set a timeout on the request when lazy loading. This guarantees that the request will return content after a period of time even if page resources are still loading. Without this you may run into issues on pages that poll resources at short intervals.</p>
+</blockquote>
 
 <h2 id="phantomjs-options">PhantomJS Options</h2>
 
@@ -642,7 +709,7 @@
 		<footer>
 			<hr/>
 			<p>
-				&copy; 2015 PHP PhantomJs
+				&copy; 2016 PHP PhantomJs
 			</p>
 		</footer>
 	</div>

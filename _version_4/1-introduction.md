@@ -22,8 +22,10 @@ Feature List
 *  Save screen captures to local disk
 *  Output web pages to PDF document
 *  Set viewport size
+*  Set fixed header and footer for PDF output
 *  Define screen capture x, y, width and height parameters
 *  Delay page rendering for a specified time
+*  Delay page rendering until page resources are fully loaded
 *  Execute PhantomJS with command line options
 *  Easily build and run custom PhantomJS scripts
 

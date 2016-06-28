@@ -20,6 +20,7 @@ This page contains some common examples of how to use the PHP PhantomJS library.
 * [Set Background Color](#set-background-color)
 * [Custom Timeout](#custom-timeout)
 * [Delay Page Render](#delay-page-render)
+* [On Load Finished](#on-load-finished)
 * [PhantomJS Options](#phantomjs-options)
 * [Exceptions](#exceptions)
 
@@ -219,6 +220,9 @@ You can also set the width, height, x and y axis for your screen capture:
     
 {% endhighlight %}
 
+> #### Note
+> Sometimes you may want to wait for all the resources on the page to load before saving a capture to disk. This can be achieved by either [delaying the page render](#delay-page-render) or [waiting for all resources to load](#on-load-finished).
+
 Output To PDF
 -------------
 
@@ -241,6 +245,23 @@ You can output a page to PDF by creating a PDF request and setting the path you 
     
     $client->send($request, $response);
 {% endhighlight %}
+
+You can set an optional repeating header and/or footer to the PDF output.
+
+{% highlight php %}
+
+    <?php
+
+    ...
+    
+    $request->setRepeatingHeader('<h1>Header <span style="float:right">%pageNum% / %pageTotal%</span></h1>'[, height]);
+    $request->setRepeatingFooter('<footer>Footer <span style="float:right">%pageNum% / %pageTotal%</span></footer>'[, height]);
+    
+    ...
+
+{% endhighlight %}
+
+The `setRepeatingHeader` and `setRepeatingFooter` methods take an optional second parameter that allows you to set the height of the header and/or footer. This defaults to `1cm`. You may also use the `%pageNum%` and `%pageTotal%` placeholders to output the current page and total page count for each. Inline styles can be applied to the injected header and footer tags allowing you to define the look and feel.
 
 You can set the paper size and margin of the PDF.
 
@@ -292,6 +313,9 @@ Along with the paper orientation.
     ...
     
 {% endhighlight %}
+
+> #### Note
+> Sometimes you may want to wait for all the resources on the page to load before outputting to PDF. This can be achieved by either [delaying the page render](#delay-page-render) or [waiting for all resources to load](#on-load-finished).
 
 Set Viewport Size
 -----------------
@@ -376,6 +400,31 @@ Sometimes when saving a page to local disk you may want to wait until the page i
     
 {% endhighlight %}
 
+On Load Finished
+------------
+
+Another way of delaying the page render is to wait until all the resources on the page have finished loading. This includes things like images, AJAX requests etc. This can be achieved by telling the client to lazy load the request.
+
+{% highlight php %}
+
+    <?php
+
+    ...
+    
+    use JonnyW\PhantomJs\Client;
+    
+    $client = Client::getInstance();
+    $client->isLazy(); // Tells the client to wait for all resources before rendering
+
+    $request  = $client->getMessageFactory()->createRequest();
+    $request->setTimeout(5000); // Will render page if this timeout is reached and resources haven't finished loading
+
+    ...
+    
+{% endhighlight %}
+
+> #### Note
+> It is recommended that you set a timeout on the request when lazy loading. This guarantees that the request will return content after a period of time even if page resources are still loading. Without this you may run into issues on pages that poll resources at short intervals.
 
 PhantomJS Options
 -----------------
