@@ -61,8 +61,6 @@ page.onResourceRequested = function (req) {
     
     resources++;
     window.clearTimeout(timeout);
-    
-    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Resource requested (' + req.url + ')');
 };
 
 /**
@@ -77,7 +75,6 @@ page.onResourceReceived = function (res) {
     if(!res.stage || res.stage === 'end') {
         
         resources--;
-        debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Resource received (' + res.url + ') ~ ' + res.status);
         
         if (resources === 0) {
             
