@@ -12,15 +12,17 @@ websites that demand javascript support and also supports screen captures.
 Feature List
 ---------------------
 
-* Load webpages through the PhantomJS headless browser
-* View detailed response data including page content, headers, status code etc.
-* Handle redirects
-* View javascript console errors
-* View detailed PhantomJS debuged information
-* Save screen captures to local disk
-* Output web pages to PDF document
-* Set viewport size
-* Define screen capture x, y, width and height parameters
-* Delay page rendering for a specified time
-* Execute PhantomJS with command line options
-* Easily build and run custom PhantomJS scripts
+*  Load webpages through the PhantomJS headless browser
+*  View detailed response data including page content, headers, status code etc.
+*  Handle redirects
+*  View javascript console errors
+*  View detailed PhantomJS debug information
+*  Save screen captures to local disk
+*  Output web pages to PDF document
+*  Set viewport size
+*  Set fixed header and footer for PDF output
+*  Define screen capture x, y, width and height parameters
+*  Delay page rendering for a specified time
+*  Delay page rendering until page resources are fully loaded
+*  Execute PhantomJS with command line options
+*  Easily build and run custom PhantomJS scripts
