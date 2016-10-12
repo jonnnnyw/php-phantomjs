@@ -24,7 +24,7 @@ This page contains some common examples of how to use the PHP PhantomJS library.
 * [PhantomJS Options](#phantomjs-options)
 * [Exceptions](#exceptions)
 
-For more advanced customization or to load your own PhantomJS scripts, see the [custom scripts]({{ site.BASE_PATH }}/4.0/custom-scripts/) section.
+For more advanced customization or to load your own PhantomJS scripts, see the [custom scripts]({{ site.BASE_PATH }}/4.0/4-custom-scripts/) section.
 
 ---
 
