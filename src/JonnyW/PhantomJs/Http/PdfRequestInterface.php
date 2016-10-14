@@ -146,4 +146,21 @@ interface PdfRequestInterface
      * @return array
      */
     public function getRepeatingFooter();
+
+    /**
+     * Set zoom
+     *
+     * @access public
+     * @param  float $zoom  (default: 1)
+     * @return void
+     */
+    public function setZoom($zoom);
+
+    /**
+     * Get zoom
+     *
+     * @access public
+     * @return float
+     */
+    public function getZoom();
 }

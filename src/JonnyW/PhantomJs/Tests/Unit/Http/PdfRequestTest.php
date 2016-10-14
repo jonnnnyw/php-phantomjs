@@ -510,6 +510,22 @@ class PdfRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($height, $pdfRequest->getPaperHeight());
     }
 
+    /**
+     * Test can set zoom.
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanSetZoom()
+    {
+        $zoom = 0.5;
+
+        $pdfRequest = $this->getPdfRequest();
+        $pdfRequest->setZoom($zoom);
+
+        $this->assertSame($zoom, $pdfRequest->getZoom());
+    }
+
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ TEST ENTITIES ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/
