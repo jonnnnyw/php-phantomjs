@@ -24,7 +24,7 @@ When PhantomJS performs a request it loads a script template file and builds a P
 Alternatively you can write your own script template changing how PHP PhantomJS executes scripts altogether. This requires more work but can be very powerful.
 
 > #### Note
->  PHP PhantomJS compiles, validates and caches scripts when they are first run to greatly improve performance. If you would like to clear this cache or disable it while you are writing your own scripts then refer to the [caching section]({{ site.BASE_PATH }}/4.0/caching/).
+>  PHP PhantomJS compiles, validates and caches scripts when they are first run to greatly improve performance. If you would like to clear this cache or disable it while you are writing your own scripts then refer to the [caching section]({{ site.BASE_PATH }}/4.0/5-caching/).
 
 Partial script injection
 ------------------------
@@ -156,10 +156,10 @@ Below is a full example for clarity.
 {% endhighlight %}
 
 > #### Note
-> PHP PhantomJS compiles and caches scripts when they are first run to greatly improve performance. This cache can be easily [cleared]({{ site.BASE_PATH }}/4.0/caching/#clearing-the-cache) or [disabled]({{ site.BASE_PATH }}/4.0/caching/#disabling-the-cache) while you are developing your own custom scripts. Do be aware that script execution time will be greatly increased by disabling the cache.
+> PHP PhantomJS compiles and caches scripts when they are first run to greatly improve performance. This cache can be easily [cleared]({{ site.BASE_PATH }}/4.0/5-caching/#clearing-the-cache) or [disabled]({{ site.BASE_PATH }}/4.0/5-caching/#disabling-the-cache) while you are developing your own custom scripts. Do be aware that script execution time will be greatly increased by disabling the cache.
 
 > #### Note
-> Scripts are validated using a Javascript validation engine when they are compiled. For help debugging validation errors see the [debugging]({{ site.BASE_PATH }}/4.0/debugging/#validation-errors) section.
+> Scripts are validated using a Javascript validation engine when they are compiled. For help debugging validation errors see the [debugging]({{ site.BASE_PATH }}/4.0/6-debugging/#validation-errors) section.
 
 
 Writing a custom template
