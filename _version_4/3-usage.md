@@ -13,6 +13,7 @@ This page contains some common examples of how to use the PHP PhantomJS library.
 * [Basic Request](#basic-request)
 * [POST Request](#post-request)
 * [Other Request Methods](#other-request-methods)
+* [Custom Headers](#custom-headers)
 * [Response Data](#response-data)
 * [Screen Captures](#screen-captures)
 * [Output To PDF](#output-to-pdf)
@@ -153,6 +154,42 @@ Or on the request instance itself:
     $request->setMethod('PATCH');
     
     ...
+    
+{% endhighlight %}
+
+Custom Headers
+---------------------
+
+Custom headers can be added to the request.
+
+{% highlight php %}
+
+    <?php
+
+    use JonnyW\PhantomJs\Client;
+    
+    $client = Client::getInstance();
+    
+    $request  = $client->getMessageFactory()->createRequest();
+
+    $request->addHeader('custom_header_key', 'custom_header_value');
+{% endhighlight %}
+
+For example: when you want to request an authentication protected page with Laravel 5:
+
+{% highlight php %}
+
+    <?php
+
+    public function index(Request $laravel_request) {
+
+        ...
+
+        $request->setMethod('POST');
+        $request->addHeader('X-CSRF-TOKEN', csrf_token());
+        $request->addHeader('cookie', $laravel_request->header('cookie'));
+        
+        ...
     
 {% endhighlight %}
 
