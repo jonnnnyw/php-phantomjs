@@ -121,7 +121,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function getEngine()
     {
-        $engine = $this->createMock('\JonnyW\PhantomJs\Engine');
+        $engine = $this->getMock('\JonnyW\PhantomJs\Engine');
 
         return $engine;
     }
@@ -134,7 +134,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function getMessageFactory()
     {
-        $messageFactory = $this->createMock('\JonnyW\PhantomJs\Http\MessageFactoryInterface');
+        $messageFactory = $this->getMock('\JonnyW\PhantomJs\Http\MessageFactoryInterface');
 
         return $messageFactory;
     }
@@ -147,7 +147,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedureLoader()
     {
-        $procedureLoader = $this->createMock('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface');
+        $procedureLoader = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface');
 
         return $procedureLoader;
     }
@@ -160,7 +160,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedureCompiler()
     {
-        $procedureCompiler = $this->createMock('\JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface');
+        $procedureCompiler = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface');
 
         return $procedureCompiler;
     }
