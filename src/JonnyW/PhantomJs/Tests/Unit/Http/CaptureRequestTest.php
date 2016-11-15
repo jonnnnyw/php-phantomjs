@@ -34,7 +34,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
     {
         $captureRequest = $this->getCaptureRequest();
 
-        $this->assertSame(RequestInterface::REQUEST_TYPE_CAPTURE, $captureRequest->getType());
+        $this->assertEquals(RequestInterface::REQUEST_TYPE_CAPTURE, $captureRequest->getType());
     }
 
     /**
@@ -50,7 +50,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest = $this->getCaptureRequest();
         $captureRequest->setType($requestType);
 
-        $this->assertSame($requestType, $captureRequest->getType());
+        $this->assertEquals($requestType, $captureRequest->getType());
     }
 
     /**
@@ -64,7 +64,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $url            = 'http://test.com';
         $captureRequest = $this->getCaptureRequest($url);
 
-        $this->assertSame($url, $captureRequest->getUrl());
+        $this->assertEquals($url, $captureRequest->getUrl());
     }
 
     /**
@@ -78,7 +78,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $method         = 'GET';
         $captureRequest = $this->getCaptureRequest(null, $method);
 
-        $this->assertSame($method, $captureRequest->getMethod());
+        $this->assertEquals($method, $captureRequest->getMethod());
     }
 
     /**
@@ -92,7 +92,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $timeout        = 100000;
         $captureRequest = $this->getCaptureRequest('http://test.com', 'GET', $timeout);
 
-        $this->assertSame($timeout, $captureRequest->getTimeout());
+        $this->assertEquals($timeout, $captureRequest->getTimeout());
     }
 
     /**
@@ -124,7 +124,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest = $this->getCaptureRequest();
         $captureRequest->setCaptureDimensions($width, $height);
 
-        $this->assertSame($width, $captureRequest->getRectWidth());
+        $this->assertEquals($width, $captureRequest->getRectWidth());
     }
 
     /**
@@ -141,7 +141,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest = $this->getCaptureRequest();
         $captureRequest->setCaptureDimensions($width, $height);
 
-        $this->assertSame($height, $captureRequest->getRectHeight());
+        $this->assertEquals($height, $captureRequest->getRectHeight());
     }
 
     /**
@@ -159,7 +159,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest = $this->getCaptureRequest();
         $captureRequest->setCaptureDimensions($width, $height, $top);
 
-        $this->assertSame($top, $captureRequest->getRectTop());
+        $this->assertEquals($top, $captureRequest->getRectTop());
     }
 
     /**
@@ -177,7 +177,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest = $this->getCaptureRequest();
         $captureRequest->setCaptureDimensions($width, $height, 0, $left);
 
-        $this->assertSame($left, $captureRequest->getRectLeft());
+        $this->assertEquals($left, $captureRequest->getRectLeft());
     }
 
     /**
@@ -201,7 +201,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest->setUrl($url);
         $captureRequest->setRequestData($data);
 
-        $this->assertSame($url, $captureRequest->getUrl());
+        $this->assertEquals($url, $captureRequest->getUrl());
     }
 
     /**
@@ -227,7 +227,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
 
         $expectedUrl = $url . '?test_param1=Testing1&test_param2=Testing2';
 
-        $this->assertSame($expectedUrl, $captureRequest->getUrl());
+        $this->assertEquals($expectedUrl, $captureRequest->getUrl());
     }
 
     /**
@@ -253,7 +253,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
 
         $expectedUrl = $url . '?test_param1=Testing1&test_param2=Testing2';
 
-        $this->assertSame($expectedUrl, $captureRequest->getUrl());
+        $this->assertEquals($expectedUrl, $captureRequest->getUrl());
     }
 
     /**
@@ -279,7 +279,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
 
         $expectedUrl = $url . '&test_param1=Testing1&test_param2=Testing2';
 
-        $this->assertSame($expectedUrl, $captureRequest->getUrl());
+        $this->assertEquals($expectedUrl, $captureRequest->getUrl());
     }
 
     /**
@@ -300,7 +300,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest->setMethod('GET');
         $captureRequest->setRequestData($data);
 
-        $this->assertSame('', $captureRequest->getBody());
+        $this->assertEquals('', $captureRequest->getBody());
     }
 
     /**
@@ -321,7 +321,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest->setMethod('HEAD');
         $captureRequest->setRequestData($data);
 
-        $this->assertSame('', $captureRequest->getBody());
+        $this->assertEquals('', $captureRequest->getBody());
     }
 
     /**
@@ -344,7 +344,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
 
         $body = 'test_param1=Testing1&test_param2=Testing2';
 
-        $this->assertSame($body, $captureRequest->getBody());
+        $this->assertEquals($body, $captureRequest->getBody());
     }
 
     /**
@@ -372,7 +372,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
             'test_param2[1]' => 'Testing3'
         );
 
-        $this->assertSame($flatData, $captureRequest->getRequestData(true));
+        $this->assertEquals($flatData, $captureRequest->getRequestData(true));
     }
 
     /**
@@ -394,7 +394,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest = $this->getCaptureRequest();
         $captureRequest->setRequestData($data);
 
-        $this->assertSame($data, $captureRequest->getRequestData(false));
+        $this->assertEquals($data, $captureRequest->getRequestData(false));
     }
 
     /**
@@ -420,7 +420,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
 
         $expectedHeaders = array_merge($existingHeaders, $newHeaders);
 
-        $this->assertSame($expectedHeaders, $captureRequest->getHeaders());
+        $this->assertEquals($expectedHeaders, $captureRequest->getHeaders());
     }
 
     /**
@@ -442,7 +442,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
 
         $expectedHeaders = json_encode($headers);
 
-        $this->assertSame($expectedHeaders, $captureRequest->getHeaders('json'));
+        $this->assertEquals($expectedHeaders, $captureRequest->getHeaders('json'));
     }
 
     /**
@@ -461,7 +461,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest = $this->getCaptureRequest();
         $captureRequest->setHeaders($headers);
 
-        $this->assertSame($headers, $captureRequest->getHeaders('default'));
+        $this->assertEquals($headers, $captureRequest->getHeaders('default'));
     }
 
     /**
@@ -494,7 +494,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $captureRequest = $this->getCaptureRequest();
         $captureRequest->setOutputFile($outputFile);
 
-        $this->assertSame($outputFile, $captureRequest->getOutputFile());
+        $this->assertEquals($outputFile, $captureRequest->getOutputFile());
     }
 
     /**
@@ -511,7 +511,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $caputreRequest = $this->getCaptureRequest();
         $caputreRequest->setViewportSize($width, $height);
 
-        $this->assertSame($width, $caputreRequest->getViewportWidth());
+        $this->assertEquals($width, $caputreRequest->getViewportWidth());
     }
 
     /**
@@ -528,7 +528,7 @@ class CaptureRequestTest extends \PHPUnit_Framework_TestCase
         $caputreRequest = $this->getCaptureRequest();
         $caputreRequest->setViewportSize($width, $height);
 
-        $this->assertSame($height, $caputreRequest->getViewportHeight());
+        $this->assertEquals($height, $caputreRequest->getViewportHeight());
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/

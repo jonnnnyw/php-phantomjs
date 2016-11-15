@@ -213,6 +213,28 @@ EOF;
     }
 
     /**
+     * Test can set user agent in settings
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanSetUserAgentInSettings()
+    {
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->addSetting('userAgent', 'PhantomJS TEST');
+
+        $client->send($request, $response);
+
+        $this->assertContains('userAgent=PhantomJS TEST', $response->getContent());
+    }
+
+    /**
      * Test response contains console error if a
      * javascript error exists on the page.
      *

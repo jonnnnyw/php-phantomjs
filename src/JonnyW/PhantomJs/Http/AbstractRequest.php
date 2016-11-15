@@ -29,6 +29,14 @@ abstract class AbstractRequest
     protected $headers;
 
     /**
+     * Settings
+     *
+     * @var array
+     * @access protected
+     */
+    protected $settings;
+
+    /**
      * Request data
      *
      * @var array
@@ -105,6 +113,7 @@ abstract class AbstractRequest
         $this->headers         = array();
         $this->data            = array();
         $this->bodyStyles      = array();
+        $this->settings        = array();
         $this->delay           = 0;
         $this->viewportWidth   = 0;
         $this->viewportHeight  = 0;
@@ -159,7 +168,7 @@ abstract class AbstractRequest
      */
     public function setTimeout($timeout)
     {
-        $this->timeout = $timeout;
+        $this->settings['resourceTimeout'] = $timeout;
 
         return $this;
     }
@@ -172,7 +181,11 @@ abstract class AbstractRequest
      */
     public function getTimeout()
     {
-        return $this->timeout;
+        if (isset($this->settings['resourceTimeout'])) {
+            return $this->settings['resourceTimeout'];
+        }
+
+        return null;
     }
 
     /**
@@ -378,6 +391,32 @@ abstract class AbstractRequest
         }
 
         return $this->headers;
+    }
+
+    /**
+     * Add single setting
+     *
+     * @access public
+     * @param  string                                 $setting
+     * @param  string                                 $value
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
+     */
+    public function addSetting($setting, $value)
+    {
+        $this->settings[$setting] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get settings
+     *
+     * @access public
+     * @return array
+     */
+    public function getSettings()
+    {
+        return $this->settings;
     }
 
     /**
