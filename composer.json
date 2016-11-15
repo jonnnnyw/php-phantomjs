@@ -22,7 +22,7 @@
         "jakoch/phantomjs-installer": "^2.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0",
+        "phpunit/phpunit": "~5.0",
         "zendframework/zendpdf": "~2.0",
         "smalot/pdfparser": "~0.9"
     },

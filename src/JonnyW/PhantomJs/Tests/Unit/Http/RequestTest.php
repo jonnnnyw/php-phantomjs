@@ -111,21 +111,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test invalid URL exception is thrown
-     * if URL is invalid format.
-     *
-     * @access public
-     * @return void
-     */
-    public function testInvalidUrlExceptionIsThrownIfUrlIsInvalidFormat()
-    {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidUrlException');
-
-        $request = $this->getRequest();
-        $request->setUrl('\\AnInvalidUrl');
-    }
-
-    /**
      * Test URL does not contain query params if
      * mehtod is not HEAD or GET.
      *

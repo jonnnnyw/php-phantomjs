@@ -169,6 +169,35 @@ class EngineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test disk cache flag can be set.
+     *
+     * @access public
+     * @return void
+     */
+    public function testDiskCacheFlagCanBeSet()
+    {
+        $engine = $this->getEngine();
+        $engine->cache(true);
+
+        $this->assertContains('--disk-cache=true', $engine->getCommand());
+    }
+
+    /**
+     * Test disk cache flag is not set if
+     * caching is not enabled.
+     *
+     * @access public
+     * @return void
+     */
+    public function testDiskCacheFlagIsNotSetIfCachingIsNotEnabled()
+    {
+        $engine = $this->getEngine();
+        $engine->cache(false);
+
+        $this->assertNotContains('--disk-cache=true', $engine->getCommand());
+    }
+
+    /**
      * Test command contains run options.
      *
      * @access public

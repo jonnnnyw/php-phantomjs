@@ -9,7 +9,6 @@
 
 namespace JonnyW\PhantomJs\Http;
 
-use JonnyW\PhantomJs\Exception\InvalidUrlException;
 use JonnyW\PhantomJs\Exception\InvalidMethodException;
 use JonnyW\PhantomJs\Procedure\InputInterface;
 
@@ -243,16 +242,11 @@ abstract class AbstractRequest
      * Set request URL
      *
      * @access public
-     * @param  string                                          $url
+     * @param  string                                 $url
      * @return \JonnyW\PhantomJs\Http\AbstractRequest
-     * @throws \JonnyW\PhantomJs\Exception\InvalidUrlException
      */
     public function setUrl($url)
     {
-        if (!filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED)) {
-            throw new InvalidUrlException(sprintf('Invalid URL provided: %s', $url));
-        }
-
         $this->url = $url;
 
         return $this;

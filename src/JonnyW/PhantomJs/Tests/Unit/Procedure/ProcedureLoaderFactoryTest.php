@@ -93,7 +93,7 @@ class ProcedureLoaderFactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedureFactory()
     {
-        $procedureFactory = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface');
+        $procedureFactory = $this->createMock('\JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface');
 
         return $procedureFactory;
     }

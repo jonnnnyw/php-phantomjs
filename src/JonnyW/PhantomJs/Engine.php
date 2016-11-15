@@ -34,6 +34,14 @@ class Engine
     protected $debug;
 
     /**
+     * Cache flag.
+     *
+     * @var boolean
+     * @access protected
+     */
+    protected $cache;
+
+    /**
      * PhantomJs run options.
      *
      * @var array
@@ -59,6 +67,9 @@ class Engine
     {
         $this->path    = 'bin/phantomjs';
         $this->options = array();
+
+        $this->debug = false;
+        $this->cache = true;
     }
 
     /**
@@ -74,6 +85,10 @@ class Engine
         $options = $this->getOptions();
 
         $this->validateExecutable($path);
+
+        if ($this->cache) {
+            array_push($options, '--disk-cache=true');
+        }
 
         if ($this->debug) {
             array_push($options, '--debug=true');
@@ -160,6 +175,20 @@ class Engine
     public function debug($doDebug)
     {
         $this->debug = $doDebug;
+
+        return $this;
+    }
+
+    /**
+     * Cache.
+     *
+     * @access public
+     * @param  boolean                  $doCache
+     * @return \JonnyW\PhantomJs\Client
+     */
+    public function cache($doCache)
+    {
+        $this->cache = $doCache;
 
         return $this;
     }
