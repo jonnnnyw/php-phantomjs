@@ -471,8 +471,10 @@ class RequestTest extends \PHPUnit_Framework_TestCase
             'secure'   => $secure,
             'expires'  => $expires
         );
-
-        $this->assertEquals(array($expected), $request->getCookies()['add']);
+        
+        $cookies = $request->getCookies();
+        
+        $this->assertEquals(array($expected), $cookies['add']);
     }
 
     /**
@@ -504,7 +506,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
         $request->deleteCookie($name);
 
-        $this->assertEquals(array($name), $request->getCookies()['delete']);
+        $cookies = $request->getCookies();
+
+        $this->assertEquals(array($name), $cookies['delete']);
     }
 
     /**
