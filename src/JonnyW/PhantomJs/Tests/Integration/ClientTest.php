@@ -274,9 +274,11 @@ EOF;
         $request  = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
+        $expireAt = strtotime('16-Nov-2020 00:00:00');
+
         $request->setMethod('GET');
         $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
-        $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi', true, false, ((new \DateTime('16-Nov-2020 00:00:00'))->getTimestamp() * 1000));
+        $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi', true, false, ($expireAt * 1000));
 
         $client->send($request, $response);
 
@@ -301,9 +303,11 @@ EOF;
         $request  = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
+        $expireAt = strtotime('16-Nov-2020 00:00:00');
+
         $request->setMethod('GET');
         $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
-        $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi', true, false, ((new \DateTime('16-Nov-2020 00:00:00'))->getTimestamp() * 1000));
+        $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi', true, false, ($expireAt * 1000));
 
         $client->send($request, $response);
 
@@ -335,10 +339,12 @@ EOF;
         $request  = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
+        $expireAt = strtotime('16-Nov-2020 00:00:00');
+
         $request->setMethod('GET');
         $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
-        $request->addCookie('test_cookie_1', 'TESTING_COOKIES_1', '/', '.jonnyw.kiwi', true, false, ((new \DateTime('16-Nov-2020 00:00:00'))->getTimestamp() * 1000));
-        $request->addCookie('test_cookie_2', 'TESTING_COOKIES_2', '/', '.jonnyw.kiwi', true, false, ((new \DateTime('16-Nov-2020 00:00:00'))->getTimestamp() * 1000));
+        $request->addCookie('test_cookie_1', 'TESTING_COOKIES_1', '/', '.jonnyw.kiwi', true, false, ($expireAt * 1000));
+        $request->addCookie('test_cookie_2', 'TESTING_COOKIES_2', '/', '.jonnyw.kiwi', true, false, ($expireAt * 1000));
 
         $client->send($request, $response);
 
