@@ -436,6 +436,78 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test can add cookies.
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanAddCookies()
+    {
+        $name     = 'test_cookie';
+        $value    = 'TESTING_COOKIES';
+        $path     = '/';
+        $domain   = 'localhost';
+        $httpOnly =  false;
+        $secure   = true;
+        $expires  = time() + 3600;
+
+        $request = $this->getRequest();
+        $request->addCookie(
+            $name,
+            $value,
+            $path,
+            $domain,
+            $httpOnly,
+            $secure,
+            $expires
+        );
+
+        $expected = array(
+            'name'     => $name,
+            'value'    => $value,
+            'path'     => $path,
+            'domain'   => $domain,
+            'httponly' => $httpOnly,
+            'secure'   => $secure,
+            'expires'  => $expires
+        );
+
+        $this->assertEquals(array($expected), $request->getCookies()['add']);
+    }
+
+    /**
+     * Test can delete cookies.
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanDeleteCookies()
+    {
+        $name     = 'test_cookie';
+        $value    = 'TESTING_COOKIES';
+        $path     = '/';
+        $domain   = 'localhost';
+        $httpOnly =  false;
+        $secure   = true;
+        $expires  = time() + 3600;
+
+        $request = $this->getRequest();
+        $request->addCookie(
+            $name,
+            $value,
+            $path,
+            $domain,
+            $httpOnly,
+            $secure,
+            $expires
+        );
+
+        $request->deleteCookie($name);
+
+        $this->assertEquals(array($name), $request->getCookies()['delete']);
+    }
+
+    /**
      * Test can set viewport width.
      *
      * @access public

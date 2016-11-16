@@ -34,7 +34,6 @@ var page       = require('webpage').create(),
  */
 [[ engine.load('page_viewport_size') ]]
 
-
 /**
  * Define custom headers.
  */
@@ -44,6 +43,11 @@ var page       = require('webpage').create(),
  * Page settings
  */
 [[ engine.load('page_settings') ]]
+
+/**
+ * Page cookies
+ */
+[[ engine.load('page_cookies') ]]
 
 /**
  * On resource timeout

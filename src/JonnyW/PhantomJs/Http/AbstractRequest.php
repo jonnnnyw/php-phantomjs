@@ -37,6 +37,14 @@ abstract class AbstractRequest
     protected $settings;
 
     /**
+     * Cookies
+     *
+     * @var array
+     * @access protected
+     */
+    protected $cookies;
+
+    /**
      * Request data
      *
      * @var array
@@ -117,6 +125,11 @@ abstract class AbstractRequest
         $this->delay           = 0;
         $this->viewportWidth   = 0;
         $this->viewportHeight  = 0;
+
+        $this->cookies = array(
+            'add'    => array(),
+            'delete' => array()
+        );
 
         $this->setMethod($method);
         $this->setTimeout($timeout);
@@ -417,6 +430,63 @@ abstract class AbstractRequest
     public function getSettings()
     {
         return $this->settings;
+    }
+
+    /**
+     * Add cookie.
+     *
+     * @access public
+     * @param  string                                 $name
+     * @param  mixed                                  $value
+     * @param  string                                 $path
+     * @param  string                                 $domain
+     * @param  bool                                   $httpOnly (default: true)
+     * @param  bool                                   $secure   (default: false)
+     * @param  int                                    $expires  (default: null)
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
+     */
+    public function addCookie($name, $value, $path, $domain, $httpOnly = true, $secure = false, $expires = null)
+    {
+        $filter = function ($value) {
+            return !is_null($value);
+        };
+
+        $this->cookies['add'][] = array_filter(array(
+            'name'     => $name,
+            'value'    => $value,
+            'path'     => $path,
+            'domain'   => $domain,
+            'httponly' => $httpOnly,
+            'secure'   => $secure,
+            'expires'  => $expires
+        ), $filter);
+
+        return $this;
+    }
+
+    /**
+     * Delete cookie.
+     *
+     * @access public
+     * @param  string                                 $name
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
+     */
+    public function deleteCookie($name)
+    {
+        $this->cookies['delete'][] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get cookies
+     *
+     * @access public
+     * @return array
+     */
+    public function getCookies()
+    {
+        return $this->cookies;
     }
 
     /**

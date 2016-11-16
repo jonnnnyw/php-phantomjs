@@ -157,7 +157,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
 
         $client->send($request, $response);
 
@@ -179,7 +179,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
         $request->setRequestData(array(
             'test1' => 'http://test.com',
             'test2' => 'A string with an \' ) / # some other invalid [ characters.'
@@ -205,7 +205,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
 
         $client->send($request, $response);
 
@@ -226,12 +226,131 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
         $request->addSetting('userAgent', 'PhantomJS TEST');
 
         $client->send($request, $response);
 
         $this->assertContains('userAgent=PhantomJS TEST', $response->getContent());
+    }
+
+    /**
+     * Test can add cookies to request
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanAddCookiesToRequest()
+    {
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi');
+
+        $client->send($request, $response);
+
+        $this->assertContains('cookie_test_cookie=TESTING_COOKIES', $response->getContent());
+    }
+
+    /**
+     * Test can load cookies from
+     * persistent cookie file
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanLoadCookiesFromPersistentCookieFile()
+    {
+        $this->filename = 'cookies.txt';
+        $file = ($this->directory . '/' . $this->filename);
+
+        $client = $this->getClient();
+        $client->getEngine()->addOption('--cookies-file=' . $file);
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi', true, false, ((new \DateTime('16-Nov-2020 00:00:00'))->getTimestamp() * 1000));
+
+        $client->send($request, $response);
+
+        $this->assertContains('test_cookie=TESTING_COOKIES; HttpOnly; expires=Mon, 16-Nov-2020 00:00:00 GMT; domain=.jonnyw.kiwi; path=/)', file_get_contents($file));
+    }
+
+    /**
+     * Test can delete cookie from
+     * persistent cookie file
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanDeleteCookieFromPersistentCookieFile()
+    {
+        $this->filename = 'cookies.txt';
+        $file = ($this->directory . '/' . $this->filename);
+
+        $client = $this->getClient();
+        $client->getEngine()->addOption('--cookies-file=' . $file);
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi', true, false, ((new \DateTime('16-Nov-2020 00:00:00'))->getTimestamp() * 1000));
+
+        $client->send($request, $response);
+
+        $request = $client->getMessageFactory()->createRequest();
+        $request->setMethod('GET');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->deleteCookie('test_cookie');
+
+        $client->send($request, $response);
+
+        $this->assertNotContains('test_cookie=TESTING_COOKIES; HttpOnly; expires=Mon, 16-Nov-2020 00:00:00 GMT; domain=.jonnyw.kiwi; path=/)', file_get_contents($file));
+    }
+
+    /**
+     * Test can delete all cookies from
+     * persistent cookie file
+     *
+     * @access public
+     * @return void
+     */
+    public function testCanDeleteAllCookiesFromPersistentCookieFile()
+    {
+        $this->filename = 'cookies.txt';
+        $file = ($this->directory . '/' . $this->filename);
+
+        $client = $this->getClient();
+        $client->getEngine()->addOption('--cookies-file=' . $file);
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $request->setMethod('GET');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->addCookie('test_cookie_1', 'TESTING_COOKIES_1', '/', '.jonnyw.kiwi', true, false, ((new \DateTime('16-Nov-2020 00:00:00'))->getTimestamp() * 1000));
+        $request->addCookie('test_cookie_2', 'TESTING_COOKIES_2', '/', '.jonnyw.kiwi', true, false, ((new \DateTime('16-Nov-2020 00:00:00'))->getTimestamp() * 1000));
+
+        $client->send($request, $response);
+
+        $request = $client->getMessageFactory()->createRequest();
+        $request->setMethod('GET');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->deleteCookie('*');
+
+        $client->send($request, $response);
+
+        $this->assertNotContains('test_cookie_1=TESTING_COOKIES_1; HttpOnly; expires=Mon, 16-Nov-2020 00:00:00 GMT; domain=.jonnyw.kiwi; path=/)', file_get_contents($file));
+        $this->assertNotContains('test_cookie_2=TESTING_COOKIES_2; HttpOnly; expires=Mon, 16-Nov-2020 00:00:00 GMT; domain=.jonnyw.kiwi; path=/)', file_get_contents($file));
     }
 
     /**
@@ -249,7 +368,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-console-error.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-console-error.php');
 
         $client->send($request, $response);
 
@@ -274,7 +393,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-console-error.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-console-error.php');
 
         $client->send($request, $response);
 
@@ -297,7 +416,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-console-error.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-console-error.php');
 
         $client->send($request, $response);
 
@@ -340,7 +459,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('POST');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-post.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-post.php');
         $request->setRequestData(array(
             'test1' => 'http://test.com',
             'test2' => 'A string with an \' ) / # some other invalid [ characters.'
@@ -370,7 +489,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setOutputFile($file);
 
         $client->send($request, $response);
@@ -399,7 +518,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setOutputFile($file);
         $request->setCaptureDimensions($width, $height);
 
@@ -429,7 +548,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setOutputFile($file);
 
         $client->send($request, $response);
@@ -458,7 +577,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setOutputFile($file);
         $request->setPaperSize(sprintf('%scm', $width), sprintf('%scm', $height));
         $request->setMargin('0cm');
@@ -492,7 +611,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setOutputFile($file);
         $request->setFormat('A4');
         $request->setMargin('0cm');
@@ -526,7 +645,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setOutputFile($file);
         $request->setFormat('A4');
         $request->setOrientation('landscape');
@@ -561,7 +680,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setOutputFile($file);
         $request->setFormat('A4');
         $request->setOrientation('landscape');
@@ -597,7 +716,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setOutputFile($file);
         $request->setFormat('A4');
         $request->setOrientation('landscape');
@@ -634,7 +753,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
         $request->setViewportsize($width, $height);
 
         $client->send($request, $response);
@@ -665,7 +784,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
         $request->setViewportsize($width, $height);
 
         $client->send($request, $response);
@@ -694,7 +813,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -723,7 +842,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -752,7 +871,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -785,7 +904,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -814,7 +933,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -843,7 +962,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -875,7 +994,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-lazy.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-lazy.php');
         $request->setTimeout(5000);
 
         $client->send($request, $response);
@@ -900,7 +1019,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-lazy.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-lazy.php');
         $request->setTimeout(1000);
 
         $client->send($request, $response);
@@ -924,7 +1043,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
 
         $client->send($request, $response);
 
@@ -949,7 +1068,7 @@ EOF;
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
         $request->setBodyStyles(array('backgroundColor' => 'red'));
         $request->setOutputFile($file);
 

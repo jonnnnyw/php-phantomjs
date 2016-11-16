@@ -185,6 +185,22 @@ interface RequestInterface
     public function getHeaders();
 
     /**
+     * Get settings
+     *
+     * @access public
+     * @return array|string
+     */
+    public function getSettings();
+
+    /**
+     * Get cookies
+     *
+     * @access public
+     * @return array|string
+     */
+    public function getCookies();
+
+    /**
      * Set body styles
      *
      * @access public
