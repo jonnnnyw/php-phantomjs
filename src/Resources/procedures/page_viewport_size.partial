@@ -1,0 +1,9 @@
+
+{% if output.viewportSize %}
+    
+    var viewportSize = {{ output.viewportSize|json_encode(constant('JSON_FORCE_OBJECT')) }};
+    
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set viewport size ~ ' + JSON.stringify(viewportSize));
+    page.viewportSize = viewportSize;
+    
+{% endif %}

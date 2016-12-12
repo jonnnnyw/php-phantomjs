@@ -1,0 +1,9 @@
+
+{% if output.zoomFactor %}
+
+    var zoomFactor  = {{ output.zoomFactor|json_encode(constant('JSON_FORCE_OBJECT')) }};
+    
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set zoom factor ~ ' + JSON.stringify(zoomFactor));
+    page.zoomFactor = zoomFactor.zoom;
+
+{% endif %}

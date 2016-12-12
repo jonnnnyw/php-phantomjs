@@ -1,0 +1,37 @@
+
+{% if output.paperSize %}
+    
+    var paperSize = {{ output.paperSize|json_encode(constant('JSON_FORCE_OBJECT')) }},
+        layout = paperSize.layout;
+    
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set paper size ~ ' + JSON.stringify(layout));
+    
+    {% if paperSize.header %}
+        
+        debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set paper size header');
+        
+        layout.header = {
+            height: paperSize.header.height,
+            contents: phantom.callback(function(pageNum, pageTotal) {
+                return paperSize.header.content.replace('%pageNum%', pageNum).replace('%pageTotal%', pageTotal);
+            })
+        };
+    
+    {% endif %}
+
+    {% if paperSize.footer %}
+        
+        debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set paper size footer');
+        
+        layout.footer = {
+            height: paperSize.footer.height,
+            contents: phantom.callback(function(pageNum, pageTotal) {
+                return paperSize.footer.content.replace('%pageNum%', pageNum).replace('%pageTotal%', pageTotal);
+            })
+        };
+        
+    {% endif %}
+    
+    page.paperSize = layout;
+
+{% endif %}

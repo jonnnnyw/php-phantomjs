@@ -1,0 +1,9 @@
+
+var settings = {{ input.settings|json_encode(constant('JSON_FORCE_OBJECT')) }};
+
+for(var prop in settings) {
+    
+    if(settings.hasOwnProperty(prop)) {
+        page.settings[prop] = settings[prop];
+    }
+}

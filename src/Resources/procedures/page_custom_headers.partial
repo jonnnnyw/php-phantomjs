@@ -1,0 +1,3 @@
+
+page.customHeaders = {{ input.headers|json_encode(constant('JSON_FORCE_OBJECT')) }};
+

@@ -1,0 +1,25 @@
+
+if (status === 'success') {
+
+    try {
+
+        response.content = page.renderBuffer({
+            format: '{{ output.format }}',
+            quality: {{ output.quality }},
+        });
+        
+        page.close();
+
+    } catch(e) {
+
+        response.status  = 500;
+        response.content = e.message;
+    }
+}
+
+response.console = logs;
+
+system.stderr.write(debug.join('\\n') + '\\n');
+system.stdout.write(JSON.stringify(response));
+
+phantom.exit();

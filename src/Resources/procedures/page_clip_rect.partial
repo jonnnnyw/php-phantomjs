@@ -1,0 +1,9 @@
+
+{% if output.clipRect %}
+    
+    var clipRect = {{ output.clipRect|json_encode(constant('JSON_FORCE_OBJECT')) }};
+    
+    debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Set clipping size ~ ' + JSON.stringify(clipRect));
+    page.clipRect = clipRect;
+
+{% endif %}

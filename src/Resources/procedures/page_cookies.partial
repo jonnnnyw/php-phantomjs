@@ -1,0 +1,22 @@
+
+var cookies = {{ input.cookies|json_encode }};
+
+cookies.remove.forEach(function(cookie) {
+    
+    if(cookie == '*') {
+        page.clearCookies();
+        debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Deleted all cookies');
+    } else {
+        
+        if(page.deleteCookie(cookie)) {
+            debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Deleted cookie ' + cookie);
+        }
+    }
+});
+
+cookies.add.forEach(function(cookie) {
+    
+    if(page.addCookie(cookie)) {
+        debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Added cookie ' + cookie.name + '=' + cookie.value);
+    }
+});

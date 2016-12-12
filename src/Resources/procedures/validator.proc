@@ -1,0 +1,29 @@
+ {% autoescape false %}
+
+{{ input.get('engine') }}
+
+var system  = require('system'),
+  syntax = {};
+
+try {
+    
+  syntax = esprima.parse("{{ input.get('procedure')|escape('js') }}");
+      
+} catch(e) {
+    
+  syntax.errors = [{
+    column:      e.column,
+    description: e.description,
+    index:       e.index,
+    lineNumber:  e.lineNumber,
+    message:     e.message   
+  }];
+}
+
+system.stdout.write(
+  JSON.stringify(syntax)
+);
+
+phantom.exit();
+
+{% endautoescape %}
