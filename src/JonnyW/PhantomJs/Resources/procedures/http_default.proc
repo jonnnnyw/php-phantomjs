@@ -57,7 +57,7 @@ page.onResourceTimeout = function (error) {
 /**
  * On resource requested
  */
-page.onResourceRequested = function (resource) {
+page.onResourceRequested = function (resource, networkRequest) {
     [[ engine.load('page_on_resource_requested') ]]
 };
 
