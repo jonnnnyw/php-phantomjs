@@ -368,6 +368,25 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($response->isRedirect());
     }
 
+    /**
+     * Test if cookies can be parsed and imported
+     *
+     * @access public
+     * @return void
+     */
+    public function testCookiesCanBeImported()
+    {
+        $cookie = 'cookie=TESTING; HttpOnly; expires=Mon, 16-Nov-2020 00:00:00 GMT; domain=.jonnyw.kiwi; path=/';
+        $data = array(
+            'cookies' => array($cookie)
+        );
+
+        $response = $this->getResponse();
+        $response->import($data);
+
+        $this->assertContains($cookie, $response->getCookies());
+    }
+
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++ TEST ENTITIES ++++++++++ **/
 /** +++++++++++++++++++++++++++++++++++ **/
