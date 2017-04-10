@@ -382,6 +382,7 @@ EOF;
 
         $client->send($request, $response);
 
+        $cookies = $response->getCookies();
         $this->assertEquals(array(
             'domain' => '.jonnyw.kiwi',
             'expires' => 'Mon, 16 Nov 2020 00:00:00 GMT',
@@ -391,7 +392,7 @@ EOF;
             'path' => '/',
             'secure' => false,
             'value' => 'TESTING_COOKIES',
-        ), $response->getCookies()[0]);
+        ), $cookies[0]);
     }
 
     /**
