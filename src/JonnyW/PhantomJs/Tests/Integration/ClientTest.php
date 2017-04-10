@@ -386,7 +386,7 @@ EOF;
         $this->assertEquals(array(
             'domain' => '.jonnyw.kiwi',
             'expires' => 'Mon, 16 Nov 2020 00:00:00 GMT',
-            'expiry' => '1605477600',
+            'expiry' => '1605484800',
             'httponly' => true,
             'name' => 'test_cookie',
             'path' => '/',
