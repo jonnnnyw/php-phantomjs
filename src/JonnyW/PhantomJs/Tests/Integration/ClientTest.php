@@ -359,6 +359,41 @@ EOF;
         $this->assertNotContains('test_cookie_2=TESTING_COOKIES_2; HttpOnly; expires=Mon, 16-Nov-2020 00:00:00 GMT; domain=.jonnyw.kiwi; path=/)', file_get_contents($file));
     }
 
+
+    /**
+     * Test can load cookies from
+     * persistent cookie file
+     *
+     * @access public
+     * @return void
+     */
+    public function testCookiesPresentInResponse()
+    {
+        $client = $this->getClient();
+
+        $request  = $client->getMessageFactory()->createRequest();
+        $response = $client->getMessageFactory()->createResponse();
+
+        $expireAt = strtotime('16-Nov-2020 00:00:00');
+
+        $request->setMethod('GET');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi', true, false, ($expireAt * 1000));
+
+        $client->send($request, $response);
+
+        $this->assertEquals(array(
+            'domain' => '.jonnyw.kiwi',
+            'expires' => 'Mon, 16 Nov 2020 00:00:00 GMT',
+            'expiry' => '1605481200',
+            'httponly' => true,
+            'name' => 'test_cookie',
+            'path' => '/',
+            'secure' => false,
+            'value' => 'TESTING_COOKIES',
+        ), $response->getCookies()[0]);
+    }
+
     /**
      * Test response contains console error if a
      * javascript error exists on the page.
