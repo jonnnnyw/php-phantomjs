@@ -83,6 +83,14 @@ class Response
     public $console;
 
     /**
+     * Session cookies
+     *
+     * @var array
+     * @access public
+     */
+    public $cookies;
+
+    /**
      * Import response data
      *
      * @access public
@@ -246,5 +254,16 @@ class Response
     public function getConsole()
     {
         return $this->console;
+    }
+
+    /**
+     * Get session cookies
+     *
+     * @access public
+     * @return array
+     */
+    public function getCookies()
+    {
+        return $this->cookies;
     }
 }

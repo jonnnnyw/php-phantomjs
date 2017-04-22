@@ -96,4 +96,12 @@ interface ResponseInterface
      * @return string
      */
     public function getTime();
+
+    /**
+     * Get session cookies
+     *
+     * @access public
+     * @return array
+     */
+    public function getCookies();
 }
