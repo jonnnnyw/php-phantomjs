@@ -42,29 +42,9 @@ interface InputInterface extends MessageInterface
     /**
      * Get custom setting.
      *
-     * @param string $name
-     *
-     * @return mixed
+     * @return array
      */
-    public function getCustom($name);
-    
-    /**
-     * Has cookie.
-     *
-     * @param string $cookie
-     *
-     * @return bool
-     */
-    public function hasCookie($cookie);
-
-    /**
-     * Get single added cookie.
-     *
-     * @param string $cookie
-     *
-     * @return \JonnyW\PhantomJs\Page\Cookie|null
-     */
-    public function getCookie($cookie);
+    public function getCustom();
 
     /**
      * Get all added cookies.
@@ -92,24 +72,6 @@ interface InputInterface extends MessageInterface
      * @return \JonnyW\PhantomJs\IO\InputInterface
      */
     public function withoutCookie($cookie);
-
-    /**
-     * Has setting.
-     *
-     * @param string $setting
-     *
-     * @return bool
-     */
-    public function hasSetting($setting);
-
-    /**
-     * Get single setting.
-     *
-     * @param string $setting
-     *
-     * @return mixed
-     */
-    public function getSetting($setting);
 
     /**
      * Get all settings.

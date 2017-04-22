@@ -2,11 +2,12 @@
 if (status === 'success') {
 
     try {
-
-        response.content = page.renderBuffer({
-            format: '{{ output.format }}',
-            quality: {{ output.quality }},
-        });
+        
+        if(output.format == 'PDF') {
+            page.render(fs.workingDirectory + fs.separator + 'output.pdf', { format: '{{ output.format }}', quality: -1 });
+        } else {
+            response.body = page.renderBase64('{{ output.format }}');
+        }
         
         page.close();
 

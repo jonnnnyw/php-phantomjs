@@ -3,7 +3,7 @@ if (status === 'success') {
     
     try {
     
-        response.content = page.evaluate(function () {
+        response.body = page.evaluate(function () {
             return document.getElementsByTagName('html')[0].innerHTML
         });
     

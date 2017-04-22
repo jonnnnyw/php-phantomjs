@@ -83,45 +83,11 @@ trait InputTrait
     /**
      * Get custom setting.
      *
-     * @param string $name
-     *
-     * @return mixed
+     * @return array
      */
-    public function getCustom($name)
+    public function getCustom()
     {
-        if (isset($this->custom[$name])) {
-            return $this->custom[$name];
-        }
-
-        return '';
-    }
-
-    /**
-     * Has cookie.
-     *
-     * @param string $cookie
-     *
-     * @return bool
-     */
-    public function hasCookie($cookie)
-    {
-        return isset($this->cookies['add'][$cookie]);
-    }
-
-    /**
-     * Get single added cookie.
-     *
-     * @param string $cookie
-     *
-     * @return \JonnyW\PhantomJs\Page\Cookie|null
-     */
-    public function getCookie($cookie)
-    {
-        if (isset($this->cookies['add'][$cookie])) {
-            return $this->cookies['add'][$cookie];
-        }
-
-        return null;
+        return $this->custom;
     }
 
     /**
@@ -166,34 +132,6 @@ trait InputTrait
         unset($new->cookies['add'][$cookie]);
 
         return $new;
-    }
-
-    /**
-     * Has setting.
-     *
-     * @param string $setting
-     *
-     * @return bool
-     */
-    public function hasSetting($setting)
-    {
-        return isset($this->settings[$setting]);
-    }
-
-    /**
-     * Get single setting.
-     *
-     * @param string $setting
-     *
-     * @return mixed
-     */
-    public function getSetting($setting)
-    {
-        if (isset($this->settings[$setting])) {
-            return $this->settings[$setting];
-        }
-
-        return null;
     }
 
     /**

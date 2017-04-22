@@ -28,11 +28,11 @@ trait OutputTrait
     private $logs = [];
 
     /**
-     * Settings.
+     * Page setup.
      *
      * @var array
      */
-    private $settings = [];
+    private $page = [];
 
     /**
      * Create new output instance
@@ -45,7 +45,7 @@ trait OutputTrait
     public function withViewportSize(ViewportSize $size)
     {
         $new = clone $this;
-        $new->settings['page.viewportSize'] = $size;
+        $new->page['viewportSize'] = $size;
 
         return $new;
     }
@@ -60,7 +60,7 @@ trait OutputTrait
     {
         $new = clone $this;
 
-        unset($new->settings['page.viewportSize']);
+        unset($new->page['viewportSize']);
 
         return $new;
     }
@@ -72,7 +72,7 @@ trait OutputTrait
      */
     public function getViewportSize()
     {
-        return $this->settings['page.viewportSize'];
+        return $this->page['viewportSize'];
     }
 
     /**
@@ -86,7 +86,7 @@ trait OutputTrait
     public function withPaperSize(PaperSize $size)
     {
         $new = clone $this;
-        $new->settings['page.paperSize'] = $size;
+        $new->page['paperSize'] = $size;
 
         return $new;
     }
@@ -101,7 +101,7 @@ trait OutputTrait
     {
         $new = clone $this;
 
-        unset($new->settings['page.paperSize']);
+        unset($new->page['paperSize']);
 
         return $new;
     }
@@ -113,7 +113,7 @@ trait OutputTrait
      */
     public function getPaperSize()
     {
-        return $this->settings['page.paperSize'];
+        return $this->page['paperSize'];
     }
 
     /**
@@ -127,7 +127,7 @@ trait OutputTrait
     public function withZoomFactor(ZoomFactor $zoom)
     {
         $new = clone $this;
-        $new->settings['page.zoomFactor'] = $zoom;
+        $new->page['zoomFactor'] = $zoom;
 
         return $new;
     }
@@ -142,7 +142,7 @@ trait OutputTrait
     {
         $new = clone $this;
 
-        unset($new->settings['page.zoomFactor']);
+        unset($new->page['zoomFactor']);
 
         return $new;
     }
@@ -154,21 +154,21 @@ trait OutputTrait
      */
     public function getZoomFactor()
     {
-        return $this->settings['page.zoomFactor'];
+        return $this->page['zoomFactor'];
     }
 
     /**
      * Create new output instance
      * with clip rect set.
      *
-     * @param \JonnyW\PhantomJs\Page\ClipRect $zoom
+     * @param \JonnyW\PhantomJs\Page\ClipRect $clipRect
      *
      * @return \JonnyW\PhantomJs\IO\OutputInterface
      */
-    public function withClipRect(ClipRect $zoom)
+    public function withClipRect(ClipRect $clipRect)
     {
         $new = clone $this;
-        $new->settings['page.clipRect'] = $zoom;
+        $new->page['clipRect'] = $clipRect;
 
         return $new;
     }
@@ -183,7 +183,7 @@ trait OutputTrait
     {
         $new = clone $this;
 
-        unset($new->settings['page.clipRect']);
+        unset($new->page['clipRect']);
 
         return $new;
     }
@@ -195,7 +195,7 @@ trait OutputTrait
      */
     public function getClipRect()
     {
-        return $this->settings['page.clipRect'];
+        return $this->page['clipRect'];
     }
 
     /**

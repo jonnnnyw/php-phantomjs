@@ -18,8 +18,6 @@ use JonnyW\PhantomJs\Exception\InvalidExecutableException;
  */
 class Engine
 {
-    const VERSION = 4;
-
     /**
      * Executable path.
      *
@@ -60,7 +58,7 @@ class Engine
      */
     public function __construct()
     {
-        $this->path = 'bin/phantomjs';
+        $this->path = 'bin'.DIRECTORY_SEPARATOR.'phantomjs';
         $this->options = array();
 
         $this->debug = false;

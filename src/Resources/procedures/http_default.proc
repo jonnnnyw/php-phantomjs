@@ -68,7 +68,7 @@ page.onResourceRequested = function (req) {
     
     [[ engine.load('page_on_resource_requested') ]]
     
-    {% if output.lazy %}
+    {% if input.lazy %}
         resources++;
         window.clearTimeout(timeout);
     {% endif %}
@@ -81,7 +81,7 @@ page.onResourceReceived = function (res) {
     
     [[ engine.load('page_on_resource_received') ]]
     
-    {% if output.lazy %}
+    {% if input.lazy %}
 
         if(!res.stage || res.stage === 'end') {
             
@@ -126,7 +126,7 @@ page.open('{{ input.requestTarget }}', '{{ input.method }}', '{{ input.body }}',
     
     [[ engine.load('page_body_styles') ]]
     
-    {% if output.lazy %}
+    {% if input.lazy %}
 
         debug.push(new Date().toISOString().slice(0, -5) + ' [INFO] PhantomJS - Delaying page render until resources have loaded');
         
