@@ -16,7 +16,7 @@ before_script:
   - phpenv rehash
 
 script:
-  - phpunit --coverage-clover=coverage.clover
+  - bin/phpunit --coverage-clover=coverage.clover
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
