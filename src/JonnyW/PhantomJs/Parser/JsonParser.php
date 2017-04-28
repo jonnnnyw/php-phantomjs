@@ -28,6 +28,15 @@ class JsonParser implements ParserInterface
             return array();
         }
 
+        $firstCurlyPos   = (strpos($data, "{") === false) ? -1 : strpos($data, "{");
+        $firstSquaredPos = (strpos($data, "[") === false) ? -1 : strpos($data, "[");
+
+        if ($firstCurlyPos < $firstSquaredPos) {
+            $data = strstr($data, "{");
+        } else {
+            $data = strstr($data, "[");
+        }
+
         if (substr($data, 0, 1) !== '{' &&
             substr($data, 0, 1) !== '[') {
             return array();
