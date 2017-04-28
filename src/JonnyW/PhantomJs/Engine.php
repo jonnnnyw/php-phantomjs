@@ -9,6 +9,7 @@
 namespace JonnyW\PhantomJs;
 
 use JonnyW\PhantomJs\Exception\InvalidExecutableException;
+use PhantomInstaller\Installer as PhantomInstaller;
 
 /**
  * PHP PhantomJs
@@ -65,7 +66,12 @@ class Engine
      */
     public function __construct()
     {
+    	$os = PhantomInstaller::getOS();
         $this->path    = 'bin/phantomjs';
+		if ($os === 'windows') {
+			$this->path .= '.exe';
+			$this->path = str_replace('/', '\\', $this->path);
+		}
         $this->options = array();
 
         $this->debug = false;
