@@ -7,7 +7,8 @@
         paperOrientation = '{{ input.getOrientation() }}',
         paperMargin      = {{ input.getMargin()|json_encode(constant('JSON_FORCE_OBJECT')) }},
         header           = {{ input.getRepeatingHeader()|json_encode(constant('JSON_FORCE_OBJECT')) }},
-        footer           = {{ input.getRepeatingFooter()|json_encode(constant('JSON_FORCE_OBJECT')) }};
+        footer           = {{ input.getRepeatingFooter()|json_encode(constant('JSON_FORCE_OBJECT')) }},
+        zoomFactor       = '{{ input.getZoom() }}';
 
     if(paperWidth && paperHeight) {
         
@@ -45,5 +46,6 @@
     };
     
     page.paperSize = paperSize;
+    paper.zoomFactor = zoomFactor;
 
 {% endif %}

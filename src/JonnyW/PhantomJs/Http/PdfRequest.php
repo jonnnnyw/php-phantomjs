@@ -74,6 +74,15 @@ class PdfRequest extends CaptureRequest
     protected $footer;
 
     /**
+     * Zoom property specifies the scaling factor for the page.render and page.renderBase64 functions
+     * The default is 1, i.e. 100% zoom
+     *
+     * @var float
+     * @access protected
+     */
+    protected $zoom;
+
+    /**
      * Internal constructor
      *
      * @access public
@@ -93,7 +102,7 @@ class PdfRequest extends CaptureRequest
         $this->orientation = 'portrait';
         $this->header      = array();
         $this->footer      = array();
-
+        $this->zoom        = 1;
     }
 
     /**
@@ -292,5 +301,28 @@ class PdfRequest extends CaptureRequest
     public function getRepeatingFooter()
     {
         return $this->footer;
+    }
+
+    /**
+     * Set zoom
+     *
+     * @access public
+     * @param  float $zoom  (default: 1)
+     * @return void
+     */
+    public function setZoom($zoom)
+    {
+        $this->zoom = $zoom;
+    }
+
+    /**
+     * Get zoom
+     *
+     * @access public
+     * @return float
+     */
+    public function getZoom()
+    {
+        return $this->zoom;
     }
 }
