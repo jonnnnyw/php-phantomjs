@@ -9,6 +9,7 @@
 namespace JonnyW\PhantomJs\Tests\Unit;
 
 use JonnyW\PhantomJs\Engine;
+use PhantomInstaller\PhantomBinary;
 
 /**
  * PHP PhantomJs
@@ -48,7 +49,7 @@ class EngineTest extends \PHPUnit_Framework_TestCase
     {
         $engine = $this->getEngine();
 
-        $this->assertSame('bin/phantomjs', $engine->getPath());
+        $this->assertSame(PhantomBinary::BIN, $engine->getPath());
     }
 
     /**

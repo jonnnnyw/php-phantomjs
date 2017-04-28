@@ -9,6 +9,7 @@
 namespace JonnyW\PhantomJs;
 
 use JonnyW\PhantomJs\Exception\InvalidExecutableException;
+use PhantomInstaller\PhantomBinary;
 
 /**
  * PHP PhantomJs
@@ -65,7 +66,7 @@ class Engine
      */
     public function __construct()
     {
-        $this->path    = 'bin/phantomjs';
+        $this->path    = PhantomBinary::BIN;
         $this->options = array();
 
         $this->debug = false;
