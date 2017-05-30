@@ -57,6 +57,13 @@ page.onResourceTimeout = function (error) {
 };
 
 /**
+ * On resource error
+ */
+page.onResourceError = function (resourceError) {
+    [[ engine.load('page_on_resource_error') ]]
+};
+
+/**
  * On resource requested
  */
 page.onResourceRequested = function (req) {
