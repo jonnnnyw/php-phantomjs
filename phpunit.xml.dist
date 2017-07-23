@@ -11,6 +11,10 @@
     processIsolation            = "false"
     stopOnFailure               = "true"
     syntaxCheck                 = "false">
+
+    <php>
+      <env name="TZ" value="GMT"/>
+    </php>
     <testsuites>
         <testsuite name="PhantomJS Test Suite">
             <directory suffix="Test.php">./src/JonnyW/PhantomJs/Tests/*</directory>

@@ -13,6 +13,8 @@ use JonnyW\PhantomJs\Client;
 use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
 use DateTime;
 
+
+
 /**
  * PHP PhantomJs
  *
@@ -35,7 +37,6 @@ class ClientTest extends TestCase
      * @access protected
      */
     protected $directory;
-
 
 
 
@@ -389,8 +390,7 @@ EOF;
         $cookies = $response->getCookies();
         $this->assertEquals(array(
             'domain' => '.jonnyw.kiwi',
-
-            'expires' => date(DateTime::COOKIE, 1605484800),
+            'expires' => 'Mon, 16 Nov 2020 00:00:00 GMT',
             'expiry' => 1605484800,
             'httponly' => true,
             'name' => 'test_cookie',
