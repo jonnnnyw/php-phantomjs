@@ -229,7 +229,7 @@ class ProcedureTest extends \PHPUnit\Framework\TestCase
      */
     protected function getEngine()
     {
-        $engine = $this->getMock('\JonnyW\PhantomJs\Engine');
+        $engine = $this->getMockBuilder('\JonnyW\PhantomJs\Engine')->getMock();
 
         return $engine;
     }

@@ -266,7 +266,7 @@ class ProcedureLoaderTest extends \PHPUnit\Framework\TestCase
      */
     protected function getFileLocator()
     {
-        $fileLocator = $this->getMock('\Symfony\Component\Config\FileLocatorInterface');
+        $fileLocator = $this->getMockBuilder('\Symfony\Component\Config\FileLocatorInterface')->getMock();
 
         return $fileLocator;
     }
