@@ -87,6 +87,8 @@ class ProcedureTest extends \PHPUnit\Framework\TestCase
      */
     public function testNotWritableExceptionIsThrownIfProcedureScriptCannotBeWrittenToFile()
     {
+        $template = 'TEST_{{ input.get("uncompiled") }}_PROCEDURE';
+
         $this->expectException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
         $engne    = $this->getEngine();
@@ -99,6 +101,7 @@ class ProcedureTest extends \PHPUnit\Framework\TestCase
         $output = $this->getOutput();
 
         $procedure = $this->getProcedure($engne, $parser, $cache, $renderer);
+        $procedure->setTemplate($template);
         $procedure->run($input, $output);
     }
 
