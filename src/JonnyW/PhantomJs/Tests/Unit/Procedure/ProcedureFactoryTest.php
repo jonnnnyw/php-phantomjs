@@ -9,7 +9,6 @@
 namespace JonnyW\PhantomJs\Tests\Unit\Procedure;
 
 use Twig_Environment;
-use Twig_Loader_String;
 use JonnyW\PhantomJs\Engine;
 use JonnyW\PhantomJs\Cache\FileCache;
 use JonnyW\PhantomJs\Cache\CacheInterface;
@@ -121,11 +120,9 @@ class ProcedureFactoryTest extends \PHPUnit_Framework_TestCase
     protected function getRenderer()
     {
         $twig = new Twig_Environment(
-            new Twig_Loader_String()
+            new \Twig_Loader_Array([])
         );
-
         $renderer = new TemplateRenderer($twig);
-
         return $renderer;
     }
 }
