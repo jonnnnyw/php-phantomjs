@@ -21,7 +21,7 @@ use JonnyW\PhantomJs\Validator\EngineInterface;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ProcedureValidatorTest extends \PHPUnit_Framework_TestCase
+class ProcedureValidatorTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -38,7 +38,7 @@ class ProcedureValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testProcedureSyntaxExceptionIsThrownIfProcedureContainsSyntaxError()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\SyntaxException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\SyntaxException');
 
         $procedureLoader = $this->getProcedureLoader();
         $esprima         = $this->getEsprima();
@@ -78,7 +78,7 @@ class ProcedureValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testRequirementExceptionIsThrownIfProcedureDoesNotContainPhanomtExitStatement()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\RequirementException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\RequirementException');
 
         $procedureLoader = $this->getProcedureLoader();
         $esprima         = $this->getEsprima();

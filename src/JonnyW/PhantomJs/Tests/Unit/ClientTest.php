@@ -19,7 +19,7 @@ use JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/

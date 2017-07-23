@@ -15,7 +15,7 @@ use JonnyW\PhantomJs\StringUtils;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class StringUtilsTest extends \PHPUnit_Framework_TestCase
+class StringUtilsTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/

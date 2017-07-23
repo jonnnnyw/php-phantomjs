@@ -23,7 +23,7 @@ use JonnyW\PhantomJs\Procedure\ProcedureFactory;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ProcedureFactoryTest extends \PHPUnit_Framework_TestCase
+class ProcedureFactoryTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/

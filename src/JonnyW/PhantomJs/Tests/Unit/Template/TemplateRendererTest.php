@@ -17,7 +17,7 @@ use JonnyW\PhantomJs\Template\TemplateRenderer;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class TemplateRendererTest extends \PHPUnit_Framework_TestCase
+class TemplateRendererTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/

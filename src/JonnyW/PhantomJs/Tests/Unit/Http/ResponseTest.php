@@ -15,7 +15,7 @@ use JonnyW\PhantomJs\Http\Response;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ResponseTest extends \PHPUnit_Framework_TestCase
+class ResponseTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/

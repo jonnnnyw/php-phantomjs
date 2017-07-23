@@ -15,7 +15,7 @@ use JonnyW\PhantomJs\Cache\FileCache;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class FileCacheTest extends \PHPUnit_Framework_TestCase
+class FileCacheTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test filename
@@ -74,7 +74,7 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotWritableExceptionIsThrownIfFileCannotBeSavedDueToWritePermissions()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
         $fileCache = $this->getFileCache('/This/Directory/Is/Not/Writable/', 'txt');
         $fileCache->save($this->filename, 'Test');
@@ -122,7 +122,7 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotWritableExceptionIsThrownIfDirectoryPathIsNotWritable()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
         $fileCache  = $this->getFileCache($this->directory, 'txt');
         $file       = $fileCache->save('/This/Directory/Is/Not/Writable/', 'Test');
@@ -156,7 +156,7 @@ class FileCacheTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotExistsExceptionIsThrownIfWhenFetchingDataThatDoesntExist()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotExistsException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\NotExistsException');
 
         $fileCache = $this->getFileCache('', 'txt');
 

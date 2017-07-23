@@ -26,7 +26,7 @@ use JonnyW\PhantomJs\Procedure\ProcedureLoader;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
+class ProcedureLoaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test filename
@@ -57,7 +57,7 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidArgumentExceptionIsThrownIfProcedureFileIsNotLocal()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         $procedureFactory = $this->getProcedureFactory();
         $fileLocator      = $this->getFileLocator();
@@ -78,7 +78,7 @@ class ProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotExistsExceptionIsThrownIfProcedureFileDoesNotExist()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotExistsException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\NotExistsException');
 
         $procedureFactory = $this->getProcedureFactory();
         $fileLocator      = $this->getFileLocator();

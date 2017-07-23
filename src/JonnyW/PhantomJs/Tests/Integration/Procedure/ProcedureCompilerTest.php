@@ -17,7 +17,7 @@ use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ProcedureCompilerTest extends \PHPUnit_Framework_TestCase
+class ProcedureCompilerTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -155,7 +155,7 @@ class ProcedureCompilerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSyntaxExceptionIsThrownIfCompiledTemplateIsNotValid()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\SyntaxException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\SyntaxException');
 
         $template = <<<EOF
     console.log(;

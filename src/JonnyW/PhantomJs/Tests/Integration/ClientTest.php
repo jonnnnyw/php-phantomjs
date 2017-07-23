@@ -119,7 +119,7 @@ EOF;
      */
     public function testSyntaxExceptionIsThrownIfRequestProcedureContainsSyntaxError()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\SyntaxException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\SyntaxException');
 
         $content = 'TEST_PROCEDURE';
 
