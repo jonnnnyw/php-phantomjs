@@ -15,7 +15,7 @@ use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get dependency injection container.

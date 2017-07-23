@@ -19,7 +19,7 @@ use JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -121,7 +121,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function getEngine()
     {
-        $engine = $this->getMock('\JonnyW\PhantomJs\Engine');
+        $engine = $this->getMockBuilder('\JonnyW\PhantomJs\Engine')->getMock();
 
         return $engine;
     }
@@ -134,7 +134,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function getMessageFactory()
     {
-        $messageFactory = $this->getMock('\JonnyW\PhantomJs\Http\MessageFactoryInterface');
+        $messageFactory = $this->getMockBuilder('\JonnyW\PhantomJs\Http\MessageFactoryInterface')->getMock();
 
         return $messageFactory;
     }
@@ -147,7 +147,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedureLoader()
     {
-        $procedureLoader = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface');
+        $procedureLoader = $this->getMockBuilder('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface')->getMock();
 
         return $procedureLoader;
     }
@@ -160,7 +160,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedureCompiler()
     {
-        $procedureCompiler = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface');
+        $procedureCompiler = $this->getMockBuilder('\JonnyW\PhantomJs\Procedure\ProcedureCompilerInterface')->getMock();
 
         return $procedureCompiler;
     }

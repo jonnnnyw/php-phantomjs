@@ -16,7 +16,7 @@ use JonnyW\PhantomJs\Http\RequestInterface;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -104,7 +104,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidMethodIsThrownIfMethodIsInvalid()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidMethodException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\InvalidMethodException');
 
         $request = $this->getRequest();
         $request->setMethod('INVALID_METHOD');

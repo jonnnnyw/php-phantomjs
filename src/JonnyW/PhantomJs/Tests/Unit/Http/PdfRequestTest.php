@@ -16,7 +16,7 @@ use JonnyW\PhantomJs\Http\RequestInterface;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class PdfRequestTest extends \PHPUnit_Framework_TestCase
+class PdfRequestTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -104,7 +104,7 @@ class PdfRequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidMethodIsThrownIfMethodIsInvalid()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidMethodException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\InvalidMethodException');
 
         $pdfRequest = $this->getPdfRequest();
         $pdfRequest->setMethod('INVALID_METHOD');
@@ -403,7 +403,7 @@ class PdfRequestTest extends \PHPUnit_Framework_TestCase
      */
     public function tesNotWritableExceptonIsThrownIfOutputPathIsNotWritable()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\NotWritableException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\NotWritableException');
 
         $invalidPath = '/invalid/path';
 

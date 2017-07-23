@@ -15,7 +15,7 @@ use JonnyW\PhantomJs\Engine;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class EngineTest extends \PHPUnit_Framework_TestCase
+class EngineTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -31,7 +31,7 @@ class EngineTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidExecutableExceptionIsThrownIfPhantomJSPathIsInvalid()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidExecutableException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\InvalidExecutableException');
 
         $engine = $this->getEngine();
         $engine->setPath('/invalid/phantomjs/path');
@@ -115,7 +115,7 @@ class EngineTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidExecutableExceptionIsThrownWhenBuildingCommandIfPathToPhantomJSIsInvalid()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\InvalidExecutableException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\InvalidExecutableException');
 
         $engine = $this->getEngine();
 

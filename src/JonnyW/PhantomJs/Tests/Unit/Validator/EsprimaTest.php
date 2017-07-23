@@ -16,7 +16,7 @@ use JonnyW\PhantomJs\Validator\Esprima;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class EsprimaTest extends \PHPUnit_Framework_TestCase
+class EsprimaTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -32,7 +32,7 @@ class EsprimaTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidArgumentExceptionIsThrownIfFilePathIsNotLocalFile()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         $fileLocator = $this->getFileLocator();
         $esprima     = $this->getEsprima($fileLocator, 'http://example.com');
@@ -49,7 +49,7 @@ class EsprimaTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidArgumentIsThrownIfFileDoesNotExist()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         $fileLocator = $this->getFileLocator();
         $esprima     = $this->getEsprima($fileLocator, 'invalidFile.js');

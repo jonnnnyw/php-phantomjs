@@ -93,10 +93,10 @@ class Procedure implements ProcedureInterface
     public function run(InputInterface $input, OutputInterface $output)
     {
         try {
-
             $executable = $this->write(
                 $this->compile($input)
             );
+            
 
             $descriptorspec = array(
                 array('pipe', 'r'),

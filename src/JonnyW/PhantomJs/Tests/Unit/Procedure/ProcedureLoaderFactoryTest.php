@@ -16,7 +16,7 @@ use JonnyW\PhantomJs\Procedure\ProcedureLoaderFactory;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ProcedureLoaderFactoryTest extends \PHPUnit_Framework_TestCase
+class ProcedureLoaderFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test directory
@@ -39,7 +39,7 @@ class ProcedureLoaderFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidArgumentExceptionIsThrownIfDirectoryIsNotReadableWhenCreatingProcedureLoader()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         $procedureFactory = $this->getProcedureFactory();
 
@@ -93,7 +93,7 @@ class ProcedureLoaderFactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedureFactory()
     {
-        $procedureFactory = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface');
+        $procedureFactory = $this->getMockBuilder('\JonnyW\PhantomJs\Procedure\ProcedureFactoryInterface')->getMock();
 
         return $procedureFactory;
     }

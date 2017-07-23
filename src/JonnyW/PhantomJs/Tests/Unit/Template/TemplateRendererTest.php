@@ -9,7 +9,6 @@
 namespace JonnyW\PhantomJs\Tests\Unit\Template;
 
 use Twig_Environment;
-use Twig_Loader_String;
 use JonnyW\PhantomJs\Http\Request;
 use JonnyW\PhantomJs\Template\TemplateRenderer;
 
@@ -18,7 +17,7 @@ use JonnyW\PhantomJs\Template\TemplateRenderer;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class TemplateRendererTest extends \PHPUnit_Framework_TestCase
+class TemplateRendererTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -139,10 +138,7 @@ class TemplateRendererTest extends \PHPUnit_Framework_TestCase
      */
     protected function getTwig()
     {
-        $twig = new Twig_Environment(
-            new Twig_Loader_String()
-        );
-
+        $twig = new Twig_Environment(new \Twig_Loader_Array([]));
         return $twig;
     }
 }

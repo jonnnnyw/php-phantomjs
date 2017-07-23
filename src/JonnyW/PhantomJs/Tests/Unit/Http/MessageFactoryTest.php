@@ -15,7 +15,7 @@ use JonnyW\PhantomJs\Http\MessageFactory;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class MessageFactoryTest extends \PHPUnit_Framework_TestCase
+class MessageFactoryTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/

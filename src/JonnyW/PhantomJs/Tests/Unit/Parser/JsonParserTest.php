@@ -15,7 +15,7 @@ use JonnyW\PhantomJs\Parser\JsonParser;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class JsonParserTest extends \PHPUnit_Framework_TestCase
+class JsonParserTest extends \PHPUnit\Framework\TestCase
 {
 
 /*****************/

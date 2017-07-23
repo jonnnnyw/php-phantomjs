@@ -15,7 +15,7 @@ use JonnyW\PhantomJs\Procedure\ChainProcedureLoader;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
+class ChainProcedureLoaderTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/
@@ -31,7 +31,7 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidArgumentExceptionIsThrownIfNoValidLoaderCanBeFound()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         $procedureLoaders = array();
 
@@ -91,7 +91,7 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidArgumentExceptionIsThrownIfNoValidLoaderCanBeFoundWhenLoadingTemplate()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         $procedureLoaders = array();
 
@@ -153,7 +153,7 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedureLoader()
     {
-        $procedureLoader = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface');
+        $procedureLoader = $this->getMockBuilder('\JonnyW\PhantomJs\Procedure\ProcedureLoaderInterface')->getMock();
 
         return $procedureLoader;
     }
@@ -166,7 +166,7 @@ class ChainProcedureLoaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProcedure()
     {
-        $procedure = $this->getMock('\JonnyW\PhantomJs\Procedure\ProcedureInterface');
+        $procedure = $this->getMockBuilder('\JonnyW\PhantomJs\Procedure\ProcedureInterface')->getMock();
 
         return $procedure;
     }

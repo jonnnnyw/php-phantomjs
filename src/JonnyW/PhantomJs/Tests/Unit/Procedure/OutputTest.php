@@ -15,7 +15,7 @@ use JonnyW\PhantomJs\Procedure\Output;
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
-class OutputTest extends \PHPUnit_Framework_TestCase
+class OutputTest extends \PHPUnit\Framework\TestCase
 {
 
 /** +++++++++++++++++++++++++++++++++++ **/

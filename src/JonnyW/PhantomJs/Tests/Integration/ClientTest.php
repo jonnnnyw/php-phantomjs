@@ -11,6 +11,9 @@ namespace JonnyW\PhantomJs\Tests\Integration;
 use JonnyW\PhantomJs\Test\TestCase;
 use JonnyW\PhantomJs\Client;
 use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
+use DateTime;
+
+
 
 /**
  * PHP PhantomJs
@@ -34,6 +37,8 @@ class ClientTest extends TestCase
      * @access protected
      */
     protected $directory;
+
+
 
 /** +++++++++++++++++++++++++++++++++++ **/
 /** ++++++++++++++ TESTS ++++++++++++++ **/
@@ -119,7 +124,7 @@ EOF;
      */
     public function testSyntaxExceptionIsThrownIfRequestProcedureContainsSyntaxError()
     {
-        $this->setExpectedException('\JonnyW\PhantomJs\Exception\SyntaxException');
+        $this->expectException('\JonnyW\PhantomJs\Exception\SyntaxException');
 
         $content = 'TEST_PROCEDURE';
 
@@ -386,7 +391,7 @@ EOF;
         $this->assertEquals(array(
             'domain' => '.jonnyw.kiwi',
             'expires' => 'Mon, 16 Nov 2020 00:00:00 GMT',
-            'expiry' => '1605484800',
+            'expiry' => 1605484800,
             'httponly' => true,
             'name' => 'test_cookie',
             'path' => '/',
@@ -1156,6 +1161,8 @@ EOF;
     {
         $this->filename  = 'test.proc';
         $this->directory = sys_get_temp_dir();
+
+        date_default_timezone_set('GMT');
 
         if (!is_writable($this->directory)) {
             throw new \RuntimeException(sprintf('Test directory must be writable: %s', $this->directory));
