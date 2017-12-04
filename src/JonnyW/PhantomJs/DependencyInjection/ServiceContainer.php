@@ -31,7 +31,7 @@ class ServiceContainer extends ContainerBuilder
      * Get singleton instance
      *
      * @access public
-     * @return \JonnyW\PhantomJs\Client
+     * @return ServiceContainer
      */
     public static function getInstance()
     {
