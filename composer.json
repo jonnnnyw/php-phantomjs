@@ -1,6 +1,6 @@
 {
-    "name": "jonnyw/php-phantomjs",
-    "description": "A PHP wrapper for loading pages through PhantomJS",
+    "name": "cocostru/php-phantomjs",
+    "description": "A PHP wrapper for loading pages through PhantomJS - Forked version with critical declaration error fixed",
     "keywords": ["PhantomJS", "Testing", "Headless Browser"],
 	"type": "library",
     "license": "MIT",
@@ -9,6 +9,11 @@
             "name": "Jonny Wenmoth",
             "email": "contact@jonnyw.me",
             "homepage": "http://jonnyw.me/"
+        },
+        {
+            "name": "Denis Kostukovic",
+            "email": "info@inmrkt.ml",
+            "homepage": "http://inmrkt.ml/"
         }
     ],
     "minimum-stability": "stable",
