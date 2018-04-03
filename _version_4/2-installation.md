@@ -17,7 +17,7 @@ version: 4.0
 Prerequisites
 -------------
 
-PHP PhantomJS requires PHP **5.3.0** or greater to run.
+PHP PhantomJS requires PHP **5.4.0** or greater to run.
 
 Installing via Composer
 -----------------------
