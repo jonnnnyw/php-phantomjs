@@ -6,6 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace JonnyW\PhantomJs\Tests\Integration;
 
 use JonnyW\PhantomJs\Test\TestCase;
@@ -13,38 +14,33 @@ use JonnyW\PhantomJs\Client;
 use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
 
 /**
- * PHP PhantomJs
+ * PHP PhantomJs.
  *
  * @author Jon Wenmoth <contact@jonnyw.me>
  */
 class ClientTest extends TestCase
 {
     /**
-     * Test filename
+     * Test filename.
      *
      * @var string
-     * @access protected
      */
     protected $filename;
 
     /**
-     * Test directory
+     * Test directory.
      *
      * @var string
-     * @access protected
      */
     protected $directory;
 
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++++++ TESTS ++++++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
+    /** ++++++++++++++ TESTS ++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
      * Test additional procedures can be loaded
      * through chain loader.
-     *
-     * @access public
-     * @return void
      */
     public function testAdditionalProceduresCanBeLoadedThroughChainLoader()
     {
@@ -58,13 +54,13 @@ EOF;
         $this->writeProcedure($procedure);
 
         $procedureLoaderFactory = $this->getContainer()->get('procedure_loader_factory');
-        $procedureLoader        = $procedureLoaderFactory->createProcedureLoader($this->directory);
+        $procedureLoader = $procedureLoaderFactory->createProcedureLoader($this->directory);
 
         $client = $this->getClient();
         $client->setProcedure('test');
         $client->getProcedureLoader()->addLoader($procedureLoader);
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $client->send($request, $response);
@@ -75,10 +71,7 @@ EOF;
     /**
      * Test additional procedures can be loaded
      * through chain loader if procedures
-     * contain comments
-     *
-     * @access public
-     * @return void
+     * contain comments.
      */
     public function testAdditionalProceduresCanBeLoadedThroughChainLoaderIfProceduresContainComments()
     {
@@ -96,13 +89,13 @@ EOF;
         $this->writeProcedure($procedure);
 
         $procedureLoaderFactory = $this->getContainer()->get('procedure_loader_factory');
-        $procedureLoader        = $procedureLoaderFactory->createProcedureLoader($this->directory);
+        $procedureLoader = $procedureLoaderFactory->createProcedureLoader($this->directory);
 
         $client = $this->getClient();
         $client->setProcedure('test');
         $client->getProcedureLoader()->addLoader($procedureLoader);
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $client->send($request, $response);
@@ -113,9 +106,6 @@ EOF;
     /**
      * Test syntax exception is thrown if request
      * procedure contains syntax error.
-     *
-     * @access public
-     * @return void
      */
     public function testSyntaxExceptionIsThrownIfRequestProcedureContainsSyntaxError()
     {
@@ -130,13 +120,13 @@ EOF;
         $this->writeProcedure($procedure);
 
         $procedureLoaderFactory = $this->getContainer()->get('procedure_loader_factory');
-        $procedureLoader        = $procedureLoaderFactory->createProcedureLoader($this->directory);
+        $procedureLoader = $procedureLoaderFactory->createProcedureLoader($this->directory);
 
         $client = $this->getClient();
         $client->setProcedure('test');
         $client->getProcedureLoader()->addLoader($procedureLoader);
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $client->send($request, $response);
@@ -145,19 +135,16 @@ EOF;
     /**
      * Test response contains 200 status code if page
      * is successfully loaded.
-     *
-     * @access public
-     * @return void
      */
     public function testResponseContains200StatusCodeIfPageIsSuccessfullyLoaded()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
 
         $client->send($request, $response);
 
@@ -167,23 +154,20 @@ EOF;
     /**
      * Test response contains 200 status code if
      * request URL contains reserved characters.
-     *
-     * @access public
-     * @return void
      */
     public function testResponseContains200StatusCodeIfRequestUrlContainsReservedCharacters()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
-        $request->setRequestData(array(
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
+        $request->setRequestData([
             'test1' => 'http://test.com',
-            'test2' => 'A string with an \' ) / # some other invalid [ characters.'
-        ));
+            'test2' => 'A string with an \' ) / # some other invalid [ characters.',
+        ]);
 
         $client->send($request, $response);
 
@@ -193,19 +177,16 @@ EOF;
     /**
      * Test response contains valid body if page is
      * successfully loaded.
-     *
-     * @access public
-     * @return void
      */
     public function testResponseContainsValidBodyIfPageIsSuccessfullyLoaded()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
 
         $client->send($request, $response);
 
@@ -213,20 +194,17 @@ EOF;
     }
 
     /**
-     * Test can set user agent in settings
-     *
-     * @access public
-     * @return void
+     * Test can set user agent in settings.
      */
     public function testCanSetUserAgentInSettings()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->addSetting('userAgent', 'PhantomJS TEST');
 
         $client->send($request, $response);
@@ -235,20 +213,17 @@ EOF;
     }
 
     /**
-     * Test can add cookies to request
-     *
-     * @access public
-     * @return void
+     * Test can add cookies to request.
      */
     public function testCanAddCookiesToRequest()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi');
 
         $client->send($request, $response);
@@ -258,26 +233,23 @@ EOF;
 
     /**
      * Test can load cookies from
-     * persistent cookie file
-     *
-     * @access public
-     * @return void
+     * persistent cookie file.
      */
     public function testCanLoadCookiesFromPersistentCookieFile()
     {
         $this->filename = 'cookies.txt';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
         $client = $this->getClient();
-        $client->getEngine()->addOption('--cookies-file=' . $file);
+        $client->getEngine()->addOption('--cookies-file='.$file);
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $expireAt = strtotime('16-Nov-2020 00:00:00');
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi', true, false, ($expireAt * 1000));
 
         $client->send($request, $response);
@@ -287,33 +259,30 @@ EOF;
 
     /**
      * Test can delete cookie from
-     * persistent cookie file
-     *
-     * @access public
-     * @return void
+     * persistent cookie file.
      */
     public function testCanDeleteCookieFromPersistentCookieFile()
     {
         $this->filename = 'cookies.txt';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
         $client = $this->getClient();
-        $client->getEngine()->addOption('--cookies-file=' . $file);
+        $client->getEngine()->addOption('--cookies-file='.$file);
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $expireAt = strtotime('16-Nov-2020 00:00:00');
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi', true, false, ($expireAt * 1000));
 
         $client->send($request, $response);
 
         $request = $client->getMessageFactory()->createRequest();
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->deleteCookie('test_cookie');
 
         $client->send($request, $response);
@@ -323,26 +292,23 @@ EOF;
 
     /**
      * Test can delete all cookies from
-     * persistent cookie file
-     *
-     * @access public
-     * @return void
+     * persistent cookie file.
      */
     public function testCanDeleteAllCookiesFromPersistentCookieFile()
     {
         $this->filename = 'cookies.txt';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
         $client = $this->getClient();
-        $client->getEngine()->addOption('--cookies-file=' . $file);
+        $client->getEngine()->addOption('--cookies-file='.$file);
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $expireAt = strtotime('16-Nov-2020 00:00:00');
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->addCookie('test_cookie_1', 'TESTING_COOKIES_1', '/', '.jonnyw.kiwi', true, false, ($expireAt * 1000));
         $request->addCookie('test_cookie_2', 'TESTING_COOKIES_2', '/', '.jonnyw.kiwi', true, false, ($expireAt * 1000));
 
@@ -350,7 +316,7 @@ EOF;
 
         $request = $client->getMessageFactory()->createRequest();
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->deleteCookie('*');
 
         $client->send($request, $response);
@@ -359,31 +325,27 @@ EOF;
         $this->assertNotContains('test_cookie_2=TESTING_COOKIES_2; HttpOnly; expires=Mon, 16-Nov-2020 00:00:00 GMT; domain=.jonnyw.kiwi; path=/)', file_get_contents($file));
     }
 
-
     /**
      * Test can load cookies from
-     * persistent cookie file
-     *
-     * @access public
-     * @return void
+     * persistent cookie file.
      */
     public function testCookiesPresentInResponse()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $expireAt = strtotime('16-Nov-2020 00:00:00');
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->addCookie('test_cookie', 'TESTING_COOKIES', '/', '.jonnyw.kiwi', true, false, ($expireAt * 1000));
 
         $client->send($request, $response);
 
         $cookies = $response->getCookies();
-        $this->assertEquals(array(
+        $this->assertEquals([
             'domain' => '.jonnyw.kiwi',
             'expires' => 'Mon, 16 Nov 2020 00:00:00 GMT',
             'expiry' => '1605484800',
@@ -392,25 +354,22 @@ EOF;
             'path' => '/',
             'secure' => false,
             'value' => 'TESTING_COOKIES',
-        ), $cookies[0]);
+        ], $cookies[0]);
     }
 
     /**
      * Test response contains console error if a
      * javascript error exists on the page.
-     *
-     * @access public
-     * @return void
      */
     public function testResponseContainsConsoleErrorIfAJavascriptErrorExistsOnThePage()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-console-error.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-console-error');
 
         $client->send($request, $response);
 
@@ -423,19 +382,16 @@ EOF;
     /**
      * Test response contains console trace if a
      * javascript error exists on the page.
-     *
-     * @access public
-     * @return void
      */
     public function testResponseContainsConsoleTraceIfAJavascriptErrorExistsOnThePage()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-console-error.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-console-error');
 
         $client->send($request, $response);
 
@@ -446,19 +402,16 @@ EOF;
 
     /**
      * Test response contains headers.
-     *
-     * @access public
-     * @return void
      */
     public function testResponseContainsHeaders()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-console-error.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-console-error');
 
         $client->send($request, $response);
 
@@ -468,15 +421,12 @@ EOF;
     /**
      * Test redirect URL is set in response
      * if request is redirected.
-     *
-     * @access public
-     * @return void
      */
     public function testRedirectUrlIsSetInResponseIfRequestIsRedirected()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
@@ -489,23 +439,20 @@ EOF;
 
     /**
      * Test POST request sends request data.
-     *
-     * @access public
-     * @return void
      */
     public function testPostRequestSendsRequestData()
     {
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('POST');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-post.php');
-        $request->setRequestData(array(
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-post');
+        $request->setRequestData([
             'test1' => 'http://test.com',
-            'test2' => 'A string with an \' ) / # some other invalid [ characters.'
-        ));
+            'test2' => 'A string with an \' ) / # some other invalid [ characters.',
+        ]);
 
         $client->send($request, $response);
 
@@ -516,51 +463,45 @@ EOF;
     /**
      * Test capture request saves file to
      * to local disk.
-     *
-     * @access public
-     * @return void
      */
     public function testCaptureRequestSavesFileToLocalDisk()
     {
         $this->filename = 'test.jpg';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $request = $client->getMessageFactory()->createCaptureRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setOutputFile($file);
 
         $client->send($request, $response);
 
-        $this->assertTrue(file_exists($file));
+        $this->assertFileExists($file);
     }
 
     /**
      * Test capture request saves file to
      * disk with correct capture dimensions.
-     *
-     * @access public
-     * @return void
      */
     public function testCaptureRequestSavesFileToDiskWithCorrectCaptureDimensions()
     {
         $this->filename = 'test.jpg';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
-        $width  = 200;
+        $width = 200;
         $height = 400;
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $request = $client->getMessageFactory()->createCaptureRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setOutputFile($file);
         $request->setCaptureDimensions($width, $height);
 
@@ -575,51 +516,45 @@ EOF;
     /**
      * Test PDF request saves pdf to
      * to local disk.
-     *
-     * @access public
-     * @return void
      */
     public function testPdfRequestSavesPdfToLocalDisk()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createPdfRequest();
+        $request = $client->getMessageFactory()->createPdfRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setOutputFile($file);
 
         $client->send($request, $response);
 
-        $this->assertTrue(file_exists($file));
+        $this->assertFileExists($file);
     }
 
     /**
      * Test PDF request saves file to
      * disk with correct paper size.
-     *
-     * @access public
-     * @return void
      */
     public function testPdfRequestSavesFileToDiskWithCorrectPaperSize()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
-        $width  = 20;
+        $width = 20;
         $height = 30;
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createPdfRequest();
+        $request = $client->getMessageFactory()->createPdfRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setOutputFile($file);
         $request->setPaperSize(sprintf('%scm', $width), sprintf('%scm', $height));
         $request->setMargin('0cm');
@@ -628,8 +563,8 @@ EOF;
 
         $pdf = \ZendPdf\PdfDocument::load($file);
 
-        $pdfWidth  = round(($pdf->pages[0]->getWidth() * 0.0352777778));
-        $pdfHeight = round(($pdf->pages[0]->getHeight()  * 0.0352777778));
+        $pdfWidth = round(($pdf->pages[0]->getWidth() * 0.0352777778));
+        $pdfHeight = round(($pdf->pages[0]->getHeight() * 0.0352777778));
 
         $this->assertEquals($width, $pdfWidth);
         $this->assertEquals($height, $pdfHeight);
@@ -638,22 +573,19 @@ EOF;
     /**
      * Test PDF request saves file to
      * disk with correct format size.
-     *
-     * @access public
-     * @return void
      */
     public function testPdfRequestSavesFileToDiskWithCorrectFormatSize()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createPdfRequest();
+        $request = $client->getMessageFactory()->createPdfRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setOutputFile($file);
         $request->setFormat('A4');
         $request->setMargin('0cm');
@@ -662,8 +594,8 @@ EOF;
 
         $pdf = \ZendPdf\PdfDocument::load($file);
 
-        $pdfWidth  = round(($pdf->pages[0]->getWidth() * 0.0352777778));
-        $pdfHeight = round(($pdf->pages[0]->getHeight()  * 0.0352777778));
+        $pdfWidth = round(($pdf->pages[0]->getWidth() * 0.0352777778));
+        $pdfHeight = round(($pdf->pages[0]->getHeight() * 0.0352777778));
 
         $this->assertEquals(21, $pdfWidth);
         $this->assertEquals(30, $pdfHeight);
@@ -672,22 +604,19 @@ EOF;
     /**
      * Test PDF request saves file to
      * disk with correct orientation.
-     *
-     * @access public
-     * @return void
      */
     public function testPdfRequestSavesFileToDiskWithCorrectOrientation()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createPdfRequest();
+        $request = $client->getMessageFactory()->createPdfRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setOutputFile($file);
         $request->setFormat('A4');
         $request->setOrientation('landscape');
@@ -697,8 +626,8 @@ EOF;
 
         $pdf = \ZendPdf\PdfDocument::load($file);
 
-        $pdfWidth  = round(($pdf->pages[0]->getWidth() * 0.0352777778));
-        $pdfHeight = round(($pdf->pages[0]->getHeight()  * 0.0352777778));
+        $pdfWidth = round(($pdf->pages[0]->getWidth() * 0.0352777778));
+        $pdfHeight = round(($pdf->pages[0]->getHeight() * 0.0352777778));
 
         $this->assertEquals(30, $pdfWidth);
         $this->assertEquals(21, $pdfHeight);
@@ -706,23 +635,20 @@ EOF;
 
     /**
      * Test can set repeating header
-     * for PDF request
-     *
-     * @access public
-     * @return void
+     * for PDF request.
      */
     public function testCanSetRepeatingHeaderForPDFRequest()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createPdfRequest();
+        $request = $client->getMessageFactory()->createPdfRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setOutputFile($file);
         $request->setFormat('A4');
         $request->setOrientation('landscape');
@@ -733,7 +659,7 @@ EOF;
         $client->send($request, $response);
 
         $parser = new \Smalot\PdfParser\Parser();
-        $pdf    = $parser->parseFile($file);
+        $pdf = $parser->parseFile($file);
 
         $text = str_replace(' ', '', $pdf->getText());
 
@@ -742,23 +668,20 @@ EOF;
 
     /**
      * Test can set repeating footer
-     * for PDF request
-     *
-     * @access public
-     * @return void
+     * for PDF request.
      */
     public function testCanSetRepeatingFooterForPDFRequest()
     {
         $this->filename = 'test.pdf';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createPdfRequest();
+        $request = $client->getMessageFactory()->createPdfRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setOutputFile($file);
         $request->setFormat('A4');
         $request->setOrientation('landscape');
@@ -769,7 +692,7 @@ EOF;
         $client->send($request, $response);
 
         $parser = new \Smalot\PdfParser\Parser();
-        $pdf    = $parser->parseFile($file);
+        $pdf = $parser->parseFile($file);
 
         $text = str_replace(' ', '', $pdf->getText());
 
@@ -780,22 +703,19 @@ EOF;
      * Test set viewport size sets
      * size of viewport in default
      * request.
-     *
-     * @access public
-     * @return void
      */
     public function testSetViewportSizeSetsSizeOfViewportInDefaultRequest()
     {
-        $width  = 100;
+        $width = 100;
         $height = 200;
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->setViewportsize($width, $height);
 
         $client->send($request, $response);
@@ -804,29 +724,26 @@ EOF;
 
         $startIndex = $this->getLogEntryIndex($logs, 'Set viewport size ~ width: 100 height: 200');
 
-        $this->assertTrue(($startIndex !== false));
+        $this->assertTrue((false !== $startIndex));
     }
 
     /**
      * Test set viewport size sets
      * size of viewport in capture
      * request.
-     *
-     * @access public
-     * @return void
      */
     public function testSetViewportSizeSetsSizeOfViewportInCaptureRequest()
     {
-        $width  = 100;
+        $width = 100;
         $height = 200;
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $request = $client->getMessageFactory()->createCaptureRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->setViewportsize($width, $height);
 
         $client->send($request, $response);
@@ -835,15 +752,12 @@ EOF;
 
         $startIndex = $this->getLogEntryIndex($logs, 'Set viewport size ~ width: 100 height: 200');
 
-        $this->assertTrue(($startIndex !== false));
+        $this->assertTrue((false !== $startIndex));
     }
 
     /**
      * Test delay logs start time
      * in client for default request.
-     *
-     * @access public
-     * @return void
      */
     public function testDelayLogsStartTimeInClientForDefaultRequest()
     {
@@ -851,11 +765,11 @@ EOF;
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -864,15 +778,12 @@ EOF;
 
         $startIndex = $this->getLogEntryIndex($logs, 'Delaying page render for');
 
-        $this->assertTrue(($startIndex !== false));
+        $this->assertTrue((false !== $startIndex));
     }
 
     /**
      * Test delay logs end time
      * in client for default request.
-     *
-     * @access public
-     * @return void
      */
     public function testDelayLogsEndTimeInClientForDefaultRequest()
     {
@@ -880,11 +791,11 @@ EOF;
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->setDelay($delay);
 
         $client->send($request, $response);
@@ -893,15 +804,12 @@ EOF;
 
         $endIndex = $this->getLogEntryIndex($logs, 'Rendering page after');
 
-        $this->assertTrue(($endIndex !== false));
+        $this->assertTrue((false !== $endIndex));
     }
 
     /**
      * Test delay delays page render for
      * specified time for default request.
-     *
-     * @access public
-     * @return void
      */
     public function testDelayDelaysPageRenderForSpecifiedTimeForDefaultRequest()
     {
@@ -909,32 +817,29 @@ EOF;
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
         $request->setDelay($delay);
 
         $client->send($request, $response);
 
-        $logs = explode("\\n", $client->getLog());
+        $logs = explode('\\n', $client->getLog());
 
         $startIndex = $this->getLogEntryIndex($logs, 'Delaying page render for');
-        $endIndex   = $this->getLogEntryIndex($logs, 'Rendering page after');
+        $endIndex = $this->getLogEntryIndex($logs, 'Rendering page after');
 
-        $startTime = strtotime(substr($logs[$startIndex], 0 , 19));
-        $endTime   = strtotime(substr($logs[$endIndex], 0 , 19));
+        $startTime = strtotime(substr($logs[$startIndex], 0, 19));
+        $endTime = strtotime(substr($logs[$endIndex], 0, 19));
 
-        $this->assertSame(($startTime+$delay), $endTime);
+        $this->assertSame(($startTime + $delay), $endTime);
     }
 
     /**
      * Test delay logs start time
      * in client for capture request.
-     *
-     * @access public
-     * @return void
      */
     public function testDelayLogsStartTimeInClientForCaptureRequest()
     {
@@ -942,28 +847,25 @@ EOF;
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $request = $client->getMessageFactory()->createCaptureRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setDelay($delay);
 
         $client->send($request, $response);
 
-        $logs = explode("\\n", $client->getLog());
+        $logs = explode('\\n', $client->getLog());
 
         $startIndex = $this->getLogEntryIndex($logs, 'Delaying page render for');
 
-        $this->assertTrue(($startIndex !== false));
+        $this->assertTrue((false !== $startIndex));
     }
 
     /**
      * Test delay logs end time
      * in client for capture request.
-     *
-     * @access public
-     * @return void
      */
     public function testDelayLogsEndTimeInClientForCaptureRequest()
     {
@@ -971,28 +873,25 @@ EOF;
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $request = $client->getMessageFactory()->createCaptureRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setDelay($delay);
 
         $client->send($request, $response);
 
-        $logs = explode("\\n", $client->getLog());
+        $logs = explode('\\n', $client->getLog());
 
         $endIndex = $this->getLogEntryIndex($logs, 'Rendering page after');
 
-        $this->assertTrue(($endIndex !== false));
+        $this->assertTrue((false !== $endIndex));
     }
 
     /**
      * Test delay delays page render for
      * specified time for capture request.
-     *
-     * @access public
-     * @return void
      */
     public function testDelayDelaysPageRenderForSpecifiedTimeForCaptureRequest()
     {
@@ -1000,43 +899,40 @@ EOF;
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $request = $client->getMessageFactory()->createCaptureRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
         $request->setDelay($delay);
 
         $client->send($request, $response);
 
-        $logs = explode("\\n", $client->getLog());
+        $logs = explode('\\n', $client->getLog());
 
         $startIndex = $this->getLogEntryIndex($logs, 'Delaying page render for');
-        $endIndex   = $this->getLogEntryIndex($logs, 'Rendering page after');
+        $endIndex = $this->getLogEntryIndex($logs, 'Rendering page after');
 
-        $startTime = strtotime(substr($logs[$startIndex], 0 , 19));
-        $endTime   = strtotime(substr($logs[$endIndex], 0 , 19));
+        $startTime = strtotime(substr($logs[$startIndex], 0, 19));
+        $endTime = strtotime(substr($logs[$endIndex], 0, 19));
 
-        $this->assertSame(($startTime+$delay), $endTime);
+        $this->assertSame(($startTime + $delay), $endTime);
     }
 
     /**
      * Test lazy request returns content after
-     * all resources are loaded
-     *
-     * @access public
-     * @return void
+     * all resources are loaded.
      */
     public function testLazyRequestReturnsResourcesAfterAllResourcesAreLoaded()
     {
         $client = $this->getClient();
         $client->isLazy();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-lazy.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-lazy');
         $request->setTimeout(5000);
 
         $client->send($request, $response);
@@ -1047,21 +943,18 @@ EOF;
     /**
      * Test content is returned for lazy request
      * if timeout is reached before resource is
-     * loaded
-     *
-     * @access public
-     * @return void
+     * loaded.
      */
     public function testContentIsReturnedForLazyRequestIfTimeoutIsReachedBeforeResourceIsLoaded()
     {
         $client = $this->getClient();
         $client->isLazy();
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-lazy.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-lazy');
         $request->setTimeout(1000);
 
         $client->send($request, $response);
@@ -1072,20 +965,17 @@ EOF;
     /**
      * Test debug logs debug info to
      * client log.
-     *
-     * @access public
-     * @return void
      */
     public function testDebugLogsDebugInfoToClientLog()
     {
         $client = $this->getClient();
         $client->getEngine()->debug(true);
 
-        $request  = $client->getMessageFactory()->createRequest();
+        $request = $client->getMessageFactory()->createRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default.php');
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-default');
 
         $client->send($request, $response);
 
@@ -1094,24 +984,21 @@ EOF;
 
     /**
      * Test test can set page
-     * background color
-     *
-     * @access public
-     * @return void
+     * background color.
      */
     public function testCanSetPageBackgroundColor()
     {
         $this->filename = 'test.jpg';
-        $file = ($this->directory . '/' . $this->filename);
+        $file = ($this->directory.'/'.$this->filename);
 
         $client = $this->getClient();
 
-        $request  = $client->getMessageFactory()->createCaptureRequest();
+        $request = $client->getMessageFactory()->createCaptureRequest();
         $response = $client->getMessageFactory()->createResponse();
 
         $request->setMethod('GET');
-        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture.php');
-        $request->setBodyStyles(array('backgroundColor' => 'red'));
+        $request->setUrl('http://www.jonnyw.kiwi/tests/test-capture');
+        $request->setBodyStyles(['backgroundColor' => 'red']);
         $request->setOutputFile($file);
 
         $client->send($request, $response);
@@ -1119,9 +1006,9 @@ EOF;
         $this->assertContains('body style="background-color: red;"', $response->getContent());
     }
 
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++ TEST ENTITIES ++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
+    /** ++++++++++ TEST ENTITIES ++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
      * Get client instance.
@@ -1142,19 +1029,16 @@ EOF;
         return $client;
     }
 
-/** +++++++++++++++++++++++++++++++++++ **/
-/** ++++++++++++ UTILITIES ++++++++++++ **/
-/** +++++++++++++++++++++++++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
+    /** ++++++++++++ UTILITIES ++++++++++++ **/
+    /** +++++++++++++++++++++++++++++++++++ **/
 
     /**
      * Set up test environment.
-     *
-     * @access public
-     * @return void
      */
     public function setUp()
     {
-        $this->filename  = 'test.proc';
+        $this->filename = 'test.proc';
         $this->directory = sys_get_temp_dir();
 
         if (!is_writable($this->directory)) {
@@ -1164,9 +1048,6 @@ EOF;
 
     /**
      * Tear down test environment.
-     *
-     * @access public
-     * @return void
      */
     public function tearDown()
     {
@@ -1180,7 +1061,6 @@ EOF;
     /**
      * Get test filename.
      *
-     * @access public
      * @return string
      */
     public function getFilename()
@@ -1191,8 +1071,8 @@ EOF;
     /**
      * Write procedure body to file.
      *
-     * @access public
-     * @param  string $data
+     * @param string $data
+     *
      * @return string
      */
     public function writeProcedure($procedure)
@@ -1207,18 +1087,17 @@ EOF;
     /**
      * Get log entry index.
      *
-     * @access public
-     * @param  array     $logs
-     * @param  string    $search
+     * @param array  $logs
+     * @param string $search
+     *
      * @return int|false
      */
     public function getLogEntryIndex(array $logs, $search)
     {
         foreach ($logs as $index => $log) {
-
             $pos = stripos($log, $search);
 
-            if ($pos !== false) {
+            if (false !== $pos) {
                 return $index;
             }
         }
