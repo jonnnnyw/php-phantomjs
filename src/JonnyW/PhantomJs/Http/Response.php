@@ -64,7 +64,7 @@ class Response
      * @var string
      * @access public
      */
-    public $redirectUrl;
+    public $redirectURL;
 
     /**
      * Request time string
@@ -81,6 +81,14 @@ class Response
      * @access public
      */
     public $console;
+
+    /**
+     * Session cookies
+     *
+     * @var array
+     * @access public
+     */
+    public $cookies;
 
     /**
      * Import response data
@@ -209,7 +217,7 @@ class Response
      */
     public function getRedirectUrl()
     {
-        return $this->redirectUrl;
+        return $this->redirectURL;
     }
 
     /**
@@ -246,5 +254,16 @@ class Response
     public function getConsole()
     {
         return $this->console;
+    }
+
+    /**
+     * Get session cookies
+     *
+     * @access public
+     * @return array
+     */
+    public function getCookies()
+    {
+        return $this->cookies;
     }
 }

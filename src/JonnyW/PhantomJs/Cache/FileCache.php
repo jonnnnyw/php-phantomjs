@@ -8,6 +8,7 @@
  */
 namespace JonnyW\PhantomJs\Cache;
 
+use JonnyW\PhantomJs\StringUtils;
 use JonnyW\PhantomJs\Exception\NotWritableException;
 use JonnyW\PhantomJs\Exception\NotExistsException;
 
@@ -169,7 +170,7 @@ class FileCache implements CacheInterface
     protected function getFileName($id)
     {
         if (is_dir($id)) {
-            return sprintf('%1$s/%2$s.%3$s', rtrim($id, DIRECTORY_SEPARATOR), uniqid(), $this->extension);
+            return sprintf('%1$s/%2$s.%3$s', rtrim($id, DIRECTORY_SEPARATOR), StringUtils::random(20), $this->extension);
         }
 
         $dirName = dirname($id);

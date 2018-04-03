@@ -52,10 +52,26 @@ class PdfRequest extends CaptureRequest
     /**
      * Margin
      *
-     * @var string
+     * @var string|array
      * @access protected
      */
     protected $margin;
+
+    /**
+     * Repeating header
+     *
+     * @var array
+     * @access protected
+     */
+    protected $header;
+
+    /**
+     * Repeating footer
+     *
+     * @var array
+     * @access protected
+     */
+    protected $footer;
 
     /**
      * Internal constructor
@@ -75,6 +91,8 @@ class PdfRequest extends CaptureRequest
         $this->margin      = '1cm';
         $this->format      = 'A4';
         $this->orientation = 'portrait';
+        $this->header      = array();
+        $this->footer      = array();
 
     }
 
@@ -203,7 +221,7 @@ class PdfRequest extends CaptureRequest
      * Set margin.
      *
      * @access public
-     * @param  string $margin
+     * @param  string|array $margin
      * @return void
      */
     public function setMargin($margin)
@@ -215,10 +233,64 @@ class PdfRequest extends CaptureRequest
      * Get margin.
      *
      * @access public
-     * @return string
+     * @return string|array
      */
     public function getMargin()
     {
         return $this->margin;
+    }
+
+    /**
+     * Set repeating header.
+     *
+     * @access public
+     * @param  string $content
+     * @param  string $height  (default: '1cm')
+     * @return void
+     */
+    public function setRepeatingHeader($content, $height = '1cm')
+    {
+        $this->header = array(
+            'content' => $content,
+            'height'  => $height
+        );
+    }
+
+    /**
+     * Get repeating header.
+     *
+     * @access public
+     * @return array
+     */
+    public function getRepeatingHeader()
+    {
+        return $this->header;
+    }
+
+    /**
+     * Set repeating footer.
+     *
+     * @access public
+     * @param  string $content
+     * @param  string $height  (default: '1cm')
+     * @return void
+     */
+    public function setRepeatingFooter($content, $height = '1cm')
+    {
+        $this->footer = array(
+            'content' => $content,
+            'height'  => $height
+        );
+    }
+
+    /**
+     * Get repeating footer.
+     *
+     * @access public
+     * @return array
+     */
+    public function getRepeatingFooter()
+    {
+        return $this->footer;
     }
 }

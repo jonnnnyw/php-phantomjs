@@ -180,8 +180,39 @@ interface RequestInterface
      * Get request headers
      *
      * @access public
-     * @param  string $format
-     * @return array
+     * @return array|string
      */
-    public function getHeaders($format = 'default');
+    public function getHeaders();
+
+    /**
+     * Get settings
+     *
+     * @access public
+     * @return array|string
+     */
+    public function getSettings();
+
+    /**
+     * Get cookies
+     *
+     * @access public
+     * @return array|string
+     */
+    public function getCookies();
+
+    /**
+     * Set body styles
+     *
+     * @access public
+     * @param array $styles
+     */
+    public function setBodyStyles(array $styles);
+
+    /**
+     * Get body styles
+     *
+     * @access public
+     * @return array|string
+     */
+    public function getBodyStyles();
 }

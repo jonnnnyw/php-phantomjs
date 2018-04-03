@@ -7,7 +7,7 @@ var system  = require('system'),
 
 try {
     
-  syntax = esprima.parse("{{ input.get('procedure')|replace({'"': '\'', '\n': ' ', '\r': ' '}) }}");
+  syntax = esprima.parse("{{ input.get('procedure')|escape('js') }}");
       
 } catch(e) {
     

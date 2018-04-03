@@ -9,7 +9,6 @@
 
 namespace JonnyW\PhantomJs\Http;
 
-use JonnyW\PhantomJs\Exception\InvalidUrlException;
 use JonnyW\PhantomJs\Exception\InvalidMethodException;
 use JonnyW\PhantomJs\Procedure\InputInterface;
 
@@ -28,6 +27,22 @@ abstract class AbstractRequest
      * @access protected
      */
     protected $headers;
+
+    /**
+     * Settings
+     *
+     * @var array
+     * @access protected
+     */
+    protected $settings;
+
+    /**
+     * Cookies
+     *
+     * @var array
+     * @access protected
+     */
+    protected $cookies;
 
     /**
      * Request data
@@ -86,6 +101,14 @@ abstract class AbstractRequest
     protected $viewportHeight;
 
     /**
+     * Body styles.
+     *
+     * @var array
+     * @access protected
+     */
+    protected $bodyStyles;
+
+    /**
      * Internal constructor
      *
      * @access public
@@ -95,11 +118,18 @@ abstract class AbstractRequest
      */
     public function __construct($url = null, $method = RequestInterface::METHOD_GET, $timeout = 5000)
     {
-        $this->headers        = array();
-        $this->data           = array();
-        $this->delay          = 0;
-        $this->viewportWidth  = 0;
-        $this->viewportHeight = 0;
+        $this->headers         = array();
+        $this->data            = array();
+        $this->bodyStyles      = array();
+        $this->settings        = array();
+        $this->delay           = 0;
+        $this->viewportWidth   = 0;
+        $this->viewportHeight  = 0;
+
+        $this->cookies = array(
+            'add'    => array(),
+            'delete' => array()
+        );
 
         $this->setMethod($method);
         $this->setTimeout($timeout);
@@ -151,7 +181,7 @@ abstract class AbstractRequest
      */
     public function setTimeout($timeout)
     {
-        $this->timeout = $timeout;
+        $this->settings['resourceTimeout'] = $timeout;
 
         return $this;
     }
@@ -164,7 +194,11 @@ abstract class AbstractRequest
      */
     public function getTimeout()
     {
-        return $this->timeout;
+        if (isset($this->settings['resourceTimeout'])) {
+            return $this->settings['resourceTimeout'];
+        }
+
+        return null;
     }
 
     /**
@@ -204,6 +238,8 @@ abstract class AbstractRequest
     {
         $this->viewportWidth  = (int) $width;
         $this->viewportHeight = (int) $height;
+
+        return $this;
     }
 
     /**
@@ -232,16 +268,11 @@ abstract class AbstractRequest
      * Set request URL
      *
      * @access public
-     * @param  string                                          $url
+     * @param  string                                 $url
      * @return \JonnyW\PhantomJs\Http\AbstractRequest
-     * @throws \JonnyW\PhantomJs\Exception\InvalidUrlException
      */
     public function setUrl($url)
     {
-        if (!filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED)) {
-            throw new InvalidUrlException(sprintf('Invalid URL provided: %s', $url));
-        }
-
         $this->url = $url;
 
         return $this;
@@ -363,8 +394,8 @@ abstract class AbstractRequest
      * Get request headers
      *
      * @access public
-     * @param  string $format
-     * @return array
+     * @param  string       $format
+     * @return array|string
      */
     public function getHeaders($format = 'default')
     {
@@ -373,6 +404,119 @@ abstract class AbstractRequest
         }
 
         return $this->headers;
+    }
+
+    /**
+     * Add single setting
+     *
+     * @access public
+     * @param  string                                 $setting
+     * @param  string                                 $value
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
+     */
+    public function addSetting($setting, $value)
+    {
+        $this->settings[$setting] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get settings
+     *
+     * @access public
+     * @return array
+     */
+    public function getSettings()
+    {
+        return $this->settings;
+    }
+
+    /**
+     * Add cookie.
+     *
+     * @access public
+     * @param  string                                 $name
+     * @param  mixed                                  $value
+     * @param  string                                 $path
+     * @param  string                                 $domain
+     * @param  bool                                   $httpOnly (default: true)
+     * @param  bool                                   $secure   (default: false)
+     * @param  int                                    $expires  (default: null)
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
+     */
+    public function addCookie($name, $value, $path, $domain, $httpOnly = true, $secure = false, $expires = null)
+    {
+        $filter = function ($value) {
+            return !is_null($value);
+        };
+
+        $this->cookies['add'][] = array_filter(array(
+            'name'     => $name,
+            'value'    => $value,
+            'path'     => $path,
+            'domain'   => $domain,
+            'httponly' => $httpOnly,
+            'secure'   => $secure,
+            'expires'  => $expires
+        ), $filter);
+
+        return $this;
+    }
+
+    /**
+     * Delete cookie.
+     *
+     * @access public
+     * @param  string                                 $name
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
+     */
+    public function deleteCookie($name)
+    {
+        $this->cookies['delete'][] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get cookies
+     *
+     * @access public
+     * @return array
+     */
+    public function getCookies()
+    {
+        return $this->cookies;
+    }
+
+    /**
+     * Set body styles
+     *
+     * @access public
+     * @param  array                                  $styles
+     * @return \JonnyW\PhantomJs\Http\AbstractRequest
+     */
+    public function setBodyStyles(array $styles)
+    {
+        $this->bodyStyles = $styles;
+
+        return $this;
+    }
+
+    /**
+     * Get body styles
+     *
+     * @access public
+     * @param  string       $format (default: 'default')
+     * @return array|string
+     */
+    public function getBodyStyles($format = 'default')
+    {
+        if ($format === 'json') {
+            return json_encode($this->bodyStyles);
+        }
+
+        return $this->bodyStyles;
     }
 
     /**

@@ -14,6 +14,7 @@ use JonnyW\PhantomJs\Parser\ParserInterface;
 use JonnyW\PhantomJs\Template\TemplateRendererInterface;
 use JonnyW\PhantomJs\Exception\NotWritableException;
 use JonnyW\PhantomJs\Exception\ProcedureFailedException;
+use JonnyW\PhantomJs\StringUtils;
 
 /**
  * PHP PhantomJs
@@ -184,7 +185,7 @@ class Procedure implements ProcedureInterface
      */
     protected function write($compiled)
     {
-        return $this->cacheHandler->save(uniqid(), $compiled);
+        return $this->cacheHandler->save(StringUtils::random(20), $compiled);
     }
 
     /**

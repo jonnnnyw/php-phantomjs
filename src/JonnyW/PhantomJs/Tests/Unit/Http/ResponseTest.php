@@ -37,7 +37,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $response = $this->getResponse();
         $response->import($data);
 
-        $this->assertSame(200, $response->getStatus());
+        $this->assertEquals(200, $response->getStatus());
     }
 
     /**
@@ -55,7 +55,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $response = $this->getResponse();
         $response->import($data);
 
-        $this->assertSame('Test content', $response->getContent());
+        $this->assertEquals('Test content', $response->getContent());
     }
 
     /**
@@ -73,7 +73,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $response = $this->getResponse();
         $response->import($data);
 
-        $this->assertSame('text/html', $response->getContentType());
+        $this->assertEquals('text/html', $response->getContentType());
     }
 
     /**
@@ -91,7 +91,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $response = $this->getResponse();
         $response->import($data);
 
-        $this->assertSame('http://test.com', $response->getUrl());
+        $this->assertEquals('http://test.com', $response->getUrl());
     }
 
     /**
@@ -103,13 +103,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function testRedirectUrlCanBeImported()
     {
         $data = array(
-            'redirectUrl' => 'http://test.com'
+            'redirectURL' => 'http://test.com'
         );
 
         $response = $this->getResponse();
         $response->import($data);
 
-        $this->assertSame('http://test.com', $response->getRedirectUrl());
+        $this->assertEquals('http://test.com', $response->getRedirectUrl());
     }
 
     /**
@@ -127,7 +127,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $response = $this->getResponse();
         $response->import($data);
 
-        $this->assertSame(123456789, $response->getTime());
+        $this->assertEquals(123456789, $response->getTime());
     }
 
     /**
@@ -156,7 +156,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
             $headers[0]['name'] => $headers[0]['value']
         );
 
-        $this->assertSame($expectedHeaders, $response->getHeaders());
+        $this->assertEquals($expectedHeaders, $response->getHeaders());
     }
 
     /**
@@ -194,7 +194,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $response = $this->getResponse();
         $response->import($data);
 
-        $this->assertSame('Test Header 1', $response->getHeader('Header1'));
+        $this->assertEquals('Test Header 1', $response->getHeader('Header1'));
     }
 
     /**
@@ -366,6 +366,25 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $response->import($data);
 
         $this->assertFalse($response->isRedirect());
+    }
+
+    /**
+     * Test if cookies can be parsed and imported
+     *
+     * @access public
+     * @return void
+     */
+    public function testCookiesCanBeImported()
+    {
+        $cookie = 'cookie=TESTING; HttpOnly; expires=Mon, 16-Nov-2020 00:00:00 GMT; domain=.jonnyw.kiwi; path=/';
+        $data = array(
+            'cookies' => array($cookie)
+        );
+
+        $response = $this->getResponse();
+        $response->import($data);
+
+        $this->assertContains($cookie, $response->getCookies());
     }
 
 /** +++++++++++++++++++++++++++++++++++ **/

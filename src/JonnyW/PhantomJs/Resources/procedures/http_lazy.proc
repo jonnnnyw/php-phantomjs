@@ -10,7 +10,9 @@ var page       = require('webpage').create(),
     response   = {},
     debug      = [],
     logs       = [],
-    procedure  = {};
+    procedure  = {},
+    resources  = 0,
+    timeout;
 
 /**
  * Global variables
@@ -57,15 +59,34 @@ page.onResourceTimeout = function (error) {
 /**
  * On resource requested
  */
-page.onResourceRequested = function (resource, networkRequest) {
+page.onResourceRequested = function (req) {
+    
     [[ engine.load('page_on_resource_requested') ]]
+    
+    resources++;
+    window.clearTimeout(timeout);
 };
 
 /**
  * On resource received
  */
-page.onResourceReceived = function (resource) {
+page.onResourceReceived = function (res) {
+    
+    var resource = res; // To be removed in version 5.0
+    
     [[ engine.load('page_on_resource_received') ]]
+    
+    if(!res.stage || res.stage === 'end') {
+        
+        resources--;
+        
+        if (resources === 0) {
+            
+            timeout = window.setTimeout(function() {
+                procedure.execute('success');
+            }, 300);
+        }
+    }
 };
 
 /**
@@ -86,8 +107,12 @@ phantom.onError = function(msg, trace) {
  * Open page
  */
 page.open ('{{ input.getUrl() }}', '{{ input.getMethod() }}', '{{ input.getBody() }}', function (status) {
+    
     [[ engine.load('page_body_styles') ]]
-    [[ engine.load('page_open') ]]
+
+    window.setTimeout(function () { 
+        procedure.execute(status); 
+    }, {{ input.getTimeout() - 200 }});
 });
 
 /**
