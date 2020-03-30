@@ -38,7 +38,7 @@ class ServiceContainer extends ContainerBuilder
         if (!self::$instance instanceof ServiceContainer) {
 
             self::$instance = new ServiceContainer();
-            self::$instance->load();
+            self::$instance->loadConfig();
         }
 
         return self::$instance;
@@ -47,10 +47,9 @@ class ServiceContainer extends ContainerBuilder
     /**
      * Load service container.
      *
-     * @access public
      * @return void
      */
-    public function load()
+    private function loadConfig()
     {
         $loader = new YamlFileLoader($this, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('config.yml');
