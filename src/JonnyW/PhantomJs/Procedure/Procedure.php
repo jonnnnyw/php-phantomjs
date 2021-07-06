@@ -101,7 +101,7 @@ class Procedure implements ProcedureInterface
             $descriptorspec = array(
                 array('pipe', 'r'),
                 array('pipe', 'w'),
-                array('pipe', 'w')
+                array('pipe', 'a')
             );
 
             $process = proc_open(escapeshellcmd(sprintf('%s %s', $this->engine->getCommand(), $executable)), $descriptorspec, $pipes, null, null);
