@@ -43,4 +43,4 @@ rss_path: feed.xml
 latest_version: 4.0
 latest_collection: version_4
 
-BASE_PATH: http://jonnnnyw.github.io/php-phantomjs
+BASE_PATH: https://jonnnnyw.github.io/php-phantomjs
